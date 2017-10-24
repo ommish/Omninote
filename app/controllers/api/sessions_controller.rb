@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
       login(@user)
       render partial: 'api/users/user', locals: { user: @user }
     else
-      render json: @user.errors.full_messages, status: 404
+      render json: ["Invalid username/password combination"], status: 404
     end
   end
 

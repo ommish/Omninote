@@ -1,0 +1,39 @@
+@import "variables";
+
+
+.grey-bg {
+  background-color: $light-grey;
+}
+
+#form-page {
+  margin: 200px auto;
+  border: none;
+  width: 40%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: center;
+  padding: 20px;
+  border: 1px solid $grey;
+  border-radius: 5px;
+  background-color: white;
+
+  h3 {
+    align-self: center;
+    color: $dark-grey;
+  }
+
+  p {
+    color: $dark-grey;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a {
+    color: $light-green;
+    align-self: center;
+  }
+
+}

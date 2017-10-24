@@ -11,8 +11,8 @@ const Root = ({store}) => (
       <HashRouter>
         <div>
           <Switch>
-            <AuthRoute path='/login' component={SessionForm} />
-            <AuthRoute path='/signup' component={SessionForm} />
+            <AuthRoute path='/login' component={SessionForm} className={"greyBG"}/>
+            <AuthRoute path='/signup' component={SessionForm} className={"greyBG"}/>
             <AuthRoute path='/' component={DefaultPage} />
           </Switch>
           <ProtectedRoute path='/' component={App} />
