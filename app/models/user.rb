@@ -1,10 +1,17 @@
 class User < ApplicationRecord
   validates :email, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
+  validate :valid_email
 
   attr_reader :password
 
   after_initialize :ensure_session_token
+
+  def valid_email
+    if !email.include?("@") && email != ""
+      errors[:base] << "Email is invalid"
+    end
+  end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
@@ -15,18 +22,13 @@ class User < ApplicationRecord
     SecureRandom::urlsafe_base64
   end
 
-
-  protected
-
-  def is_password?(password)
-    BCrypt::Password.new(self.password_digest).is_password?(password)
-  end
-
-  private
-
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
+  end
+
+  def is_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
   def ensure_session_token
