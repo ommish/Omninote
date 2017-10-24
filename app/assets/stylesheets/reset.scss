@@ -1,0 +1,43 @@
+@import "variables";
+
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, a, img,
+strong, ol, ul, li, form, label, table, caption, tr, th, td, article,
+aside, figure, figcaption, footer, header, nav, section, button, input {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+  list-style: none;
+	font-family: 'Lato', sans-serif;
+	letter-spacing: 1.5px;
+	-webkit-appearance: none;
+	text-decoration: none;
+	color: $black;
+
+}
+
+h1 {
+	font-size: 60px;
+	font-weight: 700;
+}
+
+h2 {
+	font-size: 40px;
+	font-weight: 700;
+}
+
+h3 {
+	font-size: 30px;
+	font-weight: 700;
+}
+
+h4 {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+h5 {
+	font-size: 15px;
+	font-weight: 700;
+}

@@ -32,28 +32,30 @@ class SessionForm extends React.Component {
   }
 
   render () {
+    const errors = this.state.sessionErrors.map((error, i) => <p key={i}>{error}</p>);
     return (
-      <div>
-        <h1>{this.state.formType}</h1>
-        <form onSubmit={this.handleSubmit}>
-          <p>{this.state.sessionErrors}</p>
-          <label> Email
+        <form
+          onSubmit={this.handleSubmit}
+          className="session-form">
+          <h3>{this.state.formType}</h3>
+          <br></br>
+          {errors}
+          <br></br>
             <input
+              placeholder="Email"
               type="text"
               value={this.state.user.email}
               onChange={this.handleChange('email')}/>
-          </label>
-          <label> Password
             <input
+              placeholder="Password"
               type="password"
               value={this.state.user.password}
               onChange={this.handleChange('password')}/>
-          </label>
           <input
             type="submit"
-            value={this.state.formType}/>
+            value={this.state.formType}
+            className="square-button"/>
         </form>
-      </div>
     );
   }
 

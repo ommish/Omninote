@@ -1,0 +1,122 @@
+
+@import "variables";
+
+.default-page{
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  header {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    border-bottom: 1px solid $light-grey;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  header nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  header .left-nav {
+    margin-right: 40%;
+  }
+  header .left-nav a:hover {
+    color: $light-green;
+  }
+  header .right-nav a:hover, footer nav:nth-of-type(2) li {
+    border-bottom: 2px solid $light-green;
+  }
+
+  nav h5 {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  main {
+    display: flex;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+  }
+
+  section:nth-of-type(1) {
+    font-size: 70px;
+    width: 60%;
+  }
+
+  section:nth-of-type(2) {
+    width: 40%;
+    margin-left: 20px;
+    margin-right: 50px;
+  }
+
+  footer {
+    margin-top: 80px;
+    align-self: flex-end;
+
+  }
+
+  footer nav {
+    border-top: 1px solid $light-grey;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+}
+
+.session-form {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: center;
+}
+
+.session-form input[type="text"] {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  background: $light-grey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.session-form input[type="password"] {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  background: $light-grey;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 10px;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-sizing: border-box;
+
+}
+
+.square-button {
+  background: $light-green;
+  color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+}
+
+.square-button:hover {
+  background: $dark-green;
+}

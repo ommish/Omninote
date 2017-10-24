@@ -1,11 +1,13 @@
 import React from 'react';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
-import { Route } from 'react-router-dom';
-import DefaultPage from './default_page';
 
 const App = (props) => (
   <div>
-      <AuthRoute path='/' component={DefaultPage} />
+    <h1>h1 is the app component</h1>
+    <h2>h2 is the app component</h2>
+    <h3>h3 is the app component</h3>
+    <h4>h4 is the app component</h4>
+    <h5>h5 is the app component</h5>
+    <p>p is the app component</p>
   </div>
 );
 
