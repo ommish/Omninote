@@ -30,8 +30,16 @@
   header .left-nav a:hover {
     color: $light-green;
   }
-  header .right-nav a:hover, footer nav:nth-of-type(2) li {
+  header .right-nav a:hover, footer nav:nth-of-type(2) li:hover {
     border-bottom: 2px solid $light-green;
+    box-sizing: border-box;
+  }
+
+  footer ul {
+    display: flex;
+  }
+  footer ul li {
+    margin-left: 10px;
   }
 
   nav h5 {
@@ -41,20 +49,20 @@
 
   main {
     display: flex;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 20px;
+    padding-left: 150px;
+    padding-right: 150px;
+    padding-top: 50px;
   }
 
   section:nth-of-type(1) {
     font-size: 70px;
     width: 60%;
+    padding-right: 50px;
   }
 
   section:nth-of-type(2) {
     width: 40%;
-    margin-left: 20px;
-    margin-right: 50px;
+    padding-right: 50px;
   }
 
   footer {
@@ -65,8 +73,8 @@
 
   footer nav {
     border-top: 1px solid $light-grey;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
 
 }
@@ -78,45 +86,55 @@
   flex-direction: column;
   align-items: flex-start;
   align-self: center;
-}
+  padding-left: 100px;
+  border-left: 1px solid $light-grey;
 
-.session-form input[type="text"] {
-  margin-top: 7px;
-  margin-bottom: 7px;
-  background: $light-grey;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 10px;
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
+  input[type="text"] {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    background: $light-grey;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
 
-.session-form input[type="password"] {
-  margin-top: 7px;
-  margin-bottom: 7px;
-  background: $light-grey;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 10px;
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  box-sizing: border-box;
+  input[type="password"] {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    background: $light-grey;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-sizing: border-box;
 
-}
+  }
+  .square-button {
+    background: $light-green;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    width: 100%;
+    height: auto;
+  }
 
-.square-button {
-  background: $light-green;
-  color: white;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border-radius: 5px;
-  width: 100%;
-  height: auto;
-}
+  .square-button:hover {
+    background: $dark-green;
+  }
 
-.square-button:hover {
-  background: $dark-green;
+  .error-present {
+    border: 1px solid $red;
+  }
+
+  ul li {
+    color: $red;
+  }
+
 }
