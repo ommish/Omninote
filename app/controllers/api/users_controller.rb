@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
   # TODO render json stuff
   def create
     @user = User.new(user_params)
