@@ -9,5 +9,8 @@
 User.destroy_all
 
 demo = User.create!(email: "demo@gmail.com", password: "demoaccount")
-
 ommi = User.create!(email: "ommi@gmail.com", password: "appacademy")
+
+earthworm = Notebook.create!(title: "The hungry earthworm", user_id: demo.id)
+breakfast = Notebook.create!(title: "The best meal of the day", user_id: ommi.id)
+lunch = Notebook.create!(title: "Also great", user_id: ommi.id)

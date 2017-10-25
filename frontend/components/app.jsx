@@ -4,7 +4,7 @@ import SideNav from './sidenav/sidenav_container';
 const App = (props) => (
   <div className="app-page">
     <SideNav />
-    <section><h1>SideMenu will go here</h1></section>
+    <section className="notes-index"><h1>Notes index will go here</h1></section>
     <main>
       <form className="noteEditor">
         <input placeholder="Title" type="text" className="title"/>

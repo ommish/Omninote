@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :notebooks, dependent: :destroy
+
   def valid_email
     if !email.include?("@") && email != ""
       errors[:base] << "Email is invalid"
