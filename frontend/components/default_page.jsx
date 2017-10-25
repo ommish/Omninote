@@ -8,12 +8,6 @@ class DefaultPage extends React.Component {
     super(props);
   }
 
-  componentWillUnmount() {
-    // When is this happening? nothing happens after clicking link
-    // console.log("HI")
-    // tried clearing errors here so errors dont persis after going to "/login" 
-  }
-
   render () {
     return (
       <div

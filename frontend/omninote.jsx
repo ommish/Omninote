@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 import * as NotebookActions from './actions/notebook_actions';
+import Modal from 'react-modal';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
+  Modal.setAppElement(document.body);
   let store;
   if (window.currentUser) {
     const preloadedState = { session: { currentUser: window.currentUser } };
