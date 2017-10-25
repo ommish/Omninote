@@ -4,6 +4,15 @@ import { Link } from 'react-router-dom';
 
 class DefaultPage extends React.Component {
 
+  constructor (props) {
+    super(props);
+  }
+
+  componentWillUnmount() {
+    // When is this happening? nothing happens after clicking link
+    // console.log("HI")
+  }
+
   render () {
     return (
       <div

@@ -1,4 +1,4 @@
-import { login, signup } from '../../actions/session_actions';
+import { login, signup, receiveUserErrors } from '../../actions/session_actions';
 import SessionForm from './session_form';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -19,6 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     submitForm: (user) => dispatch(submitForm(user)),
     demoLogin: (user) => dispatch(login(user)),
+    clearUserErrors: () => dispatch(receiveUserErrors([])),
   };
 };
 

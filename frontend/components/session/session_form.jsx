@@ -38,6 +38,10 @@ class SessionForm extends React.Component {
       this.setState(newProps);
     }
   }
+  componentWillUnmount () {
+    $("html").removeClass("grey-bg");
+    this.props.clearUserErrors();
+  }
 
   render () {
     let errors = this.state.sessionErrors.map((error, i) => <li key={i}>{error}</li>);
