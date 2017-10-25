@@ -10,20 +10,20 @@
   width: 70px;
   background-color: $light-grey;
   border-right: 1px solid $grey;
+}
 
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+.sidenav > ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
 
-    li {
-      margin-bottom: 30px;
-    }
+.sidenav-ul > li {
+  margin-bottom: 30px;
+}
 
-    li:nth-of-type(1) {
-      margin-top: 20px;
-      margin-bottom: 50px;
-    }
-  }
+.sidenav-ul > li:nth-of-type(1) {
+  margin-top: 20px;
+  margin-bottom: 50px;
 }

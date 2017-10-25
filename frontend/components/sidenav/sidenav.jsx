@@ -26,7 +26,7 @@ class SideNav extends React.Component {
 
     return (
       <nav className="sidenav">
-        <ul>
+        <ul className="sidenav-ul">
           <li><button onClick={() => {}} className="circle-button">LOGO</button></li>
           <li><button onClick={() => {}} className="circle-button">+</button></li>
           <li><button onClick={() => {}} className="circle-button">Notes</button></li>
