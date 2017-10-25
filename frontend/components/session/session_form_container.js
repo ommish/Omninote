@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const submitForm = ownProps.location.pathname === '/login' ? login : signup;
   return {
     submitForm: (user) => dispatch(submitForm(user)),
+    demoLogin: (user) => dispatch(login(user)),
   };
 };
 

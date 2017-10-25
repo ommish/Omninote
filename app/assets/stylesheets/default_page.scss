@@ -79,7 +79,13 @@
 
 }
 
-.session-form {
+div.session-form {
+  form {
+    padding-left: 10px;
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+  }
   width: 100%;
   height: auto;
   display: flex;
@@ -88,6 +94,10 @@
   align-self: center;
   padding-left: 100px;
   border-left: 1px solid $light-grey;
+
+  .error-present {
+    border: 1px solid $red;
+  }
 
   input[type="text"] {
     margin-top: 7px;
@@ -114,25 +124,6 @@
     border-radius: 6px;
     box-sizing: border-box;
 
-  }
-  .square-button {
-    background: $light-green;
-    color: white;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-radius: 6px;
-    width: 100%;
-    height: auto;
-    margin-top: 7px;
-    margin-bottom: 7px;
-  }
-
-  .square-button:hover {
-    background: $dark-green;
-  }
-
-  .error-present {
-    border: 1px solid $red;
   }
 
   ul li {

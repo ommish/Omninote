@@ -10,12 +10,19 @@ class SessionForm extends React.Component {
     super(props);
     this.state = this.props;
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   handleSubmit (e) {
     e.preventDefault();
     const newUser = merge({}, this.state.user);
     this.props.submitForm(newUser);
+  }
+
+  demoLogin (e) {
+    e.preventDefault();
+    const demoUser = {email: "demo@gmail.com", password: "demoaccount"};
+    this.props.demoLogin(demoUser);
   }
 
   handleChange(field) {
@@ -42,17 +49,21 @@ class SessionForm extends React.Component {
         $("html").addClass("grey-bg");
     }
     let authLink;
+    let authMessage;
     if (this.props.location.pathname === '/login') {
-      authLink = <p>Don't have an account? <br></br><Link to="/signup">Sign Up Here</Link></p>;
+      authMessage = <p>Don't have an account?</p>;
+      authLink = <Link to="/signup">Sign Up Here</Link>;
     } else if (this.props.location.pathname === '/signup'){
-      authLink = <p>Already signed up?<br></br><Link to="/login">Log In Here</Link></p>;
+      authMessage = <p>Already signed up?</p>;
+      authLink = <Link to="/login">Log In Here</Link>;
     }
 
     return (
+      <div
+        id={formPage}
+        className="session-form">
         <form
-          id={formPage}
-          onSubmit={this.handleSubmit}
-          className="session-form">
+          onSubmit={this.handleSubmit}>
           <h3>{this.state.formType}</h3>
           <br></br>
             <input
@@ -72,9 +83,15 @@ class SessionForm extends React.Component {
             value={this.state.formType}
             className="square-button"/>
           <br></br>
-          <ul>{errors}</ul>
-          {authLink}
+          <ul>{errors}{authMessage}{authLink}</ul>
         </form>
+        <form onSubmit={this.demoLogin}>
+          <input
+            type="submit"
+            value="Demo Log In"
+            className="square-button"/>
+        </form>
+      </div>
     );
   }
 

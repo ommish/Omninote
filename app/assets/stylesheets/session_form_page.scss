@@ -18,10 +18,18 @@
   border: 1px solid $grey;
   border-radius: 5px;
   background-color: white;
+  overflow: hidden;
 
   h3 {
     align-self: center;
     color: $dark-grey;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
   }
 
   p {

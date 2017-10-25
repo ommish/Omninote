@@ -9,10 +9,10 @@ import SessionForm from './session/session_form_container';
 const Root = ({store}) => (
     <Provider store={store}>
       <HashRouter>
-        <div>
+        <div style={{height: "100%"}} >
           <Switch>
-            <AuthRoute path='/login' component={SessionForm} className={"greyBG"}/>
-            <AuthRoute path='/signup' component={SessionForm} className={"greyBG"}/>
+            <AuthRoute path='/login' component={SessionForm} />
+            <AuthRoute path='/signup' component={SessionForm} />
             <AuthRoute path='/' component={DefaultPage} />
           </Switch>
           <ProtectedRoute path='/' component={App} />

@@ -15,3 +15,20 @@
 */
 
 @import "variables";
+
+
+.square-button {
+  background: $light-green;
+  color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 6px;
+  width: 100%;
+  height: auto;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+.square-button:hover {
+  background: $dark-green;
+}
