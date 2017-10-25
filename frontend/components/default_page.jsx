@@ -28,6 +28,10 @@ class DefaultPage extends React.Component {
             Meet Omninote, your second brain.
           </section>
           <section>
+          </section>
+          <section>
+          </section>
+          <section>
             <SessionForm />
           </section>
         </main>

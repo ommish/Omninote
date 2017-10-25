@@ -15,7 +15,7 @@ const Root = ({store}) => (
         <div style={{height: "100%"}} >
             <AuthRoute exact path='/login' component={SessionForm} />
             <AuthRoute exact path='/signup' component={SessionForm} />
-            <AuthRoute exact path='/' component={DefaultPage} clearUserErrors={() => store.dispatch(receiveUserErrors([]))}/>
+            <AuthRoute exact path='/' component={DefaultPage} />
           <ProtectedRoute path='/notebooks' component={App} />
         </div>
       </HashRouter>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NBSidemenu from '../sidemenu/sidemenu_notebook_container';
 
 //
 // SideNav
@@ -31,16 +32,16 @@ class SideNav extends React.Component {
       $(parent).addClass("app-parent");
     });
 
-
-
     return (
       <nav className="sidenav">
-        <button onClick={() => {}} className="circle-button">LOGO</button>
-        <button onClick={() => {}} className="circle-button">+</button>
-        <button onClick={() => {}} className="circle-button">Notes</button>
-        <button onClick={() => {}} className="circle-button">NBS</button>
-        <button onClick={() => {}} className="circle-button">TAGS</button>
-        <button onClick={this.props.logout} className="circle-button">ACC</button>
+        <ul>
+          <button onClick={() => {}} className="circle-button">LOGO</button>
+          <button onClick={() => {}} className="circle-button">+</button>
+          <button onClick={() => {}} className="circle-button">Notes</button>
+          <NBSidemenu/>
+          <button onClick={() => {}} className="circle-button">TAGS</button>
+          <button onClick={this.props.logout} className="circle-button">ACC</button>
+        </ul>
       </nav>
     );
   }
