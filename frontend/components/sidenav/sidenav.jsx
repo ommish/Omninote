@@ -23,29 +23,20 @@ class SideNav extends React.Component {
     super(props);
   }
   render () {
-    const parents = [];
-    parents.push(document.getElementsByTagName("html")[0]);
-    parents.push(document.getElementsByTagName("body")[0]);
-    parents.push(document.getElementById('root'));
-
-    parents.forEach((parent) => {
-      $(parent).addClass("app-parent");
-    });
 
     return (
       <nav className="sidenav">
         <ul>
-          <button onClick={() => {}} className="circle-button">LOGO</button>
-          <button onClick={() => {}} className="circle-button">+</button>
-          <button onClick={() => {}} className="circle-button">Notes</button>
-          <NBSidemenu/>
-          <button onClick={() => {}} className="circle-button">TAGS</button>
-          <button onClick={this.props.logout} className="circle-button">ACC</button>
+          <li><button onClick={() => {}} className="circle-button">LOGO</button></li>
+          <li><button onClick={() => {}} className="circle-button">+</button></li>
+          <li><button onClick={() => {}} className="circle-button">Notes</button></li>
+          <NBSidemenu />
+          <li><button onClick={() => {}} className="circle-button">TAGS</button></li>
+          <li><button onClick={this.props.logout} className="circle-button">ACC</button></li>
         </ul>
       </nav>
     );
   }
-
 
 }
 

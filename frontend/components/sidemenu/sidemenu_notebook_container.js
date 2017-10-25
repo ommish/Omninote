@@ -8,6 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     notebooks: Object.values(state.entities.notebooks),
     sidemenuOpen: state.ui.sidemenu,
+    itemType: "notebook",
   };
 };
 

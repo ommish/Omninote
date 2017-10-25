@@ -1,13 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { HashRouter, Switch } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import DefaultPage from './default_page';
 import App from './app';
 import SessionForm from './session/session_form_container';
 import { receiveUserErrors } from '../actions/session_actions';
-
-// TODO: refreshing from login/signup paths returns to "/" whyyy
 
 const Root = ({store}) => (
     <Provider store={store}>

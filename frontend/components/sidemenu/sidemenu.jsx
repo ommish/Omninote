@@ -11,7 +11,7 @@ class Sidemenu extends React.Component {
   render () {
     return (
       <li>
-        <button onClick={this.props.toggleSidemenu}>
+        <button className="circle-button" onClick={this.props.toggleSidemenu}>
           NBS
         </button>
         <Modal
@@ -28,6 +28,14 @@ class Sidemenu extends React.Component {
               afterOpen: 'open-sidemenu-overlay',
               beforeClose: 'closed-sidemenu-overlay'
             }}>
+            <section className={`${this.props.itemType}-heading`}>
+              <h3>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h3>
+              <button
+                onClick={() => {}}
+                className="circle-button">
+                +NB
+              </button>
+            </section>
           <section>
             {this.props.notebooks.map((notebook) =>
               <NotebookIndexItem

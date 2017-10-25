@@ -34,12 +34,10 @@ class SessionForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.state.location.pathname !== newProps.location.pathname) {
+    if (this.props.location.pathname !== newProps.location.pathname) {
       this.props.clearUserErrors();
     }
-    if (this.state !== newProps) {
-      this.setState(newProps);
-    }
+    this.setState(newProps);
   }
 
   componentWillUnmount () {

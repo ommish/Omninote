@@ -15,7 +15,22 @@
 .closed-sidemenu {
   display: none;
 }
-  // overlayClassName={{
-  //   afterOpen: 'open-sidemenu-overlay',
-  //   beforeClose: 'closed-sidemenu-overlay'
-  // }}>
+
+.open-sidemenu-overlay {
+  background: white;
+  left: 70px;
+  top: 0px;
+  height: 100%;
+  width: 400px;
+  border-right: 2px solid $grey;
+  border-left: 1px solid $grey;
+  position: fixed;
+  padding: 10px;
+}
+
+.notebook-heading {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid $light-grey;
+  justify-content: space-between;
+}
