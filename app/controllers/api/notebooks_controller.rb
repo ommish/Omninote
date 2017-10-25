@@ -1,4 +1,4 @@
-class NotebooksController < ApplicationController
+class Api::NotebooksController < ApplicationController
   def show
     @notebook = Notebook.find(params[:id])
   end
@@ -8,7 +8,7 @@ class NotebooksController < ApplicationController
   end
 
   def create
-    @notebook = current_user.Notebook.new(notebook_params)
+    @notebook = current_user.notebooks.new(notebook_params)
     if @notebook.save
       render :show
     else

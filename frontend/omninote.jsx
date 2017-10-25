@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
-import * as SessionApi from './actions/session_actions';
+import * as NotebookActions from './actions/notebook_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   window.store = store;
-  window.logout = SessionApi.logout;
+  window.fetchNotebooks = NotebookActions.fetchNotebooks;
+  window.fetchNotebook = NotebookActions.fetchNotebook;
+  window.createNotebook = NotebookActions.createNotebook;
+  window.updateNotebook = NotebookActions.updateNotebook;
+  window.deleteNotebook = NotebookActions.deleteNotebook;
   ReactDOM.render(<Root store={store}/>, root);
 });

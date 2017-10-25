@@ -2,7 +2,7 @@ import { TOGGLE_SIDEMENU, TOGGLE_FULLSCREEN, TOGGLE_NOTEBOOK_DROPDOWN } from '..
 
 const initialState = {};
 
-const UIReducer = (state = initialState, action) => {
+const UIReducer = (oldState = initialState, action) => {
   let newState;
   switch (action.type) {
     case TOGGLE_SIDEMENU:
@@ -12,7 +12,7 @@ const UIReducer = (state = initialState, action) => {
     case TOGGLE_NOTEBOOK_DROPDOWN:
     return;
     default:
-    return state;
+    return oldState;
   }
 };
 

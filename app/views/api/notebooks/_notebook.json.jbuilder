@@ -1,4 +1,5 @@
-json.userId notebook.user_id
-json.title notebook.title
-json.notes []
-json.updatedAt notebook.updated_at
+json.set! notebook.id do
+  json.title notebook.title
+  json.noteIds []
+  json.updatedAt notebook.updated_at
+end
