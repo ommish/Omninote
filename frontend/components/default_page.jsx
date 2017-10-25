@@ -11,6 +11,7 @@ class DefaultPage extends React.Component {
   componentWillUnmount() {
     // When is this happening? nothing happens after clicking link
     // console.log("HI")
+    // tried clearing errors here so errors dont persis after going to "/login" 
   }
 
   render () {
@@ -18,7 +19,7 @@ class DefaultPage extends React.Component {
       <div
         className="default-page">
         <header>
-          <h4>OMNINOTE</h4>
+          <h4><Link to="/">OMNINOTE</Link></h4>
           <nav className="left-nav">
             <h5><Link to="/">Get Started</Link></h5>
             <h5><Link to="/">Discover</Link></h5>

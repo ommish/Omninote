@@ -12,10 +12,17 @@
   header {
     display: flex;
     flex-direction: row;
-    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 150px;
+    padding-right: 150px;
     border-bottom: 1px solid $light-grey;
     justify-content: space-between;
     align-items: center;
+  }
+
+  header > h4 > a {
+    font-family: 'Roboto Slab', serif;
   }
 
   header nav {
@@ -35,13 +42,6 @@
     box-sizing: border-box;
   }
 
-  footer ul {
-    display: flex;
-  }
-  footer ul li {
-    margin-left: 10px;
-  }
-
   nav h5 {
     margin-left: 5px;
     margin-right: 5px;
@@ -56,32 +56,19 @@
 
   section:nth-of-type(1) {
     font-size: 70px;
-    width: 60%;
+    font-weight: black;
+    width: 65%;
     padding-right: 50px;
   }
 
   section:nth-of-type(2) {
-    width: 40%;
-    padding-right: 50px;
-  }
-
-  footer {
-    margin-top: 80px;
-    align-self: flex-end;
-
-  }
-
-  footer nav {
-    border-top: 1px solid $light-grey;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    width: 35%;
   }
 
 }
 
 div.session-form {
   form {
-    padding-left: 10px;
     width: 100%;
     height: auto;
     box-sizing: border-box;
@@ -92,8 +79,6 @@ div.session-form {
   flex-direction: column;
   align-items: flex-start;
   align-self: center;
-  padding-left: 100px;
-  border-left: 1px solid $light-grey;
 
   .error-present {
     border: 1px solid $red;
@@ -128,6 +113,30 @@ div.session-form {
 
   ul li {
     color: $red;
+  }
+
+}
+
+.default-page {
+  footer {
+    margin-top: 80px;
+    align-self: flex-end;
+  }
+
+  footer nav {
+    border-top: 1px solid $light-grey;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+
+  footer ul {
+    display: flex;
+  }
+  footer ul li {
+    margin-left: 10px;
   }
 
 }

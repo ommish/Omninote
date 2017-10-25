@@ -1,6 +1,5 @@
 @import "variables";
 
-
 .grey-bg {
   background-color: $light-grey;
 }
@@ -19,6 +18,14 @@
   border-radius: 5px;
   background-color: white;
   overflow: hidden;
+
+  form {
+    padding: 50px;
+  }
+
+  form:nth-of-type(1) {
+    border-bottom: 1px solid $light-grey;
+  }
 
   h3 {
     align-self: center;
