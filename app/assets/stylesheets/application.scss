@@ -49,3 +49,7 @@ button:hover, input[type="submit"]:hover, a:hover {
   width: 40px;
   height: 40px;
 }
+
+.square-button.grey-button {
+  background: $dark-grey;
+}
