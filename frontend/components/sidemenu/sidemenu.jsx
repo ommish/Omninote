@@ -1,5 +1,5 @@
 import React from 'react';
-import NotebookIndexItem from './notebook_index_item';
+import SidemenuIndexItem from './sidemenu_index_item_container';
 import Modal from 'react-modal';
 import CreateForm from '../entity_forms/create_form_container';
 
@@ -22,10 +22,16 @@ class Sidemenu extends React.Component {
           isOpen={this.props.sidemenuOpen}
           onAfterOpen={this.props.fetchItems}
           onRequestClose={this.props.toggleSidemenu}
-          className='sidemenu-open'
-          overlayClassName='sidemenu-overlay'>
+          className={{
+          base: '',
+          afterOpen: 'sidemenu-open',
+          beforeClose: 'closed-sidemenu'}}
+          overlayClassName={{
+          base: '',
+          afterOpen: 'sidemenu-overlay',
+          beforeClose: 'closed-sidemenu-overlay'}}>
           <section className={`${this.props.itemType}-heading`}>
-            <h3>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h3>
+            <h2>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h2>
             <button
               onClick={this.props.toggleCreateForm}
               className="circle-button">
@@ -34,12 +40,11 @@ class Sidemenu extends React.Component {
             <CreateForm itemType={this.props.itemType} />
           </section>
           <section>
-            {this.props.notebooks.map((notebook) =>
-              <NotebookIndexItem
-                toggleSidemenu={this.props.toggleSidemenu}
-                notebook={notebook}
-                fetchItem={this.props.fetchItem}
-                key={notebook.id}/>)}
+            {this.props.items.map((item) =>
+              <SidemenuIndexItem
+                itemType={this.props.itemType}
+                item={item}
+                key={item.id}/>)}
               </section>
             </Modal>
           </li>

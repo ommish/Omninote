@@ -36,6 +36,24 @@ body, html {
   margin-bottom: 7px;
 }
 
+.square-button.small {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-left: 3px;
+  margin-left: 3px;
+  font-size: 12px;
+}
+
+.square-button.small.disabled {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-left: 3px;
+  margin-left: 3px;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+
 .square-button:hover {
   background: $dark-green;
 }
@@ -50,6 +68,16 @@ button:hover, input[type="submit"]:hover, a:hover {
   height: 40px;
 }
 
-.square-button.grey-button {
-  background: $dark-grey;
+.square-button.grey-button.small {
+  background: $light-grey;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-left: 3px;
+  margin-left: 3px;
+  font-size: 12px;
+  color: $dark-grey;
+}
+
+.square-button.grey-button.small:hover {
+  background: $grey;
 }

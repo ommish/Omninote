@@ -10,22 +10,18 @@ class CreateForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   handleSubmit(e) {
-    this.props.createItem(this.state.item);
-    const blankItem = {item: { title: "" }};
-    const newState = merge(this.state, blankItem);
-    // Form submission canceled because the form is not connected
-    // error in Chrome, any significance?
+    this.props.createItem(this.state.item).then(() => {
+      this.closeModal();
+    });
   }
 
   handleCancel(e) {
     e.preventDefault();
-    const blankItem = {item: { title: "" }};
-    const newState = merge(this.state, blankItem);
-    this.setState(newState);
-    this.props.toggleCreateForm();
+    this.closeModal();
   }
 
   handleChange (e) {
@@ -37,13 +33,17 @@ class CreateForm extends React.Component {
   componentWillReceiveProps (newProps) {
     if (newProps.createFormOpen && newProps.errors.length > 0) {
       this.setState(newProps);
+    } else if (!this.props.createFormOpen && newProps.createFormOpen) {
+        this.setState(newProps);
     }
-    else if (!newProps.createFormOpen && newProps.errors.length > 0) {
-      const blankItem = {item: { title: "" }, errors: []};
-      const newState = merge(this.state, blankItem);
-      this.setState(newState);
-    }
-    // TODO figure out how to clear errors!
+  }
+
+  closeModal () {
+    const blankItem = {item: { title: "" }, errors: []};
+    const newState = merge(this.state, blankItem);
+    this.setState(newState);
+    this.props.clearItemErrors();
+    this.props.toggleCreateForm();
   }
 
   render() {
@@ -52,31 +52,33 @@ class CreateForm extends React.Component {
     return (
       <Modal
         isOpen={this.props.createFormOpen}
-        onRequestClose={this.props.toggleCreateForm}
+        onRequestClose={this.closeModal}
         className="create-form-open"
         overlayClassName='create-form-overlay'>
-        <form onSubmit={this.handleSubmit}>
+        <form className="new-form" onSubmit={this.handleSubmit}>
           <div className="new-form-header">Create {this.props.itemType}</div>
           <input
             type="text"
             placeholder={this.props.formMessage}
             value={this.state.title}
             onChange={this.handleChange}/>
-          <button onClick={this.handleCancel}
-            className="square-button grey-button" >Cancel</button>
-          <input type="submit" value={this.props.buttonMessage}
-            className="square-button" />
+          <div className="new-form-button-container">
+            <button onClick={this.handleCancel}
+              className="square-button grey-button small">
+              Cancel</button>
+            <button type="submit"
+              className={
+                this.state.item.title === "" ? "square-button small disabled": "square-button small"}
+              disabled={this.state.item.title === "" ? true : false }>
+              {this.props.buttonMessage}</button>
+          </div>
+          <ul>
+            {errors}
+          </ul>
         </form>
-        <ul>
-          {errors}
-        </ul>
       </Modal>
     );
   }
-
-
-
-
 }
 
 

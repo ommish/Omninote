@@ -2,7 +2,7 @@
 
 html, body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, a, img,
 strong, ol, ul, li, form, label, table, caption, tr, th, td, article,
-aside, figure, figcaption, footer, header, nav, section, button, input {
+aside, figure, figcaption, footer, header, nav, section, button, input, textarea {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -14,7 +14,7 @@ aside, figure, figcaption, footer, header, nav, section, button, input {
 	-webkit-appearance: none;
 	text-decoration: none;
 	color: $black;
-
+	outline: none;
 }
 
 h1 {
@@ -23,17 +23,17 @@ h1 {
 }
 
 h2 {
-	font-size: 40px;
-	font-weight: 700;
-}
-
-h3 {
 	font-size: 30px;
 	font-weight: 700;
 }
 
+h3 {
+	font-size: 20px;
+	font-weight: 700;
+}
+
 h4 {
-	font-size: 18px;
+	font-size: 14;
 	font-weight: 200;
 }
 

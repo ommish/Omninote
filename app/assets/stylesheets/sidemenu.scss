@@ -9,13 +9,14 @@
   border-right: 2px solid $grey;
   border-left: 1px solid $grey;
   position: fixed;
+  overflow-y: scroll;
 
   section:nth-of-type(1) {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  h3 {
+  h2 {
     color: $dark-grey;
     font-weight: 200;
   }
@@ -42,7 +43,7 @@
       color: white;
     }
 
-    h4 {
+    h3 {
       color: white;
     }
   }
@@ -51,11 +52,16 @@
 
 .sidemenu-overlay {
   height: 100%;
-  width: 100%;
+  width: auto;
   background-color: rgba(255, 255, 255, 0.81);
   top: 0px;
   left: 470px;
   position: absolute;
+  overflow: hidden;
+}
+
+.closed-sidemenu-overlay {
+  display: none;
 }
 
 .closed-sidemenu {
