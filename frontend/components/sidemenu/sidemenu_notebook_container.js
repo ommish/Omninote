@@ -2,7 +2,7 @@ import Sidemenu from './sidemenu';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { toggleSidemenu, toggleCreateForm } from '../../actions/ui_actions';
-import { fetchNotebooks, deleteNotebook, createNotebook, fetchNotebook } from '../../actions/notebook_actions';
+import { fetchNotebooks } from '../../actions/notebook_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -17,8 +17,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     toggleSidemenu: () => dispatch(toggleSidemenu()),
     toggleCreateForm: () => dispatch(toggleCreateForm()),
     fetchItems: () => dispatch(fetchNotebooks()),
-    delete: (notebookId) => dispatch(deleteNotebook(notebookId)),
-    fetchItem: (notebookId) => dispatch(fetchNotebook(notebookId)),
   };
 };
 

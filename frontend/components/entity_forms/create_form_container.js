@@ -1,6 +1,6 @@
 import CreateForm from './create_form';
 import { connect } from 'react-redux';
-import { createNotebook } from '../../actions/notebook_actions';
+import { createNotebook, receiveNotebookErrors } from '../../actions/notebook_actions';
 import { toggleCreateForm } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
@@ -33,6 +33,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     createItem: (item) => dispatch(action(item)),
     toggleCreateForm: () => dispatch(toggleCreateForm()),
+    clearItemErrors: () => dispatch(receiveNotebookErrors([])),
   };
 };
 

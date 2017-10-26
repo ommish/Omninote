@@ -69,7 +69,7 @@ class SessionForm extends React.Component {
         className="session-form">
         <form
           onSubmit={this.handleSubmit}>
-          <h3>{this.state.formType}</h3>
+          <h2>{this.state.formType}</h2>
           <br></br>
             <input
               placeholder="Email"
@@ -83,18 +83,15 @@ class SessionForm extends React.Component {
               value={this.state.user.password}
               onChange={this.handleChange('password')}
               className={errorPresent}/>
-          <input
-            type="submit"
-            value={this.state.formType}
-            className="square-button"/>
+            <button
+            className="square-button">{this.state.formType}</button>
           <br></br>
           <ul>{errors}{authMessage}{authLink}</ul>
         </form>
         <form onSubmit={this.demoLogin}>
-          <input
+          <button
             type="submit"
-            value="Demo Log In"
-            className="square-button"/>
+            className="square-button">Demo Log In</button>
         </form>
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class NotebookIndexItem extends React.Component {
+class SidemenuIndexItem extends React.Component {
 
   constructor (props) {
     super(props);
@@ -14,10 +14,14 @@ class NotebookIndexItem extends React.Component {
     };
   }
 
+  handleDelete(id) {
+
+  }
+
   render () {
     return (
-      <li className="notebook-index-item" onClick={this.handleClick(this.props.notebook.id)}>
-        <h4>{this.props.notebook.title}</h4>
+      <li className="sidemenu-index-item" onClick={this.handleClick(this.props.notebook.id)}>
+        <h3>{this.props.notebook.title}</h3>
         <p>{new Date(this.props.notebook.updatedAt).toDateString()}</p>
         <p>{this.props.notebook.noteIds.length} notes</p>
       </li>
@@ -25,4 +29,4 @@ class NotebookIndexItem extends React.Component {
   }
 }
 
-export default NotebookIndexItem;
+export default SidemenuIndexItem;

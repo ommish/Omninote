@@ -1,21 +1,56 @@
-.create-form-open {
-  height: 25%;
-  width: 30%;
-  top: 25%;
-  left: 25%;
-  position: absolute;
-  background-color: white;
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+@import "variables";
 
-.create-form-overlay {
-  background-color: rgba(255, 255, 255, 0.85);
+.create-form-open {
   height: 100%;
   width: 100%;
   top: 0;
   left: 0;
   position: absolute;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+.new-form {
+  margin-left: 40%;
+  margin-right: 40%;
+  margin-top: 25%;
+  margin-bottom: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 26px;
+  }
+}
+
+.create-form-overlay {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.new-form-header {
+  color: $dark-grey;
+  font-size: 20px;
+  border-bottom: 1px solid $grey;
+  padding-bottom: 10px;
+}
+
+.new-form-button-container {
+  margin-top: 10px;
+  margin-botom: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%
 }

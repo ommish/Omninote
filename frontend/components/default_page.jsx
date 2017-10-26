@@ -13,14 +13,14 @@ class DefaultPage extends React.Component {
       <div
         className="default-page">
         <header>
-          <h4><Link to="/">OMNINOTE</Link></h4>
+          <h3><Link to="/">OMNINOTE</Link></h3>
           <nav className="left-nav">
-            <h5><Link to="/">Get Started</Link></h5>
-            <h5><Link to="/">Discover</Link></h5>
+            <h4><Link to="/">Get Started</Link></h4>
+            <h4><Link to="/">Discover</Link></h4>
           </nav>
           <nav className="right-nav">
-            <h5><Link to="/">Download</Link></h5>
-            <h5><Link to="/login">Log In</Link></h5>
+            <h4><Link to="/">Download</Link></h4>
+            <h4><Link to="/login">Log In</Link></h4>
           </nav>
         </header>
         <main>

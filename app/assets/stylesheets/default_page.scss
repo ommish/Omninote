@@ -21,8 +21,9 @@
     align-items: center;
   }
 
-  header > h4 > a {
+  header > h3 > a {
     font-family: 'Roboto Slab', serif;
+    color: $light-green;
   }
 
   header nav {
@@ -42,7 +43,7 @@
     box-sizing: border-box;
   }
 
-  nav h5 {
+  nav h4 {
     margin-left: 5px;
     margin-right: 5px;
   }
@@ -92,7 +93,7 @@ div.session-form {
     border: 1px solid $red;
   }
 
-  input[type="text"] {
+  input {
     margin-top: 7px;
     margin-bottom: 7px;
     background: $light-grey;
@@ -103,20 +104,6 @@ div.session-form {
     height: auto;
     border-radius: 6px;
     box-sizing: border-box;
-  }
-
-  input[type="password"] {
-    margin-top: 7px;
-    margin-bottom: 7px;
-    background: $light-grey;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 10px;
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    box-sizing: border-box;
-
   }
 
   ul li {
