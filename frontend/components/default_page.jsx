@@ -68,3 +68,7 @@ class DefaultPage extends React.Component {
 }
 
 export default DefaultPage;
+
+// button icons by
+// 146 raster icons by The Working Group
+// License: Creative Commons (Attribution-Share Alike 3.0 Unported)
