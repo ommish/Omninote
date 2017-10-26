@@ -3,5 +3,7 @@ json.notebook do
 end
 
 json.notes do
-
+  @notebook.notes.each do |note|
+    json.partial! '/api/notes/note', note: note
+  end
 end

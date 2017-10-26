@@ -3,4 +3,5 @@ class Notebook < ApplicationRecord
   validates :title, uniqueness: { scope: :user_id, message: "must be unique" }
 
   belongs_to :user
+  has_many :notes, dependent: :destroy
 end

@@ -1,3 +1,5 @@
+@import "variables";
+
 .app-page {
   overflow: hidden;
   height: 100%;
@@ -7,7 +9,34 @@
   justify-content: flex-start;
 }
 
+
 .note-editor {
   height: 100%;
-  width: 100%;
+  width: 70%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-family: 'Roboto Slab', serif;
+  font-size: 30px;
+  color: $light-green;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-top: 1px solid $light-grey;
+}
+
+.notebook-selector {
+  padding-bottom: 10px;
+}
+
+.title::-webkit-input-placeholder {
+  color: orange;
+  font-family: 'Roboto Slab', serif;
+  font-size: 30px;
+  color: $light-green;
+}
+
+#quill {
+  height: 100%;
 }

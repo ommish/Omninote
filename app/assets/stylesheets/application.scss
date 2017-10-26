@@ -64,6 +64,7 @@ body, html {
 
 .square-button:hover {
   background: $dark-green;
+  transition: background 0.2s;
 }
 
 button:hover, input[type="submit"]:hover, a:hover {
@@ -81,4 +82,5 @@ button:hover, input[type="submit"]:hover, a:hover {
 
 .square-button.grey-button.small:hover {
   background: $grey;
+  transition: background 0.2s;
 }

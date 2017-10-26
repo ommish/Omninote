@@ -1,15 +1,43 @@
 @import "variables";
 
+.ReactModalPortal {
+  width: 0;
+}
+
+.sidemenu-overlay {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.81);
+  top: 0px;
+  left: 550px;
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+
+}
+
+.closed-sidemenu-overlay {
+  height: 100%;
+  width: 0;
+  display: none;
+
+}
+
+.closed-sidemenu {
+  height: 100%;
+  width: 0;
+}
+
 .sidemenu-open {
   background: white;
-  left: 70px;
+  left: 66px;
   top: 0px;
   height: 100%;
   width: 500px;
   border-right: 2px solid $grey;
-  border-left: 1px solid $grey;
   position: fixed;
   overflow-y: scroll;
+
 
   section:nth-of-type(1) {
     padding-left: 20px;
@@ -49,25 +77,6 @@
   }
 }
 
-
-.sidemenu-overlay {
-  height: 100%;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.81);
-  top: 0px;
-  left: 550px;
-  position: absolute;
-  overflow: hidden;
-  display: flex;
-}
-
-.closed-sidemenu-overlay {
-  display: none;
-}
-
-.closed-sidemenu {
-  display: none;
-}
 
 .notebook-heading {
   display: flex;

@@ -7,6 +7,7 @@ const initialState = {
   deleteForm: {id: null},
   fullEditor: false,
   notebookDropdown: false,
+  selectedNotebook: null,
   notesOrder: { dateCreatedOldest: false,
     dateCreatedNewest: false,
     dateUpdatedOldest: false,
@@ -15,7 +16,6 @@ const initialState = {
     titleDesc: false
   },
 };
-
 
 const UIReducer = (oldState = initialState, action) => {
   let newState;

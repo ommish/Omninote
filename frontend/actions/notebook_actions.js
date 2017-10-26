@@ -16,6 +16,7 @@ export const receiveNotebook = (notebookRes) => {
   return {
     type: RECEIVE_NOTEBOOK,
     notebook: notebookRes.notebook,
+    notes: notebookRes.notes,
   };
 };
 
@@ -23,6 +24,7 @@ export const removeNotebook = (notebookRes) => {
   return {
     type: REMOVE_NOTEBOOK,
     notebook: notebookRes.notebook,
+    notes: notebookRes.notes,
   };
 };
 

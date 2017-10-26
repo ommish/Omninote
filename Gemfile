@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'bcrypt'
 gem 'jquery-rails'
+gem 'aws-sdk', '< 3.0'
 
 
 group :development, :test do
