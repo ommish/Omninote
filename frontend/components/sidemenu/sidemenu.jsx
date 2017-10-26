@@ -11,7 +11,10 @@ class Sidemenu extends React.Component {
   render () {
     return (
       <li>
-        <button className="circle-button" onClick={this.props.toggleSidemenu}>
+        <button
+          className="circle-button"
+          onClick={this.props.toggleSidemenu}
+          itemType={this.props.itemType}>
           NBS
         </button>
         <Modal

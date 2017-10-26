@@ -9,7 +9,6 @@ const mapStateToProps = (state, ownProps) => {
     notebooks: Object.values(state.entities.notebooks),
     sidemenuOpen: state.ui.sidemenu,
     itemType: "notebook",
-
   };
 };
 
@@ -19,7 +18,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     toggleCreateForm: () => dispatch(toggleCreateForm()),
     fetchItems: () => dispatch(fetchNotebooks()),
     delete: (notebookId) => dispatch(deleteNotebook(notebookId)),
-    createAction: (notebook) => dispatch(createNotebook(notebook)),
     fetchItem: (notebookId) => dispatch(fetchNotebook(notebookId)),
   };
 };
