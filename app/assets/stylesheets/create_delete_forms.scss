@@ -1,0 +1,17 @@
+.create-form-open {
+  height: 200px;
+  width: 200px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  background-color: white;
+}
+
+.create-form-overlay {
+  background-color: rgba(255, 255, 255, 0.85);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}

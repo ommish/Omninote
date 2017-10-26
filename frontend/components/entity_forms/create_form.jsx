@@ -7,10 +7,17 @@ class CreateForm extends React.Component {
     super(props);
     this.state = {title: ""};
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   handleSubmit(e) {
-    this.props.action(this.state);
+    this.props.createItem(this.state);
+    this.props.toggleCreateForm();
+  }
+
+  handleCancel(e) {
+    e.preventDefault();
+    this.props.toggleCreateForm();
   }
 
   render() {
@@ -25,9 +32,11 @@ class CreateForm extends React.Component {
           <input
             type="text"
             placeholder={this.props.formMessage}
-            value={this.state.title} />
-          <button onClick={this.props.toggleSidemenu}>Cancel</button>
-          <input type="submit">{this.props.buttonMessage}</input>
+            value={this.state.title}/>
+          <button onClick={this.handleCancel}
+            className="square-button" >Cancel</button>
+          <input type="submit" value={this.props.buttonMessage}
+            className="square-button" />
         </form>
       </Modal>
     );

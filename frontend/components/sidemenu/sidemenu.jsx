@@ -1,6 +1,7 @@
 import React from 'react';
 import NotebookIndexItem from './notebook_index_item';
 import Modal from 'react-modal';
+import CreateForm from '../entity_forms/create_form_container';
 
 class Sidemenu extends React.Component {
 
@@ -26,10 +27,11 @@ class Sidemenu extends React.Component {
           <section className={`${this.props.itemType}-heading`}>
             <h3>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h3>
             <button
-              onClick={() => {}}
+              onClick={this.props.toggleCreateForm}
               className="circle-button">
               +NB
             </button>
+            <CreateForm itemType={this.props.itemType} />
           </section>
           <section>
             {this.props.notebooks.map((notebook) =>
