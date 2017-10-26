@@ -1,16 +1,11 @@
 import React from 'react';
 import NotebookIndexItem from './notebook_index_item';
+import Modal from 'react-modal';
 
 class Sidemenu extends React.Component {
 
   constructor (props) {
     super(props);
-  }
-
-  componentWillReceiveProps (newProps) {
-    if ((!this.props.sidemenuOpen) && (this.props.sidemenuOpen !== newProps.sidemenuOpen)) {
-      this.props.fetchAction();
-    }
   }
 
   render () {
@@ -19,28 +14,32 @@ class Sidemenu extends React.Component {
         <button className="circle-button" onClick={this.props.toggleSidemenu}>
           NBS
         </button>
-        <aside
-          className={this.props.sidemenuOpen ? "open-sidemenu" : "closed-sidemenu"}>
-            <section className={`${this.props.itemType}-heading`}>
-              <h3>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h3>
-              <button
-                onClick={() => {}}
-                className="circle-button">
-                +NB
-              </button>
-            </section>
+        <Modal
+          isOpen={this.props.sidemenuOpen}
+          onAfterOpen={this.props.fetchItems}
+          onRequestClose={this.props.toggleSidemenu}
+          className='sidemenu-open'
+          overlayClassName='sidemenu-overlay'>
+          <section className={`${this.props.itemType}-heading`}>
+            <h3>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h3>
+            <button
+              onClick={() => {}}
+              className="circle-button">
+              +NB
+            </button>
+          </section>
           <section>
             {this.props.notebooks.map((notebook) =>
               <NotebookIndexItem
-                onClick={this.props.toggleSidemenu}
+                toggleSidemenu={this.props.toggleSidemenu}
                 notebook={notebook}
-                key={notebook.id}
-                toggleSidemenu={this.props.toggleSidemenu}/>)}
-          </section>
-        </aside>
-      </li>
-    );
-  }
-}
+                fetchItem={this.props.fetchItem}
+                key={notebook.id}/>)}
+              </section>
+            </Modal>
+          </li>
+        );
+      }
+    }
 
-export default Sidemenu;
+    export default Sidemenu;

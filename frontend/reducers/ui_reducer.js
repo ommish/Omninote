@@ -1,8 +1,10 @@
-import { TOGGLE_SIDEMENU, TOGGLE_FULL_EDITOR, TOGGLE_NOTEBOOK_DROPDOWN } from '../actions/ui_actions';
+import { TOGGLE_CREATE_FORM, TOGGLE_DELETE_FORM, TOGGLE_SIDEMENU, TOGGLE_FULL_EDITOR, TOGGLE_NOTEBOOK_DROPDOWN } from '../actions/ui_actions';
 import { merge } from 'lodash';
 
 const initialState = {
   sidemenu: false,
+  createForm: false,
+  deleteForm: false,
   fullEditor: false,
   notebookDropdown: false,
   notesOrder: { dateCreatedOldest: false,
@@ -12,7 +14,6 @@ const initialState = {
     titleAsc: false,
     titleDesc: false
   },
-  newAndDeleteForm: false,
 };
 
 
@@ -23,10 +24,18 @@ const UIReducer = (oldState = initialState, action) => {
     newState = merge({}, oldState);
     newState.sidemenu = !(newState.sidemenu);
     return newState;
+    case TOGGLE_CREATE_FORM:
+    newState = merge({}, oldState);
+    newState.createForm = !(newState.createForm);
+    return newState;
+    case TOGGLE_DELETE_FORM:
+    newState = merge({}, oldState);
+    newState.deleteForm = !(newState.deleteForm);
+    return newState;
     case TOGGLE_FULL_EDITOR:
-    return;
+    return oldState;
     case TOGGLE_NOTEBOOK_DROPDOWN:
-    return;
+    return oldState;
     default:
     return oldState;
   }
