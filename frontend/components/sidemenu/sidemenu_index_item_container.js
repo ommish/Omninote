@@ -1,7 +1,18 @@
 import { connect } from 'react-redux';
 import SidemenuIndexItem from './sidemenu_index_item';
 import { fetchNotebook, deleteNotebook } from '../../actions/notebook_actions';
-import { toggleSidemenu } from '../../actions/ui_actions';
+import { toggleSidemenu, toggleDeleteForm } from '../../actions/ui_actions';
+
+const mapStateToProps = (state, ownProps) => {
+  let titleSnippet = ownProps.item.title;
+  if (titleSnippet.length > 30) {
+    titleSnippet = titleSnippet.slice(0, 30).concat("...");
+  }
+  return {
+    titleSnippet,
+  };
+
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   let getAction;
@@ -14,7 +25,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchItem: (id) => dispatch(getAction(id)),
     deleteItem: (id) => dispatch(deleteAction(id)),
     toggleSidemenu: () => dispatch(toggleSidemenu()),
+    toggleDeleteForm: (id) => dispatch(toggleDeleteForm(id)),
   };
 };
 
-export default connect(null, mapDispatchToProps)(SidemenuIndexItem);
+export default connect(mapStateToProps, mapDispatchToProps)(SidemenuIndexItem);

@@ -5,7 +5,7 @@
   left: 70px;
   top: 0px;
   height: 100%;
-  width: 400px;
+  width: 500px;
   border-right: 2px solid $grey;
   border-left: 1px solid $grey;
   position: fixed;
@@ -55,7 +55,7 @@
   width: 100%;
   background-color: rgba(255, 255, 255, 0.81);
   top: 0px;
-  left: 470px;
+  left: 550px;
   position: absolute;
   overflow: hidden;
   display: flex;
@@ -86,4 +86,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+}
+
+.trash-icon {
+  height: 20px;
+  margin: 5px;
+  width: auto;
+  position: float;
 }

@@ -17,8 +17,9 @@ export const toggleCreateForm = () => {
   };
 };
 
-export const toggleDeleteForm = () => {
+export const toggleDeleteForm = (id) => {
   return {
     type: TOGGLE_DELETE_FORM,
+    id,
   };
 };

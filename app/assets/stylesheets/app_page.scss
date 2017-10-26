@@ -1,6 +1,7 @@
 .app-page {
   overflow: hidden;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -8,5 +9,5 @@
 
 .note-editor {
   height: 100%;
-  width: auto;
+  width: 100%;
 }

@@ -1,6 +1,6 @@
 @import "variables";
 
-.create-form-open {
+.full-form-open {
   height: 100%;
   width: 100%;
   top: 0;
@@ -14,11 +14,11 @@
   overflow: hidden;
 }
 
-.new-form {
-  margin-left: 40%;
-  margin-right: 40%;
-  margin-top: 25%;
-  margin-bottom: 25%;
+.full-form {
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-top: 20%;
+  margin-bottom: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,10 +27,20 @@
     margin-top: 20px;
     margin-bottom: 20px;
     font-size: 26px;
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
   }
 }
 
-.create-form-overlay {
+.full-form-message {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-family: 'Roboto Slab', serif;
+  text-align: center;
+}
+
+.full-form-overlay {
   height: 100%;
   width: 100%;
   top: 0;
@@ -39,14 +49,16 @@
   overflow: hidden;
 }
 
-.new-form-header {
+.full-form-header {
   color: $dark-grey;
   font-size: 20px;
   border-bottom: 1px solid $grey;
   padding-bottom: 10px;
+  text-transform: uppercase;
+  text-align: center;
 }
 
-.new-form-button-container {
+.full-form-button-container {
   margin-top: 10px;
   margin-botom: 10px;
   display: flex;

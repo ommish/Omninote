@@ -4,7 +4,7 @@ import { merge } from 'lodash';
 const initialState = {
   sidemenu: false,
   createForm: false,
-  deleteForm: false,
+  deleteForm: {id: null},
   fullEditor: false,
   notebookDropdown: false,
   notesOrder: { dateCreatedOldest: false,
@@ -30,7 +30,7 @@ const UIReducer = (oldState = initialState, action) => {
     return newState;
     case TOGGLE_DELETE_FORM:
     newState = merge({}, oldState);
-    newState.deleteForm = !(newState.deleteForm);
+    newState.deleteForm.id = action.id;
     return newState;
     case TOGGLE_FULL_EDITOR:
     return oldState;

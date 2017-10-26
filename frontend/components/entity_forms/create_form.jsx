@@ -53,16 +53,16 @@ class CreateForm extends React.Component {
       <Modal
         isOpen={this.props.createFormOpen}
         onRequestClose={this.closeModal}
-        className="create-form-open"
-        overlayClassName='create-form-overlay'>
-        <form className="new-form" onSubmit={this.handleSubmit}>
-          <div className="new-form-header">Create {this.props.itemType}</div>
+        className="full-form-open"
+        overlayClassName='full-form-overlay'>
+        <form className="full-form" onSubmit={this.handleSubmit}>
+          <div className="full-form-header">Create {this.props.itemType}</div>
           <input
             type="text"
             placeholder={this.props.formMessage}
             value={this.state.title}
             onChange={this.handleChange}/>
-          <div className="new-form-button-container">
+          <div className="full-form-button-container">
             <button onClick={this.handleCancel}
               className="square-button grey-button small">
               Cancel</button>
