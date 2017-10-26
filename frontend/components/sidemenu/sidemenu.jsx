@@ -16,7 +16,7 @@ class Sidemenu extends React.Component {
           className="circle-button"
           onClick={this.props.toggleSidemenu}
           itemType={this.props.itemType}>
-          NBS
+          <img className="sidenav-icon" src={window.staticAssets.notebook}/>
         </button>
         <Modal
           isOpen={this.props.sidemenuOpen}
@@ -35,7 +35,7 @@ class Sidemenu extends React.Component {
             <button
               onClick={this.props.toggleCreateForm}
               className="circle-button">
-              +NB
+              <img className="sidenav-icon" src={window.staticAssets.plus}/>
             </button>
             <CreateForm itemType={this.props.itemType} />
           </section>

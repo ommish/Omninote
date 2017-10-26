@@ -65,13 +65,6 @@ body, html {
 button:hover, input[type="submit"]:hover, a:hover {
   cursor: pointer;
 }
-
-.circle-button {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-}
-
 .square-button.grey-button.small {
   background: $light-grey;
   padding-top: 7px;

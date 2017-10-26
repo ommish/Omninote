@@ -20,10 +20,15 @@ class SidemenuIndexItem extends React.Component {
   render () {
     return (
       <li className="sidemenu-index-item" onClick={this.handleClick}>
-        <h3>{this.props.item.title}</h3>
-        <p>{new Date(this.props.item.updatedAt).toDateString()}</p>
-        <p>{this.props.item.noteIds.length} notes</p>
-        <button id="delete" onClick={this.handleClick}>DEL</button>
+        <section>
+          <h3>{this.props.item.title}</h3>
+          <p>{new Date(this.props.item.updatedAt).toDateString()}</p>
+          <p>{this.props.item.noteIds.length} notes</p>
+        </section>
+        <img id="delete"
+          onClick={this.handleClick}
+          className="sidenav-icon"
+          src={window.staticAssets.trash}/>
       </li>
     );
   }
