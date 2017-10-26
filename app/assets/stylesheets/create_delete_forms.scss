@@ -1,10 +1,14 @@
 .create-form-open {
-  height: 200px;
-  width: 200px;
-  top: 50%;
-  left: 50%;
+  height: 25%;
+  width: 30%;
+  top: 25%;
+  left: 25%;
   position: absolute;
   background-color: white;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .create-form-overlay {
