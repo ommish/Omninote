@@ -1,31 +1,31 @@
 @import "variables";
 
-.ReactModalPortal {
-  width: 0;
-}
 
 .sidemenu-overlay {
   height: 100%;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.81);
   top: 0px;
-  left: 550px;
+  left: 81px;
   position: absolute;
   overflow: hidden;
   display: flex;
-
 }
 
 .closed-sidemenu-overlay {
   height: 100%;
   width: 0;
   display: none;
-
 }
 
 .closed-sidemenu {
   height: 100%;
   width: 0;
+}
+
+@-webkit-keyframes slideover {
+  from { transform: translateX(-500px); }
+  to { transform: translateX(0px); }
 }
 
 .sidemenu-open {
@@ -37,6 +37,7 @@
   border-right: 2px solid $grey;
   position: fixed;
   overflow-y: scroll;
+  -webkit-animation: slideover .4s ease-in;
 
 
   section:nth-of-type(1) {
