@@ -7,23 +7,23 @@ class SidemenuIndexItem extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick (id) {
-    return (e) => {
-      this.props.toggleSidemenu();
-      this.props.fetchItem(id);
-    };
-  }
-
-  handleDelete(id) {
-
+  handleClick (e) {
+      if (e.target.id === "delete") {
+        this.props.deleteItem(this.props.item.id);
+        e.stopPropagation();
+      } else {
+        this.props.fetchItem(e.target.id);
+        this.props.toggleSidemenu();
+    }
   }
 
   render () {
     return (
-      <li className="sidemenu-index-item" onClick={this.handleClick(this.props.notebook.id)}>
-        <h3>{this.props.notebook.title}</h3>
-        <p>{new Date(this.props.notebook.updatedAt).toDateString()}</p>
-        <p>{this.props.notebook.noteIds.length} notes</p>
+      <li className="sidemenu-index-item" onClick={this.handleClick}>
+        <h3>{this.props.item.title}</h3>
+        <p>{new Date(this.props.item.updatedAt).toDateString()}</p>
+        <p>{this.props.item.noteIds.length} notes</p>
+        <button id="delete" onClick={this.handleClick}>DEL</button>
       </li>
     );
   }

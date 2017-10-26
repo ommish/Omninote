@@ -6,7 +6,7 @@ import { fetchNotebooks } from '../../actions/notebook_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    notebooks: Object.values(state.entities.notebooks),
+    items: Object.values(state.entities.notebooks),
     sidemenuOpen: state.ui.sidemenu,
     itemType: "notebook",
   };
