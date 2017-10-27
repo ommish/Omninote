@@ -5,18 +5,20 @@ class NoteIndexItem extends React.Component {
 
   render () {
     return (
-      <li className="note-index-item">
-        <NavLink
-          to={`/${this.props.holderType}/${this.props.holder.id}/notes/${this.props.note.id}`}
-          activeClassName="active-note-index-item">
-          <ul>
-            <li className="note-index-item-title">{this.props.note.title}</li>
-            <li><p>{this.props.note.updatedAt}</p></li>
-            <li><p>{this.props.bodySnippet}</p></li>
-          </ul>
+      <NavLink to={
+          this.props.match.params.notebookId ?
+          `/notebooks/${this.props.match.params.notebookId}/notes/${this.props.note.id}` :
+          `/notes/${this.props.note.id}`}
+          activeClassName="active-note-item" >
+          <div className="note-item">
+            <ul>
+              <li className="note-item-title">{this.props.note.title}</li>
+              <li className="note-item-date-"><p>{new Date(this.props.note.updatedAt).dateString}</p></li>
+              <li className="note-item-body-snippet"><p>{this.props.bodySnippet}</p></li>
+            </ul>
+          </div>
         </NavLink>
-      </li>
-    );
+      );
+    }
   }
-}
-export default NoteIndexItem;
+  export default NoteIndexItem;

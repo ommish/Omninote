@@ -4,18 +4,11 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   let bodySnippet = ownProps.note.body;
-  let holder;
-  let holderType;
   if (bodySnippet.length > 40) {
     bodySnippet = bodySnippet.slice(0, 40).concat("...");
   }
-  if (ownProps.notebook) {
-    holder = ownProps.notebook;
-    holderType = "notebooks";
-  }
+
   return {
-    holder,
-    holderType,
     bodySnippet,
   };
 };

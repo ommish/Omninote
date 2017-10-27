@@ -57,5 +57,4 @@ class DeleteForm extends React.Component {
   }
 }
 
-
 export default DeleteForm;

@@ -12,10 +12,11 @@ class SidemenuIndexItem extends React.Component {
     return (e) => {
       if (e.target.id === "delete") {
         this.props.toggleDeleteForm(id);
+        e.stopPropagation();
       } else {
-        this.props.fetchItem(e.target.id);
         this.props.toggleSidemenu();
         this.props.history.push(`/${this.props.itemType}s/${this.props.item.id}`);
+        e.stopPropagation();
       }
     };
   }
@@ -24,7 +25,7 @@ class SidemenuIndexItem extends React.Component {
     return (
       [
         <li key={1} className="sidemenu-index-item" onClick={this.handleClick(this.props.item.id)}>
-          <section className="">
+          <section>
             <h3>{this.props.titleSnippet}</h3>
             <p>{new Date(this.props.item.updatedAt).toDateString()}</p>
             <p>{this.props.item.noteIds.length} notes</p>
