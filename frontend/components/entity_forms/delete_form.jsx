@@ -18,8 +18,8 @@ class DeleteForm extends React.Component {
   }
 
   handleSubmit(e) {
+    this.redirect();
     this.props.deleteItem(this.props.item.id).then(() => {
-      this.redirect();
       this.closeModal();
     });
   }
