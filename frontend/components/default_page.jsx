@@ -15,11 +15,11 @@ class DefaultPage extends React.Component {
         <header>
           <h3><Link to="/">OMNINOTE</Link></h3>
           <nav className="left-nav">
-            <h4><Link to="/">Get Started</Link></h4>
-            <h4><Link to="/">Discover</Link></h4>
+            <h4><Link to="/"></Link></h4>
+            <h4><Link to="/"></Link></h4>
           </nav>
           <nav className="right-nav">
-            <h4><Link to="/">Download</Link></h4>
+            <h4><Link to="/"></Link></h4>
             <h4><Link to="/login">Log In</Link></h4>
           </nav>
         </header>
@@ -38,26 +38,26 @@ class DefaultPage extends React.Component {
         <footer>
           <nav>
             <ul>
-              <li>FB</li>
-              <li>TW</li>
-              <li>LI</li>
-              <li>YT</li>
-              <li>ME</li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
             </ul>
           </nav>
           <nav>
             <ul>
-              <li>Contact</li>
-              <li>Careers</li>
-              <li>Forum</li>
-              <li>Developers</li>
-              <li>Privacy</li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
             </ul>
           </nav>
           <nav>
             <ul>
-              <li>© 2017 Omninote Corporation. All rights reserved.</li>
-              <li>Language</li>
+              <li></li>
+              <li></li>
             </ul>
           </nav>
         </footer>

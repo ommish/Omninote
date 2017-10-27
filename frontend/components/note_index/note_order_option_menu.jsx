@@ -10,19 +10,25 @@ class NoteOrderOptions extends React.Component {
     };
   }
 
-
   render () {
     const options = this.props.options.map((option, i) => (
-      <li onClick={this.toggleNoteOrder(i)} key={i}>{option}</li>)
+      <button onClick={this.toggleNoteOrder(i)}
+        className={i === this.props.noteOrder ? "note-order selected" : "note-order"}
+        key={i}>
+        {option}
+      </button>)
     );
     return (
-    <div>
-      <button
-        className="sort-button"
-        onClick={this.props.toggleNoteOrderDropdown}>
-        Options ▾
-      </button>
+    [
+      <div className="sort-option-div" key={1}>
+        <button
+          className="sort-button"
+          onClick={this.props.toggleNoteOrderDropdown}>
+          Options ▾
+        </button>
+      </div>,
       <Modal
+        key={2}
         isOpen={this.props.noteOrderDropdown}
         onRequestClose={this.props.toggleNoteOrderDropdown}
         className={{
@@ -33,11 +39,11 @@ class NoteOrderOptions extends React.Component {
         base: '',
         afterOpen: 'order-dropdown-overlay',
         beforeClose: 'order-dropdown-overlay-closed'}}>
-        <ul>
+        <ul className="order-dropdown">
           {options}
         </ul>
       </Modal>
-    </div>
+    ]
   );
   }
 

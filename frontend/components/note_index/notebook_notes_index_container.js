@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import NoteIndex from './note_index';
 import { sortNotes } from '../../util/sorters';
 
-
 const mapStateToProps = (state, ownProps) => {
   const notebook = state.entities.notebooks[ownProps.match.params.notebookId];
   const noteOrder = state.ui.noteOrder;

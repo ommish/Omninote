@@ -1,15 +1,31 @@
 @import "variables";
 
-.order-dropdown {
+.order-dropdown ul {
   width: auto;
   height: auto;
-  top: 100px;
-  left: 100px;
-  box-shadow: 5px 5px 20px $dark-grey;
+  top: 150px;
+  left: 250px;
+  box-shadow: 3px 3px 50px $dark-grey;
   position: absolute;
   background: white;
-  border: 1px solid $light-grey;
-  border-radius: 5px;
+  border: 2px solid $light-grey;
+  display: flex;
+  flex-direction: column;
+}
+
+.sort-option-div {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  align-content: flex-end;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.sort-button {
+  margin-right: 10px;
+  color: $dark-grey;
 }
 
 .order-dropdown-closed {
@@ -17,5 +33,31 @@
 }
 
 .order-dropdown-overlay {
-  
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+}
+
+.order-dropdown-overlay-closed {
+  display: none;
+}
+
+.note-order {
+  padding: 5px;
+  color: $dark-grey;
+  text-align: left;
+}
+
+.note-order.selected {
+  color: $light-green;
+  font-weight: 700;
+}
+
+.note-order:hover, .note-order.selected:hover {
+  background: $light-green;
+  color: white;
 }

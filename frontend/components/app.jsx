@@ -1,6 +1,6 @@
 import React from 'react';
 import SideNav from './sidenav/sidenav_container';
-import TestEditor from './editor/test';
+import Editor from './editor/editor';
 import AllNotes from './note_index/all_notes_index_container';
 import NotebookNotes from './note_index/notebook_notes_index_container';
 import { Route, Switch } from 'react-router-dom';
@@ -23,7 +23,7 @@ class App extends React.Component {
           <button className="notebook-selector">Select Notebook</button>
           <form>
             <input placeholder="Title your note" type="text" className="title"/>
-            <TestEditor />
+            <Editor />
           </form>
         </main>
       </div>
