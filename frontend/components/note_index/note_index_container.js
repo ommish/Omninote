@@ -17,25 +17,20 @@ const mapStateToProps = (state, ownProps) => {
       noteOrder,
     };
   }
-
+  let notebook;
+  let tag;
   const notebookId = ownProps.match.params.notebookId;
   const tagId = ownProps.match.params.tagId;
   if (notebookId) {
     noteIds = state.entities.notebooks[notebookId].noteIds;
     noteIds.forEach((noteId) => notes.push(state.entities.notes[noteId]));
-    category = state.entities.notebooks[notebookId];
+    notebook = state.entities.notebooks[notebookId];
   }
   return {
-    category,
+    notebook,
     notes,
     noteOrder,
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    fetchNotes: () => dispatch(fetchNotes()),
-  };
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NoteIndex));
+export default withRouter(connect(mapStateToProps, null)(NoteIndex));
