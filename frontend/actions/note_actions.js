@@ -21,7 +21,7 @@ export const receiveNote = (note) => {
 
 export const removeNote = (note) => {
   return {
-    type: RECEIVE_NOTE,
+    type: REMOVE_NOTE,
     note,
   };
 };
@@ -55,9 +55,9 @@ export const deleteNote = (noteId) => {
   };
 };
 
-export const createNote = (notebookId, note) => {
+export const createNote = (note) => {
   return (dispatch) => {
-    return NoteUtil.createNote(notebookId, note)
+    return NoteUtil.createNote(note)
     .then((noteRes) => dispatch(receiveNote(noteRes)),
     (errors) => dispatch(receiveNoteErrors(errors))
   );};

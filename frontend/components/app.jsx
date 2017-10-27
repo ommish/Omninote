@@ -1,6 +1,7 @@
 import React from 'react';
 import SideNav from './sidenav/sidenav_container';
-import TestEditor from './notes/editor/test';
+import TestEditor from './editor/test';
+import NoteIndex from './note_index/note_index';
 
 
 class App extends React.Component {
@@ -9,7 +10,7 @@ class App extends React.Component {
     return (
       <div className="app-page">
         <SideNav />
-        <section className="notes-index"><h1>Notes index will go here</h1></section>
+        <NoteIndex />
         <main className="note-editor">
           <button className="notebook-selector">Select Notebook</button>
           <form>

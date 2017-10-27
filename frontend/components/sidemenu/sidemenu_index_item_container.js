@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import SidemenuIndexItem from './sidemenu_index_item';
 import { fetchNotebook, deleteNotebook } from '../../actions/notebook_actions';
 import { toggleSidemenu, toggleDeleteForm } from '../../actions/ui_actions';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   let titleSnippet = ownProps.item.title;
@@ -29,4 +30,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SidemenuIndexItem);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SidemenuIndexItem));

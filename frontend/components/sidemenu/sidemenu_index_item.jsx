@@ -15,6 +15,7 @@ class SidemenuIndexItem extends React.Component {
       } else {
         this.props.fetchItem(e.target.id);
         this.props.toggleSidemenu();
+        this.props.history.push(`/${this.props.itemType}s/${this.props.item.id}`);
       }
     };
   }

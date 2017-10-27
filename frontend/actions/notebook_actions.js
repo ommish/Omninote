@@ -45,7 +45,9 @@ export const fetchNotebooks = () => {
 export const fetchNotebook = (notebookId) => {
   return (dispatch) => {
     return NotebookUtil.fetchNotebook(notebookId)
-    .then((notebookRes) => dispatch(receiveNotebook(notebookRes)));
+    .then((notebookRes) => {
+      dispatch(receiveNotebook(notebookRes));
+    });
   };
 };
 

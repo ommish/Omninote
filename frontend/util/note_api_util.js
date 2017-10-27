@@ -12,9 +12,9 @@ export const fetchNote = (noteId) => {
   });
 };
 
-export const createNote = (notebookId, note) => {
+export const createNote = (note) => {
   return $.ajax({
-    url: `api/notebooks/${notebookId}/notes`,
+    url: `api/notes`,
     method: 'post',
     data: { note }
   });

@@ -1,20 +1,29 @@
-import { TOGGLE_CREATE_FORM, TOGGLE_DELETE_FORM, TOGGLE_SIDEMENU, TOGGLE_FULL_EDITOR, TOGGLE_NOTEBOOK_DROPDOWN } from '../actions/ui_actions';
+import {
+  TOGGLE_CREATE_FORM,
+  TOGGLE_NOTES_ORDER,
+  TOGGLE_DELETE_FORM,
+  TOGGLE_SIDEMENU,
+  TOGGLE_FULL_EDITOR,
+  TOGGLE_NOTEBOOK_DROPDOWN
+} from '../actions/ui_actions';
 import { merge } from 'lodash';
 
-const initialState = {
+const noteOrderOptions = [
+  'dateUpdatedNewest',
+  'dateUpdatedOldest',
+  'dateCreatedNewest',
+  'dateCreatedOldest',
+  'titleDes',
+  'titleAsc'];
+
+  const initialState = {
   sidemenu: false,
   createForm: false,
   deleteForm: {id: null},
   fullEditor: false,
   notebookDropdown: false,
   selectedNotebook: null,
-  notesOrder: { dateCreatedOldest: false,
-    dateCreatedNewest: false,
-    dateUpdatedOldest: false,
-    dateUpdatedNewest: false,
-    titleAsc: false,
-    titleDesc: false
-  },
+  noteOrder: noteOrderOptions[0],
 };
 
 const UIReducer = (oldState = initialState, action) => {
@@ -31,6 +40,10 @@ const UIReducer = (oldState = initialState, action) => {
     case TOGGLE_DELETE_FORM:
     newState = merge({}, oldState);
     newState.deleteForm.id = action.id;
+    return newState;
+    case TOGGLE_NOTES_ORDER:
+    newState = merge({}, oldState);
+    newState.noteOrder = noteOrderOptions[action.order];
     return newState;
     case TOGGLE_FULL_EDITOR:
     return oldState;

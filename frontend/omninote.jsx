@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
-import * as NotebookActions from './actions/notebook_actions';
+import * as NoteActions from './actions/note_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   window.store = store;
-  window.fetchNotebooks = NotebookActions.fetchNotebooks;
-  window.fetchNotebook = NotebookActions.fetchNotebook;
-  window.createNotebook = NotebookActions.createNotebook;
-  window.updateNotebook = NotebookActions.updateNotebook;
-  window.deleteNotebook = NotebookActions.deleteNotebook;
+  window.fetchNotes = NoteActions.fetchNotes;
+  window.fetchNote = NoteActions.fetchNote;
+  window.createNote = NoteActions.createNote;
+  window.updateNote = NoteActions.updateNote;
+  window.deleteNote = NoteActions.deleteNote;
   ReactDOM.render(<Root store={store}/>, root);
 });

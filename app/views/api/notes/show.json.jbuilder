@@ -1,3 +1,1 @@
-json.note do
-  json.partial! 'note', note: @note
-end
+json.partial! 'note', note: @note
