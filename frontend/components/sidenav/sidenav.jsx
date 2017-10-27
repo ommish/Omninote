@@ -6,7 +6,13 @@ class SideNav extends React.Component {
 
   constructor (props) {
     super(props);
+    this.redirectToAllNotes = this.redirectToAllNotes.bind(this);
   }
+
+  redirectToAllNotes () {
+    this.props.history.push('/notes');
+  }
+
   render () {
 
     return (
@@ -16,7 +22,7 @@ class SideNav extends React.Component {
           <li><button onClick={() => {}} className="circle-button">
             <img className="sidenav-icon" src={window.staticAssets.greenPlus}/>
           </button></li>
-          <li><button onClick={() => {}} className="circle-button">
+        <li><button onClick={this.redirectToAllNotes} className="circle-button">
             <img className="sidenav-icon" src={window.staticAssets.notes}/>
           </button></li>
           <NBSidemenu />
