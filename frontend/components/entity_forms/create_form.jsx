@@ -11,10 +11,18 @@ class CreateForm extends React.Component {
     this.handleCancel = this.handleCancel.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.redirect = this.redirect.bind(this);
+  }
+
+  redirect (id) {
+    this.props.history.push(`/notebooks/${id}`);
   }
 
   handleSubmit(e) {
-    this.props.createItem(this.state.item).then(() => {
+    this.props.createItem(this.state.item).then((res) => {
+      this.redirect(
+        Object.keys(res.notebook)[0]
+      );
       this.closeModal();
     });
   }

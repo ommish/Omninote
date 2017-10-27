@@ -2,6 +2,7 @@ import CreateForm from './create_form';
 import { connect } from 'react-redux';
 import { createNotebook, receiveNotebookErrors } from '../../actions/notebook_actions';
 import { toggleCreateForm } from '../../actions/ui_actions';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   let formMessage;
@@ -37,4 +38,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreateForm));

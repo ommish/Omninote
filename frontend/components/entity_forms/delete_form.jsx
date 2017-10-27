@@ -10,10 +10,16 @@ class DeleteForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.redirect = this.redirect.bind(this);
+  }
+
+  redirect () {
+    this.props.history.push('/notes');
   }
 
   handleSubmit(e) {
     this.props.deleteItem(this.props.item.id).then(() => {
+      this.redirect();
       this.closeModal();
     });
   }

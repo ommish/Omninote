@@ -2,6 +2,7 @@ import DeleteForm from './delete_form';
 import { connect } from 'react-redux';
 import { deleteNotebook } from '../../actions/notebook_actions';
 import { toggleDeleteForm } from '../../actions/ui_actions';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -20,4 +21,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DeleteForm));

@@ -19,14 +19,21 @@
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  border: none;
+  border: 2px solid white;
+  box-sizing: border-box;
 }
 
 .note-item:hover {
   background-color: $light-green;
-  .note-item ul {
+  border-color: $light-green;
+  li, p {
     color: white;
   }
+}
+
+.active-note-item > .note-item {
+  border-color: $grey;
+  box-sizing: border-box;
 }
 
 
