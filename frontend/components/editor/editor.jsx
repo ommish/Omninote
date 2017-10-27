@@ -11,10 +11,15 @@ class Editor extends React.Component {
     // style, b/i/u, attachment, ul, ol, remove format,
     // font color, font size, strikethrough, alignment,
     // indent, sub/superscript
-  handleChange(value) {
-    this.setState({ text: value });
-    console.log(this.state.text);
+  handleChange(content, delta, source, editor) {
+    this.setState({ text: editor.getContents() });
+    console.log(content);
+    console.log(delta);
+    console.log(source);
+    console.log(editor);
   }
+
+
 
   render() {
     return (
