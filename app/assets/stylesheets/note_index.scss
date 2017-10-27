@@ -6,13 +6,43 @@
   border-right: 1px solid $grey;
 }
 
-.note-index-header {
+.note-index-heading {
   padding: 20px;
-  font-size: 16px;
+  font-size: 20px;
   background-color: $dark-grey;
   color: white;
+  height: 70px;
 }
 
-.note-index-item {
-  
+.note-item {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: none;
+}
+
+.note-item:hover {
+  background-color: $light-green;
+  .note-item ul {
+    color: white;
+  }
+}
+
+
+.note-item-title {
+  font-family: 'Roboto Slab', serif;
+  font-size: 14px;
+}
+
+.note-item-date {
+  font-size: 12px;
+  font-weight: 200;
+}
+
+.note-item-body-snippet {
+  font-family: 'Roboto Slab', serif;
+  font-size: 12px;
+  font-weight: 200;
+
 }
