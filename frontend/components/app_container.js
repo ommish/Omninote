@@ -1,14 +1,10 @@
 import { connect } from 'react-redux';
 import App from './app';
-import { fetchNotebooks } from '../actions/notebook_actions';
-import { fetchNotes } from '../actions/note_actions';
+import { fetchAll } from '../actions/entity_actions';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchAll: () => {
-      dispatch(fetchNotebooks());
-      dispatch(fetchNotes());
-    }
+    fetchAll: () => dispatch(fetchAll()),
   };
 };
 
