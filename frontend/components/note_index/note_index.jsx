@@ -1,4 +1,5 @@
 import React from 'react';
+import NoteIndexItem from './note_index_item_container';
 
 class NoteIndex extends React.Component {
 
@@ -14,7 +15,7 @@ class NoteIndex extends React.Component {
   }
 
   render () {
-    let notes = this.props.notes.map((note) => <li>{note.title}<br></br>{note.body}</li>);
+    let notes = this.props.notes.map((note) => <li>{note.title}</li>);
     notes.sort(); //have to sort by this.props.noteOrder
     return (
       <section className="note-index">

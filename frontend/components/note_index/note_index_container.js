@@ -4,25 +4,32 @@ import { fetchNotes } from '../../actions/note_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
-  const notebookId = ownProps.match.params.notebookId;
-  const tagId = ownProps.match.params.tagId;
   const noteOrder = state.ui.noteOrder;
-  if (!notebookId && !tagId) {
+  let noteIds;
+  let notes = [];
+  let category;
+
+  if (ownProps.location.pathname === "/notebooks/") {
+    notes = Object.values(state.entities.notes);
     return {
-      notes: Object.values(state.entities.notes),
-      noteOrder,
-    };
-  } else if (notebookId) {
-    return {
-      notes: Object.values(state.entities.notes).filter((note) => note.notebookId === notebookId),
-      noteOrder,
-    };
-  } else {
-    return {
-      notes: Object.values(state.entities.notes).filter((note) => note.tagId === tagId),
+      category,
+      notes,
       noteOrder,
     };
   }
+
+  const notebookId = ownProps.match.params.notebookId;
+  const tagId = ownProps.match.params.tagId;
+  if (notebookId) {
+    noteIds = state.entities.notebooks[notebookId].noteIds;
+    noteIds.forEach((noteId) => notes.push(state.entities.notes[noteId]));
+    category = state.entities.notebooks[notebookId];
+  }
+  return {
+    category,
+    notes,
+    noteOrder,
+  };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {

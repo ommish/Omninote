@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import DefaultPage from './default_page';
-import App from './app';
+import App from './app_container';
 import SessionForm from './session/session_form_container';
 import { receiveUserErrors } from '../actions/session_actions';
 
