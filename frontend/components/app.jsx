@@ -1,7 +1,7 @@
 import React from 'react';
 import SideNav from './sidenav/sidenav_container';
 import TestEditor from './editor/test';
-import NoteIndex from './note_index/note_index';
+import NoteIndex from './note_index/note_index_container';
 
 
 class App extends React.Component {
