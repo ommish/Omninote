@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show]
     resources :notebooks, except: [:new, :edit]
     resources :notes, except: [:new, :edit]
+    resources :all_items, only: [:index]
   end
 end
