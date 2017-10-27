@@ -4,6 +4,7 @@ export const TOGGLE_NOTEBOOK_DROPDOWN = "TOGGLE_NOTEBOOK_DROPDOWN";
 export const TOGGLE_DELETE_FORM = "TOGGLE_DELETE_FORM";
 export const TOGGLE_CREATE_FORM = "TOGGLE_CREATE_FORM";
 export const TOGGLE_NOTES_ORDER = "TOGGLE_NOTES_ORDER";
+export const TOGGLE_ORDER_DROPDOWN = "TOGGLE_ORDER_DROPDOWN";
 
 export const toggleSidemenu = () => {
   return {
@@ -14,6 +15,12 @@ export const toggleSidemenu = () => {
 export const toggleCreateForm = () => {
   return {
     type: TOGGLE_CREATE_FORM,
+  };
+};
+
+export const toggleOrderDropdown = () => {
+  return {
+    type: TOGGLE_ORDER_DROPDOWN,
   };
 };
 

@@ -1,6 +1,7 @@
 import {
   TOGGLE_CREATE_FORM,
   TOGGLE_NOTES_ORDER,
+  TOGGLE_ORDER_DROPDOWN,
   TOGGLE_DELETE_FORM,
   TOGGLE_SIDEMENU,
   TOGGLE_FULL_EDITOR,
@@ -24,6 +25,7 @@ const noteOrderOptions = [
   notebookDropdown: false,
   selectedNotebook: null,
   noteOrder: noteOrderOptions[0],
+  orderDropdown: false,
 };
 
 const UIReducer = (oldState = initialState, action) => {
@@ -44,6 +46,10 @@ const UIReducer = (oldState = initialState, action) => {
     case TOGGLE_NOTES_ORDER:
     newState = merge({}, oldState);
     newState.noteOrder = noteOrderOptions[action.order];
+    return newState;
+    case TOGGLE_ORDER_DROPDOWN:
+    newState = merge({}, oldState);
+    newState.orderDropdown = !newState.orderDropdown;
     return newState;
     case TOGGLE_FULL_EDITOR:
     return oldState;

@@ -1,4 +1,6 @@
 import React from 'react';
+import NoteIndexItem from 'note_index_item_container';
+import Modal from 'react-modal';
 
 class NoteIndex extends React.Component {
 
@@ -14,13 +16,24 @@ class NoteIndex extends React.Component {
   }
 
   render () {
-    let notes = this.props.notes.map((note) => <li>{note.title}<br></br>{note.body}</li>);
+    let notes = this.props.notes.map((note) => <NoteIndexIem note={note}/>);
     notes.sort(); //have to sort by this.props.noteOrder
     return (
       <section className="note-index">
-        <ul>
-          {notes}
-        </ul>
+        <div>
+          Notes
+        </div>
+        <div>
+          <span onClick={this.props.toggleOrderDropdown}>Order</span>
+          <Modal>
+            <ul>
+              Order Options List
+            </ul>
+          </Modal>
+          <ul>
+            {notes}
+          </ul>
+        </div>
       </section>
     );
   }
