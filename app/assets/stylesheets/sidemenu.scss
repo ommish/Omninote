@@ -19,12 +19,24 @@
 }
 
 .closed-sidemenu {
+  background: white;
+  left: -500px;
+  top: 0px;
   height: 100%;
-  width: 0;
+  width: 500px;
+  border-right: 2px solid $grey;
+  position: fixed;
+  overflow-y: scroll;
+  -webkit-animation: slidein .4s ease-in;
 }
 
-@-webkit-keyframes slideover {
-  from { transform: translateX(-500px); }
+@-webkit-keyframes slidein {
+  from { transform: translateX(500px); }
+  to { transform: translateX(0px); }
+}
+
+@-webkit-keyframes slideout {
+  from { transform: translateX(-430px); }
   to { transform: translateX(0px); }
 }
 
@@ -37,7 +49,7 @@
   border-right: 2px solid $grey;
   position: fixed;
   overflow-y: scroll;
-  -webkit-animation: slideover .4s ease-in;
+  -webkit-animation: slideout .4s ease-in;
 
 
   section:nth-of-type(1) {

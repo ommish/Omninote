@@ -1,7 +1,18 @@
 @import "variables";
 
 .note-index {
-  width: 30%;
+  width: 20%;
   height: 100%;
   border-right: 1px solid $grey;
+}
+
+.note-index-header {
+  padding: 20px;
+  font-size: 16px;
+  background-color: $dark-grey;
+  color: white;
+}
+
+.note-index-item {
+  
 }

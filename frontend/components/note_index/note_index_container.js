@@ -5,33 +5,33 @@ import { withRouter } from 'react-router-dom';
 import { toggleNoteOrder, toggleOrderDropdown } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  const notebookId = ownProps.match.params.notebookId;
-  const tagId = ownProps.match.params.tagId;
   const noteOrder = state.ui.noteOrder;
-  if (!notebookId && !tagId) {
+  let noteIds;
+  let notes = [];
+  let category;
+
+  if (ownProps.location.pathname === "/notebooks/") {
+    notes = Object.values(state.entities.notes);
     return {
-      notes: Object.values(state.entities.notes),
-      noteOrder,
-    };
-  } else if (notebookId) {
-    return {
-      notes: Object.values(state.entities.notes).filter((note) => note.notebookId === notebookId),
-      noteOrder,
-    };
-  } else {
-    return {
-      notes: Object.values(state.entities.notes).filter((note) => note.tagId === tagId),
+      category,
+      notes,
       noteOrder,
     };
   }
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
+  let notebook;
+  let tag;
+  const notebookId = ownProps.match.params.notebookId;
+  const tagId = ownProps.match.params.tagId;
+  if (notebookId) {
+    noteIds = state.entities.notebooks[notebookId].noteIds;
+    noteIds.forEach((noteId) => notes.push(state.entities.notes[noteId]));
+    notebook = state.entities.notebooks[notebookId];
+  }
   return {
-    fetchNotes: () => dispatch(fetchNotes()),
-    toggleNoteOrder: (order) => dispatch(toggleNoteOrder(order)),
-    toggleOrderDropdown: () => dispatch(toggleOrderDropdown()),
+    notebook,
+    notes,
+    noteOrder,
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NoteIndex));
+export default withRouter(connect(mapStateToProps, null)(NoteIndex));
