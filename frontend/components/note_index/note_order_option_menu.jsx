@@ -3,8 +3,18 @@ import Modal from 'react-modal';
 
 class NoteOrderOptions extends React.Component {
 
+  toggleNoteOrder (order) {
+    return (e) => {
+      this.props.toggleNoteOrder(order);
+      this.props.toggleNoteOrderDropdown();
+    };
+  }
+
+
   render () {
-    const options = this.props.options.map((option, i) => <li key={i}>{option}</li>)
+    const options = this.props.options.map((option, i) => (
+      <li onClick={this.toggleNoteOrder(i)} key={i}>{option}</li>)
+    );
     return (
     <div>
       <button

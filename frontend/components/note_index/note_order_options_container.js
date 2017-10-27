@@ -5,7 +5,7 @@ import { _noteOrderOptions } from '../../reducers/ui_reducer';
 
 const mapStateToProps = (state) => {
   return {
-    noteOrder: _noteOrderOptions[state.ui.noteOrder],
+    noteOrder: state.ui.noteOrder,
     noteOrderDropdown: state.ui.noteOrderDropdown,
     options: _noteOrderOptions,
   };

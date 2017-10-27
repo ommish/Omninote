@@ -24,7 +24,7 @@ export const _noteOrderOptions = [
   fullEditor: false,
   notebookDropdown: false,
   selectedNotebook: null,
-  noteOrder: _noteOrderOptions[0],
+  noteOrder: 0,
   noteOrderDropdown: false,
 };
 
@@ -45,7 +45,7 @@ const UIReducer = (oldState = initialState, action) => {
     return newState;
     case TOGGLE_NOTE_ORDER:
     newState = merge({}, oldState);
-    newState.noteOrder = _noteOrderOptions[action.order];
+    newState.noteOrder = action.order;
     return newState;
     case TOGGLE_NOTE_ORDER_DROPDOWN:
     newState = merge({}, oldState);
