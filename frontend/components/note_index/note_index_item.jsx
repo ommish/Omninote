@@ -21,4 +21,5 @@ class NoteIndexItem extends React.Component {
       );
     }
   }
+  
   export default NoteIndexItem;

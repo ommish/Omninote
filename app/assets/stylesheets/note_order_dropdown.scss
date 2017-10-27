@@ -1,0 +1,20 @@
+@import "variables";
+
+.order-dropdown {
+  width: auto;
+  height: auto;
+  top: 100px;
+  left: 100px;
+  box-shadow: 5px 5px 20px $dark-grey;
+  position: absolute;
+  background: white;
+  border: 1px solid $light-grey;
+  border-radius: 5px;
+}
+
+.order-dropdown-closed {
+  display: none;
+}
+
+.order-dropdown-overlay {
+}

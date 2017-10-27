@@ -3,8 +3,8 @@ export const TOGGLE_FULL_EDITOR = "TOGGLE_FULL_EDITOR";
 export const TOGGLE_NOTEBOOK_DROPDOWN = "TOGGLE_NOTEBOOK_DROPDOWN";
 export const TOGGLE_DELETE_FORM = "TOGGLE_DELETE_FORM";
 export const TOGGLE_CREATE_FORM = "TOGGLE_CREATE_FORM";
-export const TOGGLE_NOTES_ORDER = "TOGGLE_NOTES_ORDER";
-export const TOGGLE_ORDER_DROPDOWN = "TOGGLE_ORDER_DROPDOWN";
+export const TOGGLE_NOTE_ORDER = "TOGGLE_NOTE_ORDER";
+export const TOGGLE_NOTE_ORDER_DROPDOWN = "TOGGLE_NOTE_ORDER_DROPDOWN";
 
 export const toggleSidemenu = () => {
   return {
@@ -18,9 +18,9 @@ export const toggleCreateForm = () => {
   };
 };
 
-export const toggleOrderDropdown = () => {
+export const toggleNoteOrderDropdown = () => {
   return {
-    type: TOGGLE_ORDER_DROPDOWN,
+    type: TOGGLE_NOTE_ORDER_DROPDOWN,
   };
 };
 
@@ -31,9 +31,9 @@ export const toggleDeleteForm = (id) => {
   };
 };
 
-export const togglenoteOrder = (order) => {
+export const toggleNoteOrder = (order) => {
   return {
-    type: TOGGLE_NOTES_ORDER,
+    type: TOGGLE_NOTE_ORDER,
     order,
   };
 };
