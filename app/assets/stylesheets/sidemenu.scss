@@ -1,6 +1,5 @@
 @import "variables";
 
-
 .sidemenu-overlay {
   height: 100%;
   width: 100%;
@@ -10,6 +9,7 @@
   position: absolute;
   overflow: hidden;
   display: flex;
+  z-index: 4;
 }
 
 .closed-sidemenu-overlay {
@@ -19,20 +19,9 @@
 }
 
 .closed-sidemenu {
-  background: white;
-  left: -500px;
-  top: 0px;
   height: 100%;
-  width: 500px;
-  border-right: 2px solid $grey;
-  position: fixed;
-  overflow-y: scroll;
-  -webkit-animation: slidein .4s ease-in;
-}
-
-@-webkit-keyframes slidein {
-  from { transform: translateX(500px); }
-  to { transform: translateX(0px); }
+  width: 0;
+  display: none;
 }
 
 @-webkit-keyframes slideout {
@@ -50,6 +39,7 @@
   position: fixed;
   overflow-y: scroll;
   -webkit-animation: slideout .4s ease-in;
+  z-index: 4;
 
 
   section:nth-of-type(1) {

@@ -20,6 +20,7 @@ class Sidemenu extends React.Component {
         </button>
         <Modal
           isOpen={this.props.sidemenuOpen}
+          onRequestClose={this.props.toggleSidemenu}
           className={{
           base: '',
           afterOpen: 'sidemenu-open',

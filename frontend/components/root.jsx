@@ -15,9 +15,7 @@ const Root = ({store}) => (
             <AuthRoute exact path='/signup' component={SessionForm} />
             <AuthRoute exact path='/' component={DefaultPage} />
             <Switch>
-              <ProtectedRoute path='/notebooks/:notebookId/notes/:noteId' component={App} />
-              <ProtectedRoute path='/notebooks/:notebookId/notes' component={App} />
-              <ProtectedRoute path='/notebooks/:notebookId' component={App} />
+              <ProtectedRoute path='/notes' component={App} />
               <ProtectedRoute path='/notebooks' component={App} />
             </Switch>
         </div>
