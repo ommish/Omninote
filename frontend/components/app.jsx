@@ -12,27 +12,34 @@ class App extends React.Component {
     this.toggleSelectedNotebook = this.props.toggleSelectedNotebook.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchAll();
-  }
-
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
       if (newProps.match.params.notebookId) {
         this.toggleSelectedNotebook(this.props.notebooks[newProps.match.params.notebookId]);
       } else if (newProps.match.params.noteId) {
-        this.toggleSelectedNotebook(this.props.notes[newProps.match.params.noteId].notebookId);
+        const noteId = newProps.match.params.noteId;
+        const notebookId = this.props.notes[noteId].notebookId;
+        const notebook = this.props.notebooks[notebookId];
+        this.toggleSelectedNotebook(notebook);
       }
     }
   }
 
   render () {
+    // set initial state equal to = not yet fetched
+    // if not yet fetched, then fetch
+    // fetching all should clear initial state
+    if (this.props.notebooks.initialState) {
+      this.props.fetchAll();
+    }
+
+//refreshing on notebooks/:noteId brings you back to /notes
     return (
       <div className="app-page">
         <SideNav />
         <Switch>
-          <Route path="/notes" component={AllNotes} />
           <Route path="/notebooks/:notebookId" component={NotebookNotes} />
+          <Route path="/notes" component={AllNotes} />
         </Switch>
         <main className="note-editor">
             <Route path="/" component={Editor} />

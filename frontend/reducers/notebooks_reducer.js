@@ -3,7 +3,7 @@ import { RECEIVE_ALL_ENTITIES } from '../actions/entity_actions';
 import { merge } from 'lodash';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 
-const initialState = {};
+const initialState = {initialState: true};
 
 const NotebooksReducer = (oldState = initialState, action) => {
   let newState;
@@ -15,7 +15,7 @@ const NotebooksReducer = (oldState = initialState, action) => {
       return oldState;
     }
     case RECEIVE_ALL_ENTITIES:
-    newState = merge({}, oldState, action.notebooks);
+    newState = merge({}, action.notebooks);
     return newState;
     case RECEIVE_NOTEBOOKS:
     newState = merge({}, action.notebooks);

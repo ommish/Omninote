@@ -50,7 +50,7 @@ handleTitleChange(e) {
 
 handleSubmit() {
   let newState = merge({}, this.state);
-  newState.notebook_id = this.props.selectedNotebook;
+  newState.notebook_id = this.props.selectedNotebook.id;
   newState.body = JSON.stringify(newState.body);
   this.props.action(newState);
 }

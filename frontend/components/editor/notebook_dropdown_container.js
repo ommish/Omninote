@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     toggleNotebookDropdown: () => dispatch(toggleNotebookDropdown()),
-    toggleSelectedNotebook: (notebookId) => dispatch(toggleSelectedNotebook(notebookId)),
+    toggleSelectedNotebook: (notebook) => dispatch(toggleSelectedNotebook(notebook)),
   };
 };
 

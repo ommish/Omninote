@@ -3,36 +3,38 @@ import Modal from 'react-modal';
 
 class NotebookDropdown extends React.Component {
 
-  toggleNotebook (notebookId) {
+  toggleNotebook (notebook) {
     return (e) => {
       this.props.toggleNotebookDropdown();
-      this.props.toggleSelectedNotebook(notebookId);
+      this.props.toggleSelectedNotebook(notebook);
     };
   }
 
   render () {
-    const notebooks = this.props.allNotebooks.map((notebook) => (
-      <button onClick={this.toggleNotebook(notebook.id)}
-        className={notebook.id === this.props.selectedNotebook ? "notebook-dropdown-item selected" : "notebook-dropdown-item"}
-        key={notebook.id}>
-        {notebook.title}
-      </button>)
-    );
+    const notebooks = this.props.allNotebooks.map((notebook, i) => (
+        <button
+          onClick={this.toggleNotebook(notebook)}
+          className={notebook.id === this.props.selectedNotebook.id ? "notebook-dropdown-item selected" : "notebook-dropdown-item"}
+          key={i}>
+          {notebook.title}
+        </button>
+      ));
+
     return (
     [
-      <div className="notebook-button-div" key="a">
+      <div className="notebook-button-div"
+        key={1}>
         <button
           className="notebook-button"
           onClick={this.props.toggleNotebookDropdown}>
-          {this.props.selectedNotebook ?
+          {this.props.selectedNotebook.id ?
             this.props.allNotebooks.filter((notebook) => (
-              notebook.id === this.props.selectedNotebook)
-            )[0].title :
-            "Select Notebook"}▾
+            notebook.id === this.props.selectedNotebook.id
+          ))[0].title : "Select Notebook"}▾
         </button>
       </div>,
       <Modal
-        key={"b"}
+        key={2}
         isOpen={this.props.notebookDropdown}
         onRequestClose={this.props.toggleNotebookDropdown}
         className={{

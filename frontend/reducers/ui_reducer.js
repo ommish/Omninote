@@ -27,7 +27,7 @@ export const _noteOrderOptions = [
   deleteForm: {id: null},
   fullEditor: false,
   notebookDropdown: false,
-  selectedNotebook: null,
+  selectedNotebook: {id: null},
   noteOrder: 0,
   noteOrderDropdown: false,
 };
@@ -78,8 +78,7 @@ const UIReducer = (oldState = initialState, action) => {
 
     case TOGGLE_SELECTED_NOTEBOOK:
     newState = merge({}, oldState);
-    newState.selectedNotebook = action.notebookId;
-
+    newState.selectedNotebook = action.notebook;
     return newState;
 
     default:

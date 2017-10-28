@@ -3,11 +3,18 @@ import App from './app';
 import { fetchAll } from '../actions/entity_actions';
 import { toggleSelectedNotebook } from '../actions/ui_actions';
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchAll: () => dispatch(fetchAll()),
-    toggleSelectedNotebook: (notebookId) => dispatch(toggleSelectedNotebook(notebookId)),
+const mapStateToProps = (state) => {
+    return {
+    notes: state.entities.notes,
+    notebooks: state.entities.notebooks,
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchAll: () => dispatch(fetchAll()),
+    toggleSelectedNotebook: (notebook) => dispatch(toggleSelectedNotebook(notebook)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
