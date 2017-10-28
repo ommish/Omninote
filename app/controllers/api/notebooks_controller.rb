@@ -1,6 +1,7 @@
 class Api::NotebooksController < ApplicationController
   def show
     @notebook = Notebook.find(params[:id])
+    @notes = @notebook.notes
   end
 
   def index
@@ -9,6 +10,7 @@ class Api::NotebooksController < ApplicationController
 
   def create
     @notebook = current_user.notebooks.new(notebook_params)
+    @notes = @notebook.notes
     if @notebook.save
       render :show
     else
@@ -18,12 +20,14 @@ class Api::NotebooksController < ApplicationController
 
   def destroy
     @notebook = Notebook.find(params[:id])
+    @notes = @notebook.notes
     @notebook.destroy!
     render :show
   end
 
   def update
     @notebook = Notebook.find(params[:id])
+    @notes = @notebook.notes
     if @notebook.update(notebook_params)
       render :show
     else

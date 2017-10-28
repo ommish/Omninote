@@ -1,6 +1,4 @@
-json.set! notebook.id do
-  json.id notebook.id
-  json.title notebook.title
-  json.noteIds notebook.notes.ids
-  json.updatedAt notebook.updated_at
-end
+json.id notebook.id
+json.title notebook.title
+json.noteIds notebook.notes.ids
+json.updatedAt notebook.updated_at

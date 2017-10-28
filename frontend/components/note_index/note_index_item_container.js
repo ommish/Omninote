@@ -12,11 +12,5 @@ const mapStateToProps = (state, ownProps) => {
     bodySnippet,
   };
 };
-//
-// const mapDispatchToProps = (state, ownProps) => {
-//   return {
-//
-//   };
-// };
 
 export default withRouter(connect(mapStateToProps, null)(NoteIndexItem));

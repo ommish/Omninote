@@ -1,9 +1,13 @@
 json.notebook do
-  json.partial! 'notebook', notebook: @notebook
+  json.set! @notebook.id do
+    json.partial! 'notebook', notebook: @notebook
+  end
 end
 
 json.notes do
-  @notebook.notes.each do |note|
-    json.partial! '/api/notes/note', note: note
+  @notes.each do |note|
+    json.set! note.id do
+      json.partial! '/api/notes/note', note: note
+    end
   end
 end

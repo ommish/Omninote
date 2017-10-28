@@ -7,20 +7,30 @@ import { Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.toggleSelectedNotebook = this.props.toggleSelectedNotebook.bind(this);
-  }
-
   componentWillReceiveProps(newProps) {
+    let notebookId;
+    let notebook;
+    let noteId;
+    let note;
+
     if (this.props.location.pathname !== newProps.location.pathname) {
-      if (newProps.match.params.notebookId) {
-        this.toggleSelectedNotebook(this.props.notebooks[newProps.match.params.notebookId]);
-      } else if (newProps.match.params.noteId) {
-        const noteId = newProps.match.params.noteId;
-        const notebookId = this.props.notes[noteId].notebookId;
-        const notebook = this.props.notebooks[notebookId];
-        this.toggleSelectedNotebook(notebook);
+      if (newProps.location.pathname.startsWith("/notebooks/")) {
+        notebookId = newProps.location.pathname.split("/")[2];
+        notebook = this.props.notebooks[notebookId];
+        this.props.toggleSelectedNotebook(notebook);
+        if (newProps.location.pathname.includes("/notes/")) {
+          noteId = newProps.location.pathname.split("/")[4];
+          note = this.props.notes[noteId];
+          this.props.toggleSelectedNote(note);
+        }
+      }
+      else if (newProps.location.pathname.startsWith("/notes/")) {
+        noteId = newProps.location.pathname.split("/")[2];
+        notebookId = this.props.notes[noteId].notebookId;
+        note = this.props.notes[noteId];
+        notebook = this.props.notebooks[notebookId];
+        this.props.toggleSelectedNotebook(notebook);
+        this.props.toggleSelectedNote(note);
       }
     }
   }

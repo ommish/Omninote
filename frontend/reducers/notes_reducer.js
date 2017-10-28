@@ -1,5 +1,5 @@
 import { RECEIVE_NOTES, RECEIVE_NOTE, REMOVE_NOTE } from '../actions/note_actions';
-import { RECEIVE_NOTEBOOK } from '../actions/notebook_actions';
+import { RECEIVE_NOTEBOOK, REMOVE_NOTEBOOK } from '../actions/notebook_actions';
 import { RECEIVE_ALL_ENTITIES } from '../actions/entity_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { merge } from 'lodash';
@@ -18,21 +18,28 @@ const NotesReducer = (oldState = initialState, action) => {
     case RECEIVE_ALL_ENTITIES:
     newState = merge({}, oldState, action.notes);
     return newState;
-    case RECEIVE_NOTEBOOK:
-    newState = merge({}, oldState, action.notes);
-    return newState;
-    case RECEIVE_NOTES:
-    newState = merge({}, action.notes);
+    case REMOVE_NOTEBOOK:
+    newState = merge({}, oldState);
+    if (action.notes) {
+      Object.values(action.notes).forEach((note) => {
+        delete newState[note.id];
+      });
+    }
     return newState;
     case RECEIVE_NOTE:
     return merge({}, oldState, action.note);
     case REMOVE_NOTE:
     newState = merge({}, oldState);
-    const key = Object.keys(action.note)[0];
-    delete newState[key];
+    delete newState[action.note.id];
     return newState;
     default:
     return oldState;
+    // case RECEIVE_NOTEBOOK:
+    // newState = merge({}, oldState, action.notes);
+    // return newState;
+    // case RECEIVE_NOTES:
+    // newState = merge({}, action.notes);
+    // return newState;
   }
 };
 

@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    toggleNotebookDropdown: (modalName) => dispatch(toggleModal("notebookDropdown")),
+    toggleNotebookDropdown: () => dispatch(toggleModal("notebookDropdown")),
     toggleSelectedNotebook: (notebook) => dispatch(toggleSelectedNotebook(notebook)),
   };
 };

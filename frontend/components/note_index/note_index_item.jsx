@@ -10,7 +10,8 @@ class NoteIndexItem extends React.Component {
           `/notebooks/${this.props.match.params.notebookId}/notes/${this.props.note.id}` :
           `/notes/${this.props.note.id}`}
           activeClassName="active-note-item">
-        <div className="note-item">
+        <div
+          className="note-item">
           <ul>
             <li className="note-item-title">{this.props.note.title}</li>
             <li className="note-item-date-"><p>{new Date(this.props.note.updatedAt).dateString}</p></li>

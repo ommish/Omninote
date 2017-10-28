@@ -37,7 +37,7 @@ class Editor extends React.Component {
 
 handleBodyChange (content, delta, source, editor) {
   const newState = merge({}, this.state);
-  newState.body = editor.getContents();
+  newState.body = JSON.stringify(editor.getContents());
   newState.body_plain = editor.getText().trim();
   this.setState(newState);
 }
@@ -51,8 +51,13 @@ handleTitleChange(e) {
 handleSubmit() {
   let newState = merge({}, this.state);
   newState.notebook_id = this.props.selectedNotebook.id;
-  newState.body = JSON.stringify(newState.body);
   this.props.action(newState);
+}
+
+componentWillReceiveProps(newProps) {
+  if (this.props.location.pathname !== newProps.location.pathname) {
+    this.setState(newProps.note);
+  }
 }
 
 render() {
@@ -66,12 +71,12 @@ render() {
         className="title"
         value={this.state.title}/>
       <ReactQuill
-        onChange={this.handleBodyChange}
         id="quill"
         modules={this.modules}
         formats={this.formats}
         placeholder="Enter your new note here"
         defaultValue={this.state.body}
+        onChange={this.handleBodyChange}
         />
       <button onClick={this.handleSubmit}>Save Note!</button>
     </main>

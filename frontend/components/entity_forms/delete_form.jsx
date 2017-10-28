@@ -11,6 +11,7 @@ class DeleteForm extends React.Component {
     this.handleCancel = this.handleCancel.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.redirect = this.redirect.bind(this);
+    this.toggleSelectedNotebook = this.props.toggleSelectedNotebook.bind(this);
   }
 
   redirect () {
@@ -19,6 +20,7 @@ class DeleteForm extends React.Component {
 
   handleSubmit(e) {
     this.redirect();
+    this.toggleSelectedNotebook({id: null});
     this.props.deleteItem(this.props.item.id).then(() => {
       this.closeModal();
     });
