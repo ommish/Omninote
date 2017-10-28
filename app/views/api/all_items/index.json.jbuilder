@@ -9,3 +9,5 @@ json.notes do
     json.partial! 'api/notes/note', note: note
   end
 end
+
+json.notebookTitles @titles

@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import Editor from './editor';
 import { updateNote, createNote } from '../../actions/note_actions';
-import { toggleFullEditor } from '../../actions/ui_actions';
+import { toggleFullEditor, toggleSelectedNotebook } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  let note = { title: "", body: "" };
+  let note = { title: "", body: "", notebookId: null};
   const fullEditor = state.ui.fullEditor;
   if (ownProps.match.params.noteId) {
     note = state.entities.notes[ownProps.match.params.noteId];
@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     note,
     fullEditor,
+    selectedNotebook: state.ui.selectedNotebook,
   };
 };
 

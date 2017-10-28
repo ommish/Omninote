@@ -5,6 +5,20 @@ export const TOGGLE_DELETE_FORM = "TOGGLE_DELETE_FORM";
 export const TOGGLE_CREATE_FORM = "TOGGLE_CREATE_FORM";
 export const TOGGLE_NOTE_ORDER = "TOGGLE_NOTE_ORDER";
 export const TOGGLE_NOTE_ORDER_DROPDOWN = "TOGGLE_NOTE_ORDER_DROPDOWN";
+export const TOGGLE_SELECTED_NOTEBOOK = "TOGGLE_SELECTED_NOTEBOOK";
+
+export const toggleNotebookDropdown = () => {
+  return {
+    type: TOGGLE_NOTEBOOK_DROPDOWN,
+  };
+};
+
+export const toggleSelectedNotebook = (notebook) => {
+  return {
+    type: TOGGLE_SELECTED_NOTEBOOK,
+    notebook,
+  };
+};
 
 export const toggleSidemenu = () => {
   return {

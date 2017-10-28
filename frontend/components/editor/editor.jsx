@@ -2,6 +2,7 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import { merge } from 'lodash';
 import Modal from 'react-modal';
+import NotebookDropdown from './notebook_dropdown_container';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -35,7 +36,6 @@ class Editor extends React.Component {
     ];
 }
 
-
 handleBodyChange (content, delta, source, editor) {
   const newState = merge({}, this.state);
   newState.body = editor.getContents();
@@ -49,16 +49,16 @@ handleTitleChange(e) {
 }
 
 handleSubmit () {
+  let newState = merge({}, this.state);
+  newState.notebookId = this.props.selectedNotebook;
+  this.setState(newState);
   this.props.action(JSON.stringify(this.state));
 }
 
 render() {
   return (
     <main>
-      <button className="notebook-selector">Select Notebook</button>
-      <Modal>
-        
-      </Modal>
+      <NotebookDropdown />
       <input
         onChange={this.handleTitleChange}
         placeholder="Title your note"

@@ -7,6 +7,7 @@ export const receiveAllEntities = (entities) => {
     type: RECEIVE_ALL_ENTITIES,
     notebooks: entities.notebooks,
     notes: entities.notes,
+    notebookTitles: entities.notebookTitles,
   };
 };
 
