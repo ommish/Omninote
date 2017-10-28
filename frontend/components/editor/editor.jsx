@@ -39,6 +39,7 @@ class Editor extends React.Component {
 handleBodyChange (content, delta, source, editor) {
   const newState = merge({}, this.state);
   newState.body = editor.getContents();
+  newState.body_plain = editor.getText();
   this.setState(newState);
 }
 
@@ -48,11 +49,11 @@ handleTitleChange(e) {
   this.setState(newState);
 }
 
-handleSubmit () {
+handleSubmit() {
   let newState = merge({}, this.state);
-  newState.notebookId = this.props.selectedNotebook;
-  this.setState(newState);
-  this.props.action(JSON.stringify(this.state));
+  newState.notebook_id = this.props.selectedNotebook;
+  newState.body = JSON.stringify(newState.body);
+  this.props.action(newState);
 }
 
 render() {

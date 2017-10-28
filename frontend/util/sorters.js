@@ -3,17 +3,6 @@ export const sortNotes = (notes, sortOrder) => {
 };
 
 const updatedAtNewest = (a, b) => {
-  if (a.updatedAt < b.updatedAt) {
-    return -1;
-  }
-  else if (a.updatedAt > b.updatedAt) {
-    return 1;
-  } else {
-    return 0;
-  }
-};
-
-const updatedAtOldest = (a, b) => {
   if (a.updatedAt > b.updatedAt) {
     return -1;
   }
@@ -24,11 +13,22 @@ const updatedAtOldest = (a, b) => {
   }
 };
 
-const createdAtNewest = (a, b) => {
-  if (a.createdAt < b.createdAt) {
+const updatedAtOldest = (a, b) => {
+  if (a.updatedAt < b.updatedAt) {
     return -1;
   }
-  else if (a.createdAt > b.createdAt) {
+  else if (a.updatedAt > b.updatedAt) {
+    return 1;
+  } else {
+    return 0;
+  }
+};
+
+const createdAtNewest = (a, b) => {
+  if (a.createdAt > b.createdAt) {
+    return -1;
+  }
+  else if (a.createdAt < b.createdAt) {
     return 1;
   } else {
     return 0;
@@ -36,10 +36,10 @@ const createdAtNewest = (a, b) => {
 };
 
 const createdAtOldest = (a, b) => {
-  if (a.createdAt > b.createdAt) {
+  if (a.createdAt < b.createdAt) {
     return -1;
   }
-  else if (a.createdAt < b.createdAt) {
+  else if (a.createdAt > b.createdAt) {
     return 1;
   } else {
     return 0;
