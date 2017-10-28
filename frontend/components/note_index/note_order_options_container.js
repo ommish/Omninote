@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NoteOrderOptionMenu from './note_order_option_menu';
-import { toggleNoteOrderDropdown, toggleNoteOrder } from '../../actions/ui_actions';
+import { toggleModal, toggleNoteOrder } from '../../actions/ui_actions';
 import { _noteOrderOptions } from '../../reducers/ui_reducer';
 
 const mapStateToProps = (state) => {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleNoteOrderDropdown: () => dispatch(toggleNoteOrderDropdown()),
+    toggleNoteOrderDropdown: () => dispatch(toggleModal("noteOrderDropdown")),
     toggleNoteOrder: (order) => dispatch(toggleNoteOrder(order)),
   };
 };

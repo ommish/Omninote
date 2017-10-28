@@ -1,16 +1,12 @@
 import {
-  TOGGLE_CREATE_FORM,
+  TOGGLE_MODAL,
   TOGGLE_NOTE_ORDER,
   TOGGLE_DELETE_FORM,
-  TOGGLE_SIDEMENU,
-  TOGGLE_FULL_EDITOR,
-  TOGGLE_NOTEBOOK_DROPDOWN,
-  TOGGLE_NOTE_ORDER_DROPDOWN,
   TOGGLE_SELECTED_NOTEBOOK,
+  TOGGLE_SELECTED_NOTE,
 } from '../actions/ui_actions';
 
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-
 import { merge } from 'lodash';
 
 export const _noteOrderOptions = [
@@ -25,9 +21,10 @@ export const _noteOrderOptions = [
   sidemenu: false,
   createForm: false,
   deleteForm: {id: null},
+  selectedNotebook: {id: null},
+  selectedNote: {id: null},
   fullEditor: false,
   notebookDropdown: false,
-  selectedNotebook: {id: null},
   noteOrder: 0,
   noteOrderDropdown: false,
 };
@@ -41,14 +38,10 @@ const UIReducer = (oldState = initialState, action) => {
     } else {
       return oldState;
     }
-    case TOGGLE_SIDEMENU:
-    newState = merge({}, oldState);
-    newState.sidemenu = !(newState.sidemenu);
-    return newState;
 
-    case TOGGLE_CREATE_FORM:
+    case TOGGLE_MODAL:
     newState = merge({}, oldState);
-    newState.createForm = !(newState.createForm);
+    newState[action.modalName] = !(newState[action.modalName]);
     return newState;
 
     case TOGGLE_DELETE_FORM:
@@ -61,24 +54,14 @@ const UIReducer = (oldState = initialState, action) => {
     newState.noteOrder = action.order;
     return newState;
 
-    case TOGGLE_NOTE_ORDER_DROPDOWN:
-    newState = merge({}, oldState);
-    newState.noteOrderDropdown = !newState.noteOrderDropdown;
-    return newState;
-
-    case TOGGLE_FULL_EDITOR:
-    newState = merge({}, oldState);
-    newState.fullEditor = !newState.fullEditor;
-    return oldState;
-
-    case TOGGLE_NOTEBOOK_DROPDOWN:
-    newState = merge({}, oldState);
-    newState.notebookDropdown = !newState.notebookDropdown;
-    return newState;
-
     case TOGGLE_SELECTED_NOTEBOOK:
     newState = merge({}, oldState);
     newState.selectedNotebook = action.notebook;
+    return newState;
+
+    case TOGGLE_SELECTED_NOTE:
+    newState = merge({}, oldState);
+    newState.selectedNote = action.note;
     return newState;
 
     default:

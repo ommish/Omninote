@@ -38,7 +38,7 @@ class Editor extends React.Component {
 handleBodyChange (content, delta, source, editor) {
   const newState = merge({}, this.state);
   newState.body = editor.getContents();
-  newState.body_plain = editor.getText();
+  newState.body_plain = editor.getText().trim();
   this.setState(newState);
 }
 
@@ -66,12 +66,12 @@ render() {
         className="title"
         value={this.state.title}/>
       <ReactQuill
-        value={this.state.body}
         onChange={this.handleBodyChange}
         id="quill"
         modules={this.modules}
         formats={this.formats}
         placeholder="Enter your new note here"
+        defaultValue={this.state.body}
         />
       <button onClick={this.handleSubmit}>Save Note!</button>
     </main>

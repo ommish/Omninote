@@ -1,7 +1,7 @@
 import CreateForm from './create_form';
 import { connect } from 'react-redux';
 import { createNotebook, receiveNotebookErrors } from '../../actions/notebook_actions';
-import { toggleCreateForm } from '../../actions/ui_actions';
+import { toggleModal } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const action = ownProps.itemType === "notebook" ? createNotebook : null;
   return {
     createItem: (item) => dispatch(action(item)),
-    toggleCreateForm: () => dispatch(toggleCreateForm()),
+    toggleCreateForm: () => dispatch(toggleModal("createForm")),
     clearItemErrors: () => dispatch(receiveNotebookErrors([])),
   };
 };

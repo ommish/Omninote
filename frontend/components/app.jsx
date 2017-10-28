@@ -26,9 +26,7 @@ class App extends React.Component {
   }
 
   render () {
-    // set initial state equal to = not yet fetched
-    // if not yet fetched, then fetch
-    // fetching all should clear initial state
+
     if (this.props.notebooks.initialState) {
       this.props.fetchAll();
     }
@@ -39,6 +37,7 @@ class App extends React.Component {
         <SideNav />
         <Switch>
           <Route path="/notebooks/:notebookId" component={NotebookNotes} />
+          <Route path="/notes/:noteId" component={AllNotes} />
           <Route path="/notes" component={AllNotes} />
         </Switch>
         <main className="note-editor">
