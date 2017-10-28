@@ -1,11 +1,10 @@
 @import "variables";
 
 .notebook-dropdown ul {
-  width: 100%;
-  height: 100%;
-  top: 100px;
-  left: 250px;
-  box-shadow: 3px 3px 50px $dark-grey;
+  width: auto;
+  height: auto;
+  top: 50px;
+  left: 330px;
   position: absolute;
   background: white;
   border: 2px solid $light-grey;
@@ -46,18 +45,18 @@
   display: none;
 }
 
-.note-dropdown-item {
+.notebook-dropdown-item {
   padding: 5px;
   color: $dark-grey;
   text-align: left;
 }
 
-.note-dropdown-item.selected {
+.notebook-dropdown-item.selected {
   color: $light-green;
   font-weight: 700;
 }
 
-.note-dropdown-item:hover, .note-dropdown-item.selected:hover {
+.notebook-dropdown-item:hover, .notebook-dropdown-item.selected:hover {
   background: $light-green;
   color: white;
 }

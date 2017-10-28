@@ -4,17 +4,16 @@ import { toggleNotebookDropdown, toggleSelectedNotebook } from '../../actions/ui
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    selectedNotebook: state.ui.selectedNotebook || {id: null, title: "Select Notebook"},
+    selectedNotebook: state.ui.selectedNotebook,
     notebookDropdown: state.ui.notebookDropdown,
-    notebookTitles: state.ui.notebookTitles,
-    notebooks: state.entities.notebooks,
+    allNotebooks: Object.values(state.entities.notebooks),
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     toggleNotebookDropdown: () => dispatch(toggleNotebookDropdown()),
-    toggleSelectedNotebook: (notebook) => dispatch(toggleSelectedNotebook(notebook)),
+    toggleSelectedNotebook: (notebookId) => dispatch(toggleSelectedNotebook(notebookId)),
   };
 };
 

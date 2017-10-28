@@ -9,7 +9,6 @@ import {
   TOGGLE_SELECTED_NOTEBOOK,
 } from '../actions/ui_actions';
 
-import { RECEIVE_ALL_ENTITIES } from '../actions/entity_actions';
 import { merge } from 'lodash';
 
 export const _noteOrderOptions = [
@@ -29,7 +28,6 @@ export const _noteOrderOptions = [
   selectedNotebook: null,
   noteOrder: 0,
   noteOrderDropdown: false,
-  notebookTitles: []
 };
 
 const UIReducer = (oldState = initialState, action) => {
@@ -70,14 +68,9 @@ const UIReducer = (oldState = initialState, action) => {
     newState.notebookDropdown = !newState.notebookDropdown;
     return newState;
 
-    case RECEIVE_ALL_ENTITIES:
-    newState = merge({}, oldState);
-    newState.notebookTitles = action.notebookTitles;
-    return newState;
-
     case TOGGLE_SELECTED_NOTEBOOK:
     newState = merge({}, oldState);
-    newState.selectedNotebook = action.notebook;
+    newState.selectedNotebook = action.notebookId;
 
     return newState;
 

@@ -6,7 +6,7 @@ class Api::AllItemsController < ApplicationController
     @notebooks.each do |notebook|
       title = notebook.title
       id = notebook.id
-      @titles.push(title => id)
+      @titles.push(id => title)
     end
   end
 end

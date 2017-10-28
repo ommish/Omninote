@@ -34,6 +34,7 @@ class Api::NotesController < ApplicationController
   end
 
   def note_params
+    debugger
     params.require(:note).permit(:title, :body, :notebook_id)
   end
 

@@ -13,10 +13,10 @@ export const toggleNotebookDropdown = () => {
   };
 };
 
-export const toggleSelectedNotebook = (notebook) => {
+export const toggleSelectedNotebook = (notebookId) => {
   return {
     type: TOGGLE_SELECTED_NOTEBOOK,
-    notebook,
+    notebookId,
   };
 };
 
