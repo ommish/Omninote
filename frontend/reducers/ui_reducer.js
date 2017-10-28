@@ -52,6 +52,8 @@ const UIReducer = (oldState = initialState, action) => {
     newState.noteOrderDropdown = !newState.noteOrderDropdown;
     return newState;
     case TOGGLE_FULL_EDITOR:
+    newState = merge({}, oldState);
+    newState.fullEditor = !newState.fullEditor;
     return oldState;
     case TOGGLE_NOTEBOOK_DROPDOWN:
     return oldState;

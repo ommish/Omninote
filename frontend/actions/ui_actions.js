@@ -37,3 +37,9 @@ export const toggleNoteOrder = (order) => {
     order,
   };
 };
+
+export const toggleFullEditor = () => {
+  return {
+    type: TOGGLE_FULL_EDITOR,
+  };
+};
