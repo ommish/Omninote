@@ -9,6 +9,8 @@ import {
   TOGGLE_SELECTED_NOTEBOOK,
 } from '../actions/ui_actions';
 
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+
 import { merge } from 'lodash';
 
 export const _noteOrderOptions = [
@@ -33,6 +35,12 @@ export const _noteOrderOptions = [
 const UIReducer = (oldState = initialState, action) => {
   let newState;
   switch (action.type) {
+    case RECEIVE_CURRENT_USER:
+    if (!action.currentUser) {
+      return initialState;
+    } else {
+      return oldState;
+    }
     case TOGGLE_SIDEMENU:
     newState = merge({}, oldState);
     newState.sidemenu = !(newState.sidemenu);

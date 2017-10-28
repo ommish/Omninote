@@ -1,6 +1,7 @@
 import { RECEIVE_NOTES, RECEIVE_NOTE, REMOVE_NOTE } from '../actions/note_actions';
 import { RECEIVE_NOTEBOOK } from '../actions/notebook_actions';
 import { RECEIVE_ALL_ENTITIES } from '../actions/entity_actions';
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { merge } from 'lodash';
 
 const initialState = {};
@@ -8,6 +9,12 @@ const initialState = {};
 const NotesReducer = (oldState = initialState, action) => {
   let newState;
   switch (action.type) {
+    case RECEIVE_CURRENT_USER:
+    if (!action.currentUser) {
+      return initialState;
+    } else {
+      return oldState;
+    }
     case RECEIVE_ALL_ENTITIES:
     newState = merge({}, oldState, action.notes);
     return newState;
