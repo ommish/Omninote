@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NoteIndexItem from './note_index_item';
 import { withRouter } from 'react-router-dom';
+import { toggleDeleteForm } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   let bodySnippet = ownProps.note.bodyPlain || "";
@@ -13,4 +14,10 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, null)(NoteIndexItem));
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    toggleDeleteForm: (id) => dispatch(toggleDeleteForm(id)),
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NoteIndexItem));

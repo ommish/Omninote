@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import { merge } from 'lodash';
 import Modal from 'react-modal';
 import NotebookDropdown from './notebook_dropdown_container';
+import Delta from 'quill-delta';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Editor extends React.Component {
 
 handleBodyChange (content, delta, source, editor) {
   const newState = merge({}, this.state);
-  newState.body = JSON.stringify(editor.getContents());
+  newState.body = editor.getContents();
   newState.body_plain = editor.getText().trim();
   this.setState(newState);
 }
@@ -74,8 +75,6 @@ render() {
         id="quill"
         modules={this.modules}
         formats={this.formats}
-        placeholder="Enter your new note here"
-        defaultValue={this.state.body}
         onChange={this.handleBodyChange}
         />
       <button onClick={this.handleSubmit}>Save Note!</button>

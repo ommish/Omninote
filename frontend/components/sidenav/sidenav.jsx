@@ -13,13 +13,21 @@ class SideNav extends React.Component {
     this.props.history.push('/notes');
   }
 
+  newNote () {
+    
+    if (this.props.match.params.notebookId) {
+
+    }
+    this.props.toggleSelectedNote();
+  }
+
   render () {
 
     return (
       <nav className="sidenav">
         <ul className="sidenav-ul">
           <li>LOGO</li>
-          <li><button onClick={() => {}} className="circle-button">
+          <li><button onClick={this.newNote} className="circle-button">
             <img className="sidenav-icon" src={window.staticAssets.greenPlus}/>
           </button></li>
         <li><button onClick={this.redirectToAllNotes} className="circle-button">

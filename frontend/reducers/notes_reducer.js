@@ -30,7 +30,7 @@ const NotesReducer = (oldState = initialState, action) => {
     return merge({}, oldState, action.note);
     case REMOVE_NOTE:
     newState = merge({}, oldState);
-    delete newState[action.note.id];
+    delete newState[Object.keys(action.note)[0]];
     return newState;
     default:
     return oldState;
