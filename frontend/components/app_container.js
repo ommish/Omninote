@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import App from './app';
 import { fetchAll } from '../actions/entity_actions';
 import { toggleSelectedNotebook, toggleSelectedNote } from '../actions/ui_actions';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
     return {
@@ -18,4 +19,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

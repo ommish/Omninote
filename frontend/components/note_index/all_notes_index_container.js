@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NoteIndex from './note_index';
 import { sortNotes } from '../../util/sorters';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   const noteOrder = state.ui.noteOrder;
@@ -13,4 +14,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, null)(NoteIndex);
+export default withRouter(connect(mapStateToProps, null)(NoteIndex));

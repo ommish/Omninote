@@ -8,54 +8,44 @@ import { Route, Switch } from 'react-router-dom';
 class App extends React.Component {
 
   componentWillReceiveProps(newProps) {
-    let notebookId;
-    let notebook;
-    let noteId;
-    let note;
+    const currentNotebookId = this.props.match.params.notebookId;
+    const currentNoteId = this.props.match.params.noteId;
+    const newNotebookId = newProps.match.params.notebookId;
+    const newNoteId = newProps.match.params.noteId;
 
-    if (this.props.location.pathname !== newProps.location.pathname) {
-      if (newProps.location.pathname.startsWith("/notebooks/")) {
-        notebookId = newProps.location.pathname.split("/")[2];
-        notebook = this.props.notebooks[notebookId];
-        this.props.toggleSelectedNotebook(notebook);
-        if (newProps.location.pathname.includes("/notes/")) {
-          noteId = newProps.location.pathname.split("/")[4];
-          note = this.props.notes[noteId];
-          this.props.toggleSelectedNote(note);
-        }
-      }
-      else if (newProps.location.pathname.startsWith("/notes/")) {
-        noteId = newProps.location.pathname.split("/")[2];
-        notebookId = this.props.notes[noteId].notebookId;
-        note = this.props.notes[noteId];
-        notebook = this.props.notebooks[notebookId];
-        this.props.toggleSelectedNotebook(notebook);
-        this.props.toggleSelectedNote(note);
-      }
+    if (((currentNotebookId !== newNotebookId) && (newNotebookId)) ||
+    (currentNoteId !== newNoteId)) {
+      const notebook = this.props.notebooks[newNotebookId];
+      this.props.toggleSelectedNotebook(notebook);
     }
   }
 
-  render () {
+render () {
 
-    if (this.props.notebooks.initialState) {
-      this.props.fetchAll();
-    }
+  if (this.props.notebooks.initialState) {
+    this.props.fetchAll();
+  }
 
-//refreshing on notebooks/:noteId brings you back to /notes
-    return (
-      <div className="app-page">
-        <SideNav />
+  // refreshing on notebooks/:noteId brings you back to /notes ???
+  return (
+    <div className="app-page">
+      <SideNav />
+      <Switch>
+        <Route path="/notebooks/:notebookId/notes/:noteId" component={NotebookNotes} />
+        <Route path="/notebooks/:notebookId" component={NotebookNotes} />
+        <Route path="/notes/:noteId" component={AllNotes} />
+        <Route path="/" component={AllNotes} />
+      </Switch>
+      <main className="note-editor">
         <Switch>
-          <Route path="/notebooks/:notebookId" component={NotebookNotes} />
-          <Route path="/notes/:noteId" component={AllNotes} />
-          <Route path="/notes" component={AllNotes} />
+          <Route path="/notebooks/:notebookId/notes/:noteId" component={Editor} />
+          <Route path="/notebooks/:notebookId" component={Editor} />
+          <Route path="/notes/:noteId" component={Editor} />
+          <Route path="/" component={Editor} />
         </Switch>
-        <main className="note-editor">
-            <Route path="/" component={Editor} />
-        </main>
-      </div>
-    );
-  }
+      </main>
+    </div>
+  );}
 }
 
 export default App;

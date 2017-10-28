@@ -11,7 +11,6 @@ class NoteIndex extends React.Component {
         key={note.id} />
     ));
 
-
     return (
       <section className="note-index">
         <div className="note-index-heading">

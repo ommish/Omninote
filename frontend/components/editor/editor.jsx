@@ -52,7 +52,10 @@ handleTitleChange(e) {
 handleSubmit() {
   let newState = merge({}, this.state);
   newState.notebook_id = this.props.selectedNotebook.id;
+  newState.body = JSON.stringify(newState.body); // get quill error unless I do this
+                                                // but body will not show up in editor
   this.props.action(newState);
+  this.setState({ title: "", body: {}, body_plain: "", notebook_id: this.props.selectedNotebook.id});
 }
 
 componentWillReceiveProps(newProps) {
@@ -76,6 +79,7 @@ render() {
         modules={this.modules}
         formats={this.formats}
         onChange={this.handleBodyChange}
+        defaultValue={new Delta(this.state.body)}
         />
       <button onClick={this.handleSubmit}>Save Note!</button>
     </main>
