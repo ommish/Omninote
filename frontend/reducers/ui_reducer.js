@@ -3,6 +3,7 @@ import {
   TOGGLE_NOTE_ORDER,
   TOGGLE_SELECTED_NOTEBOOK,
   TOGGLE_SELECTED_NOTE,
+  TOGGLE_DELETE_FORM,
 } from '../actions/ui_actions';
 
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
@@ -19,7 +20,7 @@ export const _noteOrderOptions = [
   const initialState = {
   sidemenu: false,
   createForm: false,
-  deleteForm: false,
+  deleteForm: {id: false},
   selectedNotebook: {id: null},
   selectedNote: {id: null},
   fullEditor: false,
@@ -42,7 +43,10 @@ const UIReducer = (oldState = initialState, action) => {
     newState = merge({}, oldState);
     newState[action.modalName] = !(newState[action.modalName]);
     return newState;
-
+    case TOGGLE_DELETE_FORM:
+    newState = merge({}, oldState);
+    newState.deleteForm.id = action.id;
+    return newState;
     case TOGGLE_NOTE_ORDER:
     newState = merge({}, oldState);
     newState.noteOrder = action.order;

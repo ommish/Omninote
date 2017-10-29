@@ -7,7 +7,7 @@ class NoteIndexItem extends React.Component {
   handleClick (id) {
     return (e) => {
       if (e.target.id === "delete") {
-        this.props.toggleDeleteForm();
+        this.props.toggleDeleteForm(id);
         e.stopPropagation();
       } else {
         const path = this.props.match.params.notebookId ?

@@ -11,7 +11,7 @@ class SidemenuIndexItem extends React.Component {
   handleClick (id) {
     return (e) => {
       if (e.target.id === "delete") {
-        this.props.toggleDeleteForm();
+        this.props.toggleDeleteForm(id);
         e.stopPropagation();
       } else {
         this.props.toggleSidemenu();
