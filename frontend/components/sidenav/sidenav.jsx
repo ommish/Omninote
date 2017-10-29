@@ -30,7 +30,12 @@ class SideNav extends React.Component {
         <li><button onClick={this.redirectToAllNotes} className="circle-button">
             <img className="sidenav-icon" src={window.staticAssets.notes}/>
           </button></li>
-          <NBSidemenu />
+        <li>
+            <button
+              className="circle-button"
+              onClick={this.props.toggleSidemenu}>
+              <img className="sidenav-icon" src={window.staticAssets.notebook}/>
+            </button></li>
           <li><button onClick={() => {}} className="circle-button">
             <img className="sidenav-icon" src={window.staticAssets.tag}/>
           </button></li>
@@ -38,6 +43,7 @@ class SideNav extends React.Component {
             <img className="sidenav-icon" src={window.staticAssets.account}/>
           </button></li>
         </ul>
+        <NBSidemenu/>
       </nav>
     );
   }

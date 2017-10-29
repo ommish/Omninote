@@ -19,6 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     logout: () => dispatch(logout()),
     toggleSelectedNote: () => dispatch(toggleSelectedNote({id: null})),
     toggleFullEditor: () => dispatch(toggleModal("fullEditor")),
+    toggleSidemenu: () => dispatch(toggleModal("sidemenu")),
   };
 };
 

@@ -8,42 +8,34 @@ class Sidemenu extends React.Component {
 
   render () {
     return (
-      [
+      <div>
       <section
         key={1}
         onClick={this.props.toggleSidemenu}
         className={this.props.sidemenuOpen ? "sidemenu-overlay" : "closed-sidemenu-overlay</section>"}>
-      </section>,
-      <li key={2}>
-        <button
-          className="circle-button"
-          onClick={this.props.toggleSidemenu}
-          itemType={this.props.itemType}>
-          <img className="sidenav-icon" src={window.staticAssets.notebook}/>
-        </button>
-        <section
-          className={this.props.sidemenuOpen ? "sidemenu-open" : "closed-sidemenu"}>
-          <section className={`${this.props.itemType}-heading`}>
-            <h2>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h2>
-            <button
-              onClick={this.props.toggleCreateForm}
-              className="circle-button">
-              <img className="sidenav-icon" src={window.staticAssets.plus}/>
-            </button>
-            <CreateForm itemType={this.props.itemType} />
-          </section>
-          <section>
-            {this.props.items.map((item, i) =>
-              <SidemenuIndexItem
-                itemType={this.props.itemType}
-                item={item}
-                key={i}/>)}
-              </section>
+      </section>
+      <section
+        className={this.props.sidemenuOpen ? "sidemenu-open" : "closed-sidemenu"}>
+        <section className={`${this.props.itemType}-heading`}>
+          <h2>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h2>
+          <button
+            onClick={this.props.toggleCreateForm}
+            className="circle-button">
+            <img className="sidenav-icon" src={window.staticAssets.plus}/>
+          </button>
+          <CreateForm itemType={this.props.itemType} />
+        </section>
+        <section>
+          {this.props.items.map((item, i) =>
+            <SidemenuIndexItem
+              itemType={this.props.itemType}
+              item={item}
+              key={i}/>)}
             </section>
-          </li>
-        ]
-        );
-      }
+          </section>
+        </div>
+      );
     }
+  }
 
-    export default Sidemenu;
+  export default Sidemenu;
