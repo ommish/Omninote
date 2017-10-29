@@ -9,7 +9,7 @@
   position: absolute;
   overflow: hidden;
   z-index: 30;
-  -webkit-animation: fadein .5s ease-in;
+  -webkit-animation: fadein .4s ease-in;
 }
 
 @-webkit-keyframes slideout {
@@ -44,7 +44,7 @@
   border-right: 2px solid $grey;
   position: fixed;
   overflow-y: scroll;
-  -webkit-animation: slidein .5s ease-in;
+  -webkit-animation: slidein .4s ease-in;
   z-index: 30;
 }
 

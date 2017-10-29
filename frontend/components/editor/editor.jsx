@@ -91,12 +91,12 @@ class Editor extends React.Component {
                 className="square-button small narrow"
                 onClick={this.handleSubmit}>Save</button>
               <button
-                className="square-button small narrow"
+                className={"square-button small narrow expand"}
                 onClick={this.props.toggleFullEditor}>
-                <img
+                {this.props.fullEditor ? "Close" : <img
                   className="sidenav-icon"
-                  src={this.props.fullEditor ? window.staticAssets.notes : window.staticAssets.notes}>
-                </img>
+                  src={window.staticAssets.white_expand}>
+                </img>}
                 </button>
             </div>
           </div>
