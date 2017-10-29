@@ -9,12 +9,9 @@ class App extends React.Component {
 
   componentWillReceiveProps(newProps) {
     const currentNotebookId = this.props.match.params.notebookId;
-    const currentNoteId = this.props.match.params.noteId;
     const newNotebookId = newProps.match.params.notebookId;
-    const newNoteId = newProps.match.params.noteId;
 
-    if (((currentNotebookId !== newNotebookId) && (newNotebookId)) ||
-    (currentNoteId !== newNoteId)) {
+    if (currentNotebookId !== newNotebookId) {
       const notebook = this.props.notebooks[newNotebookId];
       this.props.toggleSelectedNotebook(notebook);
     }
@@ -37,12 +34,7 @@ render () {
         <Route path="/" component={AllNotes} />
       </Switch>
       <main className="note-editor">
-        <Switch>
-          <Route path="/notebooks/:notebookId/notes/:noteId" component={Editor} />
-          <Route path="/notebooks/:notebookId" component={Editor} />
-          <Route path="/notes/:noteId" component={Editor} />
-          <Route path="/" component={Editor} />
-        </Switch>
+
       </main>
     </div>
   );}

@@ -10,15 +10,24 @@ class DeleteForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.toggleSelectedNotebook = this.props.toggleSelectedNotebook.bind(this);
-    // this.toggleSelectedNote = this.props.toggleSelectedNote.bind(this);
+    this.redirect = this.redirect.bind(this);
+  }
+
+  redirect(path) {
+    this.props.history.push(path);
   }
 
   handleSubmit(e) {
-    // if (this.props.item.notebookId === this.props.selectedNotebook.id) {
-    //   this.toggleSelectedNotebook({id: null});
-    // }
-    this.toggleSelectedNote({id: null});
+    if (this.props.itemType === "notebook") {
+      if (parseInt(this.props.match.params.notebookId) === this.props.item.id) {
+        this.redirect('/notes');
+      }
+    } else if (this.props.itemType === "note") {
+      // location correct, but noteId param not defined here ??
+      if (parseInt(this.props.match.params.noteId) === this.props.item.id) {
+        this.redirect('/notes');
+      }
+    }
     this.props.deleteItem(this.props.item.id).then(() => {
       this.closeModal();
     });

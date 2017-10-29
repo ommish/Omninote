@@ -21,8 +21,8 @@ const NotesReducer = (oldState = initialState, action) => {
     case REMOVE_NOTEBOOK:
     newState = merge({}, oldState);
     if (action.notes) {
-      Object.values(action.notes).forEach((note) => {
-        delete newState[note.id];
+      action.notes.forEach((noteId) => {
+        delete newState[noteId];
       });
     }
     return newState;

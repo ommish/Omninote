@@ -20,7 +20,7 @@ class Api::NotebooksController < ApplicationController
 
   def destroy
     @notebook = Notebook.find(params[:id])
-    @notes = @notebook.notes
+    @notes = @notebook.notes.ids
     @notebook.destroy!
     render :show
   end

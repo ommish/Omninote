@@ -4,10 +4,4 @@ json.notebook do
   end
 end
 
-json.notes do
-  @notes.each do |note|
-    json.set! note.id do
-      json.partial! '/api/notes/note', note: note
-    end
-  end
-end
+json.notes @notes
