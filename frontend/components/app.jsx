@@ -10,6 +10,7 @@ class App extends React.Component {
   componentWillReceiveProps(newProps) {
     const currentNotebookId = this.props.match.params.notebookId;
     const newNotebookId = newProps.match.params.notebookId;
+    const newNoteId = newProps.match.params.noteId;
 
     if (currentNotebookId !== newNotebookId) {
       const notebook = this.props.notebooks[newNotebookId];
@@ -18,6 +19,10 @@ class App extends React.Component {
       } else {
         this.props.toggleSelectedNotebook({id: null});
       }
+    }
+    if (!newNotebookId && newNoteId) {
+      const notebook = this.props.notebooks[this.props.notes[newNoteId].notebookId];
+      this.props.toggleSelectedNotebook(notebook);
     }
   }
 
