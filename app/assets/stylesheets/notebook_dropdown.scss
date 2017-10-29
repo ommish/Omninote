@@ -4,7 +4,7 @@
   width: auto;
   height: auto;
   top: 50px;
-  left: 330px;
+  left: 28%;
   position: absolute;
   background: white;
   border: 2px solid $light-grey;
@@ -20,6 +20,10 @@
   justify-content: flex-end;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.notebook-button-div {
+  padding-bottom: 11px;
 }
 
 .notebook-button {

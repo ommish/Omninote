@@ -1,6 +1,6 @@
 import NotebookDropdown from './notebook_dropdown';
 import { connect } from 'react-redux';
-import { toggleModal, toggleSelectedNotebook } from '../../actions/ui_actions';
+import { toggleModal, toggleSelectedNotebook, toggleCreateForm } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     toggleNotebookDropdown: () => dispatch(toggleModal("notebookDropdown")),
     toggleSelectedNotebook: (notebook) => dispatch(toggleSelectedNotebook(notebook)),
+    toggleCreateForm: () => dispatch(toggleModal("createForm")),
   };
 };
 

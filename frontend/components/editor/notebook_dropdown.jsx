@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import CreateForm from '../entity_forms/create_form_container';
 
 class NotebookDropdown extends React.Component {
 
@@ -19,6 +20,17 @@ class NotebookDropdown extends React.Component {
           {notebook.title}
         </button>
       ));
+    notebooks.push([
+      <button
+      onClick={this.props.toggleCreateForm}
+      className="notebook-dropdown-item"
+      key="a">
+      Add New Notebook
+    </button>,
+    <CreateForm
+      itemType="notebook"
+      key="b"
+    /> ]);
 
     return (
     [

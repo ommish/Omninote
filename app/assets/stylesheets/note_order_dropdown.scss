@@ -4,7 +4,7 @@
   width: auto;
   height: auto;
   top: 150px;
-  left: 250px;
+  left: 18%;
   position: absolute;
   background: white;
   border: 2px solid $light-grey;
@@ -20,6 +20,8 @@
   justify-content: flex-end;
   margin-top: 10px;
   margin-bottom: 10px;
+  border-bottom: 1px solid $light-grey;
+  padding-bottom: 10px;
 }
 
 .sort-button {
