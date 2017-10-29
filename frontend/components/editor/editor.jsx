@@ -81,7 +81,9 @@ render() {
         onChange={this.handleBodyChange}
         defaultValue={new Delta(this.state.body)}
         />
-      <button onClick={this.handleSubmit}>Save Note!</button>
+      <button
+        className="square-button small narrow"
+        onClick={this.handleSubmit}>Save Note</button>
     </main>
   );
 }

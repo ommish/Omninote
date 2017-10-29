@@ -12,6 +12,11 @@
   z-index: 4;
 }
 
+@-webkit-keyframes slideout {
+  from { transform: translateX(-430px); }
+  to { transform: translateX(0px); }
+}
+
 .closed-sidemenu-overlay {
   height: 100%;
   width: 0;
@@ -24,10 +29,6 @@
   display: none;
 }
 
-@-webkit-keyframes slideout {
-  from { transform: translateX(-430px); }
-  to { transform: translateX(0px); }
-}
 
 .sidemenu-open {
   background: white;

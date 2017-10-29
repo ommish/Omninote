@@ -7,20 +7,30 @@ class Sidemenu extends React.Component {
 
   constructor (props) {
     super(props);
+    this.delayClose = this.delayClose.bind(this);
   }
+
+  delayClose () {
+    if (this.props.sidemenuOpen) {
+      setTimeout(this.setCloseClass, 400);
+    } else {
+      this.props.toggleSidemenu();
+    }
+  }
+
 
   render () {
     return (
       <li>
         <button
           className="circle-button"
-          onClick={this.props.toggleSidemenu}
+          onClick={this.delayClose}
           itemType={this.props.itemType}>
           <img className="sidenav-icon" src={window.staticAssets.notebook}/>
         </button>
         <Modal
           isOpen={this.props.sidemenuOpen}
-          onRequestClose={this.props.toggleSidemenu}
+          onRequestClose={this.delayClose}
           className={{
           base: '',
           afterOpen: 'sidemenu-open',
