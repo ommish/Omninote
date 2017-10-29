@@ -25,7 +25,11 @@ class DeleteForm extends React.Component {
     } else if (this.props.itemType === "note") {
       // location correct, but noteId param not defined here ??
       if (parseInt(this.props.match.params.noteId) === this.props.item.id) {
-        this.redirect('/notes');
+        if (this.props.match.params.notebookId) {
+          this.redirect(`/notebooks/${this.props.match.params.notebookId}`);
+        } else {
+          this.redirect('/notes');
+        }
       }
     }
     this.props.deleteItem(this.props.item.id).then(() => {

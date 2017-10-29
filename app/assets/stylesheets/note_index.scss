@@ -21,12 +21,17 @@
 }
 
 .note-item {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
   border: 2px solid white;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+
 }
 
 .note-item:hover {
@@ -37,11 +42,9 @@
   }
 }
 
-.active-note-item > .note-item {
+.note-item.active {
   border-color: $grey;
-  box-sizing: border-box;
 }
-
 
 .note-item-title {
   font-family: 'Roboto Slab', serif;
@@ -57,5 +60,4 @@
   font-family: 'Roboto Slab', serif;
   font-size: 12px;
   font-weight: 200;
-
 }
