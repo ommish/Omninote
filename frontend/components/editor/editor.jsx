@@ -50,7 +50,6 @@ class Editor extends React.Component {
   }
 
   handleSubmit() {
-    debugger
     let newState = merge({}, this.state);
     newState.notebook_id = this.props.selectedNotebook.id;
     newState.body = JSON.stringify(newState.body); // get quill error unless I do this

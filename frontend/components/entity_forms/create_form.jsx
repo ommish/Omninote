@@ -51,6 +51,9 @@ class CreateForm extends React.Component {
     const newState = merge(this.state, blankItem);
     this.setState(newState);
     this.props.clearItemErrors();
+    if (this.props.notebookDropdownOpen) {
+      this.props.toggleNotebookDropdown();
+    }
     this.props.toggleCreateForm();
   }
 

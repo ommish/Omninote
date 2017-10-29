@@ -31,6 +31,10 @@
   display: none;
 }
 
+.hidden {
+  display: none;
+}
+
 .closed-sidemenu {
   background: white;
   left: -500px;
@@ -42,6 +46,10 @@
   overflow-y: scroll;
   -webkit-animation: slidein .5s ease-in;
   z-index: 30;
+}
+
+.hidden-sidemenu {
+  display: none;
 }
 
 

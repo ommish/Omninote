@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import SideNav from './sidenav';
 import { logout } from '../../actions/session_actions';
 import { withRouter } from 'react-router-dom';
-import { toggleSelectedNote, toggleModal } from '../../actions/ui_actions';
+import { toggleSelectedNote, toggleModal, toggleSidemenu } from '../../actions/ui_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     logout: () => dispatch(logout()),
     toggleSelectedNote: () => dispatch(toggleSelectedNote({id: null})),
     toggleFullEditor: () => dispatch(toggleModal("fullEditor")),
-    toggleSidemenu: () => dispatch(toggleModal("sidemenu")),
+    toggleSidemenu: () => dispatch(toggleSidemenu()),
   };
 };
 

@@ -4,6 +4,7 @@ import {
   TOGGLE_SELECTED_NOTEBOOK,
   TOGGLE_SELECTED_NOTE,
   TOGGLE_DELETE_FORM,
+  TOGGLE_SIDEMENU,
 } from '../actions/ui_actions';
 
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
@@ -18,7 +19,8 @@ export const _noteOrderOptions = [
   'Title (descending)'];
 
   const initialState = {
-  sidemenu: false,
+  initial: true,
+  sidemenu: "hidden",
   createForm: false,
   deleteForm: {id: false},
   selectedNotebook: {id: null},
@@ -38,10 +40,17 @@ const UIReducer = (oldState = initialState, action) => {
     } else {
       return oldState;
     }
-
     case TOGGLE_MODAL:
     newState = merge({}, oldState);
     newState[action.modalName] = !(newState[action.modalName]);
+    return newState;
+    case TOGGLE_SIDEMENU:
+    newState = merge({}, oldState);
+    if (newState.sidemenu === "sidemenu-open") {
+      newState.sidemenu = "closed-sidemenu";
+    } else {
+      newState.sidemenu = "sidemenu-open";
+    }
     return newState;
     case TOGGLE_DELETE_FORM:
     newState = merge({}, oldState);
