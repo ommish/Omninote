@@ -1,46 +1,47 @@
 @import "variables";
 
-.notebook-dropdown ul {
-  width: auto;
-  height: auto;
-  top: 50px;
-  left: 28%;
-  position: absolute;
-  background: white;
-  border: 2px solid $light-grey;
-  display: flex;
-  flex-direction: column;
-  z-index: 45;
-}
-
-.notebook-button-div {
+.select-notebook {
   padding-bottom: 11px;
 }
 
-.notebook-button {
-  margin-right: 10px;
-  color: $dark-grey;
+.notebook-dropdown-open {
+  width: auto;
+  height: auto;
+  background: white;
+  display: flex;
+  z-index: 45;
+  position: absolute;
+  left: 400px;
+  top: 50px;
+  border: 1px solid $light-grey;
 }
 
 .notebook-dropdown-closed {
   display: none;
 }
 
-.notebook-dropdown-overlay {
+.notebook-dropdown-overlay-open {
   height: 100%;
   width: 100%;
   top: 0px;
   left: 0px;
   position: absolute;
   overflow: hidden;
-  display: flex;
 }
 
 .notebook-dropdown-overlay-closed {
   display: none;
 }
 
+.notebook-list {
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .notebook-dropdown-item {
+  width: 100%;
   padding: 5px;
   color: $dark-grey;
   text-align: left;

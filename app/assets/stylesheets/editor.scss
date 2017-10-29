@@ -1,22 +1,15 @@
 @import "variables";
 
-.app-page {
-  overflow: hidden;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-}
 
 .notebook-selector {
   padding-bottom: 10px;
+  align-self: flex-start;
 }
 
 .editor-heading {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
 }
 
 .editor-lower-heading {
@@ -25,6 +18,12 @@
   justify-content: space-between;
 }
 
+.editor-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+
 .title {
   font-family: 'Roboto Slab', serif;
   font-size: 30px;
@@ -32,7 +31,7 @@
   padding-bottom: 10px;
   padding-top: 10px;
   border-top: 1px solid $light-grey;
-  width: 100%;
+  width: 80%;
 }
 
 .note-editor {
@@ -42,6 +41,7 @@
   background: white;
   display: flex;
   flex-direction: column;
+  width: 80%
 }
 
 .note-editor.full {

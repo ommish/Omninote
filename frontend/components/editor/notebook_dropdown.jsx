@@ -13,56 +13,50 @@ class NotebookDropdown extends React.Component {
 
   render () {
     const notebooks = this.props.allNotebooks.map((notebook, i) => (
-        <button
+        <li
           onClick={this.toggleNotebook(notebook)}
           className={notebook.id === this.props.selectedNotebook.id ? "notebook-dropdown-item selected" : "notebook-dropdown-item"}
           key={i}>
-          {notebook.title}
-        </button>
+          {notebook.title}</li>
       ));
     notebooks.push([
-      <button
+      <li
       onClick={this.props.toggleCreateForm}
       className="notebook-dropdown-item"
       key="a">
       Add New Notebook
-    </button>,
+    </li>,
     <CreateForm
       itemType="notebook"
       key="b"
     /> ]);
 
     return (
-    [
-      <div className="notebook-button-div"
-        key={1}>
+      <div>
         <button
-          className="notebook-button"
+          className="select-notebook"
           onClick={this.props.toggleNotebookDropdown}>
           {this.props.selectedNotebook.id ?
             this.props.allNotebooks.filter((notebook) => (
             notebook.id === this.props.selectedNotebook.id
           ))[0].title : "Select Notebook"}▾
         </button>
-      </div>,
-      <Modal
-        key={2}
-        isOpen={this.props.notebookDropdown}
-        onRequestClose={this.props.toggleNotebookDropdown}
-        className={{
-        base: '',
-        afterOpen: 'notebook-dropdown',
-        beforeClose: 'notebook-dropdown-closed'}}
-        overlayClassName={{
-        base: '',
-        afterOpen: 'notebook-dropdown-overlay',
-        beforeClose: 'notebook-dropdown-overlay-closed'}}>
-        <ul className="notebook-dropdown">
-          {notebooks}
-        </ul>
-      </Modal>
-    ]
-  );
+        <Modal
+          isOpen={this.props.notebookDropdown}
+          onRequestClose={this.props.toggleNotebookDropdown}
+          className={{
+            base: '',
+            afterOpen: 'notebook-dropdown-open',
+            beforeClose: 'notebook-dropdown-closed'}}
+            overlayClassName={{
+              base: '',
+              afterOpen: 'notebook-dropdown-overlay-open',
+              beforeClose: 'notebook-dropdown-overlay-closed'}}>
+              <ul className="notebook-list">
+                {notebooks}
+              </ul>
+            </Modal>
+          </div>  );
   }
 
 }

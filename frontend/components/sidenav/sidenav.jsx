@@ -28,8 +28,8 @@ class SideNav extends React.Component {
   render () {
 
     return (
-      <nav className="sidenav">
-        <ul className="sidenav-ul">
+      [<nav key={1} className="sidenav">
+        <ul className="sidenav-icon-list">
           <li>LOGO</li>
           <li><button onClick={this.newNote} className="circle-button">
             <img className="sidenav-icon" src={window.staticAssets.greenPlus}/>
@@ -50,8 +50,8 @@ class SideNav extends React.Component {
             <img className="sidenav-icon" src={window.staticAssets.account}/>
           </button></li>
         </ul>
-        <NBSidemenu/>
-      </nav>
+      </nav>,
+      <NBSidemenu key={2}/>]
     );
   }
 

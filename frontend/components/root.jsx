@@ -11,9 +11,11 @@ const Root = ({store}) => (
     <Provider store={store}>
       <HashRouter>
         <div style={{height: "100%"}} >
-            <AuthRoute exact path='/login' component={SessionForm} />
-            <AuthRoute exact path='/signup' component={SessionForm} />
-            <AuthRoute exact path='/' component={DefaultPage} />
+          <Switch>
+            <AuthRoute path='/login' component={SessionForm} />
+            <AuthRoute path='/signup' component={SessionForm} />
+            <AuthRoute path='/' component={DefaultPage} />
+          </Switch>
             <Switch>
               <ProtectedRoute path='/notebooks/:notebookId/notes/:noteId' component={App} />
               <ProtectedRoute path='/notebooks/:notebookId' component={App} />

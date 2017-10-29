@@ -87,6 +87,7 @@ class Editor extends React.Component {
                 type="text"
                 className="title"
                 value={this.state.title}/>
+              <div className="editor-buttons">
               <button
                 className="square-button small narrow"
                 onClick={this.handleSubmit}>Save</button>
@@ -98,6 +99,7 @@ class Editor extends React.Component {
                   src={window.staticAssets.white_expand}>
                 </img>}
                 </button>
+                </div>
             </div>
           </div>
           <ReactQuill

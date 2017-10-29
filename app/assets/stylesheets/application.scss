@@ -16,6 +16,16 @@
 
 @import "variables";
 
+.app-page {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 body, html {
   height: 100%;
   width: 100%;
@@ -61,13 +71,6 @@ body, html {
   opacity: 0.5;
 }
 
-
-.square-button.small.narrow {
-  height: 30px;
-  width: 100px;
-}
-
-
 .square-button:hover {
   background: $dark-green;
   transition: background 0.2s;
@@ -91,6 +94,11 @@ button:hover, input[type="submit"]:hover, a:hover {
   transition: background 0.2s;
 }
 
+.square-button.small.narrow {
+  height: 30px;
+  width: 100px;
+}
+
 .square-button.small.narrow.expand {
   height: 30px;
   width: 60px;
@@ -98,4 +106,8 @@ button:hover, input[type="submit"]:hover, a:hover {
   justify-content: center;
   align-items: center;
   background: $light-green;
+}
+
+.square-button.small.narrow.expand:hover {
+background: $dark-green;
 }
