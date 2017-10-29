@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const action = (ownProps.location.pathname.includes("/notes/")) ? updateNote : createNote;
   return {
     action: (note) => dispatch(action(note)),
-    toggleModal: (modalName) => dispatch(toggleModal(modalName)),
+    toggleFullEditor: () => dispatch(toggleModal("fullEditor")),
   };
 };
 

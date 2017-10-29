@@ -82,6 +82,9 @@ class Editor extends React.Component {
               <button
                 className="square-button small narrow"
                 onClick={this.handleSubmit}>Save Note</button>
+              <button
+                className="square-button small narrow"
+                onClick={this.props.toggleFullEditor}>Full Screen</button>
             </div>
           </div>
           <ReactQuill

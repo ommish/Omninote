@@ -9,7 +9,7 @@
   position: absolute;
   overflow: hidden;
   display: flex;
-  z-index: 4;
+  z-index: 30;
 }
 
 @-webkit-keyframes slideout {
@@ -40,7 +40,7 @@
   position: fixed;
   overflow-y: scroll;
   -webkit-animation: slideout .4s ease-in;
-  z-index: 4;
+  z-index: 40;
 
 
   section:nth-of-type(1) {
