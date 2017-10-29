@@ -17,7 +17,7 @@ class Api::NotesController < ApplicationController
   def update
     @note = current_user.notes.find(params[:id])
     @prev_notebook =
-      @note.notebook_id === note_params[notebook_id] ?
+      @note.notebook_id === note_params[:notebook_id] ?
       null :
       @note.notebook_id
     if @note.update(note_params)
@@ -37,7 +37,7 @@ class Api::NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:title, :body, :body_plain, :notebook_id)
+    params.require(:note).permit(:title, :body, :body_plain, :notebook_id, :id, :created_at, :updated_at)
   end
 
 

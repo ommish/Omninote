@@ -52,13 +52,16 @@ class Editor extends React.Component {
   handleSubmit() {
     let newState = merge({}, this.state);
     newState.notebookId = this.props.selectedNotebook.id;
-    newState.body = JSON.stringify(newState.body); // get quill error unless I do this
-    // but body will not show up in editor
+    newState.body = JSON.stringify(newState.body); // can't save- quill error unless I do this ?
     this.props.action(newState);
-    this.setState({ title: "", body: {}, bodyPlain: "", notebookId: this.props.selectedNotebook.id});
+    // this.setState({ title: "", body: {}, bodyPlain: "", notebookId: this.props.selectedNotebook.id});
+    if (this.props.fullEditor) {
+      this.props.toggleFullEditor();
+    }
   }
 
   componentWillReceiveProps(newProps) {
+    debugger
     if (this.props.location.pathname !== newProps.location.pathname) {
       this.setState(newProps.note);
     }
@@ -99,7 +102,7 @@ class Editor extends React.Component {
             </div>
           </div>
           <ReactQuill
-            defaultValue={new Delta(this.state.body)}
+            value={this.state.body}
             id="quill"
             className={this.props.fullEditor ?
               "note-editor-quill full " :

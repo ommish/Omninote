@@ -17,7 +17,7 @@
   font-size: 20px;
   background-color: $dark-grey;
   color: white;
-  height: 70px;
+  height: 80px;
   font-family: 'Roboto Slab', serif;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -36,6 +36,10 @@
   height: 80px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.note-item-container {
+  height: 80%;
 }
 
 .note-info {

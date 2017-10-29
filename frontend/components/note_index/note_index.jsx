@@ -18,7 +18,7 @@ class NoteIndex extends React.Component {
           {this.props.noteIndexHeader}
         </div>
         <NoteOrderOptionMenu />
-        <ul>
+        <ul className="note-item-container">
           {notes}
         </ul>
       </section>
