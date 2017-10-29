@@ -26,7 +26,7 @@ class SidemenuIndexItem extends React.Component {
       [
         <li key={1} className="sidemenu-index-item" onClick={this.handleClick(this.props.item.id)}>
           <section>
-            <h3>{this.props.titleSnippet}</h3>
+            <h3>{this.props.item.title}</h3>
             <p>{new Date(this.props.item.updatedAt).toDateString()}</p>
             <p>{this.props.item.noteIds.length} notes</p>
           </section>

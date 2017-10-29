@@ -4,7 +4,7 @@ import { merge } from 'lodash';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_NOTE, REMOVE_NOTE } from '../actions/note_actions';
 
-const initialState = {initialState: true};
+const initialState = {initialState: {id: null, noteIds: [] }};
 
 const NotebooksReducer = (oldState = initialState, action) => {
   let newState;

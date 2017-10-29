@@ -5,7 +5,7 @@
   width: 100%;
   background-color: rgba(255, 255, 255, 0.81);
   top: 0px;
-  left: 0px;
+  left: 50px;
   box-sizing: border-box;
   position: absolute;
   overflow: hidden;
@@ -14,8 +14,12 @@
 }
 
 @-webkit-keyframes slideout {
-  from { transform: translateX(-430px); }
-  to { transform: translateX(0px); }
+  from { left: -430px; }
+  to { left: 0px; }
+}
+@-webkit-keyframes slidein {
+  from { transform: translateX(500px); }
+  to { transform: translateX(0); }
 }
 
 .closed-sidemenu-overlay {
@@ -25,9 +29,16 @@
 }
 
 .closed-sidemenu {
+  background: white;
+  left: -500px;
+  top: 0px;
   height: 100%;
-  width: 0;
-  display: none;
+  width: 500px;
+  border-right: 2px solid $grey;
+  position: fixed;
+  overflow-y: scroll;
+  -webkit-animation: slidein .4s ease-in;
+  z-index: 30;
 }
 
 
@@ -41,7 +52,7 @@
   position: fixed;
   overflow-y: scroll;
   -webkit-animation: slideout .4s ease-in;
-  z-index: 40;
+  z-index: 30;
 
 
   section:nth-of-type(1) {

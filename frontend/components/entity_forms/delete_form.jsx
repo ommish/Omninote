@@ -46,7 +46,7 @@ class DeleteForm extends React.Component {
   }
 
   componentWillReceiveProps (newProps) {
-    if (!this.props.deleteFormId && newProps.deleteFormId) {
+    if (newProps.deleteFormId !== null) {
       this.setState(newProps);
     }
   }

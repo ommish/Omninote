@@ -8,24 +8,21 @@ class Sidemenu extends React.Component {
 
   render () {
     return (
-      <li>
+      [
+      <section
+        key={1}
+        onClick={this.props.toggleSidemenu}
+        className={this.props.sidemenuOpen ? "sidemenu-overlay" : "closed-sidemenu-overlay</section>"}>
+      </section>,
+      <li key={2}>
         <button
           className="circle-button"
           onClick={this.props.toggleSidemenu}
           itemType={this.props.itemType}>
           <img className="sidenav-icon" src={window.staticAssets.notebook}/>
         </button>
-        <Modal
-          isOpen={this.props.sidemenuOpen}
-          onRequestClose={this.props.toggleSidemenu}
-          className={{
-          base: '',
-          afterOpen: 'sidemenu-open',
-          beforeClose: 'closed-sidemenu'}}
-          overlayClassName={{
-          base: '',
-          afterOpen: 'sidemenu-overlay',
-          beforeClose: 'closed-sidemenu-overlay'}}>
+        <section
+          className={this.props.sidemenuOpen ? "sidemenu-open" : "closed-sidemenu"}>
           <section className={`${this.props.itemType}-heading`}>
             <h2>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h2>
             <button
@@ -42,8 +39,9 @@ class Sidemenu extends React.Component {
                 item={item}
                 key={i}/>)}
               </section>
-            </Modal>
+            </section>
           </li>
+        ]
         );
       }
     }

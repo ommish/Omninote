@@ -4,16 +4,9 @@ import { fetchNotebook, deleteNotebook } from '../../actions/notebook_actions';
 import { toggleModal, toggleDeleteForm } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
 
-const mapStateToProps = (state, ownProps) => {
-  let titleSnippet = ownProps.item.title;
-  if (titleSnippet.length > 30) {
-    titleSnippet = titleSnippet.slice(0, 30).concat("...");
-  }
-  return {
-    titleSnippet,
-  };
-
-};
+// const mapStateToProps = (state, ownProps) => {
+//
+// };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   let getAction;
@@ -30,4 +23,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SidemenuIndexItem));
+export default withRouter(connect(null, mapDispatchToProps)(SidemenuIndexItem));
