@@ -33,7 +33,7 @@ const NotebooksReducer = (oldState = initialState, action) => {
     const noteId = Object.keys(action.note)[0];
     const notebookId = Object.values(action.note)[0].notebookId;
     newState[notebookId].noteIds = newState[notebookId].noteIds
-      .filter((id) => id !== noteId);
+      .filter((id) => id !== parseInt(noteId));
     return newState;
     default:
     return oldState;

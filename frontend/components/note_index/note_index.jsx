@@ -5,6 +5,7 @@ import NoteOrderOptionMenu from './note_order_options_container';
 class NoteIndex extends React.Component {
 
   render () {
+
     const notes = this.props.notes.map((note) => (
       <NoteIndexItem
         note={note}
