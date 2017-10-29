@@ -3,22 +3,27 @@
 .sidemenu-overlay {
   height: 100%;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.81);
   top: 0px;
   left: 70px;
-  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 0.81);
   position: absolute;
   overflow: hidden;
-  display: flex;
   z-index: 30;
+  -webkit-animation: fadein .5s ease-in;
 }
 
 @-webkit-keyframes slideout {
   from { left: -430px; }
   to { left: 0px; }
 }
+
+@-webkit-keyframes fadein {
+  from { background-color: rgba(255, 255, 255, 0);}
+  to { background-color: rgba(255, 255, 255, 0.81);}
+}
+
 @-webkit-keyframes slidein {
-  from { transform: translateX(500px); }
+  from { transform: translateX(530px); }
   to { transform: translateX(0); }
 }
 
@@ -35,7 +40,7 @@
   border-right: 2px solid $grey;
   position: fixed;
   overflow-y: scroll;
-  -webkit-animation: slidein .4s ease-in;
+  -webkit-animation: slidein .5s ease-in;
   z-index: 30;
 }
 
