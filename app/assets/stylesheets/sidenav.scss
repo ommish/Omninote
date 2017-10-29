@@ -1,6 +1,8 @@
 @import "variables";
 
 .sidenav {
+  left: 0;
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,6 +13,7 @@
   background-color: $light-grey;
   border-right: 1px solid $grey;
   z-index: 35;
+  box-sizing: border-box;
 }
 
 .sidenav > ul {
@@ -33,8 +36,7 @@
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  background-color: transparent;
-  border: none;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -99,12 +99,14 @@ class Editor extends React.Component {
             </div>
           </div>
           <ReactQuill
+            defaultValue={new Delta(this.state.body)}
             id="quill"
+            className={this.props.fullEditor ?
+              "note-editor-quill full " :
+              "note-editor-quill"}
             modules={this.modules}
             formats={this.formats}
-            onChange={this.handleBodyChange}
-            defaultValue={new Delta(this.state.body)}
-            />
+            onChange={this.handleBodyChange}/>
         </main>
       );
     }

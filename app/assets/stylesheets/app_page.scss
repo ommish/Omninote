@@ -2,11 +2,12 @@
 
 .app-page {
   overflow: hidden;
-  height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .notebook-selector {
@@ -39,22 +40,37 @@
 }
 
 .note-editor {
-  height: 80%;
-  width: 100%;
+  height: 100%;
   padding: 20px;
   box-sizing: border-box;
   background: white;
+  display: flex;
+  flex-direction: column;
 }
 
 .note-editor.full {
-  height: 80%;
+  z-index: 40;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.note-editor-quill {
+  height: 100%;
   padding: 20px;
   box-sizing: border-box;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.note-editor-quill.full {
+  width: 100%;
   z-index: 40;
   position: fixed;
-  background: white;
-  top: 0;
+  top: 100px;
   left: 0;
 }
 
@@ -67,5 +83,5 @@
 }
 
 #quill {
-  height: 100%;
+  height: 90%;
 }

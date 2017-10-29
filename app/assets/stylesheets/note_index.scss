@@ -1,7 +1,7 @@
 @import "variables";
 
 .note-index {
-  width: 20%;
+  width: 350px;
   height: 100%;
   border-right: 1px solid $grey;
   display: flex;
@@ -9,6 +9,7 @@
   justify-content: flex-start;
   overflow-y: scroll;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .note-index-heading {

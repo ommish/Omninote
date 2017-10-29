@@ -5,7 +5,8 @@
   width: 100%;
   background-color: rgba(255, 255, 255, 0.81);
   top: 0px;
-  left: 81px;
+  left: 0px;
+  box-sizing: border-box;
   position: absolute;
   overflow: hidden;
   display: flex;
@@ -32,7 +33,7 @@
 
 .sidemenu-open {
   background: white;
-  left: 66px;
+  left: 70px;
   top: 0px;
   height: 100%;
   width: 500px;
