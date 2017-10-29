@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: flex-start;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .note-index-heading {
@@ -17,7 +18,8 @@
   color: white;
   height: 70px;
   font-family: 'Roboto Slab', serif;
-
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .note-item {

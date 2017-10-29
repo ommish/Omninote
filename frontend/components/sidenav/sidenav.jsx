@@ -7,6 +7,7 @@ class SideNav extends React.Component {
   constructor (props) {
     super(props);
     this.redirectToAllNotes = this.redirectToAllNotes.bind(this);
+    this.newNote = this.newNote.bind(this);
   }
 
   redirectToAllNotes () {
@@ -14,11 +15,7 @@ class SideNav extends React.Component {
   }
 
   newNote () {
-    
-    if (this.props.match.params.notebookId) {
-
-    }
-    this.props.toggleSelectedNote();
+    this.props.toggleFullEditor();
   }
 
   render () {

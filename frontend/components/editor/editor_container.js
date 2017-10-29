@@ -5,9 +5,9 @@ import { toggleModal, toggleSelectedNotebook } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
-  const note = state.ui.selectedNote.id ?
-    state.ui.selectedNote :
-    { title: "", body: {}, body_plain: "", notebook_id: null};
+  const note = ownProps.match.params.noteId ?
+    state.entities.notes[parseInt(ownProps.match.params.noteId)] :
+    { title: "", body: {}, body_plain: "", notebook_id: state.ui.selectedNotebook.id};
   return {
     note,
     selectedNotebook: state.ui.selectedNotebook,
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const action = (ownProps.location.pathname.includes("/notes/")) ? updateNote : createNote;
+  const action = ownProps.match.params.noteId ? updateNote : createNote;
   return {
     action: (note) => dispatch(action(note)),
     toggleFullEditor: () => dispatch(toggleModal("fullEditor")),

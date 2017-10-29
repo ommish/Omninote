@@ -64,6 +64,12 @@ class Editor extends React.Component {
     }
   }
 
+  componentWillMount() {
+    if (!this.state) {
+      this.setState({ title: "", body: {}, body_plain: "", notebook_id: this.props.selectedNotebook.id});
+    }
+  }
+
   render() {
     return (
       <main
@@ -81,10 +87,15 @@ class Editor extends React.Component {
                 value={this.state.title}/>
               <button
                 className="square-button small narrow"
-                onClick={this.handleSubmit}>Save Note</button>
+                onClick={this.handleSubmit}>Save</button>
               <button
                 className="square-button small narrow"
-                onClick={this.props.toggleFullEditor}>Full Screen</button>
+                onClick={this.props.toggleFullEditor}>
+                <img
+                  className="sidenav-icon"
+                  src={this.props.fullEditor ? window.staticAssets.notes : window.staticAssets.notes}>
+                </img>
+                </button>
             </div>
           </div>
           <ReactQuill
