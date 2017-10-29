@@ -26,7 +26,10 @@ const NotebooksReducer = (oldState = initialState, action) => {
     return newState;
     case RECEIVE_NOTE:
     newState = merge({}, oldState);
-    newState[Object.values(action.note)[0].notebookId].noteIds.push(Object.keys(action.note)[0]);
+    debugger
+    if (!newState[Object.values(action.note)[0].notebookId].noteIds.includes(parseInt(Object.keys(action.note)[0]))) {
+      newState[Object.values(action.note)[0].notebookId].noteIds.push(Object.keys(action.note)[0]);
+    }
     return newState;
     case REMOVE_NOTE:
     newState = merge({}, oldState);

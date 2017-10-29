@@ -10,11 +10,18 @@ class SideNav extends React.Component {
     this.newNote = this.newNote.bind(this);
   }
 
-  redirectToAllNotes () {
+  redirectToAllNotes() {
     this.props.history.push('/notes');
   }
 
   newNote () {
+    let path;
+    if (this.props.match.params.notebookId) {
+      path = `/notebooks/${this.props.match.params.notebookId}`;
+    } else {
+      path = '/notes';
+    }
+    this.props.history.push(path);
     this.props.toggleFullEditor();
   }
 
