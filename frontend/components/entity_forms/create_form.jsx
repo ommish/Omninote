@@ -21,7 +21,7 @@ class CreateForm extends React.Component {
   handleSubmit(e) {
     this.props.createItem(this.state.item).then((res) => {
       this.redirect(
-        Object.keys(res.notebook)[0]
+        res.notebook.id
       );
       this.closeModal();
     });

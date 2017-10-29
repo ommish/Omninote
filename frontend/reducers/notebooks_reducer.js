@@ -19,24 +19,24 @@ const NotebooksReducer = (oldState = initialState, action) => {
     newState = merge({}, action.notebooks);
     return newState;
     case RECEIVE_NOTEBOOK:
-    return merge({}, oldState, action.notebook);
+    newState = merge({}, oldState);
+    newState[action.notebook.id] = action.notebook;
+    return newState;
     case REMOVE_NOTEBOOK:
     newState = merge({}, oldState);
-    delete newState[Object.keys(action.notebook)[0]];
+    delete newState[action.notebook.id];
     return newState;
     case RECEIVE_NOTE:
     newState = merge({}, oldState);
-    debugger
-    if (!newState[Object.values(action.note)[0].notebookId].noteIds.includes(parseInt(Object.keys(action.note)[0]))) {
-      newState[Object.values(action.note)[0].notebookId].noteIds.push(Object.keys(action.note)[0]);
+    if (!newState[action.note.notebookId].noteIds.includes(action.note.id)) {
+      newState[action.note.notebookId].noteIds.push(action.note.id);
     }
     return newState;
     case REMOVE_NOTE:
     newState = merge({}, oldState);
-    const noteId = Object.keys(action.note)[0];
-    const notebookId = Object.values(action.note)[0].notebookId;
-    newState[notebookId].noteIds = newState[notebookId].noteIds
-      .filter((id) => id !== parseInt(noteId));
+    const noteId = action.note.id;
+    newState[action.note.notebookId].noteIds = newState[action.note.notebookId].noteIds
+      .filter((id) => id !== (noteId));
     return newState;
     default:
     return oldState;

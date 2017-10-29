@@ -20,17 +20,17 @@ const NotesReducer = (oldState = initialState, action) => {
     return newState;
     case REMOVE_NOTEBOOK:
     newState = merge({}, oldState);
-    if (action.notes) {
-      action.notes.forEach((noteId) => {
-        delete newState[noteId];
-      });
-    }
+    action.notes.forEach((noteId) => {
+      delete newState[noteId];
+    });
     return newState;
     case RECEIVE_NOTE:
-    return merge({}, oldState, action.note);
+    newState = merge({}, oldState);
+    newState[action.note.id] = action.note;
+    return newState;
     case REMOVE_NOTE:
     newState = merge({}, oldState);
-    delete newState[Object.keys(action.note)[0]];
+    delete newState[action.note.id];
     return newState;
     default:
     return oldState;
