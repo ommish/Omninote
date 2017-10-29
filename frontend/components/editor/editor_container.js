@@ -8,11 +8,10 @@ const mapStateToProps = (state, ownProps) => {
   const note = state.ui.selectedNote.id ?
     state.ui.selectedNote :
     { title: "", body: {}, body_plain: "", notebook_id: null};
-  const fullEditor = state.ui.fullEditor;
   return {
     note,
-    fullEditor,
     selectedNotebook: state.ui.selectedNotebook,
+    fullEditor: state.ui.fullEditor,
   };
 };
 

@@ -5,32 +5,19 @@ import CreateForm from '../entity_forms/create_form_container';
 
 class Sidemenu extends React.Component {
 
-  constructor (props) {
-    super(props);
-    this.delayClose = this.delayClose.bind(this);
-  }
-
-  delayClose () {
-    if (this.props.sidemenuOpen) {
-      setTimeout(this.setCloseClass, 400);
-    } else {
-      this.props.toggleSidemenu();
-    }
-  }
-
 
   render () {
     return (
       <li>
         <button
           className="circle-button"
-          onClick={this.delayClose}
+          onClick={this.props.toggleSidemenu}
           itemType={this.props.itemType}>
           <img className="sidenav-icon" src={window.staticAssets.notebook}/>
         </button>
         <Modal
           isOpen={this.props.sidemenuOpen}
-          onRequestClose={this.delayClose}
+          onRequestClose={this.props.toggleSidemenu}
           className={{
           base: '',
           afterOpen: 'sidemenu-open',

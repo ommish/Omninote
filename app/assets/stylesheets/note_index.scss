@@ -30,8 +30,18 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 80px;
+  width: 100%;
+  box-sizing: border-box;
+}
 
+.note-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
 
 .note-item:hover {
@@ -46,18 +56,29 @@
   border-color: $grey;
 }
 
+
 .note-item-title {
   font-family: 'Roboto Slab', serif;
   font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .note-item-date {
   font-size: 12px;
   font-weight: 200;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .note-item-body-snippet {
   font-family: 'Roboto Slab', serif;
   font-size: 12px;
   font-weight: 200;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
 }

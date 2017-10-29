@@ -34,59 +34,66 @@ class Editor extends React.Component {
       'blockquote', 'code-block', 'list', 'bullet', 'script', 'indent',
       'color', 'background', 'align', 'clean', 'direction'
     ];
-}
-
-handleBodyChange (content, delta, source, editor) {
-  const newState = merge({}, this.state);
-  newState.body = editor.getContents();
-  newState.body_plain = editor.getText().trim();
-  this.setState(newState);
-}
-
-handleTitleChange(e) {
-  let newState = merge({}, this.state);
-  newState.title = e.target.value;
-  this.setState(newState);
-}
-
-handleSubmit() {
-  let newState = merge({}, this.state);
-  newState.notebook_id = this.props.selectedNotebook.id;
-  newState.body = JSON.stringify(newState.body); // get quill error unless I do this
-                                                // but body will not show up in editor
-  this.props.action(newState);
-  this.setState({ title: "", body: {}, body_plain: "", notebook_id: this.props.selectedNotebook.id});
-}
-
-componentWillReceiveProps(newProps) {
-  if (this.props.location.pathname !== newProps.location.pathname) {
-    this.setState(newProps.note);
   }
-}
 
-render() {
-  return (
-    <main>
-      <NotebookDropdown />
-      <input
-        onChange={this.handleTitleChange}
-        placeholder="Title your note"
-        type="text"
-        className="title"
-        value={this.state.title}/>
-      <ReactQuill
-        id="quill"
-        modules={this.modules}
-        formats={this.formats}
-        onChange={this.handleBodyChange}
-        defaultValue={new Delta(this.state.body)}
-        />
-      <button
-        className="square-button small narrow"
-        onClick={this.handleSubmit}>Save Note</button>
-    </main>
-  );
-}
-}
+  handleBodyChange (content, delta, source, editor) {
+    const newState = merge({}, this.state);
+    newState.body = editor.getContents();
+    newState.body_plain = editor.getText().trim();
+    this.setState(newState);
+  }
 
-export default Editor;
+  handleTitleChange(e) {
+    let newState = merge({}, this.state);
+    newState.title = e.target.value;
+    this.setState(newState);
+  }
+
+  handleSubmit() {
+    let newState = merge({}, this.state);
+    newState.notebook_id = this.props.selectedNotebook.id;
+    newState.body = JSON.stringify(newState.body); // get quill error unless I do this
+    // but body will not show up in editor
+    this.props.action(newState);
+    this.setState({ title: "", body: {}, body_plain: "", notebook_id: this.props.selectedNotebook.id});
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (this.props.location.pathname !== newProps.location.pathname) {
+      this.setState(newProps.note);
+    }
+  }
+
+  render() {
+    return (
+      <main
+        className={this.props.fullEditor ?
+          "note-editor full" :
+          "note-editor"}>
+          <div className="editor-heading">
+            <NotebookDropdown />
+            <div className="editor-lower-heading">
+              <input
+                onChange={this.handleTitleChange}
+                placeholder="Title your note"
+                type="text"
+                className="title"
+                value={this.state.title}/>
+              <button
+                className="square-button small narrow"
+                onClick={this.handleSubmit}>Save Note</button>
+            </div>
+          </div>
+          <ReactQuill
+            id="quill"
+            modules={this.modules}
+            formats={this.formats}
+            onChange={this.handleBodyChange}
+            defaultValue={new Delta(this.state.body)}
+            />
+        </main>
+      );
+    }
+  }
+
+  export default Editor;

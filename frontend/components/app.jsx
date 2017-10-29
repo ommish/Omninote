@@ -42,14 +42,12 @@ render () {
         <Route path="/notes/:noteId" component={AllNotes} />
         <Route path="/" component={AllNotes} />
       </Switch>
-      <main className="note-editor">
         <Switch>
           <Route path="/notebooks/:notebookId/notes/:noteId" component={Editor} />
           <Route path="/notebooks/:notebookId" component={Editor} />
           <Route path="/notes/:noteId" component={Editor} />
           <Route path="/" component={Editor} />
         </Switch>
-      </main>
     </div>
   );}
 }

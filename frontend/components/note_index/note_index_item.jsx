@@ -23,29 +23,26 @@ class NoteIndexItem extends React.Component {
   render () {
 
     return (
-      [
-        <div
-          className={this.props.note.id === parseInt(this.props.match.params.noteId) ?
-            "note-item active" :
-            "note-item" }
-            onClick={this.handleClick()}
-            key={1}>
-            <ul>
-              <li className="note-item-title">{this.props.note.title}</li>
-              <li className="note-item-date-"><p>{new Date(this.props.note.updatedAt).toDateString()}</p></li>
-              <li className="note-item-body-snippet"><p>{this.props.bodySnippet}</p></li>
-            </ul>
+      <div className={this.props.note.id === parseInt(this.props.match.params.noteId) ?
+          "note-item active" :
+          "note-item" }
+          onClick={this.handleClick()}>
+          <ul className="note-info">
+            <li className="note-item-title">{this.props.note.title}</li>
+            <li className="note-item-date-"><p>{new Date(this.props.note.updatedAt).toDateString()}</p></li>
+            <li className="note-item-body-snippet"><p>{this.props.bodySnippet}</p></li>
+          </ul>
+          <div>
             <img
               id="delete"
               className="trash-icon"
               onClick={this.handleClick(this.props.note.id)}
               src={window.staticAssets.trash}/>
-          </div>,
+          </div>
           <DeleteForm
             item={this.props.note}
-            itemType="note"
-            key={2}/>
-        ]
+            itemType="note"/>
+        </div>
       );
     }
   }
