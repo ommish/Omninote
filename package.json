@@ -19,6 +19,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "snake-case": "^2.1.0",
     "webpack": "^3.8.1"
   },
   "description": "Omninote is a single-page clone of Evernote, a web application for organizing notes in rich format text through notebooks and tags.",
