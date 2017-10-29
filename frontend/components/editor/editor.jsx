@@ -61,7 +61,6 @@ class Editor extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    debugger
     if (this.props.location.pathname !== newProps.location.pathname) {
       this.setState(newProps.note);
     }
