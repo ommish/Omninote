@@ -51,11 +51,11 @@ class Editor extends React.Component {
 
   handleSubmit() {
     let newState = merge({}, this.state);
-    newState.notebook_id = this.props.selectedNotebook.id;
+    newState.notebookId = this.props.selectedNotebook.id;
     newState.body = JSON.stringify(newState.body); // get quill error unless I do this
     // but body will not show up in editor
     this.props.action(newState);
-    this.setState({ title: "", body: {}, body_plain: "", notebook_id: this.props.selectedNotebook.id});
+    this.setState({ title: "", body: {}, bodyPlain: "", notebookId: this.props.selectedNotebook.id});
   }
 
   componentWillReceiveProps(newProps) {
@@ -66,7 +66,7 @@ class Editor extends React.Component {
 
   componentWillMount() {
     if (!this.state) {
-      this.setState({ title: "", body: {}, body_plain: "", notebook_id: this.props.selectedNotebook.id});
+      this.setState({ title: "", body: {}, bodyPlain: "", notebookId: this.props.selectedNotebook.id});
     }
   }
 

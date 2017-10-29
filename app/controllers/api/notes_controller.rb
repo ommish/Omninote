@@ -16,6 +16,10 @@ class Api::NotesController < ApplicationController
 
   def update
     @note = current_user.notes.find(params[:id])
+    @prev_notebook =
+      @note.notebook_id === note_params[notebook_id] ?
+      null :
+      @note.notebook_id
     if @note.update(note_params)
       render :show
     else

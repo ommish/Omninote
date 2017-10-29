@@ -28,8 +28,14 @@ const NotebooksReducer = (oldState = initialState, action) => {
     return newState;
     case RECEIVE_NOTE:
     newState = merge({}, oldState);
+    // add note to notebook's noteIds
     if (!newState[action.note.notebookId].noteIds.includes(action.note.id)) {
       newState[action.note.notebookId].noteIds.push(action.note.id);
+    }
+    // remove note from previous notebook's noteIds
+    if (action.note.prevNotebook) {
+      newState[action.note.notebookId].noteIds =
+        newState[action.note.notebookId].noteIds.filter((id) => id !== action.note.id);
     }
     return newState;
     case REMOVE_NOTE:
