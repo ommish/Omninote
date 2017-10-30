@@ -21,9 +21,21 @@
     align-items: center;
   }
 
+  header > h3 {
+    display: flex;
+    align-items: center;
+  }
+
   header > h3 > a {
     font-family: 'Roboto Slab', serif;
     color: $light-green;
+  }
+
+  header > h3 > img {
+    height: 40px;
+    margin-right: 10px;
+    width: auto;
+    align-self: flex-end;
   }
 
   header nav {
@@ -125,6 +137,7 @@ div.session-form {
     height: 100px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     padding-left: 150px;
     padding-right: 150px;
   }
@@ -134,6 +147,12 @@ div.session-form {
   }
   footer ul li {
     margin-left: 10px;
+    cursor: pointer;
+  }
+
+  footer ul li img {
+    height: 30px;
+    width: auto;
   }
 
 }

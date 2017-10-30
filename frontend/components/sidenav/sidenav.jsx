@@ -30,7 +30,7 @@ class SideNav extends React.Component {
     return (
       [<nav key={1} className="sidenav">
         <ul className="sidenav-icon-list">
-          <li>LOGO</li>
+          <li><img className="sidenav-logo" src="https://png.icons8.com/elephant/ios7/100/666666"/></li>
           <li><button onClick={this.newNote} className="circle-button">
             <img className="sidenav-icon" src={window.staticAssets.greenPlus}/>
           </button></li>

@@ -13,7 +13,7 @@ class DefaultPage extends React.Component {
       <div
         className="default-page">
         <header>
-          <h3><Link to="/">OMNINOTE</Link></h3>
+          <h3><img src="https://png.icons8.com/elephant/ios7/100/666666"/><Link to="/">OMNINOTE</Link></h3>
           <nav className="left-nav">
             <h4><Link to="/"></Link></h4>
             <h4><Link to="/"></Link></h4>
@@ -38,8 +38,8 @@ class DefaultPage extends React.Component {
         <footer>
           <nav>
             <ul>
-              <li></li>
-              <li></li>
+              <li><a href= "https://github.com/ommish/Omninote" ><img src={window.staticAssets.github}></img></a></li>
+              <li><a href= "https://www.linkedin.com/in/ommish/" ><img src={window.staticAssets.linkedin}></img></a></li>
               <li></li>
               <li></li>
               <li></li>
@@ -47,7 +47,7 @@ class DefaultPage extends React.Component {
           </nav>
           <nav>
             <ul>
-              <li></li>
+              <li><a href="https://icons8.com">Logo Source</a></li>
               <li></li>
               <li></li>
               <li></li>
