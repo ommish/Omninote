@@ -19,6 +19,8 @@ const Root = ({store}) => (
             <Switch>
               <ProtectedRoute path='/notebooks/:notebookId/notes/:noteId' component={App} />
               <ProtectedRoute path='/notebooks/:notebookId' component={App} />
+              <ProtectedRoute path='/tags/:tagId/notes/:noteId' component={App} />
+              <ProtectedRoute path='/tags/:tagId' component={App} />
               <ProtectedRoute path='/notes/:noteId' component={App} />
               <ProtectedRoute path='/notebooks' component={App} />
               <ProtectedRoute path='/notes' component={App} />

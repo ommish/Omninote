@@ -58,11 +58,12 @@
   border-right: 2px solid $grey;
   position: fixed;
   overflow-y: scroll;
-  -webkit-animation: slideout .4s ease-in;
+  -webkit-animation: slideout .3s ease-in;
   z-index: 30;
 }
 
-.notebook-heading {
+
+.sidemenu-heading {
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid $light-grey;
@@ -72,4 +73,11 @@
     text-transform: uppercase;
     color: $dark-grey;
   }
+}
+
+.sidemenu-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }

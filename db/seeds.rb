@@ -83,3 +83,10 @@ note9 = Note.create!(
   body: "<p>Elephants are herbivorous and can be found in different habitats including <a href=\"/wiki/Savanna\" title=\"Savanna\">savannahs</a>, forests, deserts, and <a href=\"/wiki/Marsh\" title=\"Marsh\">marshes</a>. They prefer to stay near water. They are considered to be <a href=\"/wiki/Keystone_species\" title=\"Keystone species\">keystone species</a> due to their impact on their environments.</p>",
   notebook_id: elephants.id
 )
+
+
+tag1 = Tag.create!(user_id: demo.id, title: "basics", note_ids: [note7.id, note9.id])
+tag2 = Tag.create!(user_id: demo.id, title: "behavior", note_ids: [note5.id, note2.id, note3.id, note9.id])
+tag3 = Tag.create!(user_id: demo.id, title: "diet", note_ids: [note9.id, note7.id])
+tag4 = Tag.create!(user_id: demo.id, title: "types", note_ids: [note1.id])
+tag5 = Tag.create!(user_id: demo.id, title: "captivity", note_ids: [])

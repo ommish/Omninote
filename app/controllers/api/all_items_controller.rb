@@ -1,7 +1,7 @@
 class Api::AllItemsController < ApplicationController
   def index
-    @notes = current_user.notes
-    @notebooks = current_user.notebooks
-    @tags = current_user.tags
+    @notebooks = current_user.notebooks.includes(:notes)
+    @notes = current_user.notes.includes(:tags)
+    @tags = current_user.tags.includes(:notes)
   end
 end
