@@ -4,11 +4,19 @@ export const TOGGLE_SELECTED_NOTEBOOK = "TOGGLE_SELECTED_NOTEBOOK";
 export const TOGGLE_SELECTED_NOTE = "TOGGLE_SELECTED_NOTE";
 export const TOGGLE_MODAL = "TOGGLE_MODAL";
 export const TOGGLE_SIDEMENU = "TOGGLE_SIDEMENU";
+export const TOGGLE_SIDEMENU_ITEM_TYPE =  "TOGGLE_SIDEMENU_ITEM_TYPE";
 
 export const toggleModal = (modalName) => {
   return {
     type: TOGGLE_MODAL,
     modalName,
+  };
+};
+
+export const toggleSidemenuItemType = (itemType) => {
+  return {
+    type: TOGGLE_SIDEMENU_ITEM_TYPE,
+    itemType,
   };
 };
 

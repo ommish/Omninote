@@ -2,14 +2,11 @@ import { connect } from 'react-redux';
 import SideNav from './sidenav';
 import { logout } from '../../actions/session_actions';
 import { withRouter } from 'react-router-dom';
-import { toggleSelectedNote, toggleModal, toggleSidemenu } from '../../actions/ui_actions';
+import { toggleSelectedNote, toggleModal, toggleSidemenu, toggleSidemenuItemType } from '../../actions/ui_actions';
 
 const mapStateToProps = (state) => {
   return {
-    // UI slices of state to render changes in sidemenu
-        // notebookmenu
-        // tagmenu
-        // fullscreen editor
+    sidemenuItemType: state.ui.sidemenuItemType,
   };
 };
 
@@ -19,6 +16,7 @@ const mapDispatchToProps = (dispatch) => {
     logout: () => dispatch(logout()),
     toggleSelectedNote: () => dispatch(toggleSelectedNote({id: null})),
     toggleFullEditor: () => dispatch(toggleModal("fullEditor")),
+    toggleSidemenuItemType: (itemType) => dispatch(toggleSidemenuItemType(itemType)),
     toggleSidemenu: () => dispatch(toggleSidemenu()),
   };
 };

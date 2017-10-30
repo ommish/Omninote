@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NBSidemenu from '../sidemenu/sidemenu_notebook_container';
-import TagSidemenu from '../sidemenu/sidemenu_tag_container';
+import Sidemenu from '../sidemenu/sidemenu_container';
 
 class SideNav extends React.Component {
 
@@ -28,10 +27,22 @@ class SideNav extends React.Component {
     this.props.toggleFullEditor();
   }
 
-  render () {
+  toggleSidemenu(itemType) {
+    return (e) => {
+      if (itemType === "tag") {
+        this.props.toggleSidemenuItemType("tag");
+      } else if (itemType === "notebook"){
+      this.props.toggleSidemenuItemType("notebook");
+      }
+    this.props.toggleSidemenu();
+  };
+  }
 
+  render () {
     return (
-      [<nav key={1} className="sidenav">
+      [<nav
+        className="sidenav"
+        key={1}>
       <ul className="sidenav-icon-list">
         <li>
           <img
@@ -59,7 +70,7 @@ class SideNav extends React.Component {
         <li>
           <button
             className="circle-button"
-            onClick={this.props.toggleSidemenu}>
+            onClick={this.toggleSidemenu("notebook")}>
             <img
               className="sidenav-icon"
               src={window.staticAssets.notebook}/>
@@ -68,7 +79,7 @@ class SideNav extends React.Component {
         <li>
           <button
             className="circle-button"
-            onClick={this.props.toggleSidemenu}>
+            onClick={this.toggleSidemenu("tag")}>
             <img
               className="sidenav-icon"
               src={window.staticAssets.tag}/>
@@ -85,10 +96,11 @@ class SideNav extends React.Component {
         </li>
       </ul>
     </nav>,
-    <NBSidemenu key={2}/>]
+    <Sidemenu
+      itemType={this.props.sidemenuItemType}
+      key={2}/>]
     );
   }
-
 }
 
 export default SideNav;

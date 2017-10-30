@@ -5,9 +5,9 @@ import { toggleModal, toggleSidemenu } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    items: Object.values(state.entities.tags),
+    items: ownProps.itemType === "notebook" ? Object.values(state.entities.notebooks) : Object.values(state.entities.tags),
     sidemenu: state.ui.sidemenu,
-    itemType: "tag",
+    itemType: ownProps.itemType,
     sidemenuOpen: ((state.ui.sidemenu !== "hidden") && (state.ui.sidemenu !== "closed-sidemenu"))
   };
 };
