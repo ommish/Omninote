@@ -1,1 +1,46 @@
 @import "variables";
+
+.tag-index-item {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.tag-trash-icon {
+  background: $light-green;
+  padding: 3px;
+  border-radius: 5px;
+  height: 20px;
+  width: auto;
+  cursor: pointer;
+}
+
+.tag-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px solid $grey;
+  background: $light-grey;
+  color: $dark-grey;
+
+  p:last-of-type {
+    color: $light-green;
+  }
+}
+
+.tag-details:hover {
+  background: $light-green;
+  color: white;
+}

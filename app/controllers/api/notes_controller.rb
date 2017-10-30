@@ -4,25 +4,17 @@ class Api::NotesController < ApplicationController
     @note = current_user.notes.find(params[:id])
     @notebooks = [@note.notebook]
     @tags = @note.tags
-    @note.destroy!
-    # when receiving notebooks and tags, just merge into old state (will arrays be merged or replaced??)
-    # will @notebook and @tags have updated @noteIds??
     render :show
+    @note.destroy!
   end
 
   def update
-    # if @note.notebook_id == note_params[:notebook_id].to_i
-    #   @prev_notebook = null
-    # else
-    #   @prev_notebook = @note.notebook_id
-    # end
     @note = current_user.notes.find(params[:id])
     @notebooks = [@note.notebook]
     prev_tags = @note.tags
     if @note.update(note_params)
       @notebooks.push(@note.notebook)
-      @tags = @note.tags + prev_tags
-      # are @prev tags and @notebook updated by now?
+      @tags = (@note.tags + prev_tags).uniq
       render :show
     else
       render json: @note.errors.full_messages, status: 422
@@ -42,8 +34,7 @@ class Api::NotesController < ApplicationController
 
   def note_params
     params.require(:note).permit(:title, :body, :body_plain, :notebook_id, :id,
-    :created_at, :updated_at, :prev_notebook, tag_ids: [])
-    # shouldn't need prev-notebook
+    :created_at, :updated_at, tag_ids: [])
   end
 
 end

@@ -22,60 +22,62 @@ class DeleteForm extends React.Component {
       if (parseInt(this.props.match.params.notebookId) === this.props.item.id) {
         this.redirect('/notes');
       }
+    } else if (this.props.itemType === "tag") {
+      if (parseInt(this.props.match.params.tagId) === this.props.item.id) {
+        this.redirect('/notes');
+      }
     } else if (this.props.itemType === "note") {
-      // location correct, but noteId param not defined here ??
-      if (parseInt(this.props.match.params.noteId) === this.props.item.id) {
-        if (this.props.match.params.notebookId) {
-          this.redirect(`/notebooks/${this.props.match.params.notebookId}`);
-        } else {
-          this.redirect('/notes');
+        // location correct, but noteId param not defined here ??
+        if (parseInt(this.props.match.params.noteId) === this.props.item.id) {
+          if (this.props.match.params.notebookId) {
+            this.redirect(`/notebooks/${this.props.match.params.notebookId}`);
+          } else {
+            this.redirect('/notes');
+          }
         }
       }
+      this.props.deleteItem(this.props.item.id).then(() => {
+        this.closeModal();
+      });
     }
-    this.props.deleteItem(this.props.item.id).then(() => {
+
+    handleCancel(e) {
       this.closeModal();
-    });
-  }
+    }
 
-  handleCancel(e) {
-    this.closeModal();
-  }
+    closeModal () {
+      this.props.toggleDeleteForm(false);
+    }
 
-  closeModal () {
-    this.props.toggleDeleteForm(false);
-  }
+    componentWillReceiveProps (newProps) {
+      if (!this.props.deleteFormId && newProps.deleteFormId) {
+        this.setState(newProps);
+      }
+    }
 
-// deleting note redirects to that note's page!!
-
-  componentWillReceiveProps (newProps) {
-    if (!this.props.deleteFormId && newProps.deleteFormId) {
-      this.setState(newProps);
+    render() {
+      return (
+        <Modal
+          isOpen={(this.props.deleteFormId === this.props.item.id)}
+          onRequestClose={this.closeModal}
+          className="full-form-open"
+          overlayClassName='full-form-overlay'>
+          <div className="full-form" >
+            <div className="full-form-header">{this.props.formTitle}</div>
+            <div className="full-form-message">{this.props.formMessage}</div>
+            <div className="full-form-button-container">
+              <button onClick={this.handleCancel}
+                className="square-button grey-button small">
+                Cancel</button>
+              <button
+                onClick={this.handleSubmit}
+                className={"square-button small"}>
+                Delete</button>
+            </div>
+          </div>
+        </Modal>
+      );
     }
   }
 
-  render() {
-    return (
-      <Modal
-        isOpen={(this.props.deleteFormId === this.props.item.id)}
-        onRequestClose={this.closeModal}
-        className="full-form-open"
-        overlayClassName='full-form-overlay'>
-        <div className="full-form" >
-          <div className="full-form-header">{this.props.formTitle}</div>
-          <div className="full-form-message">{this.props.formMessage}</div>
-          <div className="full-form-button-container">
-            <button onClick={this.handleCancel}
-              className="square-button grey-button small">
-              Cancel</button>
-            <button
-              onClick={this.handleSubmit}
-              className={"square-button small"}>
-              Delete</button>
-          </div>
-        </div>
-      </Modal>
-    );
-  }
-}
-
-export default DeleteForm;
+  export default DeleteForm;

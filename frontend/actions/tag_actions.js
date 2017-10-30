@@ -1,17 +1,18 @@
-import * as TagUtil from '../util/notebook_api_util';
+import * as TagUtil from '../util/tag_api_util';
 
 export const RECEIVE_TAG = "RECEIVE_TAG";
 export const REMOVE_TAG = "REMOVE_TAG";
 export const RECEIVE_TAG_ERRORS = "RECEIVE_TAG_ERRORS";
 
-export const receiveTag = (newTag) => {
+export const receiveTag = (tag) => {
   return {
     type: RECEIVE_TAG,
-    tag: newTag
+    tag,
   };
 };
 
 export const removeTag = (tag) => {
+  debugger
   return {
     type: REMOVE_TAG,
     tag,

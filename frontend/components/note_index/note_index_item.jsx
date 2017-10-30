@@ -11,9 +11,14 @@ class NoteIndexItem extends React.Component {
         this.props.toggleDeleteForm(id);
       } else {
         e.stopPropagation();
-        const path = this.props.match.params.notebookId ?
-        `/notebooks/${this.props.match.params.notebookId}/notes/${this.props.note.id}` :
-        `/notes/${this.props.note.id}`;
+        let path;
+        if (this.props.match.params.notebookId) {
+          path = `/notebooks/${this.props.match.params.notebookId}/notes/${this.props.note.id}`;
+        } else if (this.props.match.params.tagId) {
+          path = `/tags/${this.props.match.params.tagId}/notes/${this.props.note.id}`;
+        } else {
+          path = `/notes/${this.props.note.id}`;
+        }
         this.props.history.push(path);
       }
     };
@@ -36,7 +41,7 @@ class NoteIndexItem extends React.Component {
             <div>
               <img
                 id="delete"
-                className="trash-icon"
+                className="note-trash-icon"
                 onClick={this.handleClick(this.props.note.id)}
                 src={window.staticAssets.trash}/>
             </div>

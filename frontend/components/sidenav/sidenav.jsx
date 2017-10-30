@@ -12,6 +12,9 @@ class SideNav extends React.Component {
   }
 
   redirectToAllNotes() {
+    if (this.props.sidemenuOpen) {
+      this.props.toggleSidemenu();
+    }
     this.props.history.push('/notes');
   }
 
@@ -38,7 +41,7 @@ class SideNav extends React.Component {
       } else if (itemType === "notebook"){
         this.props.toggleSidemenuItemType("notebook");
       }
-  };
+    };
   }
 
   render () {

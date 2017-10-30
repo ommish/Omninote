@@ -2,10 +2,11 @@ import Sidemenu from './sidemenu';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { toggleModal, toggleSidemenu } from '../../actions/ui_actions';
+import { sortNotes } from '../../util/sorters';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    items: ownProps.itemType === "notebook" ? Object.values(state.entities.notebooks) : Object.values(state.entities.tags),
+    items: ownProps.itemType === "notebook" ? Object.values(state.entities.notebooks) : sortNotes((Object.values(state.entities.tags)), 4),
     sidemenu: state.ui.sidemenu,
     itemType: ownProps.itemType,
     sidemenuOpen: ((state.ui.sidemenu !== "hidden") && (state.ui.sidemenu !== "closed-sidemenu"))

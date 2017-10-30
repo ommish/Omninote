@@ -1,4 +1,4 @@
-import { RECEIVE_TAG, REMOVE_TAG } from '../actions/notebook_actions';
+import { RECEIVE_TAG, REMOVE_TAG } from '../actions/tag_actions';
 import { RECEIVE_ALL_ENTITIES } from '../actions/entity_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_NOTE, REMOVE_NOTE } from '../actions/note_actions';

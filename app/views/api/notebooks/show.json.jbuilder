@@ -1,3 +1,1 @@
-json.notebook do
-  json.partial! 'notebook', notebook: @notebook
-end
+json.partial! 'notebook', notebook: @notebook

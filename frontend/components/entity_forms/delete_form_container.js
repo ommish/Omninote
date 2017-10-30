@@ -2,6 +2,7 @@ import DeleteForm from './delete_form';
 import { connect } from 'react-redux';
 import { deleteNotebook } from '../../actions/notebook_actions';
 import { deleteNote } from '../../actions/note_actions';
+import { deleteTag } from '../../actions/tag_actions';
 import { toggleDeleteForm } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
 
@@ -10,7 +11,6 @@ const mapStateToProps = (state, ownProps) => {
     formTitle: `DELETE ${ownProps.itemType}`,
     deleteFormId: state.ui.deleteForm.id,
     formMessage: `Are you sure you want to delete ${ownProps.item.title}?`,
-    selectedNotebook: state.ui.selectedNotebook,
   };
 };
 
@@ -20,6 +20,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     action = deleteNotebook;
   } else if (ownProps.itemType === "note") {
     action = deleteNote;
+  } else if (ownProps.itemType === "tag") {
+    action = deleteTag;
   }
   return {
     deleteItem: (id) => dispatch(action(id)),

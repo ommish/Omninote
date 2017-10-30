@@ -26,20 +26,8 @@ const NotebooksReducer = (oldState = initialState, action) => {
     return newState;
     case RECEIVE_NOTE:
     return Object.assign({}, oldState, action.notebooks);
-    // // add note to notebook's noteIds
-    // if (!newState[action.note.notebookId].noteIds.includes(action.note.id)) {
-    //   newState[action.note.notebookId].noteIds.push(action.note.id);
-    // }
-    // // remove note from previous notebook's noteIds
-    // if (action.note.prevNotebook) {
-    //   newState[action.note.prevNotebook].noteIds =
-    //     newState[action.note.prevNotebook].noteIds.filter((id) => id !== action.note.id);
-    // }
     case REMOVE_NOTE:
     return Object.assign({}, oldState, action.notebooks);
-    // const noteId = action.note.id;
-    // newState[action.note.notebookId].noteIds = newState[action.note.notebookId].noteIds
-    //   .filter((id) => id !== (noteId));
     default:
     return oldState;
   }

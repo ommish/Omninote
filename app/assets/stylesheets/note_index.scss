@@ -21,6 +21,8 @@
   font-family: 'Roboto Slab', serif;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+
 }
 
 .note-item {
@@ -89,4 +91,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
+}
+
+
+.note-trash-icon {
+  height: 20px;
+  margin: 5px;
+  width: auto;
+  position: float;
 }

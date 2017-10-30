@@ -1,5 +1,6 @@
 import { RECEIVE_NOTE, REMOVE_NOTE } from '../actions/note_actions';
 import { REMOVE_NOTEBOOK } from '../actions/notebook_actions';
+import { REMOVE_TAG } from '../actions/tag_actions';
 import { RECEIVE_ALL_ENTITIES } from '../actions/entity_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 
@@ -20,6 +21,12 @@ const NotesReducer = (oldState = initialState, action) => {
     case REMOVE_NOTEBOOK:
     newState = Object.assign({}, oldState);
     action.notebook.noteIds.forEach((noteId) => {
+      delete newState[noteId];
+    });
+    return newState;
+    case REMOVE_TAG:
+    newState = Object.assign({}, oldState);
+    action.tag.noteIds.forEach((noteId) => {
       delete newState[noteId];
     });
     return newState;

@@ -25,7 +25,8 @@ class SidemenuIndexItem extends React.Component {
     let details;
     if (this.props.itemType === "notebook") {
       details = (
-      <ul className="notebook-details">
+      <ul className="notebook-details"
+        onClick={this.handleClick(this.props.item.id)}>
         <li><h3>{this.props.item.title}</h3></li>
       <li>{new Date(this.props.item.updatedAt).toDateString()}</li>
     <li>{this.props.item.noteIds.length} notes</li>
@@ -33,23 +34,27 @@ class SidemenuIndexItem extends React.Component {
     );
   }else {
     details = (
-      <section className="tag-details">
-        <h3>{this.props.item.title}<p>{this.props.item.noteIds.length}</p></h3>
-      </section>
+      <button className="tag-details"
+        onClick={this.handleClick(this.props.item.id)}>
+        <p>{`${this.props.item.title}  `}</p>
+        <p>{this.props.item.noteIds.length}</p>
+      </button>
     );
   }
 
     return (
       [
-        <li key={1} className={`${this.props.itemType}-index-item`} onClick={this.handleClick(this.props.item.id)}>
+        <li key={1}
+          className={`${this.props.itemType}-index-item`}>
           {details}
-          <img
-            id="delete"
-            className="trash-icon"
+          <img id="delete"
+            className={`${this.props.itemType}-trash-icon`}
             onClick={this.handleClick(this.props.item.id)}
             src={window.staticAssets.trash}/>
         </li>,
-        <DeleteForm key={2} item={this.props.item} itemType={this.props.itemType} />]
+        <DeleteForm key={2}
+          item={this.props.item}
+          itemType={this.props.itemType} />]
         );
       }
     }
