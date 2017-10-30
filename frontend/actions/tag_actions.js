@@ -12,7 +12,6 @@ export const receiveTag = (tag) => {
 };
 
 export const removeTag = (tag) => {
-  debugger
   return {
     type: REMOVE_TAG,
     tag,
