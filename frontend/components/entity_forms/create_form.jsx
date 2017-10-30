@@ -59,7 +59,7 @@ class CreateForm extends React.Component {
 
   render() {
     let errors = this.state.errors || [];
-    errors = errors.map((error, i) => <li key={i}>{error}</li>);
+    errors = errors.map((error, i) => <li className="create-errors" key={i}>{error}</li>);
     return (
       <Modal
         isOpen={this.props.createFormOpen}

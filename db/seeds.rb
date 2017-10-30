@@ -25,86 +25,61 @@ indian = Notebook.create!(title: "Indian Elephant", user_id: demo.id)
 
 note1 = Note.create!(
   title: "Three species",
-  body_plain: "hree species are currently recognized: the African bush elephant (Loxodonta africana), the African forest elephant (L. cyclotis), and the Asian elephant (Elephas maximus).
-  https://en.wikipedia.org/wiki/Elephant",
-  body: "Three species are currently recognized: the African bush elephant (Loxodonta africana), the African forest elephant (L. cyclotis), and the Asian elephant (Elephas maximus).
-  https://en.wikipedia.org/wiki/Elephant",
+  body_plain: "Elephants are large mammals of the family Elephantidae and the order Proboscidea.
+  Three species are currently recognized: the African bush elephant (Loxodonta africana),
+  the African forest elephant (L. cyclotis), and the Asian elephant (Elephas maximus).
+  Elephants are scattered throughout sub-Saharan Africa, South Asia, and Southeast Asia.
+  Elephantidae is the only surviving family of the order Proboscidea; other, now extinct,
+  members of the order include deinotheres, gomphotheres, mammoths, and mastodons.",
+  body: "<p><b>Elephants</b> are large mammals of the family <a href=\"/wiki/Elephantidae\" title=\"Elephantidae\">Elephantidae</a>and the order <a href=\"/wiki/Proboscidea\" title=\"Proboscidea\">Proboscidea</a>. Three species are currently recognized: the <a href=\"/wiki/African_bush_elephant\" title=\"African bush elephant\">African bush elephant</a> (<i>Loxodonta africana</i>), the <a href=\"/wiki/African_forest_elephant\" title=\"African forest elephant\">African forest elephant</a> (<i>L. cyclotis</i>), and the <a href=\"/wiki/Asian_elephant\" title=\"Asian elephant\">Asian elephant</a> (<i>Elephas maximus</i>). Elephants are scattered throughout <a href=\"/wiki/Sub-Saharan_Africa\" title=\"Sub-Saharan Africa\">sub-Saharan Africa</a>, <a href=\"/wiki/South_Asia\" title=\"South Asia\">South Asia</a>, and <a href=\"/wiki/Southeast_Asia\" title=\"Southeast Asia\">Southeast Asia</a>. Elephantidae is the only surviving family of the order Proboscidea; other, now extinct, members of the order include <a href=\"/wiki/Deinotheriidae\" title=\"Deinotheriidae\">deinotheres</a>, <a href=\"/wiki/Gomphothere\" title=\"Gomphothere\">gomphotheres</a>, <a href=\"/wiki/Mammoth\" title=\"Mammoth\">mammoths</a>, and <a href=\"/wiki/Mastodon\" title=\"Mastodon\">mastodons</a>.</p>",
   notebook_id: elephants.id
 )
 note2 = Note.create!(
-  title: "Only surviving family",
-  body_plain: "Elephantidae is the only surviving family of the order Proboscidea; other, now extinct, members of the order include deinotheres, gomphotheres, mammoths, and mastodons.
-  https://en.wikipedia.org/wiki/Elephant",
-  body: "Elephantidae is the only surviving family of the order Proboscidea; other, now extinct, members of the order include deinotheres, gomphotheres, mammoths, and mastodons.
-  https://en.wikipedia.org/wiki/Elephant",
+  title: "Reproduction",
+  body_plain: "Mating Season: Mostly during the rainy season.
+Gestation: 22 months.
+Litter size: 1 calf (twins rare).
+Calves weigh between 200-250 lbs at birth. At birth, a calf's trunk has no muscle tone, therefore it will suckle through its mouth. It takes several months for a calf to gain full control of its trunk. http://www.defenders.org/elephant/basic-facts",
+  body: "<p><strong>Mating Season:</strong> Mostly during the rainy season.<br><strong>Gestation:</strong> 22 months.<br><strong>Litter size:</strong> 1 calf (twins rare).<br>
+	Calves weigh between 200-250 lbs at birth. At birth, a calf's trunk has no muscle tone, therefore it will suckle through its mouth. It takes several months for a calf to gain full control of its trunk.</p><a href=\"http://www.defenders.org/elephant/basic-facts\"/> ",
   notebook_id: elephants.id
 )
 note3 = Note.create!(
   title: "Fission-fusion society",
-  body_plain: "Elephants have a fission–fusion society in which multiple family groups come together to socialise. Males ('bulls') leave their family groups when they reach puberty and may live alone or with other males.
-  https://en.wikipedia.org/wiki/Elephant",
-  body: "{Elephants have a fission–fusion society in which multiple family groups come together to socialise. Males ('bulls') leave their family groups when they reach puberty and may live alone or with other males.
-  https://en.wikipedia.org/wiki/Elephant",
+  body_plain: "Elephants have a fission–fusion society in which multiple family groups come together to socialise. Males (\"bulls\") leave their family groups when they reach puberty and may live alone or with other males. Adult bulls mostly interact with family groups when looking for a mate and enter a state of increased testosterone and aggression known as musth, which helps them gain dominance and reproductive success.",
+  body: "<p>Elephants have a <a href=\"/wiki/Fission%E2%80%93fusion_society\" title=\"Fission–fusion society\">fission–fusion society</a> in which multiple family groups come together to socialise. Males (\"bulls\") leave their family groups when they reach puberty and may live alone or with other males.</p>",
   notebook_id: elephants.id
 )
 note4 = Note.create!(
   title: "They're teeth",
-  body_plain: "Tusks are elongated, continuously growing front teeth, usually but not always in pairs, that protrude well beyond the mouth of certain mammal species. They are most commonly canines, as with warthogs, pig, and walruses, or, in the case of elephants, elongated incisors.
-  https://en.wikipedia.org/wiki/Tusk",
-  body: "Tusks are elongated, continuously growing front teeth, usually but not always in pairs, that protrude well beyond the mouth of certain mammal species. They are most commonly canines, as with warthogs, pig, and walruses, or, in the case of elephants, elongated incisors.
-  https://en.wikipedia.org/wiki/Tusk",
+  body_plain: "Their incisors grow into tusks, which can serve as weapons and as tools for moving objects and digging. ",
+  body: "<p>Their <a href=\"/wiki/Incisor\" title=\"Incisor\">incisors</a> grow into tusks, which can serve as weapons and as tools for moving objects and digging.</p>",
   notebook_id: tusk.id
 )
 note5 = Note.create!(
-  title: "Most extict",
-  body_plain: "Most families of Proboscidea are now extinct, many since the end of the last glacial period. Recently extinct species include the last examples of gomphotheres in Central and South America, the American mastodon of family Mammutidae in North America, numerous stegodonts once found in Asia, the last of the mammoths, and several island species of dwarf elephants.[7]
-  https://en.wikipedia.org/wiki/Proboscidea",
-  body: "Most families of Proboscidea are now extinct, many since the end of the last glacial period. Recently extinct species include the last examples of gomphotheres in Central and South America, the American mastodon of family Mammutidae in North America, numerous stegodonts once found in Asia, the last of the mammoths, and several island species of dwarf elephants.[7]
-  https://en.wikipedia.org/wiki/Proboscidea",
+  title: "Intelligence",
+  body_plain: "Elephant intelligence has been compared with that of primates and cetaceans. They appear to have self-awareness and show empathy for dying or dead individuals of their kind.",
+  body: "<p>Elephant <a href=\"/wiki/Elephant_cognition\" title=\"Elephant cognition\">intelligence</a> has been compared with that of <a href=\"/wiki/Primate\" title=\"Primate\">primates</a> and <a href=\"/wiki/Cetacea\" title=\"Cetacea\">cetaceans</a>. They appear to have <a href=\"/wiki/Self-awareness\" title=\"Self-awareness\">self-awareness</a> and show <a href=\"/wiki/Empathy\" title=\"Empathy\">empathy</a> for dying or dead individuals of their kind.</p>",
   notebook_id: proboscidea.id
 )
 note6 = Note.create!(
-  title: "African forest elephant",
-body_plain: "The African forest elephant (Loxodonta cyclotis) is a forest-dwelling species of elephant found in the Congo Basin.  https://en.wikipedia.org/wiki/Eritherium",
-body: "The African forest elephant (Loxodonta cyclotis) is a forest-dwelling species of elephant found in the Congo Basin.  https://en.wikipedia.org/wiki/Eritherium",
-  notebook_id: eritherium.id)
+  title: "Conservation Status",
+  body_plain: "African elephants are listed as vulnerable by the International Union for Conservation of Nature (IUCN) while the Asian elephant is classed as endangered. One of the biggest threats to elephant populations is the ivory trade, as the animals are poached for their ivory tusks.",
+  body: "<p>African elephants are listed as <a href=\"/wiki/Vulnerable_species\" title=\"Vulnerable species\">vulnerable</a> by the <a href=\"/wiki/International_Union_for_Conservation_of_Nature\" title=\"International Union for Conservation of Nature\">International Union for Conservation of Nature</a> (IUCN) while the Asian elephant is classed as <a href=\"/wiki/Endangered_species\" title=\"Endangered species\">endangered</a>. One of the biggest threats to elephant populations is the <a href=\"/wiki/Ivory_trade\" title=\"Ivory trade\">ivory trade</a>, as the animals are <a href=\"/wiki/Poaching\" title=\"Poaching\">poached</a> for their ivory tusks.</p>",
+  notebook_id: elephants.id
+  )
 
 note7 = Note.create!(
-  title: "African bush elephant",
-body_plain: "The African bush elephant is the largest and heaviest land animal on Earth, being up to 3.96 m (13.0 ft) tall at the shoulder and 10.4 tonnes (11.5 short tons) in weight (a male shot in 1974, near Mucusso, southern Angola).[5][6]
-https://en.wikipedia.org/wiki/African_bush_elephant",
-body: "The African bush elephant is the largest and heaviest land animal on Earth, being up to 3.96 m (13.0 ft) tall at the shoulder and 10.4 tonnes (11.5 short tons) in weight (a male shot in 1974, near Mucusso, southern Angola).[5][6]
-https://en.wikipedia.org/wiki/African_bush_elephant",
-  notebook_id: elephants.id
-)
-
-note8 = Note.create!(
-  title: "Conservation Status",
-  body_plain: "African elephants were listed as vulnerable by the International Union for Conservation of Nature (IUCN) in 2008, with no independent assessment of the conservation status of the two forms.[163]
-  https://en.wikipedia.org/wiki/Elephant",
-  body: "African elephants were listed as vulnerable by the International Union for Conservation of Nature (IUCN) in 2008, with no independent assessment of the conservation status of the two forms.[163]
-  https://en.wikipedia.org/wiki/Elephant",
-  notebook_id: elephants.id
-)
-
-note10 = Note.create!(
-  title: "Herbivores",
-  body_plain: "Elephants are herbivorous and can be found in different habitats including savannahs, forests, deserts, and marshes. They prefer to stay near water. They are considered to be keystone species due to their impact on their environments. Other animals tend to keep their distance from elephants while predators, such as lions, tigers, hyenas, and any wild dogs, usually target only young elephants (or 'calves').
-  https://en.wikipedia.org/wiki/Elephant ",
-  body: "Elephants are herbivorous and can be found in different habitats including savannahs, forests, deserts, and marshes. They prefer to stay near water. They are considered to be keystone species due to their impact on their environments. Other animals tend to keep their distance from elephants while predators, such as lions, tigers, hyenas, and any wild dogs, usually target only young elephants (or 'calves').
-  https://en.wikipedia.org/wiki/Elephant ",
+  title: "Diet Staples",
+  body_plain: "DIET
+Staples: Grasses, leaves, bamboo, bark, roots. Elephants are also known to eat crops like banana and sugarcane which are grown by farmers. Adult elephants eat 300-400 lbs of food per day. http://www.defenders.org/elephant/basic-facts",
+  body: "<p><strong>Staples:</strong> Grasses, leaves, bamboo, bark, roots. Elephants are also known to eat crops like banana and sugarcane which are grown by farmers. Adult elephants eat 300-400 lbs of food per day.</p><a href=\"http://www.defenders.org/elephant/basic-facts\"/>",
   notebook_id: elephants.id
 )
 
 note9 = Note.create!(
-  title: "Basics",
-  body_plain: "The first elephant species to be tamed was the Asian elephant, for use in agriculture. Elephant taming – not full domestication, as they are still captured in the wild, rather than being bred in captivity – may have begun in any of three different places. The oldest evidence comes from the Indus Valley Civilization, around roughly 4500 BC.[2] Archaeological evidence for the presence of wild elephants in the Yellow River valley in Shang China (1600–1100 BC) may suggest that they also used elephants in warfare.[3] The wild elephant populations of Mesopotamia and China declined quickly because of deforestation and human population growth: by c. 850 BC the Mesopotamian elephants were extinct, and by c. 500 BC the Chinese elephants were seriously reduced in numbers and limited to areas well south of the Yellow River.
-
-Capturing elephants from the wild remained a difficult task, but a necessary one given the difficulties of breeding in captivity and the long time required for an elephant to reach sufficient maturity to engage in battle. It is commonly thought that all war elephants were male because of males' greater aggression, but it is rather because a female elephant in battle will run from a male; therefore only males could be used in war, whereas female elephants were more commonly used for logistics.[4]
-https://en.wikipedia.org/wiki/War_elephant",
-body: "The first elephant species to be tamed was the Asian elephant, for use in agriculture. Elephant taming – not full domestication, as they are still captured in the wild, rather than being bred in captivity – may have begun in any of three different places. The oldest evidence comes from the Indus Valley Civilization, around roughly 4500 BC.[2] Archaeological evidence for the presence of wild elephants in the Yellow River valley in Shang China (1600–1100 BC) may suggest that they also used elephants in warfare.[3] The wild elephant populations of Mesopotamia and China declined quickly because of deforestation and human population growth: by c. 850 BC the Mesopotamian elephants were extinct, and by c. 500 BC the Chinese elephants were seriously reduced in numbers and limited to areas well south of the Yellow River.
-
-Capturing elephants from the wild remained a difficult task, but a necessary one given the difficulties of breeding in captivity and the long time required for an elephant to reach sufficient maturity to engage in battle. It is commonly thought that all war elephants were male because of males' greater aggression, but it is rather because a female elephant in battle will run from a male; therefore only males could be used in war, whereas female elephants were more commonly used for logistics.[4]
-https://en.wikipedia.org/wiki/War_elephant",
-  notebook_id: war_elephants.id
+  title: "Herbivores",
+  body_plain: "Elephants are herbivorous and can be found in different habitats including savannahs, forests, deserts, and marshes. They prefer to stay near water. They are considered to be keystone species due to their impact on their environments. ",
+  body: "<p>Elephants are herbivorous and can be found in different habitats including <a href=\"/wiki/Savanna\" title=\"Savanna\">savannahs</a>, forests, deserts, and <a href=\"/wiki/Marsh\" title=\"Marsh\">marshes</a>. They prefer to stay near water. They are considered to be <a href=\"/wiki/Keystone_species\" title=\"Keystone species\">keystone species</a> due to their impact on their environments.</p>",
+  notebook_id: elephants.id
 )

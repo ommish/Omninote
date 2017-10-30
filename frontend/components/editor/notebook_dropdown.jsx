@@ -39,7 +39,7 @@ class NotebookDropdown extends React.Component {
           {this.props.selectedNotebook.id ?
             this.props.allNotebooks.filter((notebook) => (
             notebook.id === this.props.selectedNotebook.id
-          ))[0].title : "Select Notebook"}▾
+          ))[0].title : "Select Notebook"} ▾
         </button>
         <Modal
           isOpen={this.props.notebookDropdown}

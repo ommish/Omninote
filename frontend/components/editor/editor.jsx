@@ -42,25 +42,20 @@ class Editor extends React.Component {
   // prevent errors from trying to load content before fetch complete
   componentWillMount() {
     if (!this.state) {
-      this.setState({ title: "", body: {}, bodyPlain: "", notebookId: this.props.selectedNotebook.id});
+      this.setState({ title: "", body: "", bodyPlain: "", notebookId: this.props.selectedNotebook.id});
     }
   }
 
-  // Prefill editor
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
       this.setState(newProps.note);
     }
   }
 
-
   handleBodyChange (content, delta, source, editor) {
     const newState = merge({}, this.state);
-    newState.body = editor.getContents();
-    newState.body_plain = editor.getText().trim();
-    this.setState(newState);
+    this.setState({body: content, bodyPlain: editor.getText().trim()});
   }
-
 
   handleTitleChange(e) {
     let newState = merge({}, this.state);
@@ -71,9 +66,7 @@ class Editor extends React.Component {
   handleSubmit() {
     let newState = merge({}, this.state);
     newState.notebookId = this.props.selectedNotebook.id;
-    newState.body = JSON.stringify(newState.body); // can't save- quill error unless I do this ?
     this.props.action(newState);
-    // this.setState({ title: "", body: {}, bodyPlain: "", notebookId: this.props.selectedNotebook.id});
     if (this.props.fullEditor) {
       this.props.toggleFullEditor();
     }
@@ -110,15 +103,15 @@ class Editor extends React.Component {
             </div>
           </div>
           <ReactQuill
-            value={this.state.body}
             id="quill"
             className={this.props.fullEditor ?
               "note-editor-quill full " :
               "note-editor-quill"}
             modules={this.modules}
             formats={this.formats}
+            value={this.state.body}
             onChange={this.handleBodyChange}/>
-        </main>
+                </main>
       );
     }
   }
