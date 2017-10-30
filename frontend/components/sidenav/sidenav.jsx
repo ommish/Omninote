@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Sidemenu from '../sidemenu/sidemenu_container';
@@ -10,6 +8,7 @@ class SideNav extends React.Component {
     super(props);
     this.redirectToAllNotes = this.redirectToAllNotes.bind(this);
     this.newNote = this.newNote.bind(this);
+    this.toggleSidemenu = this.toggleSidemenu.bind(this);
   }
 
   redirectToAllNotes() {
@@ -29,12 +28,16 @@ class SideNav extends React.Component {
 
   toggleSidemenu(itemType) {
     return (e) => {
+      if ((itemType === this.props.sidemenuItemType) && (this.props.sidemenuOpen)) {
+        this.props.toggleSidemenu();
+      } else if (!this.props.sidemenuOpen) {
+        this.props.toggleSidemenu();
+      }
       if (itemType === "tag") {
         this.props.toggleSidemenuItemType("tag");
       } else if (itemType === "notebook"){
-      this.props.toggleSidemenuItemType("notebook");
+        this.props.toggleSidemenuItemType("notebook");
       }
-    this.props.toggleSidemenu();
   };
   }
 

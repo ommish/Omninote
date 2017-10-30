@@ -7,6 +7,7 @@ import { toggleSelectedNote, toggleModal, toggleSidemenu, toggleSidemenuItemType
 const mapStateToProps = (state) => {
   return {
     sidemenuItemType: state.ui.sidemenuItemType,
+    sidemenuOpen: state.ui.sidemenu === "sidemenu-open",
   };
 };
 
