@@ -34,8 +34,8 @@ const NotebooksReducer = (oldState = initialState, action) => {
     }
     // remove note from previous notebook's noteIds
     if (action.note.prevNotebook) {
-      newState[action.note.notebookId].noteIds =
-        newState[action.note.notebookId].noteIds.filter((id) => id !== action.note.id);
+      newState[action.note.prevNotebook].noteIds =
+        newState[action.note.prevNotebook].noteIds.filter((id) => id !== action.note.id);
     }
     return newState;
     case REMOVE_NOTE:
