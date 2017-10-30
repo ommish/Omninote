@@ -1,28 +1,24 @@
 import * as NoteUtil from '../util/note_api_util';
 
-export const RECEIVE_NOTES = "RECEIVE_NOTES";
 export const RECEIVE_NOTE = "RECEIVE_NOTE";
 export const REMOVE_NOTE = "REMOVE_NOTE";
 export const RECEIVE_NOTE_ERRORS = "RECEIVE_NOTE_ERRORS";
 
-export const receiveNotes = (notes) => {
+export const receiveNote = ({type, note, tags, notebooks}) => {
   return {
-    type: RECEIVE_NOTES,
-    notes,
+    type,
+    note,
+    tags,
+    notebooks,
   };
 };
 
-export const receiveNote = (note) => {
+export const removeNote = ({type, note, tags, notebooks}) => {
   return {
-    type: RECEIVE_NOTE,
+    type,
     note,
-  };
-};
-
-export const removeNote = (note) => {
-  return {
-    type: REMOVE_NOTE,
-    note,
+    tags,
+    notebooks
   };
 };
 
@@ -33,25 +29,10 @@ export const receiveNoteErrors = (errors) => {
   };
 };
 
-
-export const fetchNotes = () => {
-  return (dispatch) => {
-    return NoteUtil.fetchNotes()
-    .then((notes) => dispatch(receiveNotes(notes)));
-  };
-};
-
-export const fetchNote = (noteId) => {
-  return (dispatch) => {
-    return NoteUtil.fetchNote(noteId)
-    .then((noteRes) => dispatch(receiveNote(noteRes)));
-  };
-};
-
 export const deleteNote = (noteId) => {
   return (dispatch) => {
     return NoteUtil.deleteNote(noteId)
-    .then((note) => dispatch(removeNote(note)));
+    .then((noteRes) => dispatch(removeNote(noteRes)));
   };
 };
 

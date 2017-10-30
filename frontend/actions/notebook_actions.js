@@ -4,10 +4,10 @@ export const RECEIVE_NOTEBOOK = "RECEIVE_NOTEBOOK";
 export const REMOVE_NOTEBOOK = "REMOVE_NOTEBOOK";
 export const RECEIVE_NOTEBOOK_ERRORS = "RECEIVE_NOTEBOOK_ERRORS";
 
-export const receiveNotebook = (notebook) => {
+export const receiveNotebook = (newNotebook) => {
   return {
     type: RECEIVE_NOTEBOOK,
-    notebook,
+    notebook: newNotebook,
   };
 };
 
@@ -35,7 +35,7 @@ export const deleteNotebook = (notebookId) => {
 export const createNotebook = (notebook) => {
   return (dispatch) => {
     return NotebookUtil.createNotebook(notebook)
-    .then((notebookRes) => dispatch(receiveNotebook(notebookRes)),
+    .then((newNotebook) => dispatch(receiveNotebook(newNotebook)),
     (errors) => dispatch(receiveNotebookErrors(errors))
   );};
 };
@@ -43,7 +43,7 @@ export const createNotebook = (notebook) => {
 export const updateNotebook = (notebook) => {
   return (dispatch) => {
     return NotebookUtil.updateNotebook(notebook)
-    .then((notebookRes) => dispatch(receiveNotebook(notebookRes)),
+    .then((newNotebook) => dispatch(receiveNotebook(newNotebook)),
     (errors) => dispatch(receiveNotebookErrors(errors))
   );};
 };
