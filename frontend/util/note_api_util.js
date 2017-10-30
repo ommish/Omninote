@@ -1,18 +1,18 @@
 var snakeCase = require('snake-case');
 
-export const fetchNotes = () => {
-  return $.ajax({
-    url: 'api/notes',
-    method: 'get',
-  });
-};
-
-export const fetchNote = (noteId) => {
-  return $.ajax({
-    url: `api/notes/${noteId}`,
-    method: 'get',
-  });
-};
+// export const fetchNotes = () => {
+//   return $.ajax({
+//     url: 'api/notes',
+//     method: 'get',
+//   });
+// };
+//
+// export const fetchNote = (noteId) => {
+//   return $.ajax({
+//     url: `api/notes/${noteId}`,
+//     method: 'get',
+//   });
+// };
 
 export const createNote = (note) => {
   const snakeCaseNote = {};

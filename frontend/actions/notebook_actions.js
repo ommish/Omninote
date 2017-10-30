@@ -1,30 +1,20 @@
 import * as NotebookUtil from '../util/notebook_api_util';
 
-export const RECEIVE_NOTEBOOKS = "RECEIVE_NOTEBOOKS";
 export const RECEIVE_NOTEBOOK = "RECEIVE_NOTEBOOK";
 export const REMOVE_NOTEBOOK = "REMOVE_NOTEBOOK";
 export const RECEIVE_NOTEBOOK_ERRORS = "RECEIVE_NOTEBOOK_ERRORS";
 
-export const receiveNotebooks = (notebooks) => {
-  return {
-    type: RECEIVE_NOTEBOOKS,
-    notebooks,
-  };
-};
-
-export const receiveNotebook = (notebookRes) => {
+export const receiveNotebook = (notebook) => {
   return {
     type: RECEIVE_NOTEBOOK,
-    notebook: notebookRes.notebook,
-    notes: notebookRes.notes,
+    notebook,
   };
 };
 
-export const removeNotebook = (notebookRes) => {
+export const removeNotebook = (notebook) => {
   return {
     type: REMOVE_NOTEBOOK,
-    notebook: notebookRes.notebook,
-    notes: notebookRes.notes,
+    notebook,
   };
 };
 
@@ -32,22 +22,6 @@ export const receiveNotebookErrors = (errors) => {
   return {
     type: RECEIVE_NOTEBOOK_ERRORS,
     errors: errors.responseJSON,
-  };
-};
-
-export const fetchNotebooks = () => {
-  return (dispatch) => {
-    return NotebookUtil.fetchNotebooks()
-    .then((notebooks) => dispatch(receiveNotebooks(notebooks)));
-  };
-};
-
-export const fetchNotebook = (notebookId) => {
-  return (dispatch) => {
-    return NotebookUtil.fetchNotebook(notebookId)
-    .then((notebookRes) => {
-      dispatch(receiveNotebook(notebookRes));
-    });
   };
 };
 
