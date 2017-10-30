@@ -45,6 +45,8 @@ class DeleteForm extends React.Component {
     this.props.toggleDeleteForm(false);
   }
 
+// deleting note redirects to that note's page!!
+
   componentWillReceiveProps (newProps) {
     if (!this.props.deleteFormId && newProps.deleteFormId) {
       this.setState(newProps);

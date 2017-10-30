@@ -1,17 +1,5 @@
 @import "variables";
 
-.sidemenu-overlay {
-  height: 100%;
-  width: 100%;
-  top: 0px;
-  left: 65px;
-  background-color: rgba(255, 255, 255, 0.81);
-  position: absolute;
-  overflow: hidden;
-  z-index: 30;
-  -webkit-animation: fadein .4s ease-in;
-}
-
 @-webkit-keyframes slideout {
   from { left: -430px; }
   to { left: 0px; }
@@ -27,12 +15,25 @@
   to { transform: translateX(0); }
 }
 
+// for initial state
+.hidden {
+  display: none;
+}
+
 .closed-sidemenu-overlay {
   display: none;
 }
 
-.hidden {
-  display: none;
+.sidemenu-overlay {
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 65px;
+  background-color: rgba(255, 255, 255, 0.81);
+  position: absolute;
+  overflow: hidden;
+  z-index: 30;
+  -webkit-animation: fadein .4s ease-in;
 }
 
 .closed-sidemenu {
@@ -48,11 +49,6 @@
   z-index: 30;
 }
 
-.hidden-sidemenu {
-  display: none;
-}
-
-
 .sidemenu-open {
   background: white;
   left: 65px;
@@ -64,65 +60,62 @@
   overflow-y: scroll;
   -webkit-animation: slideout .4s ease-in;
   z-index: 30;
-
-
-  section:nth-of-type(1) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  h2 {
-    color: $dark-grey;
-    font-weight: 200;
-  }
-
-  h4 {
-    color: $dark-grey;
-    font-family: 'Roboto Slab', serif;
-  }
-
-  li {
-    color: $grey;
-    font-size: 12px;
-    border-bottom: 1px solid $light-grey;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  li:hover {
-    cursor: pointer;
-    background-color: $light-green;
-    p {
-      color: white;
-    }
-
-    h3 {
-      color: white;
-    }
-  }
 }
-
 
 .notebook-heading {
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid $light-grey;
   justify-content: space-between;
-  margin-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
+  h2 {
+    text-transform: uppercase;
+    color: $dark-grey;
+  }
 }
 
-.disabled {
+.notebook-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
-.sidemenu-index-item {
+.notebook-index-item {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  color: $grey;
+  font-size: 12px;
+  border-bottom: 1px solid $light-grey;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
 }
+
+.notebook-index-item:hover {
+  cursor: pointer;
+  background-color: $light-green;
+  li, h3 {
+    color: white;
+  }
+}
+
+.notebook-details {
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $dark-grey;
+  font-weight: 200;
+  font-family: 'Roboto Slab', serif;
+}
+
 
 .trash-icon {
   height: 20px;

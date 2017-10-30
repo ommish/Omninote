@@ -25,13 +25,14 @@ class Sidemenu extends React.Component {
           </button>
           <CreateForm itemType={this.props.itemType} />
         </section>
-        <section>
+        <ul>
           {this.props.items.map((item, i) =>
             <SidemenuIndexItem
+              className={`${this.props.itemType}-list`}
               itemType={this.props.itemType}
               item={item}
               key={i}/>)}
-            </section>
+            </ul>
           </section>
         </div>
       );

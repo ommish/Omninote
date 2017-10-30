@@ -10,15 +10,17 @@ const mapStateToProps = (state, ownProps) => {
   let createFormOpen = state.ui.createForm;
   let notebookDropdownOpen = state.ui.notebookDropdown;
   let errors;
-  let item;
+  let item = { title: "" };
+
   if (ownProps.itemType === "notebook") {
     formMessage = "Title your notebook";
     buttonMessage = "Create notebook";
     errors = state.errors.notebookErrors;
-    item = { title: "" };
   } else {
     formMessage = "Name your tag";
     buttonMessage = "Create tag";
+    errors = state.errors.tagErrors;
+
   }
   return {
     notebookDropdownOpen,

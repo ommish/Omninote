@@ -22,14 +22,27 @@ class SidemenuIndexItem extends React.Component {
   }
 
   render () {
+    let details;
+    if (this.props.itemType === "notebook") {
+      details = (
+      <ul className="notebook-details">
+        <li><h3>{this.props.item.title}</h3></li>
+      <li>{new Date(this.props.item.updatedAt).toDateString()}</li>
+    <li>{this.props.item.noteIds.length} notes</li>
+      </ul>
+    );
+  }else {
+    details = (
+      <section className="tag-details">
+        <h3>{this.props.item.title}<p>{this.props.item.noteIds.length}</p></h3>
+      </section>
+    );
+  }
+
     return (
       [
-        <li key={1} className="sidemenu-index-item" onClick={this.handleClick(this.props.item.id)}>
-          <section>
-            <h3>{this.props.item.title}</h3>
-            <p>{new Date(this.props.item.updatedAt).toDateString()}</p>
-            <p>{this.props.item.noteIds.length} notes</p>
-          </section>
+        <li key={1} className={`${this.props.itemType}-index-item`} onClick={this.handleClick(this.props.item.id)}>
+          {details}
           <img
             id="delete"
             className="trash-icon"

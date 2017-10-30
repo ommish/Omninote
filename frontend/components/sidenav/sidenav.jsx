@@ -1,6 +1,9 @@
+
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NBSidemenu from '../sidemenu/sidemenu_notebook_container';
+import TagSidemenu from '../sidemenu/sidemenu_tag_container';
 
 class SideNav extends React.Component {
 
@@ -29,32 +32,66 @@ class SideNav extends React.Component {
 
     return (
       [<nav key={1} className="sidenav">
-        <ul className="sidenav-icon-list">
-          <li><img className="sidenav-logo" src="https://png.icons8.com/elephant/ios7/100/666666"/></li>
-          <li><button onClick={this.newNote} className="circle-button">
-            <img className="sidenav-icon" src={window.staticAssets.greenPlus}/>
-          </button></li>
-        <li><button onClick={this.redirectToAllNotes} className="circle-button">
-            <img className="sidenav-icon" src={window.staticAssets.notes}/>
-          </button></li>
+      <ul className="sidenav-icon-list">
         <li>
-            <button
-              className="circle-button"
-              onClick={this.props.toggleSidemenu}>
-              <img className="sidenav-icon" src={window.staticAssets.notebook}/>
-            </button></li>
-          <li><button onClick={() => {}} className="circle-button">
-            <img className="sidenav-icon" src={window.staticAssets.tag}/>
-          </button></li>
-          <li><button onClick={this.props.logout} className="circle-button">
-            <img className="sidenav-icon" src={window.staticAssets.account}/>
-          </button></li>
-        </ul>
-      </nav>,
-      <NBSidemenu key={2}/>]
+          <img
+            className="sidenav-logo"
+            src="https://png.icons8.com/elephant/ios7/100/666666"/>
+        </li>
+        <li>
+          <button
+            onClick={this.newNote}
+            className="circle-button">
+            <img
+              className="sidenav-icon"
+              src={window.staticAssets.greenPlus}/>
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={this.redirectToAllNotes}
+            className="circle-button">
+            <img
+              className="sidenav-icon"
+              src={window.staticAssets.notes}/>
+          </button>
+        </li>
+        <li>
+          <button
+            className="circle-button"
+            onClick={this.props.toggleSidemenu}>
+            <img
+              className="sidenav-icon"
+              src={window.staticAssets.notebook}/>
+          </button>
+        </li>
+        <li>
+          <button
+            className="circle-button"
+            onClick={this.props.toggleSidemenu}>
+            <img
+              className="sidenav-icon"
+              src={window.staticAssets.tag}/>
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={this.props.logout}
+            className="circle-button">
+            <img
+              className="sidenav-icon"
+              src={window.staticAssets.account}/>
+          </button>
+        </li>
+      </ul>
+    </nav>,
+    <NBSidemenu key={2}/>]
     );
   }
 
 }
 
 export default SideNav;
+
+
+// <TagSidemenu key={3}/>]
