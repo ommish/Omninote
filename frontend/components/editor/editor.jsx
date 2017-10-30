@@ -17,6 +17,7 @@ class Editor extends React.Component {
       toolbar: [
         ['bold', 'italic', 'underline', 'strike'],
         ['blockquote', 'code-block'],
+        ['image'],
         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
         [{ 'script': 'sub'}, { 'script': 'super' }],
         [{ 'indent': '-1'}, { 'indent': '+1' }],
@@ -32,7 +33,7 @@ class Editor extends React.Component {
     this.formats = [
       'header', 'font', 'size', 'bold', 'italic', 'underline', 'strike',
       'blockquote', 'code-block', 'list', 'bullet', 'script', 'indent',
-      'color', 'background', 'align', 'clean', 'direction'
+      'color', 'background', 'align', 'clean', 'direction', 'image'
     ];
   }
 

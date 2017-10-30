@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt'
 gem 'jquery-rails'
 gem 'aws-sdk', '< 3.0'
+gem 'figaro', '~> 1.0'
+gem "paperclip", '~> 5.0.0'
 
 
 group :development, :test do

@@ -3,5 +3,4 @@ class Note < ApplicationRecord
 
   belongs_to :notebook
   has_one :user, through: :notebook
-
 end
