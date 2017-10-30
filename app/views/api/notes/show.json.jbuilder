@@ -2,11 +2,18 @@ json.note do
   json.partial! 'note', note: @note
 end
 
-json.notebooks @notebooks
-
-tags = {}
-@tags.each do |tag|
-  tags[tag.id] = tag
+json.notebooks do
+  @notebooks.each do |notebook|
+    json.set! notebook.id do
+      json.partial! 'api/notebooks/notebook', notebook: notebook
+    end
+  end
 end
 
-json.tags tags
+json.tags do
+  @tags.each do |tag|
+    json.set! tag.id do
+      json.partial! 'api/tags/tag', tag: tag
+    end
+  end
+end

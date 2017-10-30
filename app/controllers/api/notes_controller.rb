@@ -2,7 +2,7 @@ class Api::NotesController < ApplicationController
 
   def destroy
     @note = current_user.notes.find(params[:id])
-    @notebooks = { @note.notebook_id => @note.notebook }
+    @notebooks = [@note.notebook]
     @tags = @note.tags
     @note.destroy!
     # when receiving notebooks and tags, just merge into old state (will arrays be merged or replaced??)
@@ -17,10 +17,10 @@ class Api::NotesController < ApplicationController
     #   @prev_notebook = @note.notebook_id
     # end
     @note = current_user.notes.find(params[:id])
-    @notebooks = { @note.notebook_id => @note.notebook }
+    @notebooks = [@note.notebook]
     prev_tags = @note.tags
     if @note.update(note_params)
-      @notebooks[@note.notebook_id] = @note.notebook
+      @notebooks.push(@note.notebook)
       @tags = @note.tags + prev_tags
       # are @prev tags and @notebook updated by now?
       render :show
@@ -31,7 +31,7 @@ class Api::NotesController < ApplicationController
 
   def create
     @note = current_user.notes.new(note_params)
-    @notebooks = { @note.notebook_id => @note.notebook }
+    @notebooks = [@note.notebook]
     @tags = @note.tags
     if @note.save
       render :show
