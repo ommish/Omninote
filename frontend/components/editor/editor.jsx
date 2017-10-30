@@ -13,6 +13,7 @@ class Editor extends React.Component {
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
+    // Quill configs
     this.modules = {
       toolbar: [
         ['bold', 'italic', 'underline', 'strike'],
@@ -37,12 +38,29 @@ class Editor extends React.Component {
     ];
   }
 
+
+  // prevent errors from trying to load content before fetch complete
+  componentWillMount() {
+    if (!this.state) {
+      this.setState({ title: "", body: {}, bodyPlain: "", notebookId: this.props.selectedNotebook.id});
+    }
+  }
+
+  // Prefill editor
+  componentWillReceiveProps(newProps) {
+    if (this.props.location.pathname !== newProps.location.pathname) {
+      this.setState(newProps.note);
+    }
+  }
+
+
   handleBodyChange (content, delta, source, editor) {
     const newState = merge({}, this.state);
     newState.body = editor.getContents();
     newState.body_plain = editor.getText().trim();
     this.setState(newState);
   }
+
 
   handleTitleChange(e) {
     let newState = merge({}, this.state);
@@ -58,18 +76,6 @@ class Editor extends React.Component {
     // this.setState({ title: "", body: {}, bodyPlain: "", notebookId: this.props.selectedNotebook.id});
     if (this.props.fullEditor) {
       this.props.toggleFullEditor();
-    }
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname) {
-      this.setState(newProps.note);
-    }
-  }
-
-  componentWillMount() {
-    if (!this.state) {
-      this.setState({ title: "", body: {}, bodyPlain: "", notebookId: this.props.selectedNotebook.id});
     }
   }
 

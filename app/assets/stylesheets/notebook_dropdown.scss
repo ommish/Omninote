@@ -35,6 +35,7 @@
 
 .notebook-list {
   overflow-y: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
