@@ -31,20 +31,19 @@ class App extends React.Component {
     }
   }
 
-render () {
-
-  // refreshing on notebooks/:noteId brings you back to /notes ???
-  return (
-    <div className="app-page">
-      <SideNav />
-      <Switch>
-        <Route path="/notebooks/:notebookId/notes/:noteId" component={NotebookNotes} />
-        <Route path="/notebooks/:notebookId" component={NotebookNotes} />
-        <Route path="/tags/:tagId/notes/:noteId" component={TagNotes} />
-        <Route path="/tags/:tagId" component={TagNotes} />
-        <Route path="/notes/:noteId" component={AllNotes} />
-        <Route path="/" component={AllNotes} />
-      </Switch>
+  render () {
+    // refreshing on notebooks/:noteId brings you back to /notes ???
+    return (
+      <div className="app-page">
+        <SideNav />
+        <Switch>
+          <Route path="/notebooks/:notebookId/notes/:noteId" component={NotebookNotes} />
+          <Route path="/notebooks/:notebookId" component={NotebookNotes} />
+          <Route path="/tags/:tagId/notes/:noteId" component={TagNotes} />
+          <Route path="/tags/:tagId" component={TagNotes} />
+          <Route path="/notes/:noteId" component={AllNotes} />
+          <Route path="/" component={AllNotes} />
+        </Switch>
         <Switch>
           <Route path="/notebooks/:notebookId/notes/:noteId" component={Editor} />
           <Route path="/notebooks/:notebookId" component={Editor} />
@@ -53,8 +52,8 @@ render () {
           <Route path="/notes/:noteId" component={Editor} />
           <Route path="/" component={Editor} />
         </Switch>
-    </div>
-  );}
-}
+      </div>
+    );}
+  }
 
-export default App;
+  export default App;

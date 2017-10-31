@@ -8,11 +8,12 @@ import Delta from 'quill-delta';
 class Editor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.note;
+    this.state = {note: this.props.note, tagInput: this.props.tagInput};
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createTag = this.createTag.bind(this);
+    this.handleTagInput = this.handleTagInput.bind(this);
 
     // Quill configs
     this.modules = {
@@ -41,74 +42,89 @@ class Editor extends React.Component {
 
 
   // prevent errors from trying to load content before fetch complete
-  componentWillMount() {
-    if (!this.state) {
-      this.setState({ title: "", body: "", bodyPlain: "", notebookId: this.props.selectedNotebook.id, tagIds: []});
+  componentDidMount() {
+    if (!this.state.note) {
+      this.setState({note: {title: "", body: "", bodyPlain: "", notebookId: this.props.selectedNotebook.id, tagIds: []}});
     }
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
-      this.setState(newProps.note);
+      this.setState(newProps);
     } else if (this.props.note.tagIds.length !== newProps.note.tagIds.length) {
-      this.setState(newProps.note);
+      this.setState(newProps);
     }
   }
 
   handleTagClick (tagId) {
     return (e) => {
-      const tagIds = merge([], this.state.tagIds);
+      const tagIds = merge([], this.state.note.tagIds);
+      const newState = merge({}, this.state);
       if (tagIds.includes(tagId)) {
-        this.setState({tagIds: tagIds.filter((id) => id !== tagId)});
+        newState.note.tagIds = tagIds.filter((id) => id !== tagId);
+        this.setState(newState);
       } else {
-        tagIds.push(tagId);
-        this.setState({tagIds});
+        newState.note.tagIds.push(tagId);
+        this.setState(newState);
       }
     };
   }
 
   createTag(e) {
     if (e.key === 'Enter') {
-      this.props.createTag({title: e.target.value, noteIds: [this.state.id]})
-        .then(() => {
-          if (!tagIds.includes(tagId)) {
-            tagIds.push(tagId);
-            this.setState({tagIds});
+      const newState = merge({}, this.state);
+      this.props.createTag({title: e.target.value, noteIds: [this.state.note.id]})
+        .then((res) => {
+          if (!this.state.note.tagIds.includes(res.tag.id)) {
+            newState.note.tagIds.push(res.tag.id);
+            newState.tagInput = "";
+            this.setState(newState);
           }
         });
     }
   }
 
+  handleTagInput(e) {
+    const newState = merge({}, this.state);
+    newState.tagInput = e.target.value;
+    this.setState(newState);
+  }
+
   handleBodyChange (content, delta, source, editor) {
-    this.setState({body: content, bodyPlain: editor.getText().trim()});
+    const newState = merge({}, this.state);
+    const newNote = merge(newState.note, {body: content, bodyPlain: editor.getText().trim()});
+    newState.note = newNote;
+    this.setState(newState);
   }
 
   handleTitleChange(e) {
     let newState = merge({}, this.state);
-    newState.title = e.target.value;
+    newState.note.title = e.target.value;
     this.setState(newState);
   }
 
   handleSubmit() {
     let newState = merge({}, this.state);
-    newState.notebookId = this.props.selectedNotebook.id;
-    this.props.action(newState);
+    newState.note.notebookId = this.props.selectedNotebook.id;
+    this.props.action(newState.note);
     if (this.props.fullEditor) {
       this.props.toggleFullEditor();
     }
   }
 
   render() {
+    const that = this;
     const tags = this.props.allTags.map((tag) => {
       return (
         <button
           key={tag.id}
-          onClick={this.handleTagClick(tag.id)}
-          className={!this.state.tagIds.includes(tag.id) ? "tag-button" : "tag-button selected"}>
+          onClick={that.handleTagClick(tag.id)}
+          className={that.state.note.tagIds.includes(tag.id) ? "tag-button selected" : "tag-button"}>
           {tag.title}
         </button>
       );
     });
+
     return (
       <main
         className={this.props.fullEditor ?
@@ -117,7 +133,11 @@ class Editor extends React.Component {
           <div className="editor-heading">
             <NotebookDropdown />
             Tags: {tags}
-            <input type="text" placeholder="Create new tag" onKeyPress={this.createTag}/>
+            <input type="text"
+            placeholder="Create new tag"
+            onKeyPress={this.createTag}
+            onChange={this.handleTagInput}
+            value={this.state.tagInput}/>
           </div>
           <div className="editor-lower-heading">
             <input
@@ -125,11 +145,11 @@ class Editor extends React.Component {
               placeholder="Title your note"
               type="text"
               className="title"
-              value={this.state.title}/>
+              value={this.state.note.title}/>
             <div className="editor-buttons">
               <button
-                disabled={this.state.title === "" ? true : false}
-                className={this.state.title === "" ? "square-button small narrow disabled" : "square-button small narrow"}
+                disabled={this.state.note.title === "" ? true : false}
+                className={this.state.note.title === "" ? "square-button small narrow disabled" : "square-button small narrow"}
                 onClick={this.handleSubmit}>Save</button>
               <button
                 className={"square-button small narrow expand"}
@@ -148,7 +168,7 @@ class Editor extends React.Component {
               "note-editor-quill"}
               modules={this.modules}
               formats={this.formats}
-              value={this.state.body}
+              value={this.state.note.body}
               onChange={this.handleBodyChange}/>
           </main>
         );
