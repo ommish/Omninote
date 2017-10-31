@@ -9,7 +9,6 @@ const mapStateToProps = (state, ownProps) => {
   let formMessage;
   let buttonMessage;
   let errors;
-  let item = { title: "" };
 
   if (ownProps.itemType === "notebook") {
     formMessage = "Title your notebook";
@@ -25,7 +24,6 @@ const mapStateToProps = (state, ownProps) => {
     createFormType: state.ui.createForm.itemType,
     formMessage,
     buttonMessage,
-    item,
     errors,
   };
 };

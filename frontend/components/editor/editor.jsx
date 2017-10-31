@@ -84,9 +84,9 @@ class Editor extends React.Component {
   }
 
   handleTitleChange(e) {
-    // let newState = merge({}, this.state);
-    // newState.title = e.target.value;
-    this.setState({title: e.target.value});
+    let newState = merge({}, this.state);
+    newState.title = e.target.value;
+    this.setState(newState);
   }
 
   handleSubmit() {
@@ -128,7 +128,8 @@ class Editor extends React.Component {
               value={this.state.title}/>
             <div className="editor-buttons">
               <button
-                className="square-button small narrow"
+                disabled={this.state.title === "" ? true : false}
+                className={this.state.title === "" ? "square-button small narrow disabled" : "square-button small narrow"}
                 onClick={this.handleSubmit}>Save</button>
               <button
                 className={"square-button small narrow expand"}

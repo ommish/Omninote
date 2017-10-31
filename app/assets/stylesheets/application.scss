@@ -99,6 +99,12 @@ button:hover, input[type="submit"]:hover, a:hover {
   width: 100px;
 }
 
+.square-button.small.narrow.disabled {
+  height: 30px;
+  width: 100px;
+  opacity: 0.5;
+}
+
 .square-button.small.narrow.expand {
   height: 30px;
   width: 60px;
