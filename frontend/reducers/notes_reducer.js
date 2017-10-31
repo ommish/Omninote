@@ -1,6 +1,6 @@
 import { RECEIVE_NOTE, REMOVE_NOTE } from '../actions/note_actions';
 import { REMOVE_NOTEBOOK } from '../actions/notebook_actions';
-import { REMOVE_TAG } from '../actions/tag_actions';
+import { RECEIVE_TAG, REMOVE_TAG } from '../actions/tag_actions';
 import { RECEIVE_ALL_ENTITIES } from '../actions/entity_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 
@@ -24,10 +24,16 @@ const NotesReducer = (oldState = initialState, action) => {
       delete newState[noteId];
     });
     return newState;
+    case RECEIVE_TAG:
+    newState = Object.assign({}, oldState);
+    action.tag.noteIds.forEach((noteId) => {
+      newState[noteId].tagIds.push(action.tag.id);
+    });
+    return newState;
     case REMOVE_TAG:
     newState = Object.assign({}, oldState);
     action.tag.noteIds.forEach((noteId) => {
-      delete newState[noteId];
+      newState[noteId].tagIds = newState[noteId].tagIds.filter((tagId) => tagId !== action.tag.id);
     });
     return newState;
     case RECEIVE_NOTE:
@@ -44,3 +50,5 @@ const NotesReducer = (oldState = initialState, action) => {
 };
 
 export default NotesReducer;
+
+// destroying a tag -> remove tagId from associated notes' tagId lists

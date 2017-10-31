@@ -12,6 +12,7 @@ class Editor extends React.Component {
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.createTag = this.createTag.bind(this);
 
     // Quill configs
     this.modules = {
@@ -46,6 +47,14 @@ class Editor extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.location.pathname !== newProps.location.pathname) {
+      this.setState(newProps.note);
+    } else if (this.props.note.tagIds.length !== newProps.note.tagIds.length) {
+      this.setState(newProps.note);
+    }
+  }
+
   handleTagClick (tagId) {
     return (e) => {
       const tagIds = merge([], this.state.tagIds);
@@ -58,9 +67,9 @@ class Editor extends React.Component {
     };
   }
 
-  componentWillReceiveProps(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname) {
-      this.setState(newProps.note);
+  createTag(e) {
+    if (e.key === 'Enter') {
+      this.props.createTag({title: e.target.value, noteIds: [this.state.id]});
     }
   }
 
@@ -102,6 +111,7 @@ class Editor extends React.Component {
           <div className="editor-heading">
             <NotebookDropdown />
             Tags: {tags}
+            <input type="text" placeholder="Create new tag" onKeyPress={this.createTag}/>
           </div>
           <div className="editor-lower-heading">
             <input

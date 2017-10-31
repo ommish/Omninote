@@ -48,6 +48,8 @@ render () {
         <Switch>
           <Route path="/notebooks/:notebookId/notes/:noteId" component={Editor} />
           <Route path="/notebooks/:notebookId" component={Editor} />
+          <Route path="/tags/:tagId/notes/:noteId" component={Editor} />
+          <Route path="/tags/:tagId" component={Editor} />
           <Route path="/notes/:noteId" component={Editor} />
           <Route path="/" component={Editor} />
         </Switch>
