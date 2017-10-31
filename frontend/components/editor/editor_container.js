@@ -4,6 +4,7 @@ import { updateNote, createNote, receiveNoteErrors } from '../../actions/note_ac
 import { createTag, receiveTagErrors } from '../../actions/tag_actions';
 import { toggleModal, toggleSelectedNotebook } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
+import { sortItems } from '../../util/sorters';
 
 const mapStateToProps = (state, ownProps) => {
   const note = ownProps.match.params.noteId ?
@@ -13,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
     note,
     selectedNotebook: state.ui.selectedNotebook,
     fullEditor: state.ui.fullEditor,
-    allTags: Object.values(state.entities.tags),
+    allTags: sortItems(Object.values(state.entities.tags), 4),
     tagInput: "",
     noteErrors: state.errors.noteErrors,
     tagErrors: state.errors.tagErrors,

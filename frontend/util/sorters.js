@@ -1,4 +1,4 @@
-export const sortNotes = (notes, sortOrder) => {
+export const sortItems = (notes, sortOrder) => {
   return notes.sort(comparingFunctions[sortOrder]);
 };
 

@@ -1,7 +1,7 @@
 
 import { connect } from 'react-redux';
 import NoteIndex from './note_index';
-import { sortNotes } from '../../util/sorters';
+import { sortItems } from '../../util/sorters';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     const noteIndexHeader = `Tag: ${tag.title}`;
     const noteIds = tag.noteIds;
     noteIds.forEach((noteId) => notes.push(state.entities.notes[noteId]));
-    notes = sortNotes(notes, noteOrder);
+    notes = sortItems(notes, noteOrder);
     return {
       noteIndexHeader,
       notes,
