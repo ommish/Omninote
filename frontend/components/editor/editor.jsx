@@ -69,7 +69,13 @@ class Editor extends React.Component {
 
   createTag(e) {
     if (e.key === 'Enter') {
-      this.props.createTag({title: e.target.value, noteIds: [this.state.id]});
+      this.props.createTag({title: e.target.value, noteIds: [this.state.id]})
+        .then(() => {
+          if (!tagIds.includes(tagId)) {
+            tagIds.push(tagId);
+            this.setState({tagIds});
+          }
+        });
     }
   }
 
