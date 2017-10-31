@@ -71,20 +71,19 @@
 }
 
 .note-editor-quill {
-  height: 100%;
-  padding: 20px;
+  height: 90%;
   box-sizing: border-box;
   background: white;
   display: flex;
   flex-direction: column;
+  padding: none;
   margin-bottom: 40px;
+  margin-top: 10px;
 }
 
 .note-editor-quill.full {
   width: 100%;
   z-index: 40;
-  position: fixed;
-  top: 100px;
   left: 0;
 }
 
@@ -94,8 +93,4 @@
   font-family: 'Roboto Slab', serif;
   font-size: 30px;
   color: $light-green;
-}
-
-#quill {
-  height: 90%;
 }
