@@ -32,7 +32,7 @@ class DefaultPage extends React.Component {
           <section>
           </section>
           <section>
-            <SessionForm formType="Sign up"/>
+            <SessionForm />
           </section>
         </main>
         <footer>

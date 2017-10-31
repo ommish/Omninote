@@ -11,11 +11,11 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const submitForm = ownProps.formType === "Log In" ? login : signup;
+  const submitForm = ownProps.location.pathname === "/login" ? login : signup;
   return {
+    clearUserErrors: () => dispatch(receiveUserErrors([])),
     submitForm: (user) => dispatch(submitForm(user)),
     demoLogin: (user) => dispatch(login(user)),
-    clearUserErrors: () => dispatch(receiveUserErrors([])),
   };
 };
 

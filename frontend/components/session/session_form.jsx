@@ -11,10 +11,11 @@ class SessionForm extends React.Component {
     this.demoLogin = this.demoLogin.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.clearUserErrors();
+  }
+
   componentWillReceiveProps(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname) {
-      this.props.clearUserErrors();
-    }
     this.setState(newProps);
   }
 
@@ -39,6 +40,7 @@ class SessionForm extends React.Component {
   }
 
   render () {
+    const formType = this.props.location.pathname === "/login" ? "Log In" : "Sign Up";
     let errors = this.state.sessionErrors.map((error, i) => <li key={i}>{error}</li>);
     let errorPresent = errors.length > 0 ? "error-present" : "";
 
@@ -55,7 +57,7 @@ class SessionForm extends React.Component {
     return (
       <div className={this.props.location.pathname === "/" ? "default-form" : "full-page-form"}>
         <div className="session-form">
-          <h2>{this.state.formType}</h2>
+          <h2>{formType}</h2>
           <br></br>
             <input
               placeholder="Email"
@@ -71,7 +73,7 @@ class SessionForm extends React.Component {
               className={errorPresent}/>
             <button
               onClick={this.handleSubmit}
-            className="square-button">{this.state.formType}</button>
+            className="square-button">{formType}</button>
           <br></br>
           <ul className="auth-errors">{errors}{authMessage}{authLink}</ul>
           <button

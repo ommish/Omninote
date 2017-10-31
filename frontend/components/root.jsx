@@ -5,15 +5,14 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import DefaultPage from './default_page';
 import App from './app_container';
 import AuthPage from './session/auth_page';
-import { receiveUserErrors } from '../actions/session_actions';
 
 const Root = ({store}) => (
     <Provider store={store}>
       <HashRouter>
         <div style={{height: "100%"}} >
           <Switch>
-            <AuthRoute exact path='/signup' component={AuthPage} />
-            <AuthRoute exact path='/login' component={AuthPage} />
+            <AuthRoute path='/signup' component={AuthPage} />
+            <AuthRoute path='/login' component={AuthPage} />
             <AuthRoute path='/' component={DefaultPage} />
           </Switch>
             <Switch>
