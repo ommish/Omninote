@@ -73,6 +73,7 @@ class CreateForm extends React.Component {
         <form className="full-form"
         onSubmit={this.handleSubmit}
         onKeyPress={this.handleEnter}>
+          <div className="full-form-icon"><img src={window.staticAssets[this.props.itemType]}/></div>
           <div className="full-form-header">Create {this.props.itemType}</div>
           <input
             type="text"
