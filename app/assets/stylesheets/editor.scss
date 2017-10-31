@@ -1,14 +1,8 @@
 @import "variables";
 
-
-.notebook-selector {
-  padding-bottom: 10px;
-  align-self: flex-start;
-}
-
 .editor-heading {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: flex-start;
 }
 
@@ -16,6 +10,23 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.tag-button {
+  height: 25px;
+  width: auto;
+  background: $light-grey;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  padding: 3px;
+  text-decoration: line-through;
+}
+
+.tag-button.selected {
+  background: $light-green;
+  color: white;
+  text-decoration: none;
 }
 
 .editor-buttons {
