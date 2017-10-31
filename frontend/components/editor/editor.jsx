@@ -73,6 +73,7 @@ class Editor extends React.Component {
   }
 
   render() {
+    const tags = this.props.allTags.map((tag) => <button onClick={this.handeTagClick}>{tag.title}</button>);
     return (
       <main
         className={this.props.fullEditor ?
@@ -80,6 +81,7 @@ class Editor extends React.Component {
           "note-editor"}>
           <div className="editor-heading">
             <NotebookDropdown />
+            {tags}
             <div className="editor-lower-heading">
               <input
                 onChange={this.handleTitleChange}

@@ -10,6 +10,11 @@
   to { background-color: rgba(255, 255, 255, 0.81);}
 }
 
+@-webkit-keyframes fadeout {
+  from { background-color: rgba(255, 255, 255, 0.81);}
+  to { background-color: rgba(255, 255, 255, 0);}
+}
+
 @-webkit-keyframes slidein {
   from { transform: translateX(530px); }
   to { transform: translateX(0); }
