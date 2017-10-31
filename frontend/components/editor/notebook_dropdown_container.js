@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     toggleNotebookDropdown: () => dispatch(toggleModal("notebookDropdown")),
     toggleSelectedNotebook: (notebook) => dispatch(toggleSelectedNotebook(notebook)),
-    toggleCreateForm: () => dispatch(toggleModal("createForm")),
+    toggleCreateForm: () => dispatch(toggleCreateForm("notebook")),
   };
 };
 
