@@ -25,7 +25,7 @@ class Api::TagsController < ApplicationController
   end
 
   def tag_params
-    params.require(:tag).permit(:title)
+    params.require(:tag).permit(:title, note_ids: [])
   end
 
 end

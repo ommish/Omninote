@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
     };
   } else {
     const tag = state.entities.tags[ownProps.match.params.tagId];
-    const noteIndexHeader = tag.title;
+    const noteIndexHeader = `Tag: ${tag.title}`;
     const noteIds = tag.noteIds;
     noteIds.forEach((noteId) => notes.push(state.entities.notes[noteId]));
     notes = sortNotes(notes, noteOrder);

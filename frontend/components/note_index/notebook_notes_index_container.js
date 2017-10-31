@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
     };
   } else {
     const notebook = state.entities.notebooks[ownProps.match.params.notebookId];
-    const noteIndexHeader = notebook.title;
+    const noteIndexHeader = `Notebook: ${notebook.title}`;
     const noteIds = notebook.noteIds;
     noteIds.forEach((noteId) => notes.push(state.entities.notes[noteId]));
     notes = sortNotes(notes, noteOrder);

@@ -7,8 +7,6 @@ import { toggleModal } from '../../actions/ui_actions';
 const mapStateToProps = (state, ownProps) => {
   let formMessage;
   let buttonMessage;
-  let createFormOpen = state.ui.createForm;
-  let notebookDropdownOpen = state.ui.notebookDropdown;
   let errors;
   let item = { title: "" };
 
@@ -20,13 +18,12 @@ const mapStateToProps = (state, ownProps) => {
     formMessage = "Name your tag";
     buttonMessage = "Create tag";
     errors = state.errors.tagErrors;
-
   }
   return {
-    notebookDropdownOpen,
+    notebookDropdownOpen: state.ui.notebookDropdown,
+    createFormOpen: state.ui.createForm,
     formMessage,
     buttonMessage,
-    createFormOpen,
     item,
     errors,
   };

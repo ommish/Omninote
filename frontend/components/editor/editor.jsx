@@ -9,9 +9,10 @@ class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.note;
-    this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.createTag = this.createTag.bind(this);
 
     // Quill configs
     this.modules = {
@@ -42,25 +43,50 @@ class Editor extends React.Component {
   // prevent errors from trying to load content before fetch complete
   componentWillMount() {
     if (!this.state) {
-      this.setState({ title: "", body: "", bodyPlain: "", notebookId: this.props.selectedNotebook.id});
+      this.setState({ title: "", body: "", bodyPlain: "", notebookId: this.props.selectedNotebook.id, tagIds: []});
     }
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
       this.setState(newProps.note);
+    } else if (this.props.note.tagIds.length !== newProps.note.tagIds.length) {
+      this.setState(newProps.note);
+    }
+  }
+
+  handleTagClick (tagId) {
+    return (e) => {
+      const tagIds = merge([], this.state.tagIds);
+      if (tagIds.includes(tagId)) {
+        this.setState({tagIds: tagIds.filter((id) => id !== tagId)});
+      } else {
+        tagIds.push(tagId);
+        this.setState({tagIds});
+      }
+    };
+  }
+
+  createTag(e) {
+    if (e.key === 'Enter') {
+      this.props.createTag({title: e.target.value, noteIds: [this.state.id]})
+        .then(() => {
+          if (!tagIds.includes(tagId)) {
+            tagIds.push(tagId);
+            this.setState({tagIds});
+          }
+        });
     }
   }
 
   handleBodyChange (content, delta, source, editor) {
-    const newState = merge({}, this.state);
     this.setState({body: content, bodyPlain: editor.getText().trim()});
   }
 
   handleTitleChange(e) {
-    let newState = merge({}, this.state);
-    newState.title = e.target.value;
-    this.setState(newState);
+    // let newState = merge({}, this.state);
+    // newState.title = e.target.value;
+    this.setState({title: e.target.value});
   }
 
   handleSubmit() {
@@ -73,6 +99,16 @@ class Editor extends React.Component {
   }
 
   render() {
+    const tags = this.props.allTags.map((tag) => {
+      return (
+        <button
+          key={tag.id}
+          onClick={this.handleTagClick(tag.id)}
+          className={!this.state.tagIds.includes(tag.id) ? "tag-button" : "tag-button selected"}>
+          {tag.title}
+        </button>
+      );
+    });
     return (
       <main
         className={this.props.fullEditor ?
@@ -80,14 +116,17 @@ class Editor extends React.Component {
           "note-editor"}>
           <div className="editor-heading">
             <NotebookDropdown />
-            <div className="editor-lower-heading">
-              <input
-                onChange={this.handleTitleChange}
-                placeholder="Title your note"
-                type="text"
-                className="title"
-                value={this.state.title}/>
-              <div className="editor-buttons">
+            Tags: {tags}
+            <input type="text" placeholder="Create new tag" onKeyPress={this.createTag}/>
+          </div>
+          <div className="editor-lower-heading">
+            <input
+              onChange={this.handleTitleChange}
+              placeholder="Title your note"
+              type="text"
+              className="title"
+              value={this.state.title}/>
+            <div className="editor-buttons">
               <button
                 className="square-button small narrow"
                 onClick={this.handleSubmit}>Save</button>
@@ -98,8 +137,7 @@ class Editor extends React.Component {
                   className="sidenav-icon"
                   src={window.staticAssets.white_expand}>
                 </img>}
-                </button>
-                </div>
+              </button>
             </div>
           </div>
           <ReactQuill
@@ -107,13 +145,13 @@ class Editor extends React.Component {
             className={this.props.fullEditor ?
               "note-editor-quill full " :
               "note-editor-quill"}
-            modules={this.modules}
-            formats={this.formats}
-            value={this.state.body}
-            onChange={this.handleBodyChange}/>
-                </main>
-      );
+              modules={this.modules}
+              formats={this.formats}
+              value={this.state.body}
+              onChange={this.handleBodyChange}/>
+          </main>
+        );
+      }
     }
-  }
 
-  export default Editor;
+    export default Editor;
