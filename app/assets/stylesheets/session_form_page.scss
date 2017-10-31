@@ -1,54 +1,81 @@
 @import "variables";
 
-.grey-bg {
-  background-color: $light-grey;
+.auth-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: $grey;
+  overflow: hidden;
 }
 
-#form-page {
-  margin: 5% auto;
-  border: none;
-  width: 40%;
+.defaut-form {
+  width: 100%;
+
+}
+
+.full-page-form {
+  width: 30%;
   height: auto;
+  background: white;
+  border-radius: 10px;
+  padding: 50px 80px;
+}
+
+.session-form {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  align-self: center;
-  padding: 20px;
-  border: 1px solid $grey;
-  border-radius: 5px;
-  background-color: white;
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
 
-  form {
-    padding: 50px;
+  h2 {
+    align-self: flex-start;
   }
 
-  form:nth-of-type(1) {
-    border-bottom: 1px solid $light-grey;
-  }
-
-  h3 {
-    align-self: center;
-    color: $dark-grey;
+  input {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    background: $light-grey;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-sizing: border-box;
   }
 
   ul {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    align-self: center;
+    align-self: flex-start;
   }
 
-  p {
-    color: $dark-grey;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
+  ul li {
+    align-items: flex-start;
+    justify-content: flex-start;
+    color: $red;
+    margin-bottom: 5px;
+    align-self: flex-start;
   }
 
-  a {
+  p, a {
+    font-weight: 700;
+    margin-bottom: 5px;
+    align-self: flex-start;
+  }
+
+  a:hover {
     color: $light-green;
-    align-self: center;
+    transition: color 0.2s;
+  }
+
+  .error-present {
+    border: 1px solid $red;
   }
 
 }

@@ -2,7 +2,6 @@
 @import "variables";
 
 .default-page{
-
   div {
     display: flex;
     flex-direction: column;
@@ -86,42 +85,6 @@
 
   section:nth-of-type(4) {
     width: 35%;
-  }
-
-}
-
-div.session-form {
-  form {
-    width: 100%;
-    height: auto;
-    box-sizing: border-box;
-  }
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  align-self: center;
-
-  .error-present {
-    border: 1px solid $red;
-  }
-
-  input {
-    margin-top: 7px;
-    margin-bottom: 7px;
-    background: $light-grey;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 10px;
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    box-sizing: border-box;
-  }
-
-  ul li {
-    color: $red;
   }
 
 }

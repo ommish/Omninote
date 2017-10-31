@@ -4,7 +4,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import DefaultPage from './default_page';
 import App from './app_container';
-import SessionForm from './session/session_form_container';
+import AuthPage from './session/auth_page';
 import { receiveUserErrors } from '../actions/session_actions';
 
 const Root = ({store}) => (
@@ -12,8 +12,8 @@ const Root = ({store}) => (
       <HashRouter>
         <div style={{height: "100%"}} >
           <Switch>
-            <AuthRoute path='/login' component={SessionForm} />
-            <AuthRoute path='/signup' component={SessionForm} />
+            <AuthRoute exact path='/signup' component={AuthPage} />
+            <AuthRoute exact path='/login' component={AuthPage} />
             <AuthRoute path='/' component={DefaultPage} />
           </Switch>
             <Switch>

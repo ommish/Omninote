@@ -5,12 +5,25 @@ import { Link } from 'react-router-dom';
 class SessionForm extends React.Component {
 
   constructor(props) {
-    // TODO: how to deconstruct props properly, and not get error from super(props)
-    // and set this.attr = the attr passed in
     super(props);
     this.state = this.props;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (this.props.location.pathname !== newProps.location.pathname) {
+      this.props.clearUserErrors();
+    }
+    this.setState(newProps);
+  }
+
+  handleChange(field) {
+    return (e) => {
+      const newUser = merge({}, this.state);
+      newUser.user[field] = e.target.value;
+      this.setState(newUser);
+    };
   }
 
   handleSubmit (e) {
@@ -25,34 +38,10 @@ class SessionForm extends React.Component {
     this.props.demoLogin(demoUser);
   }
 
-  handleChange(field) {
-    return (e) => {
-      const newUser = merge({}, this.state);
-      newUser.user[field] = e.target.value;
-      this.setState(newUser);
-    };
-  }
-
-  componentWillReceiveProps(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname) {
-      this.props.clearUserErrors();
-    }
-    this.setState(newProps);
-  }
-
-  componentWillUnmount () {
-    $("html").removeClass("grey-bg");
-  }
-
   render () {
     let errors = this.state.sessionErrors.map((error, i) => <li key={i}>{error}</li>);
     let errorPresent = errors.length > 0 ? "error-present" : "";
-    let formPage = "";
-    if ((this.props.location.pathname === '/login') ||
-      (this.props.location.pathname === '/signup')) {
-        formPage = "form-page";
-        $("html").addClass("grey-bg");
-    }
+
     let authLink;
     let authMessage;
     if (this.props.location.pathname === '/login') {
@@ -64,11 +53,8 @@ class SessionForm extends React.Component {
     }
 
     return (
-      <div
-        id={formPage}
-        className="session-form">
-        <form
-          onSubmit={this.handleSubmit}>
+      <div className={this.props.location.pathname === "/" ? "default-form" : "full-page-form"}>
+        <div className="session-form">
           <h2>{this.state.formType}</h2>
           <br></br>
             <input
@@ -84,15 +70,15 @@ class SessionForm extends React.Component {
               onChange={this.handleChange('password')}
               className={errorPresent}/>
             <button
+              onClick={this.handleSubmit}
             className="square-button">{this.state.formType}</button>
           <br></br>
-          <ul>{errors}{authMessage}{authLink}</ul>
-        </form>
-        <form onSubmit={this.demoLogin}>
+          <ul className="auth-errors">{errors}{authMessage}{authLink}</ul>
           <button
-            type="submit"
-            className="square-button">Demo Log In</button>
-        </form>
+            onClick={this.demoLogin}
+            className="square-button">Demo Log In
+          </button>
+        </div>
       </div>
     );
   }

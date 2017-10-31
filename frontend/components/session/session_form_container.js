@@ -4,18 +4,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
-  const user = { email: "", password: "" };
-  const formType = ownProps.location.pathname === '/login' ? 'Log In' : 'Sign Up';
-  const sessionErrors = state.errors.sessionErrors;
   return {
-    user,
-    formType,
-    sessionErrors,
+    user: { email: "", password: "" },
+    sessionErrors: state.errors.sessionErrors,
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const submitForm = ownProps.location.pathname === '/login' ? login : signup;
+  const submitForm = ownProps.formType === "Log In" ? login : signup;
   return {
     submitForm: (user) => dispatch(submitForm(user)),
     demoLogin: (user) => dispatch(login(user)),
