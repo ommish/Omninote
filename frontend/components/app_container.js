@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
     return {
     notes: state.entities.notes,
     notebooks: state.entities.notebooks,
+    initialState: state.entities.notebooks.initialState,
   };
 };
 

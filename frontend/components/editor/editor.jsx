@@ -40,14 +40,6 @@ class Editor extends React.Component {
     ];
   }
 
-
-  // prevent errors from trying to load content before fetch complete
-  componentDidMount() {
-    if (!this.state.note) {
-      this.setState({note: {title: "", body: "", bodyPlain: "", notebookId: this.props.selectedNotebook.id, tagIds: []}});
-    }
-  }
-
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
       this.setState(newProps);
@@ -75,6 +67,7 @@ class Editor extends React.Component {
       const newState = merge({}, this.state);
       this.props.createTag({title: e.target.value, noteIds: [this.state.note.id]})
         .then((res) => {
+          this.props.clearTagErrors();
           if (!this.state.note.tagIds.includes(res.tag.id)) {
             newState.note.tagIds.push(res.tag.id);
             newState.tagInput = "";
@@ -106,10 +99,12 @@ class Editor extends React.Component {
   handleSubmit() {
     let newState = merge({}, this.state);
     newState.note.notebookId = this.props.selectedNotebook.id;
-    this.props.action(newState.note);
-    if (this.props.fullEditor) {
-      this.props.toggleFullEditor();
-    }
+    this.props.action(newState.note).then((success) => {
+      if (this.props.fullEditor) {
+        this.props.toggleFullEditor();
+      }
+      this.props.clearNoteErrors();
+    });
   }
 
   render() {
@@ -125,6 +120,9 @@ class Editor extends React.Component {
       );
     });
 
+    const noteErrors = this.props.noteErrors.map((err) => <li>{err}</li>);
+    const tagErrors = this.props.tagErrors.map((err) => <li>{err}</li>);
+
     return (
       <main
         className={this.props.fullEditor ?
@@ -138,6 +136,7 @@ class Editor extends React.Component {
             onKeyPress={this.createTag}
             onChange={this.handleTagInput}
             value={this.state.tagInput}/>
+            <ul className="editor-errors">{tagErrors}</ul>
           </div>
           <div className="editor-lower-heading">
             <input
@@ -146,6 +145,7 @@ class Editor extends React.Component {
               type="text"
               className="title"
               value={this.state.note.title}/>
+              <ul className="editor-errors">{noteErrors}</ul>
             <div className="editor-buttons">
               <button
                 disabled={this.state.note.title === "" ? true : false}

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Editor from './editor';
-import { updateNote, createNote } from '../../actions/note_actions';
-import { createTag } from '../../actions/tag_actions';
+import { updateNote, createNote, receiveNoteErrors } from '../../actions/note_actions';
+import { createTag, receiveTagErrors } from '../../actions/tag_actions';
 import { toggleModal, toggleSelectedNotebook } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
 
@@ -15,6 +15,8 @@ const mapStateToProps = (state, ownProps) => {
     fullEditor: state.ui.fullEditor,
     allTags: Object.values(state.entities.tags),
     tagInput: "",
+    noteErrors: state.errors.noteErrors,
+    tagErrors: state.errors.tagErrors,
   };
 };
 
@@ -24,6 +26,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     action: (note) => dispatch(action(note)),
     toggleFullEditor: () => dispatch(toggleModal("fullEditor")),
     createTag: (tag) => dispatch(createTag(tag)),
+    clearNoteErrors: () => dispatch(receiveNoteErrors([])),
+    clearTagErrors: () => dispatch(receiveTagErrors([])),
   };
 };
 

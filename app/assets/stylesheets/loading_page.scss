@@ -1,0 +1,10 @@
+@import "variables";
+
+.loading-page {
+  height: 100%;
+  width: 100%;
+  background: $light-grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
