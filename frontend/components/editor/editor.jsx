@@ -14,6 +14,7 @@ class Editor extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createTag = this.createTag.bind(this);
     this.handleTagInput = this.handleTagInput.bind(this);
+    this.handleImage = this.handleImage.bind(this);
 
     // Quill configs
     this.modules = {
@@ -29,8 +30,9 @@ class Editor extends React.Component {
         [{ 'color': [] }, { 'background': [] }],
         [{ 'font': [] }],
         [{ 'align': [] }],
-        ['clean']
-      ]
+        ['clean'],
+        [{handlers: [{image: this.handleImage}]}]
+      ],
     };
 
     this.formats = [
@@ -96,6 +98,10 @@ class Editor extends React.Component {
     let newState = merge({}, this.state);
     newState.note.title = e.target.value;
     this.setState(newState);
+  }
+
+  handleImage(e) {
+    console.log("HI!! IMAGE!!!");
   }
 
   handleSubmit() {
