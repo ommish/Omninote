@@ -1,4 +1,5 @@
 export const TOGGLE_DELETE_FORM = "TOGGLE_DELETE_FORM";
+export const TOGGLE_CREATE_FORM = "TOGGLE_CREATE_FORM";
 export const TOGGLE_NOTE_ORDER = "TOGGLE_NOTE_ORDER";
 export const TOGGLE_SELECTED_NOTEBOOK = "TOGGLE_SELECTED_NOTEBOOK";
 export const TOGGLE_SELECTED_NOTE = "TOGGLE_SELECTED_NOTE";
@@ -33,10 +34,17 @@ export const toggleSelectedNotebook = (notebook) => {
   };
 };
 
-export const toggleDeleteForm = (id) => {
+export const toggleDeleteForm = (toDelete) => {
   return {
     type: TOGGLE_DELETE_FORM,
-    id,
+    toDelete,
+  };
+};
+
+export const toggleCreateForm = (itemType) => {
+  return {
+    type: TOGGLE_CREATE_FORM,
+    itemType,
   };
 };
 

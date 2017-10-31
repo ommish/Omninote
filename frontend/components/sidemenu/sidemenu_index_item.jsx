@@ -43,18 +43,14 @@ class SidemenuIndexItem extends React.Component {
   }
 
     return (
-      [
-        <li key={1}
+        <li
           className={`${this.props.itemType}-index-item`}>
           {details}
           <img id="delete"
             className={`${this.props.itemType}-trash-icon`}
             onClick={this.handleClick(this.props.item.id)}
             src={window.staticAssets.trash}/>
-        </li>,
-        <DeleteForm key={2}
-          item={this.props.item}
-          itemType={this.props.itemType} />]
+        </li>
         );
       }
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import NoteIndexItem from './note_index_item_container';
 import NoteOrderOptionMenu from './note_order_options_container';
+import DeleteForm from '../entity_forms/delete_form_container';
 
 class NoteIndex extends React.Component {
 
@@ -21,6 +22,7 @@ class NoteIndex extends React.Component {
         <ul className="note-item-container">
           {notes}
         </ul>
+        <DeleteForm itemType="note"/>
       </section>
     );
   }

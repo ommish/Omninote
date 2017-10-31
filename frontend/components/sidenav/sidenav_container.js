@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // dispatch actions to toggle UI slices of state
     logout: () => dispatch(logout()),
-    toggleSelectedNote: () => dispatch(toggleSelectedNote({id: null})),
+    toggleSelectedNote: () => dispatch(toggleSelectedNote({id: false})),
     toggleFullEditor: () => dispatch(toggleModal("fullEditor")),
     toggleSidemenuItemType: (itemType) => dispatch(toggleSidemenuItemType(itemType)),
     toggleSidemenu: () => dispatch(toggleSidemenu()),

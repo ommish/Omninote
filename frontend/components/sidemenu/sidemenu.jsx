@@ -2,9 +2,15 @@ import React from 'react';
 import SidemenuIndexItem from './sidemenu_index_item_container';
 import Modal from 'react-modal';
 import CreateForm from '../entity_forms/create_form_container';
+import DeleteForm from '../entity_forms/delete_form_container';
 
 class Sidemenu extends React.Component {
 
+  toggleCreateForm(itemType) {
+    return (e) => {
+      this.props.toggleCreateForm(itemType);
+    };
+  }
 
   render () {
     return (
@@ -19,7 +25,7 @@ class Sidemenu extends React.Component {
         <section className="sidemenu-heading">
           <h2>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h2>
           <button
-            onClick={this.props.toggleCreateForm}
+            onClick={this.toggleCreateForm(this.props.itemType)}
             className="circle-button">
             <img className="sidenav-icon" src={window.staticAssets.plus}/>
           </button>
@@ -34,6 +40,7 @@ class Sidemenu extends React.Component {
               key={i}/>)}
             </ul>
           </section>
+          <DeleteForm itemType={this.props.itemType}/>
         </div>
       );
     }

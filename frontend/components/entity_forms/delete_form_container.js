@@ -7,10 +7,12 @@ import { toggleDeleteForm } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
+  const item = state.entities[`${ownProps.itemType}s`][state.ui.deleteForm.id] || {id: false, title: ""};
   return {
+    item,
     formTitle: `DELETE ${ownProps.itemType}`,
-    deleteFormId: state.ui.deleteForm.id,
-    formMessage: `Are you sure you want to delete ${ownProps.item.title}?`,
+    deleteForm: state.ui.deleteForm,
+    formMessage: `Are you sure you want to delete ${item.title}?`,
   };
 };
 
@@ -25,7 +27,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
   return {
     deleteItem: (id) => dispatch(action(id)),
-    toggleDeleteForm: (id) => dispatch(toggleDeleteForm(id)),
+    toggleDeleteForm: (toDelete) => dispatch(toggleDeleteForm(toDelete)),
   };
 };
 

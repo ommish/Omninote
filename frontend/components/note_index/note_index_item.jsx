@@ -27,7 +27,6 @@ class NoteIndexItem extends React.Component {
   render () {
 
     return (
-      [
         <div className={this.props.note.id === parseInt(this.props.match.params.noteId) ?
             "note-item active" :
             "note-item" }
@@ -45,12 +44,7 @@ class NoteIndexItem extends React.Component {
                 onClick={this.handleClick(this.props.note.id)}
                 src={window.staticAssets.trash}/>
             </div>
-          </div>,
-          <DeleteForm
-            item={this.props.note}
-            itemType="note"
-            key={2}/>
-      ]
+          </div>
       );
     }
   }

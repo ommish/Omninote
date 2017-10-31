@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    toggleDeleteForm: (id) => dispatch(toggleDeleteForm(id)),
+    toggleDeleteForm: (id) => dispatch(toggleDeleteForm({ id, type: "note"})),
   };
 };
 

@@ -46,7 +46,7 @@ class DeleteForm extends React.Component {
     }
 
     closeModal () {
-      this.props.toggleDeleteForm(false);
+      this.props.toggleDeleteForm({id: false, type: ""});
     }
 
     componentWillReceiveProps (newProps) {
@@ -58,7 +58,7 @@ class DeleteForm extends React.Component {
     render() {
       return (
         <Modal
-          isOpen={(this.props.deleteFormId === this.props.item.id)}
+          isOpen={(this.props.deleteForm.id) && (this.props.deleteForm.type === this.props.itemType)}
           onRequestClose={this.closeModal}
           className="full-form-open"
           overlayClassName='full-form-overlay'>

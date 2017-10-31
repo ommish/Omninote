@@ -22,7 +22,7 @@ class App extends React.Component {
       if (notebook) {
         this.props.toggleSelectedNotebook(notebook);
       } else {
-        this.props.toggleSelectedNotebook({id: null});
+        this.props.toggleSelectedNotebook({id: false});
       }
     }
     if (!newNotebookId && newNoteId) {

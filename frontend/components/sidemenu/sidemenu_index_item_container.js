@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     toggleSidemenu: () => dispatch(toggleSidemenu()),
-    toggleDeleteForm: (id) => dispatch(toggleDeleteForm(id)),
+    toggleDeleteForm: (id) => dispatch(toggleDeleteForm({id, type: ownProps.itemType})),
   };
 };
 

@@ -3,7 +3,7 @@ import { RECEIVE_NOTEBOOK, REMOVE_NOTEBOOK } from '../actions/notebook_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_NOTE, REMOVE_NOTE } from '../actions/note_actions';
 
-const initialState = {initialState: {id: null, noteIds: [] }};
+const initialState = {initialState: {id: false, noteIds: [] }};
 
 const NotebooksReducer = (oldState = initialState, action) => {
   let newState;

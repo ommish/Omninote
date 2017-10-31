@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = (state, ownProps) => {
   const note = ownProps.match.params.noteId ?
     state.entities.notes[parseInt(ownProps.match.params.noteId)] :
-    { id: null, title: "", body: "", bodyPlain: "", notebookId: state.ui.selectedNotebook.id, tagIds: []};
+    { id: false, title: "", body: "", bodyPlain: "", notebookId: state.ui.selectedNotebook.id, tagIds: []};
   return {
     note,
     selectedNotebook: state.ui.selectedNotebook,

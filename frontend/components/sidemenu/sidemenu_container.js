@@ -1,7 +1,7 @@
 import Sidemenu from './sidemenu';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { toggleModal, toggleSidemenu } from '../../actions/ui_actions';
+import { toggleCreateForm, toggleSidemenu } from '../../actions/ui_actions';
 import { sortNotes } from '../../util/sorters';
 
 const mapStateToProps = (state, ownProps) => {
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     toggleSidemenu: () => dispatch(toggleSidemenu()),
-    toggleCreateForm: () => dispatch(toggleModal("createForm")),
+    toggleCreateForm: (itemType) => dispatch(toggleCreateForm(itemType)),
   };
 };
 
