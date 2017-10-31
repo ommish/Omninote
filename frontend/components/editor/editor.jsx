@@ -43,6 +43,8 @@ class Editor extends React.Component {
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
       this.setState(newProps);
+      this.props.clearTagErrors();
+      this.props.clearNoteErrors();
     } else if (this.props.note.tagIds.length !== newProps.note.tagIds.length) {
       this.setState(newProps);
     }
@@ -104,6 +106,7 @@ class Editor extends React.Component {
         this.props.toggleFullEditor();
       }
       this.props.clearNoteErrors();
+      this.props.clearTagErrors();
     });
   }
 

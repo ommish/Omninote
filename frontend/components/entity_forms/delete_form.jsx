@@ -63,6 +63,7 @@ class DeleteForm extends React.Component {
           className="full-form-open"
           overlayClassName='full-form-overlay'>
           <div className="full-form" >
+            <div className="full-form-icon"><img src={window.staticAssets[this.props.itemType]}/></div>
             <div className="full-form-header">{this.props.formTitle}</div>
             <div className="full-form-message">{this.props.formMessage}</div>
             <div className="full-form-button-container">

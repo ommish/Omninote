@@ -14,8 +14,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-bottom: 10px;
   padding-top: 10px;
+  padding-bottom: 20px;
 }
 
 .tag-button {
@@ -45,6 +45,11 @@
   font-size: 30px;
   color: $light-green;
   width: 80%;
+}
+
+.editor-errors li {
+  color: $red;
+  width: auto;
 }
 
 .note-editor {

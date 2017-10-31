@@ -14,11 +14,5 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     store = configureStore();
   }
-  window.store = store;
-  window.fetchNotes = NoteActions.fetchNotes;
-  window.fetchNote = NoteActions.fetchNote;
-  window.createNote = NoteActions.createNote;
-  window.updateNote = NoteActions.updateNote;
-  window.deleteNote = NoteActions.deleteNote;
   ReactDOM.render(<Root store={store}/>, root);
 });
