@@ -18,8 +18,10 @@
 .notebook-index-item:hover {
   cursor: pointer;
   background-color: $light-green;
+  transition: background-color 0.1s;
   li, h3 {
     color: white;
+    transition: color 0.1s;
   }
 }
 

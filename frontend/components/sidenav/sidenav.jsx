@@ -62,7 +62,7 @@ class SideNav extends React.Component {
             <img
               className="sidenav-icon"
               src={window.staticAssets.greenPlus}/>
-            <div className="sidenav-tooltip">"New Note"</div>
+            <div className="sidenav-tooltip">New Note</div>
           </button>
         </li>
         <li>
@@ -72,7 +72,7 @@ class SideNav extends React.Component {
             <img
               className="sidenav-icon"
               src={window.staticAssets.notes}/>
-            <div className="sidenav-tooltip">"All Notes"</div>
+            <div className="sidenav-tooltip">All Notes</div>
           </button>
         </li>
         <li>
@@ -82,7 +82,7 @@ class SideNav extends React.Component {
             <img
               className="sidenav-icon"
               src={window.staticAssets.notebook}/>
-            <div className="sidenav-tooltip">"Notebooks"</div>
+            <div className="sidenav-tooltip">Notebooks</div>
           </button>
         </li>
         <li>
@@ -92,7 +92,7 @@ class SideNav extends React.Component {
             <img
               className="sidenav-icon"
               src={window.staticAssets.tag}/>
-            <div className="sidenav-tooltip">"Tags"</div>
+            <div className="sidenav-tooltip">Tags</div>
           </button>
         </li>
         <li>
@@ -102,7 +102,7 @@ class SideNav extends React.Component {
             <img
               className="sidenav-icon"
               src={window.staticAssets.account}/>
-            <div className="sidenav-tooltip">"Log Out"</div>
+            <div className="sidenav-tooltip">Log Out</div>
           </button>
         </li>
       </ul>

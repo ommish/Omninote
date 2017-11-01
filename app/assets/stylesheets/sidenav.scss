@@ -39,11 +39,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .sidenav-tooltip {
+    display: none;
+  }
 }
+
 
 .circle-button:hover {
   border: 1px solid $light-green;
   transition: border .3s;
+
+  .sidenav-tooltip {
+    display: block;
+    position: fixed;
+    z-index: 60;
+    left: 50px;
+    height: 20px;
+    width: auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 6px;
+    padding: 2px;
+    color: $darker-grey;
+  }
 }
 
 .sidenav-icon {
@@ -54,18 +72,4 @@
 .sidenav-logo {
   height: 35px;
   width: auto;
-}
-
-.sidenav-tooltip {
-  visibility: hidden;
-  z-index: 60;
-  left: 20px;
-  position: fixed;
-  height: 50px;
-  width: 50px;
-}
-
-.sidenav-tooltip:hover {
-  visibility: visible;
-  position: fixed;
 }
