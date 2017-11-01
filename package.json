@@ -10,6 +10,7 @@
     "quill-delta": "^3.6.2",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-md-spinner": "^0.2.5",
     "react-modal": "^3.0.4",
     "react-quill": "^1.1.0",
     "react-redux": "^5.0.6",

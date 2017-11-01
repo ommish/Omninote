@@ -200,7 +200,7 @@ class Editor extends React.Component {
             </div>
           </div>
           <input type="file"
-            onChange={this.handleImage} />
+            onChange={this.handleImage}/>
           <ReactQuill
             ref={(input) => { this.quillEditor = input; }}
             id="quill"

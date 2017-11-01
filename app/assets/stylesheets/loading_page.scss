@@ -5,6 +5,12 @@
   width: 100%;
   background: $light-grey;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.loading-page h1 {
+  color: $dark-grey;
+  font-size: 30px;
 }

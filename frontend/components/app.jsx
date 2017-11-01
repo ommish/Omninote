@@ -5,6 +5,7 @@ import AllNotes from './note_index/all_notes_index_container';
 import NotebookNotes from './note_index/notebook_notes_index_container';
 import TagNotes from './note_index/tag_notes_index_container';
 import { Route, Switch } from 'react-router-dom';
+import MDSpinner from 'react-md-spinner';
 
 class App extends React.Component {
 
@@ -37,7 +38,7 @@ class App extends React.Component {
       return (
         <div className="loading-page">
           <h1>Just a moment!</h1>
-
+          <MDSpinner singleColor="rgb(76, 175, 80)" size={50} duration={3000}/>
         </div>
       );
     }
