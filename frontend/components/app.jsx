@@ -35,33 +35,36 @@ class App extends React.Component {
     // refreshing on notebooks/:noteId brings you back to /notes ???
     if (this.props.initialState) {
       return (
-        <div className="loading-page"><h1>LOADING!</h1></div>
+        <div className="loading-page">
+          <h1>Just a moment!</h1>
+
+        </div>
       );
     }
 
-      else {
+    else {
       return (
         <div className="app-page">
-        <SideNav />
-        <Switch>
-        <Route path="/notebooks/:notebookId/notes/:noteId" component={NotebookNotes} />
-        <Route path="/notebooks/:notebookId" component={NotebookNotes} />
-        <Route path="/tags/:tagId/notes/:noteId" component={TagNotes} />
-        <Route path="/tags/:tagId" component={TagNotes} />
-        <Route path="/notes/:noteId" component={AllNotes} />
-        <Route path="/" component={AllNotes} />
-        </Switch>
-        <Switch>
-        <Route path="/notebooks/:notebookId/notes/:noteId" component={Editor} />
-        <Route path="/notebooks/:notebookId" component={Editor} />
-        <Route path="/tags/:tagId/notes/:noteId" component={Editor} />
-        <Route path="/tags/:tagId" component={Editor} />
-        <Route path="/notes/:noteId" component={Editor} />
-        <Route path="/" component={Editor} />
-        </Switch>
+          <SideNav />
+          <Switch>
+            <Route path="/notebooks/:notebookId/notes/:noteId" component={NotebookNotes} />
+            <Route path="/notebooks/:notebookId" component={NotebookNotes} />
+            <Route path="/tags/:tagId/notes/:noteId" component={TagNotes} />
+            <Route path="/tags/:tagId" component={TagNotes} />
+            <Route path="/notes/:noteId" component={AllNotes} />
+            <Route path="/" component={AllNotes} />
+          </Switch>
+          <Switch>
+            <Route path="/notebooks/:notebookId/notes/:noteId" component={Editor} />
+            <Route path="/notebooks/:notebookId" component={Editor} />
+            <Route path="/tags/:tagId/notes/:noteId" component={Editor} />
+            <Route path="/tags/:tagId" component={Editor} />
+            <Route path="/notes/:noteId" component={Editor} />
+            <Route path="/" component={Editor} />
+          </Switch>
         </div>
-    );}
+      );}
+    }
   }
-}
 
-export default App;
+  export default App;

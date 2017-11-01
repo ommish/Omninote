@@ -43,7 +43,12 @@
 
 .circle-button:hover {
   border: 1px solid $light-green;
+  transition: border .3s;
 }
+// 
+// .circle-button:last-of-type:hover{
+//   border: 1px solid blue;
+// }
 
 .sidenav-icon {
   height: 20px;

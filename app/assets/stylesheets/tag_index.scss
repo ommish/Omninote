@@ -43,6 +43,7 @@
 .tag-details:hover {
 
   background: $light-green;
+  transition: background 0.3s;
   p {
     color: white;
   }

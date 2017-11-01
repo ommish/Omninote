@@ -26,12 +26,16 @@
   border-radius: 5px;
   padding: 3px;
   text-decoration: line-through;
+  transition: color 0.3s;
+  transition: background 0.3s;
 }
 
 .tag-button.selected {
   background: $light-green;
   color: white;
   text-decoration: none;
+  transition: color 0.3s;
+  transition: background 0.3s;
 }
 
 .editor-buttons {

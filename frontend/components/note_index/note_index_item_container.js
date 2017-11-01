@@ -1,15 +1,17 @@
 import { connect } from 'react-redux';
 import NoteIndexItem from './note_index_item';
 import { withRouter } from 'react-router-dom';
-import { toggleDeleteForm } from '../../actions/ui_actions';
+import { toggleDeleteForm, toggleSelectedNotebook } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   let bodySnippet = ownProps.note.bodyPlain || "";
   if (bodySnippet.length > 40) {
     bodySnippet = bodySnippet.slice(0, 40).concat("...");
   }
+  const notebook = state.entities.notebooks[ownProps.note.notebookId];
 
   return {
+    notebook,
     bodySnippet,
   };
 };
@@ -17,6 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     toggleDeleteForm: (id) => dispatch(toggleDeleteForm({ id, type: "note"})),
+    toggleSelectedNotebook: (notebook) => dispatch(toggleSelectedNotebook(notebook)),
   };
 };
 

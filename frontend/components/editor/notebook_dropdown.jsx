@@ -19,17 +19,14 @@ class NotebookDropdown extends React.Component {
           key={i}>
           {notebook.title}</li>
       ));
-    notebooks.push([
+    notebooks.push(
       <li
       onClick={this.props.toggleCreateForm}
       className="notebook-dropdown-item"
       key="a">
       Add New Notebook
-    </li>,
-    <CreateForm
-      itemType="notebook"
-      key="b"
-    /> ]);
+    </li>
+  );
 
     return (
       <div>

@@ -23,6 +23,7 @@
 .notebook-dropdown-overlay-open {
   height: 100%;
   width: 100%;
+  z-index: 45;
   top: 0px;
   left: 0px;
   position: absolute;
