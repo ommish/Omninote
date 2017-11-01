@@ -9,7 +9,6 @@
     "lodash": "^4.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-file-input": "^0.2.5",
     "react-md-spinner": "^0.2.5",
     "react-modal": "^3.0.4",
     "react-quill": "^1.1.0",
