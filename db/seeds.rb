@@ -31,8 +31,7 @@ note1 = Note.create!(
   Elephants are scattered throughout sub-Saharan Africa, South Asia, and Southeast Asia.
   Elephantidae is the only surviving family of the order Proboscidea; other, now extinct,
   members of the order include deinotheres, gomphotheres, mammoths, and mastodons. https://en.wikipedia.org/wiki/Elephant",
-  body: "<p><b>Elephants</b> are large mammals of the family <a href=\"/wiki/Elephantidae\" title=\"Elephantidae\">Elephantidae</a>and the order <a href=\"/wiki/Proboscidea\" title=\"Proboscidea\">Proboscidea</a>. Three species are currently recognized: the <a href=\"/wiki/African_bush_elephant\" title=\"African bush elephant\">African bush elephant</a> (<i>Loxodonta africana</i>), the <a href=\"/wiki/African_forest_elephant\" title=\"African forest elephant\">African forest elephant</a> (<i>L. cyclotis</i>), and the <a href=\"/wiki/Asian_elephant\" title=\"Asian elephant\">Asian elephant</a> (<i>Elephas maximus</i>). Elephants are scattered throughout <a href=\"/wiki/Sub-Saharan_Africa\" title=\"Sub-Saharan Africa\">sub-Saharan Africa</a>, <a href=\"/wiki/South_Asia\" title=\"South Asia\">South Asia</a>, and <a href=\"/wiki/Southeast_Asia\" title=\"Southeast Asia\">Southeast Asia</a>. Elephantidae is the only surviving family of the order Proboscidea; other, now extinct, members of the order include <a href=\"/wiki/Deinotheriidae\" title=\"Deinotheriidae\">deinotheres</a>, <a href=\"/wiki/Gomphothere\" title=\"Gomphothere\">gomphotheres</a>, <a href=\"/wiki/Mammoth\" title=\"Mammoth\">mammoths</a>, and <a href=\"/wiki/Mastodon\" title=\"Mastodon\">mastodons</a>.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>
-",
+  body: "<p><b>Elephants</b> are large mammals of the family <a href=\"/wiki/Elephantidae\" title=\"Elephantidae\">Elephantidae</a>and the order <a href=\"/wiki/Proboscidea\" title=\"Proboscidea\">Proboscidea</a>. Three species are currently recognized: the <a href=\"/wiki/African_bush_elephant\" title=\"African bush elephant\">African bush elephant</a> (<i>Loxodonta africana</i>), the <a href=\"/wiki/African_forest_elephant\" title=\"African forest elephant\">African forest elephant</a> (<i>L. cyclotis</i>), and the <a href=\"/wiki/Asian_elephant\" title=\"Asian elephant\">Asian elephant</a> (<i>Elephas maximus</i>). Elephants are scattered throughout <a href=\"/wiki/Sub-Saharan_Africa\" title=\"Sub-Saharan Africa\">sub-Saharan Africa</a>, <a href=\"/wiki/South_Asia\" title=\"South Asia\">South Asia</a>, and <a href=\"/wiki/Southeast_Asia\" title=\"Southeast Asia\">Southeast Asia</a>. Elephantidae is the only surviving family of the order Proboscidea; other, now extinct, members of the order include <a href=\"/wiki/Deinotheriidae\" title=\"Deinotheriidae\">deinotheres</a>, <a href=\"/wiki/Gomphothere\" title=\"Gomphothere\">gomphotheres</a>, <a href=\"/wiki/Mammoth\" title=\"Mammoth\">mammoths</a>, and <a href=\"/wiki/Mastodon\" title=\"Mastodon\">mastodons</a>.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>",
   notebook_id: elephants.id
 )
 
@@ -46,6 +45,7 @@ Calves weigh between 200-250 lbs at birth. At birth, a calf's trunk has no muscl
 	Calves weigh between 200-250 lbs at birth. At birth, a calf's trunk has no muscle tone, therefore it will suckle through its mouth. It takes several months for a calf to gain full control of its trunk.</p><a href=\"http://www.defenders.org/elephant/basic-facts\"/> ",
   notebook_id: elephants.id
 )
+
 note3 = Note.create!(
   title: "Fission-fusion society",
   body_plain: "Elephants have a fission–fusion society in which multiple family groups come together to socialise. Males (\"bulls\") leave their family groups when they reach puberty and may live alone or with other males. Adult bulls mostly interact with family groups when looking for a mate and enter a state of increased testosterone and aggression known as musth, which helps them gain dominance and reproductive success.https://en.wikipedia.org/wiki/Elephant",
@@ -95,10 +95,10 @@ note9= Note.create!(
 title: "Savanna Elephant Facts",
 body_plain: "As a result of their visibility within the open areas where they live, Savanna elephants are well studied and populations are easily estimated. In the savanna subspecies, each family unit usually consists of around 10 females and their calves, and the bulls associate with these herds only during mating. Several family units often join together to form a “clan” consisting of up to several hundred members led by a female matriarch. Due to their habitat, savanna elephants are often found grazing on grasses, but they also browse on a wide variety of plants and fruits. This selection varies depending on the time of year; during the rainy season the elephant will feed more on grass than during the dry season.https://www.worldwildlife.org/species/savanna-elephant",
 body: "<p>Savanna elephants are the largest subspecies of elephant. They are easily distinguished by their very large ears—which allow them to radiate excess heat—and front legs which are noticeably longer than the hind legs. They are found throughout the grassy plains and bushlands of Africa. Savanna elephants live in eastern and southern Africa, where the highest densities are found in Botswana, Tanzania, Zimbabwe, Kenya, Namibia, Mozambique and South Africa.</p><a href=\"https://www.worldwildlife.org/species/savanna-elephant\"></a>",
-notebook_id: savanna.id
+notebook_id: savannah.id
 )
 
-note10 = Note.create1(
+note10 = Note.create!(
 title: "Human-Elephant Conflict",
 body_plain: "Human-elephant conflict impacts savanna elephant populations. Killings are often retaliatory as elephants eat and trample crops, raid food stores, and damage village infrastructure including precious water sources. Since an elephant can eat over 600 pounds of food a day, even a small herd can wipe out a farmer’s annual crop in a single night. Elephants disrupt community life—occasionally leading to injury and death of people. In such instances, authorities are obliged to take action and as a result, many elephants are shot. As elephant and human populations grow, the threat only worsens. Small protected areas are inadequate to stop conflict since elephants require plenty of freedom to roam.
 https://www.worldwildlife.org/species/savanna-elephant",
@@ -106,7 +106,6 @@ body: "<p>Human-elephant conflict impacts savanna elephant populations. Killings
 </p><a href=\"https://www.worldwildlife.org/species/savanna-elephant\"></a>",
 notebook_id: elephants.id
 )
-
 
 tag1 = Tag.create!(user_id: demo.id, title: "basics", note_ids: [note7.id, note9.id])
 tag2 = Tag.create!(user_id: demo.id, title: "behavior", note_ids: [note5.id, note2.id, note3.id, note9.id])
