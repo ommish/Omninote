@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { toggleModal, toggleSelectedNotebook, toggleCreateForm } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
+  const openDropdownClass = state.ui.fullEditor ? "notebook-dropdown-open left" : "notebook-dropdown-open";
   return {
     selectedNotebook: state.ui.selectedNotebook,
     notebookDropdown: state.ui.notebookDropdown,
     allNotebooks: Object.values(state.entities.notebooks),
+    openDropdownClass,
   };
 };
 

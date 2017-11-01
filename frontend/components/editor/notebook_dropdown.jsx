@@ -43,7 +43,7 @@ class NotebookDropdown extends React.Component {
           onRequestClose={this.props.toggleNotebookDropdown}
           className={{
             base: '',
-            afterOpen: 'notebook-dropdown-open',
+            afterOpen: this.props.openDropdownClass,
             beforeClose: 'notebook-dropdown-closed'}}
             overlayClassName={{
               base: '',

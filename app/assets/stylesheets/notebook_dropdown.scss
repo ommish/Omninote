@@ -11,10 +11,17 @@
   display: flex;
   z-index: 45;
   position: absolute;
-  left: 400px;
-  top: 50px;
+  left: 410px;
+  top: 60px;
   border: 1px solid $light-grey;
 }
+
+.notebook-dropdown-open.left {
+  left: 20px;
+  top: 60px;
+}
+
+
 
 .notebook-dropdown-closed {
   display: none;
