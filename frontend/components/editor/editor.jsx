@@ -8,7 +8,7 @@ import Delta from 'quill-delta';
 class Editor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {note: this.props.note, tagInput: this.props.tagInput, image: { imageUrl: "", imageFile: null }};
+    this.state = {note: this.props.note, tagInput: this.props.tagInput, image: { imageUrl: "", imageFile: "" }};
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -199,7 +199,8 @@ class Editor extends React.Component {
               </button>
             </div>
           </div>
-          <input type="file" onChange={this.handleImage} />
+          <input type="file"
+            onChange={this.handleImage} />
           <ReactQuill
             ref={(input) => { this.quillEditor = input; }}
             id="quill"
