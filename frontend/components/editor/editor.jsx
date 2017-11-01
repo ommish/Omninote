@@ -16,13 +16,13 @@ class Editor extends React.Component {
     this.handleTagInput = this.handleTagInput.bind(this);
     this.handleImage = this.handleImage.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
+    this.quillEditor = null;
 
     // Quill configs
     this.modules = {
       toolbar: [
         ['bold', 'italic', 'underline', 'strike'],
         ['blockquote', 'code-block'],
-        ['image'],
         [{ 'list': 'ordered'}, { 'list': 'bullet' }],
         [{ 'script': 'sub'}, { 'script': 'super' }],
         [{ 'indent': '-1'}, { 'indent': '+1' }],
@@ -122,8 +122,16 @@ class Editor extends React.Component {
     if (file) {
       photoData.append("photo[image]", file);
       this.props.createPhoto(photoData).then((res) => {
+        this.appendPhotoToNote(res.photo.imageUrl);
       });
     }
+  }
+
+  appendPhotoToNote(url) {
+    const newState = merge({}, this.state);
+    newState.note.body = this.quillEditor.getEditorContents().concat(`<img src=${url}/>`);
+    newState.image = { imageUrl: "", imageFile: null };
+    this.setState(newState);
   }
 
   handleSubmit() {
@@ -191,8 +199,9 @@ class Editor extends React.Component {
               </button>
             </div>
           </div>
-          <input type="file" onChange={this.handleImage}/>
+          <input type="file" onChange={this.handleImage} />
           <ReactQuill
+            ref={(input) => { this.quillEditor = input; }}
             id="quill"
             className={this.props.fullEditor ?
               "note-editor-quill full " :

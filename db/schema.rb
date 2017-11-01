@@ -15,6 +15,14 @@ ActiveRecord::Schema.define(version: 20171101010126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "images", id: :serial, force: :cascade do |t|
+    t.string "image_file_name", null: false
+    t.string "image_content_type", null: false
+    t.integer "image_file_size", null: false
+    t.datetime "image_updated_at", null: false
+    t.integer "note_id", null: false
+  end
+
   create_table "notebooks", force: :cascade do |t|
     t.string "title", null: false
     t.integer "user_id", null: false

@@ -7,9 +7,7 @@ const PhotosReducer = (oldState = initialState, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_PHOTO:
-    newState = merge({}, oldState);
-    newState[action.photo.id] = action.photo;
-    return newState;
+    return action.photo;
     default:
     return oldState;
   }

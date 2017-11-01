@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
     state.entities.notes[parseInt(ownProps.match.params.noteId)] :
     { id: null, title: "", body: "", bodyPlain: "", notebookId: state.ui.selectedNotebook.id, tagIds: []};
   return {
+    image: state.entities.photos,
     note,
     selectedNotebook: state.ui.selectedNotebook,
     fullEditor: state.ui.fullEditor,
