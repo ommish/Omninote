@@ -6,7 +6,9 @@ import DeleteForm from '../entity_forms/delete_form_container';
 class NoteIndex extends React.Component {
 
   constructor() {
-    this.state.searchQuery = "";
+    super();
+    this.state = { searchQuery: "" };
+    this.handleSearchInput = this.handleSearchInput.bind(this);
   }
 
   handleSearchInput(e) {
@@ -15,12 +17,15 @@ class NoteIndex extends React.Component {
   }
 
   render () {
-
-    const notes = this.props.notes.map((note) => (
-      <NoteIndexItem
-        note={note}
-        key={note.id} />
-    ));
+    const notes = this.props.notes.map((note) => {
+      if ((note.body.toLowerCase().includes(this.state.searchQuery.toLowerCase()))
+        || (note.title.toLowerCase().includes(this.state.searchQuery.toLowerCase()))) {
+        return (
+          <NoteIndexItem
+            note={note}
+            key={note.id} />
+        );
+      }});
 
     return (
       <section className="note-index">
@@ -30,8 +35,10 @@ class NoteIndex extends React.Component {
         <input type="text"
           className="search-bar"
           onChange={this.handleSearchInput}
+          onKeyPress={this.handleSearchSubmit}
+          placeholder="Search Notes"
           value={this.state.searchQuery}/>
-        <NoteOrderOptionMenu />
+        <NoteOrderOptionMenu searchQuery={this.state.searchQuery} />
         <ul className="note-item-container">
           {notes}
         </ul>
