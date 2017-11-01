@@ -1,4 +1,4 @@
-import { RECEIVE_PHOTO } from '../actions/tag_actions';
+import { RECEIVE_PHOTO } from '../actions/photo_actions';
 import { merge } from 'lodash';
 
 const initialState = {};
