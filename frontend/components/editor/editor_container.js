@@ -3,6 +3,7 @@ import Editor from './editor';
 import { updateNote, createNote, receiveNoteErrors } from '../../actions/note_actions';
 import { createTag, receiveTagErrors } from '../../actions/tag_actions';
 import { toggleModal, toggleSelectedNotebook } from '../../actions/ui_actions';
+import { createPhoto } from '../../actions/photo_actions';
 import { withRouter } from 'react-router-dom';
 import { sortItems } from '../../util/sorters';
 
@@ -29,6 +30,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     createTag: (tag) => dispatch(createTag(tag)),
     clearNoteErrors: () => dispatch(receiveNoteErrors([])),
     clearTagErrors: () => dispatch(receiveTagErrors([])),
+    createPhoto: (photoData) => dispatch(createPhoto(photoData)),
   };
 };
 

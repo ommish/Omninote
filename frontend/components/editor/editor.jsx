@@ -8,13 +8,14 @@ import Delta from 'quill-delta';
 class Editor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {note: this.props.note, tagInput: this.props.tagInput};
+    this.state = {note: this.props.note, tagInput: this.props.tagInput, image: { imageUrl: "", imageFile: null }};
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createTag = this.createTag.bind(this);
     this.handleTagInput = this.handleTagInput.bind(this);
     this.handleImage = this.handleImage.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
 
     // Quill configs
     this.modules = {
@@ -30,9 +31,7 @@ class Editor extends React.Component {
         [{ 'color': [] }, { 'background': [] }],
         [{ 'font': [] }],
         [{ 'align': [] }],
-        ['clean'],
-        [{handlers: [{image: this.handleImage}]}]
-      ],
+        ['clean']],
     };
 
     this.formats = [
@@ -101,7 +100,30 @@ class Editor extends React.Component {
   }
 
   handleImage(e) {
-    console.log("HI!! IMAGE!!!");
+    const reader = new FileReader();
+    const file = e.target.files[0];
+    const newState = merge({}, this.state);
+    reader.onloadend = () => {
+      newState.image = {imageUrl: reader.result, imageFile: file};
+      this.setState(newState);
+      this.uploadImage();
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      newState.image = { imageUrl: "", imageFile: null };
+      this.setState(newState);
+    }
+  }
+
+  uploadImage() {
+    const file = this.state.image.imageFile;
+    const photoData = new FormData();
+    if (file) {
+      photoData.append("photo[image]", file);
+      this.props.createPhoto(photoData).then((res) => {
+      });
+    }
   }
 
   handleSubmit() {
@@ -117,13 +139,12 @@ class Editor extends React.Component {
   }
 
   render() {
-    const that = this;
     const tags = this.props.allTags.map((tag) => {
       return (
         <button
           key={tag.id}
-          onClick={that.handleTagClick(tag.id)}
-          className={that.state.note.tagIds.includes(tag.id) ? "tag-button selected" : "tag-button"}>
+          onClick={this.handleTagClick(tag.id)}
+          className={this.state.note.tagIds.includes(tag.id) ? "tag-button selected" : "tag-button"}>
           {tag.title}
         </button>
       );
@@ -170,6 +191,7 @@ class Editor extends React.Component {
               </button>
             </div>
           </div>
+          <input type="file" onChange={this.handleImage}/>
           <ReactQuill
             id="quill"
             className={this.props.fullEditor ?
