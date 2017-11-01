@@ -98,7 +98,7 @@ class SideNav extends React.Component {
         <li>
           <button
             onClick={this.props.logout}
-            className="circle-button">
+            className="circle-button logout">
             <img
               className="sidenav-icon"
               src={window.staticAssets.account}/>
