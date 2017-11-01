@@ -9,6 +9,7 @@ export const quillModules = {
     [{ 'direction': 'rtl' }],
     [{ 'size': ['small', false, 'large', 'huge'] }],
     [{ 'color': [] }, { 'background': [] }],
+    ['link'],
     [{ 'font': [] }],
     [{ 'align': [] }],
     ['clean']],
@@ -17,5 +18,5 @@ export const quillModules = {
 export const quillFormats = [
   'header', 'font', 'size', 'bold', 'italic', 'underline', 'strike',
   'blockquote', 'code-block', 'list', 'bullet', 'script', 'indent',
-  'color', 'background', 'align', 'clean', 'direction', 'image'
+  'color', 'background', 'align', 'clean', 'direction', 'image', 'link'
 ];
