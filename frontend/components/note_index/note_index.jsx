@@ -35,10 +35,9 @@ class NoteIndex extends React.Component {
         <input type="text"
           className="search-bar"
           onChange={this.handleSearchInput}
-          onKeyPress={this.handleSearchSubmit}
-          placeholder="Search Notes"
+          placeholder="Search notes"
           value={this.state.searchQuery}/>
-        <NoteOrderOptionMenu searchQuery={this.state.searchQuery} />
+        <NoteOrderOptionMenu />
         <ul className="note-item-container">
           {notes}
         </ul>

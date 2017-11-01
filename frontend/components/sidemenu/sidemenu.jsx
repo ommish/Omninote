@@ -6,6 +6,17 @@ import DeleteForm from '../entity_forms/delete_form_container';
 
 class Sidemenu extends React.Component {
 
+  constructor() {
+    super();
+    this.state = { searchQuery: "" };
+    this.handleSearchInput = this.handleSearchInput.bind(this);
+  }
+
+  handleSearchInput(e) {
+    const newState = {searchQuery: e.target.value};
+    this.setState(newState);
+  }
+
   toggleCreateForm(itemType) {
     return (e) => {
       this.props.toggleCreateForm(itemType);
@@ -31,12 +42,22 @@ class Sidemenu extends React.Component {
           </button>
           <CreateForm itemType={this.props.itemType} />
         </section>
+        <input type="text"
+            className="search-bar"
+            onChange={this.handleSearchInput}
+            placeholder={`Filter by ${this.props.itemType} title`}
+            value={this.state.searchQuery}/>
         <ul className={`${this.props.itemType}-sidemenu-list`}>
-          {this.props.items.map((item, i) =>
-            <SidemenuIndexItem
-              itemType={this.props.itemType}
-              item={item}
-              key={i}/>)}
+          {this.props.items.map((item, i) => {
+            if (item.title.toLowerCase().includes(this.state.searchQuery.toLowerCase())) {
+              return (
+                <SidemenuIndexItem
+                  itemType={this.props.itemType}
+                  item={item}
+                  key={i} />
+              );
+            }
+          })}
             </ul>
           </section>
           <DeleteForm itemType={this.props.itemType}/>
