@@ -3,7 +3,6 @@ import ReactQuill from 'react-quill';
 import { merge } from 'lodash';
 import Modal from 'react-modal';
 import NotebookDropdown from './notebook_dropdown_container';
-import Delta from 'quill-delta';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -202,8 +201,11 @@ class Editor extends React.Component {
               </button>
             </div>
           </div>
-          <input type="file"
-            onChange={this.handleImage}/>
+          <label>Add an image:&nbsp;&nbsp;&nbsp;
+            <input type="file"
+              onChange={this.handleImage}
+              accept=".png, .gif, .jpg, .jpeg"/>
+          </label>
           <ReactQuill
             ref={(input) => { this.quillEditor = input; }}
             id="quill"
