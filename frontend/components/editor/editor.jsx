@@ -142,6 +142,7 @@ class Editor extends React.Component {
     this.props.action(newState.note).then((success) => {
       if (this.props.fullEditor) {
         this.props.toggleFullEditor();
+        this.props.history.push(`notes/${success.note.id}`);
       }
       this.props.clearNoteErrors();
       this.props.clearTagErrors();
