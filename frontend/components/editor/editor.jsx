@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import { merge } from 'lodash';
 import Modal from 'react-modal';
 import NotebookDropdown from './notebook_dropdown_container';
+import { quillModules, quillFormats } from '../../util/quill_configs';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -16,29 +17,16 @@ class Editor extends React.Component {
     this.handleImage = this.handleImage.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
     this.quillEditor = null;
-
-    // Quill configs
-    this.modules = {
-      toolbar: [
-        ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote', 'code-block'],
-        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-        [{ 'script': 'sub'}, { 'script': 'super' }],
-        [{ 'indent': '-1'}, { 'indent': '+1' }],
-        [{ 'direction': 'rtl' }],
-        [{ 'size': ['small', false, 'large', 'huge'] }],
-        [{ 'color': [] }, { 'background': [] }],
-        [{ 'font': [] }],
-        [{ 'align': [] }],
-        ['clean']],
-    };
-
-    this.formats = [
-      'header', 'font', 'size', 'bold', 'italic', 'underline', 'strike',
-      'blockquote', 'code-block', 'list', 'bullet', 'script', 'indent',
-      'color', 'background', 'align', 'clean', 'direction', 'image'
-    ];
+    //
+    // this.bindToThis(this.handleTitleChange, this.handleBodyChange, this.handleSubmit, this.createTag,
+    //   this.handleTagInput, this.handleImage, this.uploadImage);
   }
+
+  // 
+  // bindToThis (...funcs) {
+  //   const that = this;
+  //   funcs.forEach((func) => {func = func.bind(that);});
+  // }
 
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
@@ -212,8 +200,8 @@ class Editor extends React.Component {
             className={this.props.fullEditor ?
               "note-editor-quill full " :
               "note-editor-quill"}
-              modules={this.modules}
-              formats={this.formats}
+              modules={quillModules}
+              formats={quillFormats}
               value={this.state.note.body}
               onChange={this.handleBodyChange}/>
           </main>
