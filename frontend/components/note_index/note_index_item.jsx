@@ -35,8 +35,8 @@ class NoteIndexItem extends React.Component {
             key={1}>
             <ul className="note-info">
               <li className="note-item-title">{this.props.note.title}</li>
-              <li className="note-item-date-"><p>{new Date(this.props.note.updatedAt).toDateString()}</p></li>
-              <li className="note-item-body-snippet"><p>{this.props.bodySnippet}</p></li>
+              <li className="note-item-date">{new Date(this.props.note.updatedAt).toDateString()}</li>
+              <li className="note-item-body-snippet">{this.props.bodySnippet}</li>
             </ul>
             <div>
               <img
