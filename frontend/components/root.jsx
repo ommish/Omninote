@@ -10,11 +10,6 @@ const Root = ({store}) => (
     <Provider store={store}>
       <HashRouter>
         <div style={{height: "100%"}} >
-          <Switch>
-            <AuthRoute path='/signup' component={AuthPage} />
-            <AuthRoute path='/login' component={AuthPage} />
-            <AuthRoute path='/' component={DefaultPage} />
-          </Switch>
             <Switch>
               <ProtectedRoute path='/notebooks/:notebookId/notes/:noteId' component={App} />
               <ProtectedRoute path='/notebooks/:notebookId' component={App} />
@@ -23,6 +18,9 @@ const Root = ({store}) => (
               <ProtectedRoute path='/notes/:noteId' component={App} />
               <ProtectedRoute path='/notebooks' component={App} />
               <ProtectedRoute path='/notes' component={App} />
+              <AuthRoute path='/signup' component={AuthPage} />
+              <AuthRoute path='/login' component={AuthPage} />
+              <AuthRoute path='/' component={DefaultPage} />
             </Switch>
         </div>
       </HashRouter>

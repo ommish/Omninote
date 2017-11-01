@@ -44,8 +44,10 @@ class Editor extends React.Component {
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
       this.setState(newProps);
-      this.props.clearTagErrors();
-      this.props.clearNoteErrors();
+      if (this.props.tagErrors.length > 0 || this.props.noteErrors.length > 0) {
+        this.props.clearTagErrors();
+        this.props.clearNoteErrors();
+      }
     } else if (this.props.note.tagIds.length !== newProps.note.tagIds.length) {
       this.setState(newProps);
     }

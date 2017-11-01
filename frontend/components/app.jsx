@@ -14,21 +14,23 @@ class App extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const currentNotebookId = this.props.match.params.notebookId;
-    const newNotebookId = newProps.match.params.notebookId;
-    const newNoteId = newProps.match.params.noteId;
+    if (!this.props.notebooks.initialState) {
+      const currentNotebookId = this.props.match.params.notebookId;
+      const newNotebookId = newProps.match.params.notebookId;
+      const newNoteId = newProps.match.params.noteId;
 
-    if (currentNotebookId !== newNotebookId) {
-      const notebook = this.props.notebooks[newNotebookId];
-      if (notebook) {
-        this.props.toggleSelectedNotebook(notebook);
-      } else {
-        this.props.toggleSelectedNotebook({id: false});
+      if (currentNotebookId !== newNotebookId) {
+        const notebook = this.props.notebooks[newNotebookId];
+        if (notebook) {
+          this.props.toggleSelectedNotebook(notebook);
+        } else {
+          this.props.toggleSelectedNotebook({id: false});
+        }
       }
-    }
-    if (!newNotebookId && newNoteId) {
-      const notebook = this.props.notebooks[this.props.notes[newNoteId].notebookId];
-      this.props.toggleSelectedNotebook(notebook);
+      if (!newNotebookId && newNoteId) {
+        const notebook = this.props.notebooks[this.props.notes[newNoteId].notebookId];
+        this.props.toggleSelectedNotebook(notebook);
+      }
     }
   }
 
