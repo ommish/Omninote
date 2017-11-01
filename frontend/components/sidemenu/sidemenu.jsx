@@ -31,10 +31,9 @@ class Sidemenu extends React.Component {
           </button>
           <CreateForm itemType={this.props.itemType} />
         </section>
-        <ul>
+        <ul className={`${this.props.itemType}-sidemenu-list`}>
           {this.props.items.map((item, i) =>
             <SidemenuIndexItem
-              className="sidemenu-list"
               itemType={this.props.itemType}
               item={item}
               key={i}/>)}

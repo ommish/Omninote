@@ -36,7 +36,7 @@ class SidemenuIndexItem extends React.Component {
     details = (
       <button className="tag-details"
         onClick={this.handleClick(this.props.item.id)}>
-        <p>{`${this.props.item.title}  `}</p>
+        <p>{`${this.props.item.title}`}&nbsp;</p>
         <p>{this.props.item.noteIds.length}</p>
       </button>
     );

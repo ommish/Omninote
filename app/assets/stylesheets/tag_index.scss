@@ -1,22 +1,40 @@
 @import "variables";
 
 .tag-index-item {
-  width: 100%;
+  width: auto;
   height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
+  flex-shrink: 2;
+  margin-right: 8px;
+}
+
+.tag-index-item:hover {
+    .tag-trash-icon {
+      visibility: visible;
+      background: $light-green;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .tag-details {
+      background: $light-green;
+      transition: background 0.3s;
+      p {
+        color: white;
+      }
+    }
 }
 
 .tag-trash-icon {
-  background: $light-green;
+  visibility: hidden;
   padding: 3px;
   border-radius: 5px;
   height: 20px;
   width: auto;
-  cursor: pointer;
 }
 
 .tag-details {
@@ -24,8 +42,8 @@
   flex-direction: row;
   justify-content: center;
   padding: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   border-radius: 5px;
   font-size: 14px;
   overflow: hidden;
@@ -37,14 +55,5 @@
 
   p:last-of-type {
     color: $light-green;
-  }
-}
-
-.tag-details:hover {
-
-  background: $light-green;
-  transition: background 0.3s;
-  p {
-    color: white;
   }
 }

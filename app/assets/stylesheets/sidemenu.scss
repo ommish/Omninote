@@ -80,9 +80,10 @@
   }
 }
 
-.sidemenu-list {
+.tag-sidemenu-list {
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 10px;
+  padding-right: 10px;
 }
