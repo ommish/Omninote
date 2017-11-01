@@ -5,8 +5,8 @@ import { toggleDeleteForm, toggleSelectedNotebook } from '../../actions/ui_actio
 
 const mapStateToProps = (state, ownProps) => {
   let bodySnippet = ownProps.note.bodyPlain || "";
-  if (bodySnippet.length > 40) {
-    bodySnippet = bodySnippet.slice(0, 40).concat("...");
+  if (bodySnippet.length > 100) {
+    bodySnippet = bodySnippet.slice(0, 100).concat("...");
   }
   const notebook = state.entities.notebooks[ownProps.note.notebookId];
 

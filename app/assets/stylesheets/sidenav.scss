@@ -51,6 +51,7 @@
   transition: border .3s;
 
   .sidenav-tooltip {
+    font-size: 14px;
     display: block;
     position: fixed;
     z-index: 60;
@@ -61,6 +62,7 @@
     border-radius: 6px;
     padding: 2px;
     color: $darker-grey;
+    align-items: center;
   }
 }
 
