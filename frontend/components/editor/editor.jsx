@@ -33,8 +33,10 @@ class Editor extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
-      this.attemptSave();
+      const newState = merge({}, this.state);
+      newState.saved = false;
       this.setState(newProps);
+      this.attemptSave();
       if (this.props.tagErrors.length > 0 || this.props.noteErrors.length > 0) {
         this.props.clearTagErrors();
         this.props.clearNoteErrors();
@@ -84,7 +86,7 @@ class Editor extends React.Component {
     const newNote = merge(newState.note, {body: content, bodyPlain: editor.getText().trim()});
     newState.note = newNote;
     if ((this.state.saved === false) && (this.state.note.title !== "") && (this.props.selectedNotebook.id)) {
-      newState.saved = false;
+      this.setState(newState);
       this.attemptSave();
     } else {
       this.setState(newState);
@@ -92,17 +94,23 @@ class Editor extends React.Component {
   }
 
   attemptSave() {
-    let newState = merge({}, this.state);
-    this.props.action(newState.note).then((success) => {
+    const newState = merge({}, this.state);
     newState.note.notebookId = this.props.selectedNotebook.id;
+    newState.saved = true;
+    this.setState(newState);
+    this.props.action(newState.note).then((success) => {
       if (!this.props.match.params.noteId) {
-        this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
+        if (this.props.match.params.notebookId) {
+          this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
+        } else {
+          this.props.history.push(`/notes/${success.note.id}`);
+        }
       }
     });
   }
 
   handleTitleChange(e) {
-    let newState = merge({}, this.state);
+    const newState = merge({}, this.state);
     newState.note.title = e.target.value;
     this.setState(newState);
   }
