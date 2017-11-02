@@ -13,6 +13,7 @@ class Editor extends React.Component {
       note: this.props.note,
       tagInput: this.props.tagInput,
       image: { imageUrl: "", imageFile: "" },
+      saved: false,
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -26,10 +27,13 @@ class Editor extends React.Component {
     this.uploadImage = this.uploadImage.bind(this);
 
     this.quillEditor = null;
+
+    this.attemptSave = this.attemptSave.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
+      this.attemptSave();
       this.setState(newProps);
       if (this.props.tagErrors.length > 0 || this.props.noteErrors.length > 0) {
         this.props.clearTagErrors();
@@ -80,10 +84,35 @@ class Editor extends React.Component {
     const newNote = merge(newState.note, {body: content, bodyPlain: editor.getText().trim()});
     newState.note = newNote;
     this.setState(newState);
-}
+    if (this.state.title !== "" && !this.state.saved && this.props.selectedNotebook.id) {
+      this.attemptSave();
+    }
+  }
+
+  attemptSave() {
+    const newState = merge({}, this.state);
+    newState.note.notebookId = this.props.selectedNotebook.id;
+    newState.saved = true;
+    this.setState(newState);
+    this.props.action(newState.note).then((success) => {
+      if (!this.props.match.params.noteId) {
+        if (this.props.match.params.notebookId) {
+          this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
+        } else {
+          this.props.history.push(`/notes/${success.note.id}`);
+        }
+      }
+    },
+    (fail) => {
+      this.props.clearTagErrors();
+      this.props.clearNoteErrors();
+    }
+  );
+  }
+
 
   handleTitleChange(e) {
-    let newState = merge({}, this.state);
+    const newState = merge({}, this.state);
     newState.note.title = e.target.value;
     this.setState(newState);
   }
@@ -124,7 +153,7 @@ class Editor extends React.Component {
   }
 
   handleSubmit() {
-    let newState = merge({}, this.state);
+    const newState = merge({}, this.state);
     newState.note.notebookId = this.props.selectedNotebook.id;
     this.props.action(newState.note).then((success) => {
       if (this.props.fullEditor) {
@@ -148,8 +177,8 @@ render() {
     );
   });
 
-  const noteErrors = this.props.noteErrors.map((err) => <li>{err}</li>);
-  const tagErrors = this.props.tagErrors.map((err) => <li>{err}</li>);
+  const noteErrors = this.props.noteErrors.map((err) => <li key={err}>{err}</li>);
+  const tagErrors = this.props.tagErrors.map((err) => <li key={err}>{err}</li>);
 
   return (
     <main
