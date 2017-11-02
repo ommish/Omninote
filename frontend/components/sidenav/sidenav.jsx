@@ -15,7 +15,9 @@ class SideNav extends React.Component {
     if (this.props.sidemenuOpen) {
       this.props.toggleSidemenu();
     }
-    this.props.history.push('/notes');
+    if (this.props.location.pathname !== "/notes") {
+      this.props.history.push('/notes');
+    }
   }
 
   newNote () {
@@ -25,7 +27,9 @@ class SideNav extends React.Component {
     } else {
       path = '/notes';
     }
-    this.props.history.push(path);
+    if (path !== this.props.location.pathname) {
+      this.props.history.push(path);
+    }
     this.props.toggleFullEditor();
   }
 

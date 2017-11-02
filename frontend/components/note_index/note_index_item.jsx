@@ -12,7 +12,7 @@ class NoteIndexItem extends React.Component {
       } else {
         e.stopPropagation();
         let path;
-          this.props.toggleSelectedNotebook(this.props.notebook);
+          // this.props.toggleSelectedNotebook(this.props.notebook);
           if (this.props.match.params.notebookId) {
             path = `/notebooks/${this.props.match.params.notebookId}/notes/${this.props.note.id}`;
           } else if (this.props.match.params.tagId) {
@@ -20,7 +20,9 @@ class NoteIndexItem extends React.Component {
           } else {
             path = `/notes/${this.props.note.id}`;
           }
-          this.props.history.push(path);
+          if (this.props.location.pathname !== path) {
+            this.props.history.push(path);
+          }
       }
     };
   }

@@ -15,7 +15,10 @@ class SidemenuIndexItem extends React.Component {
         e.stopPropagation();
       } else {
         this.props.toggleSidemenu();
-        this.props.history.push(`/${this.props.itemType}s/${this.props.item.id}`);
+        const path = `/${this.props.itemType}s/${this.props.item.id}`;
+        if (this.props.location.pathname !== path)  {
+          this.props.history.push(path);
+        }
         e.stopPropagation();
       }
     };
