@@ -13,7 +13,6 @@ class Editor extends React.Component {
       note: this.props.note,
       tagInput: this.props.tagInput,
       image: { imageUrl: "", imageFile: "" },
-      saved: false,
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -27,16 +26,11 @@ class Editor extends React.Component {
     this.uploadImage = this.uploadImage.bind(this);
 
     this.quillEditor = null;
-
-    this.attemptSave = this.attemptSave.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
-      const newState = merge({}, this.state);
-      newState.saved = false;
       this.setState(newProps);
-      this.attemptSave();
       if (this.props.tagErrors.length > 0 || this.props.noteErrors.length > 0) {
         this.props.clearTagErrors();
         this.props.clearNoteErrors();
@@ -85,32 +79,11 @@ class Editor extends React.Component {
     const newState = merge({}, this.state);
     const newNote = merge(newState.note, {body: content, bodyPlain: editor.getText().trim()});
     newState.note = newNote;
-    if ((this.state.saved === false) && (this.state.note.title !== "") && (this.props.selectedNotebook.id)) {
-      this.setState(newState);
-      this.attemptSave();
-    } else {
-      this.setState(newState);
-    }
-  }
-
-  attemptSave() {
-    const newState = merge({}, this.state);
-    newState.note.notebookId = this.props.selectedNotebook.id;
-    newState.saved = true;
     this.setState(newState);
-    this.props.action(newState.note).then((success) => {
-      if (!this.props.match.params.noteId) {
-        if (this.props.match.params.notebookId) {
-          this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
-        } else {
-          this.props.history.push(`/notes/${success.note.id}`);
-        }
-      }
-    });
-  }
+}
 
   handleTitleChange(e) {
-    const newState = merge({}, this.state);
+    let newState = merge({}, this.state);
     newState.note.title = e.target.value;
     this.setState(newState);
   }
