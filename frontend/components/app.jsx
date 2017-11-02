@@ -23,26 +23,27 @@ class App extends React.Component {
   componentWillReceiveProps(newProps) {
     if (!this.props.notebooks.initialState) {
       const currentNotebookId = this.props.match.params.notebookId;
+      const currentNoteId = this.props.match.params.noteId;
       const newNotebookId = newProps.match.params.notebookId;
       const newNoteId = newProps.match.params.noteId;
 
-      if (currentNotebookId !== newNotebookId) {
+      // toggle to new notebook if visiting a different notebook
+      if (newNotebookId && currentNotebookId !== newNotebookId) {
         const notebook = this.props.notebooks[newNotebookId];
-        if (notebook) {
-          this.props.toggleSelectedNotebook(notebook);
-        } else {
-          this.props.toggleSelectedNotebook({id: false});
-        }
+        this.props.toggleSelectedNotebook(notebook);
       }
-      if (!newNotebookId && newNoteId) {
+      // toggle to new notebook if visiting a different note
+      else if (!newNotebookId && newNoteId) {
         const notebook = this.props.notebooks[this.props.notes[newNoteId].notebookId];
         this.props.toggleSelectedNotebook(notebook);
+      // toggle to no notebook if going to all notes
+    } else if (newProps.location.pathname === "/notes") {
+        this.props.toggleSelectedNotebook({id: false});
       }
     }
   }
 
   render () {
-    // refreshing on notebooks/:noteId brings you back to /notes ???
     if (this.props.initialState) {
       return (
         <div className="loading-page">

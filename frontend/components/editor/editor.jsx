@@ -27,6 +27,13 @@ class Editor extends React.Component {
     this.quillEditor = null;
   }
 
+
+
+// on component will receive props- if new pathname, and new note exists,
+// save current note THEN set state with new props
+// 
+
+
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
       this.setState(newProps);
