@@ -13,6 +13,6 @@ export const receiveAllEntities = (entities) => {
 
 export const fetchAll = () => {
   return (dispatch) => {
-    EntityUtil.fetchAll().then((entities) => dispatch(receiveAllEntities(entities)))
+    return EntityUtil.fetchAll().then((entities) => dispatch(receiveAllEntities(entities)))
   };
 };

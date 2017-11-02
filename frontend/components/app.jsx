@@ -10,7 +10,14 @@ import MDSpinner from 'react-md-spinner';
 class App extends React.Component {
 
   componentDidMount() {
-    this.props.fetchAll();
+    this.props.fetchAll().then(() => {
+      if (this.props.match.params.notebookId) {
+        this.props.toggleSelectedNotebook(this.props.notebooks[this.props.match.params.notebookId]);
+      } else if (this.props.match.params.noteId) {
+        const notebookId = this.props.notes[this.props.match.params.noteId].notebookId;
+        this.props.toggleSelectedNotebook(this.props.notebooks[notebookId]);
+      }
+    });
   }
 
   componentWillReceiveProps(newProps) {
