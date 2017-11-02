@@ -7,6 +7,8 @@
   align-items: center;
   flex-wrap: wrap;
   padding-bottom: 15px;
+  box-sizing: border-box;
+
 }
 
 .editor-lower-heading {
@@ -16,6 +18,8 @@
   justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 20px;
+  box-sizing: border-box;
+
 }
 
 .tag-button {
@@ -49,6 +53,7 @@
   font-size: 30px;
   color: $light-green;
   width: 80%;
+  box-sizing: border-box;
 }
 
 .editor-errors li {
