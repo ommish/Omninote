@@ -20,4 +20,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidemenu);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidemenu));

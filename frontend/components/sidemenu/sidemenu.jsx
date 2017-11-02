@@ -10,6 +10,13 @@ class Sidemenu extends React.Component {
     super();
     this.state = { searchQuery: "" };
     this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.toggleSidemenu = this.toggleSidemenu.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (this.props.location.pathname !== newProps.location.pathname) {
+      this.setState({searchQuery: ""});
+    }
   }
 
   handleSearchInput(e) {
@@ -23,12 +30,17 @@ class Sidemenu extends React.Component {
     };
   }
 
+  toggleSidemenu() {
+    this.props.toggleSidemenu();
+    this.setState({searchQuery: ""});
+  }
+
   render () {
     return (
       <div>
       <section
         key={1}
-        onClick={this.props.toggleSidemenu}
+        onClick={this.toggleSidemenu}
         className={this.props.sidemenuOpen ? "sidemenu-overlay" : "hidden"}>
       </section>
       <section
