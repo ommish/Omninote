@@ -11,6 +11,12 @@ class NoteIndex extends React.Component {
     this.handleSearchInput = this.handleSearchInput.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.location.pathname !== newProps.location.pathname) {
+      this.setState({searchQuery: ""});
+    }
+  }
+
   handleSearchInput(e) {
     const newState = {searchQuery: e.target.value};
     this.setState(newState);
