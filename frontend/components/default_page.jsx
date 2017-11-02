@@ -37,7 +37,7 @@ class DefaultPage extends React.Component {
         </main>
         <footer>
           <nav>
-            <ul>
+            <ul className="top-footer-list">
               <li><a href= "https://github.com/ommish/Omninote" ><img src={window.staticAssets.github}></img></a></li>
               <li><a href= "https://www.linkedin.com/in/ommish/" ><img src={window.staticAssets.linkedin}></img></a></li>
               <li></li>
@@ -47,15 +47,9 @@ class DefaultPage extends React.Component {
           </nav>
           <nav>
             <ul>
-              <li><a href="https://icons8.com">Logo Source</a></li>
+              <li className="bottom-footer-list-link"><a href="https://icons8.com">Logo Source</a></li>
               <li></li>
               <li></li>
-              <li></li>
-              <li></li>
-            </ul>
-          </nav>
-          <nav>
-            <ul>
               <li></li>
               <li></li>
             </ul>

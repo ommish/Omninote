@@ -51,9 +51,8 @@
     transition: color 0.2s;
   }
   header .right-nav a:hover, footer nav:nth-of-type(2) li:hover {
-    border-bottom: 2px solid $light-green;
-    box-sizing: border-box;
-    transition: border-bottom 0.2s;
+    color: $light-green;
+    transition: color 0.2s;
   }
 
   nav h4 {
@@ -116,6 +115,11 @@
   footer ul li img {
     height: 30px;
     width: auto;
+  }
+
+  .bottom-footer-list-link a:hover {
+    color: $light-green;
+    transition: color 0.2s;
   }
 
 }
