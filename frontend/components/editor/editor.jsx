@@ -12,7 +12,6 @@ class Editor extends React.Component {
       note: this.props.note,
       tagInput: this.props.tagInput,
       image: { imageUrl: "", imageFile: "" },
-      saved: false,
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -26,21 +25,12 @@ class Editor extends React.Component {
     this.uploadImage = this.uploadImage.bind(this);
 
     this.quillEditor = null;
-
-    // this.attemptSave = this.attemptSave.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname && newProps.note.id) {
-      if (this.state.note.title !== "" && this.props.selectedNotebook.id) {
-        const newState = merge({}, this.state);
-        newState.note.notebookId = this.props.selectedNotebook.id;
-        this.props.action(this.state.note).then(() => {
-          this.props.clearTagErrors();
-          this.props.clearNoteErrors();
-          this.setState(newProps);
-        });
-      } else {
+    if (this.props.location.pathname !== newProps.location.pathname) {
+      this.setState(newProps);
+      if (this.props.tagErrors.length > 0 || this.props.noteErrors.length > 0) {
         this.props.clearTagErrors();
         this.props.clearNoteErrors();
         this.setState(newProps);
@@ -88,28 +78,11 @@ class Editor extends React.Component {
   }
 
   handleBodyChange (content, delta, source, editor) {
-    let newState = merge({}, this.state);
-    newState.note = merge(newState.note, {body: content, bodyPlain: editor.getText().trim()});
+    const newState = merge({}, this.state);
+    const newNote = merge(newState.note, {body: content, bodyPlain: editor.getText().trim()});
+    newState.note = newNote;
     this.setState(newState);
-    if (this.state.note.title !== "" && this.props.selectedNotebook.id) {
-      newState = merge({}, this.state);
-      newState.note.notebookId = this.props.selectedNotebook.id;
-      this.setState(newState);
-      this.props.action(newState.note).then((success) => {
-        if (!this.props.match.params.noteId) {
-          if (this.props.match.params.notebookId) {
-            this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
-          } else {
-            this.props.history.push(`/notes/${success.note.id}`);
-          }
-        }
-      },
-      (fail) => {
-        this.props.clearTagErrors();
-        this.props.clearNoteErrors();
-      });
-    }
-  }
+}
 
   handleTitleChange(e) {
     const newState = merge({}, this.state);

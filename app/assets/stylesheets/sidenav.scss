@@ -11,7 +11,6 @@
   background-color: $light-grey;
   border-right: 1px solid $grey;
   z-index: 35;
-  box-sizing: border-box;
 }
 
 .sidenav-icon-list {
@@ -21,8 +20,6 @@
   justify-content: space-around;
   width: 100%;
   z-index: 35;
-  box-sizing: border-box;
-
 }
 
 .sidenav-icon-list > li {
@@ -42,13 +39,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-
 
   .sidenav-tooltip {
     display: none;
   }
 }
+
 
 .circle-button:hover {
   border: 1px solid $light-green;
@@ -72,16 +68,12 @@
 
 .sidenav-icon {
   height: 20px;
-  box-sizing: border-box;
-
   width: auto;
 }
 
 .sidenav-logo {
   height: 35px;
   width: auto;
-  box-sizing: border-box;
-
 }
 
 .circle-button.logout:hover {

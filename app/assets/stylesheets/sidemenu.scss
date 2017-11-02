@@ -52,7 +52,6 @@
   overflow-y: scroll;
   -webkit-animation: slidein .4s ease-in;
   z-index: 30;
-  box-sizing: border-box;
 }
 
 .sidemenu-open {
@@ -66,7 +65,6 @@
   overflow-y: scroll;
   -webkit-animation: slideout .3s ease-in;
   z-index: 30;
-  box-sizing: border-box;
 }
 
 
