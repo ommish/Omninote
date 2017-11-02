@@ -132,7 +132,9 @@ handleSubmit() {
     if (this.props.fullEditor) {
       this.props.toggleFullEditor();
     }
-    this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
+    if (!this.props.match.params.noteId) {
+      this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
+    }
     this.props.clearNoteErrors();
     this.props.clearTagErrors();
   });

@@ -6,7 +6,7 @@ import { sortItems } from '../../util/sorters';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    items: ownProps.itemType === "notebook" ? Object.values(state.entities.notebooks) : sortItems((Object.values(state.entities.tags)), 4),
+    items: ownProps.itemType === "notebook" ? sortItems(Object.values(state.entities.notebooks), 4) : sortItems(Object.values(state.entities.tags), 4),
     sidemenu: state.ui.sidemenu,
     itemType: ownProps.itemType,
     sidemenuOpen: ((state.ui.sidemenu !== "hidden") && (state.ui.sidemenu !== "closed-sidemenu"))
