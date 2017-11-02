@@ -25,7 +25,7 @@ Notes are super easy to find! The note index can display a list of all your note
 
 At the top of the index is a search bar to filter notes. Your search query will try to match any content in the title or body. With all the current user's notes stored on the front end, queries are extremely quick.
 
-![sorting options](Omninote/README_images/sorting_menu.png "Sorting Options")
+![sorting options](https://github.com/ommish/Omninote/blob/master/README_images/sorting_menu.png "Sorting Options")
 
 A menu of several sorting options is also available to sort your notes.
 Notes are by default sorted in order of `updatedAtNewest`. Selecting a different option updates the redux state, and the notes index then renders notes sorted by the newly selected option.
@@ -49,7 +49,7 @@ The same function is used to sort notebooks and tags by title in the sidemenu.
 ### Rich Text Editor
 Omninote utilizes Quill-React, a text editor component. Image attachments are saved via paperclip  and AWS, then appended to the document.
 
-![notebook dropdwown](Omninote/README_images/notebook_dropdown.png "Notebook Dropdown")
+![notebook dropdwown](https://github.com/ommish/Omninote/blob/master/README_images/notebook_dropdown.png "Notebook Dropdown")
 
 The editor toggles to full-width when creating a new note, and the notebook selector is automatically set to whatever notebook you were viewing (or the notebook of the note you were viewing). The notebook create form can also be opened from the same menu if none of your existing notebooks are the right fit.
 
@@ -80,7 +80,7 @@ Toggle to no notebook if going to all notes:
     }
 
 
-![tag selection](Omninote/README_images/tag_menu.png "Tag Selection")
+![tag selection](https://github.com/ommish/Omninote/blob/master/README_images/tag_menu.png "Tag Selection")
 
 All your tags are listed at the top of your editor so you can select or deselect them with just a click. If you need a new tag, you can create one right from the same menu. This saves new tag and its association with the note on the backend, and the response will update the redux state, toggling the new tag to be selected. A bi-directional (`:inverse_of`) association set up in Rails obviates the need to send separate "tagging" post requests.
 
