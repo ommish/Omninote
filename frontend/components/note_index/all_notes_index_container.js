@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   const noteOrder = state.ui.noteOrder;
-  const noteIndexHeader = "NOTES";
+  const noteIndexHeader = "All Notes";
   const notes = sortItems(Object.values(state.entities.notes), noteOrder);
   return {
     noteIndexHeader,
