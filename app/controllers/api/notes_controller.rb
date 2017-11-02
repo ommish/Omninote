@@ -1,7 +1,7 @@
 class Api::NotesController < ApplicationController
 
   def destroy
-    @note = current_user.notes.find(params[:id])
+    @note = current_user.notes.includes(:tags, :notebook).find(params[:id])
     @notebooks = [@note.notebook]
     @tags = @note.tags
     render :show
@@ -9,7 +9,7 @@ class Api::NotesController < ApplicationController
   end
 
   def update
-    @note = current_user.notes.find(params[:id])
+    @note = current_user.notes.includes(:tags, :notebook).find(params[:id])
     @notebooks = [@note.notebook]
     prev_tags = @note.tags
     if @note.update(note_params)

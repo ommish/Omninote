@@ -18,6 +18,9 @@ class NoteIndex extends React.Component {
 
   render () {
     const notes = this.props.notes.map((note) => {
+      if (!note) {
+        return;
+      }
       if ((note.bodyPlain.toLowerCase().includes(this.state.searchQuery.toLowerCase()))
         || (note.title.toLowerCase().includes(this.state.searchQuery.toLowerCase()))) {
         return (

@@ -1,7 +1,7 @@
 class Api::TagsController < ApplicationController
 
   def update
-    @tag = current_user.tags.find(params[:id])
+    @tag = current_user.tags.includes(:notes).find(params[:id])
     if @tag.update(tag_params)
       render :show
     else
@@ -19,7 +19,7 @@ class Api::TagsController < ApplicationController
   end
 
   def destroy
-    @tag = current_user.tags.find(params[:id])
+    @tag = current_user.tags.includes(:notes).find(params[:id])
     render :show
     @tag.destroy!
   end

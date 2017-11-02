@@ -10,13 +10,13 @@ class Api::NotebooksController < ApplicationController
   end
 
   def destroy
-    @notebook = current_user.notebooks.find(params[:id])
+    @notebook = current_user.notebooks.includes(:notes => :tags).find(params[:id])
     render :show
     @notebook.destroy!
   end
 
   def update
-    @notebook = current_user.notesbooks.find(params[:id])
+    @notebook = current_user.notebooks.find(params[:id])
     if @notebook.update(notebook_params)
       render :show
     else

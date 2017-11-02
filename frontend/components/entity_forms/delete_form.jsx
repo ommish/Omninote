@@ -18,25 +18,27 @@ class DeleteForm extends React.Component {
   }
 
   handleSubmit(e) {
-    if (this.props.itemType === "notebook") {
-      if (parseInt(this.props.match.params.notebookId) === this.props.item.id) {
-        this.redirect('/notes');
-      }
-    } else if (this.props.itemType === "tag") {
-      if (parseInt(this.props.match.params.tagId) === this.props.item.id) {
-        this.redirect('/notes');
-      }
-    } else if (this.props.itemType === "note") {
-        // location correct, but noteId param not defined here ??
-        if (parseInt(this.props.match.params.noteId) === this.props.item.id) {
-          if (this.props.match.params.notebookId) {
-            this.redirect(`/notebooks/${this.props.match.params.notebookId}`);
-          } else {
+
+        if (this.props.itemType === "notebook") {
+          if (parseInt(this.props.match.params.notebookId) === this.props.item.id) {
             this.redirect('/notes');
           }
+        } else if (this.props.itemType === "tag") {
+          if (parseInt(this.props.match.params.tagId) === this.props.item.id) {
+            this.redirect('/notes');
+          }
+        } else if (this.props.itemType === "note") {
+          // location correct, but noteId param not defined here ??
+          if (parseInt(this.props.match.params.noteId) === this.props.item.id) {
+            if (this.props.match.params.notebookId) {
+              this.redirect(`/notebooks/${this.props.match.params.notebookId}`);
+            } else {
+              this.redirect('/notes');
+            }
+          }
         }
-      }
-      this.props.deleteItem(this.props.item.id).then(() => {
+
+        this.props.deleteItem(this.props.item.id).then(() => {
         this.closeModal();
       });
     }

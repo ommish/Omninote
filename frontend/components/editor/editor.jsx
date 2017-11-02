@@ -30,7 +30,6 @@ class Editor extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if (this.props.location.pathname !== newProps.location.pathname) {
-      window.clearInterval(this.state.autoSaveFunc);
       this.setState(newProps);
       if (this.props.tagErrors.length > 0 || this.props.noteErrors.length > 0) {
         this.props.clearTagErrors();
@@ -87,9 +86,6 @@ class Editor extends React.Component {
     let newState = merge({}, this.state);
     newState.note.title = e.target.value;
     this.setState(newState);
-    if (this.state.note.title !== "" && this.props.selectedNotebook.id) {
-      this.attemptSave();
-    }
   }
 
   handleImage(e) {
