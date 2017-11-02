@@ -13,7 +13,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     notebook,
     bodySnippet,
-    noteErrors: state.errors.noteErrors,
   };
 };
 
