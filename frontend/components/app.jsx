@@ -37,7 +37,7 @@ class App extends React.Component {
         const notebook = this.props.notebooks[this.props.notes[newNoteId].notebookId];
         this.props.toggleSelectedNotebook(notebook);
       // toggle to no notebook if going to all notes
-    } else if (newProps.location.pathname === "/notes") {
+    } else if (!currentNoteId && newProps.location.pathname === "/notes") {
         this.props.toggleSelectedNotebook({id: false});
       }
     }
