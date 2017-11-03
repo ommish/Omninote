@@ -98,3 +98,15 @@
   font-size: 30px;
   color: $light-green;
 }
+
+.not-saved {
+  visibility: hidden;
+}
+.saved {
+  visibility: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $light-green;
+  transition: visibility 0.3;
+}

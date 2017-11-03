@@ -12,6 +12,7 @@ class Editor extends React.Component {
       note: this.props.note,
       tagInput: this.props.tagInput,
       image: { imageUrl: "", imageFile: "" },
+      saved: false,
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -129,6 +130,13 @@ class Editor extends React.Component {
     const newState = merge({}, this.state);
     newState.note.notebookId = this.props.selectedNotebook.id;
     this.props.action(newState.note).then((success) => {
+      newState.saved = true;
+      this.setState(newState);
+      window.setTimeout(() => {
+        const savedState = merge({}, this.state);
+        savedState.saved = false;
+        this.setState(savedState);
+      }, 3000);
       if (this.props.fullEditor) {
         this.props.toggleFullEditor();
       }
@@ -177,6 +185,7 @@ class Editor extends React.Component {
               className="title"
               value={this.state.note.title}/>
             <ul className="editor-errors">{noteErrors}</ul>
+            <div className={this.state.saved ? "saved" : "not-saved"}>Saved!</div>
             <div className="editor-buttons">
               <button
                 disabled={this.state.note.title === "" ? true : false}
