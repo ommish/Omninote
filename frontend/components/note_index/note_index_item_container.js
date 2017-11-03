@@ -4,15 +4,12 @@ import { withRouter } from 'react-router-dom';
 import { toggleDeleteForm, toggleSelectedNotebook } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  let bodySnippet = ownProps.note.bodyPlain || "";
-  if (bodySnippet.length > 100) {
-    bodySnippet = bodySnippet.slice(0, 100).concat("...");
-  }
+  const bodySnippet = ownProps.note.bodyPlain.concat("...") || "";
   const notebook = state.entities.notebooks[ownProps.note.notebookId];
 
   return {
     notebook,
-    bodySnippet,
+    bodySnippet
   };
 };
 

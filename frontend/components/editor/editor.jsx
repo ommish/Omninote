@@ -128,6 +128,7 @@ class Editor extends React.Component {
   handleSubmit() {
     const newState = merge({}, this.state);
     newState.note.notebookId = this.props.selectedNotebook.id;
+    newState.note.bodyPlain = newState.note.bodyPlain.slice(0, 100);
     this.props.action(newState.note).then((success) => {
       newState.saved = true;
       this.setState(newState);
