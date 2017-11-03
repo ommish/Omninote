@@ -68,6 +68,7 @@ class DeleteForm extends React.Component {
             <div className="full-form-icon"><img src={window.staticAssets[this.props.itemType]}/></div>
             <div className="full-form-header">{this.props.formTitle}</div>
             <div className="full-form-message">{this.props.formMessage}</div>
+            <div className="full-form-message-title">{this.props.formMessageTitle}</div>
             <div className="full-form-button-container">
               <button onClick={this.handleCancel}
                 className="square-button grey-button small">

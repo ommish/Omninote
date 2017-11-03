@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
     item,
     formTitle: `DELETE ${ownProps.itemType}`,
     deleteForm: state.ui.deleteForm,
-    formMessage: `Are you sure you want to delete ${item.title}?`,
+    formMessage: "Are you sure you want to delete",
+    formMessageTitle: `"${item.title}"?`,
   };
 };
 

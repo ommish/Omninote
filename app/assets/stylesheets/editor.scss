@@ -63,7 +63,8 @@
   background: white;
   display: flex;
   flex-direction: column;
-  width: 80%
+  width: 80%;
+
 }
 
 .note-editor.full {
@@ -83,6 +84,7 @@
   padding: none;
   margin-bottom: 40px;
   margin-top: 10px;
+
 }
 
 .note-editor-quill.full {
