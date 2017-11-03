@@ -39,11 +39,3 @@ export const createNotebook = (notebook) => {
     (errors) => dispatch(receiveNotebookErrors(errors))
   );};
 };
-
-export const updateNotebook = (notebook) => {
-  return (dispatch) => {
-    return NotebookUtil.updateNotebook(notebook)
-    .then((newNotebook) => dispatch(receiveNotebook(newNotebook)),
-    (errors) => dispatch(receiveNotebookErrors(errors))
-  );};
-};

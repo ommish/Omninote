@@ -39,11 +39,3 @@ export const createTag = (tag) => {
     (errors) => dispatch(receiveTagErrors(errors))
   );};
 };
-
-export const updateTag = (tag) => {
-  return (dispatch) => {
-    return TagUtil.updateTag(tag)
-    .then((newTag) => dispatch(receiveTag(newTag)),
-    (errors) => dispatch(receiveTagErrors(errors))
-  );};
-};

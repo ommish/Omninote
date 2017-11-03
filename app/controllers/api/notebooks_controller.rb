@@ -15,15 +15,6 @@ class Api::NotebooksController < ApplicationController
     @notebook.destroy!
   end
 
-  def update
-    @notebook = current_user.notebooks.find(params[:id])
-    if @notebook.update(notebook_params)
-      render :show
-    else
-      render json: @notebook.errors.full_messages
-    end
-  end
-
   def notebook_params
     params.require(:notebook).permit(:title)
   end

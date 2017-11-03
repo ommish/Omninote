@@ -10,14 +10,6 @@ export const createTag = (tag) => {
   });
 };
 
-export const updateTag = (tag) => {
-  return $.ajax({
-    url: `api/tags/${tag.id}`,
-    method: 'patch',
-    data: { tag }
-  });
-};
-
 export const deleteTag = (tagId) => {
   return $.ajax({
     url: `api/tags/${tagId}`,

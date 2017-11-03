@@ -1,14 +1,5 @@
 class Api::TagsController < ApplicationController
 
-  def update
-    @tag = current_user.tags.includes(:notes).find(params[:id])
-    if @tag.update(tag_params)
-      render :show
-    else
-      render json: @tag.errors.full_messages, status: 422
-    end
-  end
-
   def create
     @tag = current_user.tags.new(tag_params)
     if @tag.save
