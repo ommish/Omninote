@@ -106,7 +106,7 @@ class SideNav extends React.Component {
             <img
               className="sidenav-icon"
               src={window.staticAssets.account}/>
-            <div className="sidenav-tooltip">Log Out</div>
+            <div className="sidenav-tooltip">Log Out: {this.props.currentUser}</div>
           </button>
         </li>
       </ul>

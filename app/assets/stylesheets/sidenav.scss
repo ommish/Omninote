@@ -45,24 +45,24 @@
   }
 }
 
-
 .circle-button:hover {
   border: 1px solid $light-green;
   transition: border .3s;
 
   .sidenav-tooltip {
     font-size: 14px;
-    display: block;
+    display: flex;
     position: fixed;
     z-index: 60;
     left: 55px;
-    height: 20px;
+    height: auto;
     width: auto;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: 3px;
     padding: 2px;
     color: $darker-grey;
     align-items: center;
+    flex-wrap: wrap;
   }
 }
 
