@@ -12,7 +12,6 @@ class Editor extends React.Component {
       note: this.props.note,
       tagInput: this.props.tagInput,
       image: { imageUrl: "", imageFile: "" },
-      saved: false,
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);

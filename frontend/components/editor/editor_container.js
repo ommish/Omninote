@@ -20,6 +20,7 @@ const mapStateToProps = (state, ownProps) => {
     tagInput: "",
     noteErrors: state.errors.noteErrors,
     tagErrors: state.errors.tagErrors,
+    saved: false,
   };
 };
 
