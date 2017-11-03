@@ -28,8 +28,7 @@ At the top of the index is a search bar to filter notes. Your search query will 
 ![sorting options](https://github.com/ommish/Omninote/blob/master/README_images/sorting_menu.png "Sorting Options")
 
 A menu of several sorting options is also available to sort your notes.
-Notes are by default sorted in order of `updatedAtNewest`. Selecting a different option updates the redux state, and the notes index then renders notes sorted by the newly selected option.
-Selecting a sorting option from the menu updates the redux state with a new index, which represents which comparing function to use.
+Notes are by default sorted in order of `updatedAtNewest`. Selecting a different option dispatches an action with an attached index number, which represents which comparer callback function to pass to the sorting function, and this updates the note index component's props, triggering a re-render with newly sorted notes.
 
     `const comparingFunctions = [
     updatedAtNewest,
@@ -51,7 +50,7 @@ Omninote utilizes Quill-React, a text editor component. Image attachments are sa
 
 ![notebook dropdwown](https://github.com/ommish/Omninote/blob/master/README_images/notebook_dropdown.png "Notebook Dropdown")
 
-The editor toggles to full-width when creating a new note, and the notebook selector is automatically set to whatever notebook you were viewing (or the notebook of the note you were viewing). The notebook create form can also be opened from the same menu if none of your existing notebooks are the right fit.
+The editor toggles to full-width when creating a new note, and the notebook selector is automatically set to whatever notebook you were viewing. The notebook create form can also be opened from the same menu if none of your existing notebooks are the right fit.
 
 The app listens for changes in the path in order to update the selected notebook.
 
@@ -99,11 +98,21 @@ All your tags are listed at the top of your editor so you can select or deselect
       }
     }
 
-### Consistent Design
-Prompts for similar actions (eg. deleting a note, deleting a notebook, and deleting a tag) have similar design, making it easy for the user to figure out how to navigate the app. Consistent icons along with tooltips for the navbar aid you as well!
+### Simple UI
+Prompts for similar actions (eg. deleting a note, deleting a notebook, and deleting a tag) have similar design but clear markings (headers, icons, and tooltips), making it easy for the user to figure out how to navigate the app.
+
+![navbar](https://github.com/ommish/Omninote/blob/master/README_images/navbar.png "Navbar Tooltips")
+
+
+![note_delete](https://github.com/ommish/Omninote/blob/master/README_images/note_delete.png "Delete Notes")
+
+
+![notebook_delete](https://github.com/ommish/Omninote/blob/master/README_images/notebook_delete.png "Delete Notebooks")
+
 
 ## Future Directions
 
 Additional features to be added:
 1. Autosave
 2. Photo gallery to display current user's uploaded images
+3. Responsive design

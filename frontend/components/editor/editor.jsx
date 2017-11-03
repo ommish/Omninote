@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
-import { merge } from 'lodash';
 import Modal from 'react-modal';
+import { merge } from 'lodash';
 import NotebookDropdown from './notebook_dropdown_container';
 import { quillModules, quillFormats } from '../../util/quill_configs';
 

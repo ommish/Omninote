@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Editor from './editor';
 import { updateNote, createNote, receiveNoteErrors } from '../../actions/note_actions';
 import { createTag, receiveTagErrors } from '../../actions/tag_actions';
 import { toggleModal, toggleSelectedNotebook } from '../../actions/ui_actions';
 import { createPhoto } from '../../actions/photo_actions';
-import { withRouter } from 'react-router-dom';
 import { sortItems } from '../../util/sorters';
 
 const mapStateToProps = (state, ownProps) => {
