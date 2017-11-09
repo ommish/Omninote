@@ -17,3 +17,5 @@ json.tags do
     end
   end
 end
+
+json.prevTags @prev_tags

@@ -25,9 +25,21 @@ const TagsReducer = (oldState = initialState, action) => {
     delete newState[action.tag.id];
     return newState;
     case RECEIVE_NOTE:
-    return Object.assign({}, oldState, action.tags);
+    newState = Object.assign({}, oldState, action.tags);
+    if (action.prevTags) {
+      action.prevTags.forEach((tagId) => {
+        newState[tagId].noteIds = newState[tagId].noteIds.filter((noteId) => noteId !== action.note.id);
+      });
+    }
+    return newState;
     case REMOVE_NOTE:
-    return Object.assign({}, oldState, action.tags);
+    newState = Object.assign({}, oldState, action.tags);
+    if (action.tags) {
+      Object.keys(action.tags).forEach((tagId) => {
+        newState[tagId].noteIds = newState[tagId].noteIds.filter((noteId) => noteId !== action.note.id);
+      });
+    }
+    return newState;
     default:
     return oldState;
   }

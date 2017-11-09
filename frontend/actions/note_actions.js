@@ -4,12 +4,13 @@ export const RECEIVE_NOTE = "RECEIVE_NOTE";
 export const REMOVE_NOTE = "REMOVE_NOTE";
 export const RECEIVE_NOTE_ERRORS = "RECEIVE_NOTE_ERRORS";
 
-export const receiveNote = ({note, tags, notebooks}) => {
+export const receiveNote = ({note, tags, notebooks, prevTags}) => {
   return {
     type: RECEIVE_NOTE,
     note,
     tags,
     notebooks,
+    prevTags,
   };
 };
 
