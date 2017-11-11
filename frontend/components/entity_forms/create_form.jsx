@@ -58,10 +58,9 @@ class CreateForm extends React.Component {
   render() {
     let errors = this.props.errors || [];
     errors = errors.map((error) => <li className="create-errors" key={error}>{error}</li>);
-    debugger
     return (
       <Modal
-        isOpen={this.props.createFormType === this.props.itemType}
+        isOpen={this.props.createFormType !== "" }
         onRequestClose={this.closeModal}
         className="full-form-open"
         overlayClassName='full-form-overlay'>

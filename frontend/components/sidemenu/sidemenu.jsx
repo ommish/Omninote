@@ -52,7 +52,6 @@ class Sidemenu extends React.Component {
             className="circle-button">
             <img className="sidenav-icon" src={window.staticAssets.plus}/>
           </button>
-          <CreateForm itemType={this.props.itemType} />
         </section>
         <input type="text"
             className="search-bar"

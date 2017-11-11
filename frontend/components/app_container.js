@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
     notes: state.entities.notes,
     notebooks: state.entities.notebooks,
     initialState: state.entities.notebooks.initialState,
+    itemType: state.ui.createForm.itemType
   };
 };
 

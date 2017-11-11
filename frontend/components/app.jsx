@@ -6,6 +6,7 @@ import NotebookNotes from './note_index/notebook_notes_index_container';
 import TagNotes from './note_index/tag_notes_index_container';
 import { Route, Switch } from 'react-router-dom';
 import MDSpinner from 'react-md-spinner';
+import CreateForm from './entity_forms/create_form_container';
 
 class App extends React.Component {
 
@@ -57,6 +58,7 @@ class App extends React.Component {
       return (
         <div className="app-page">
           <SideNav />
+          <CreateForm itemType={this.props.itemType} />
           <Switch>
             <Route path="/notebooks/:notebookId/notes/:noteId" component={NotebookNotes} />
             <Route path="/notebooks/:notebookId" component={NotebookNotes} />
