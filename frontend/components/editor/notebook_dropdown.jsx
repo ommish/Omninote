@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-modal';
-import CreateForm from '../entity_forms/create_form_container';
 
 class NotebookDropdown extends React.Component {
 

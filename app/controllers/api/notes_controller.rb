@@ -11,15 +11,12 @@ class Api::NotesController < ApplicationController
   def update
     @note = current_user.notes.includes(:tags, :notebook).find(params[:id])
     @notebooks = [@note.notebook]
-    if !note_params[:tag_ids]
+    if note_params[:tag_ids] === []
       @prev_tags = @note.tag_ids
     else
       @prev_tags = @note.tag_ids.reject { |tag_id| note_params[:tag_ids].include?(tag_id.to_s) }
     end
     if @note.update(note_params)
-      if !note_params[:tag_ids]
-        @note.tag_ids = []
-      end
       @notebooks.push(@note.notebook)
       @tags = @note.tags
       render :show

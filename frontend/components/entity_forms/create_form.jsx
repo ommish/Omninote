@@ -45,12 +45,6 @@ class CreateForm extends React.Component {
   handleChange (e) {
     this.setState({ title: e.target.value });
   }
-  //
-  // componentWillReceiveProps (newProps) {
-  //   // if (newProps.errors.length === 0) {
-  //   //   this.setState(newProps);
-  //   // }
-  // }
 
   closeModal () {
     this.setState({ title: "" });
@@ -64,6 +58,7 @@ class CreateForm extends React.Component {
   render() {
     let errors = this.props.errors || [];
     errors = errors.map((error) => <li className="create-errors" key={error}>{error}</li>);
+    debugger
     return (
       <Modal
         isOpen={this.props.createFormType === this.props.itemType}

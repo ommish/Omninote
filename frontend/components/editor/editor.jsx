@@ -129,6 +129,9 @@ class Editor extends React.Component {
     const newState = merge({}, this.state);
     newState.note.notebookId = this.props.selectedNotebook.id;
     newState.note.bodyPlain = newState.note.bodyPlain.slice(0, 100);
+    if (newState.note.tagIds.length === 0) {
+      newState.note.tagIds = [""];
+    }
     this.props.action(newState.note).then((success) => {
       newState.saved = true;
       this.setState(newState);
