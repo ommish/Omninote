@@ -13,12 +13,17 @@
 }
 
 .auth-logo {
-  width: 15%;
+  width: 10%;
   border-bottom: 3px solid $dark-grey;
   margin-bottom: 30px;
   padding-bottom: 20px;
   display: flex;
   justify-content: center;
+
+  img {
+    width: 60%;
+    height: 60%;
+  }
 }
 
 .default-form {
