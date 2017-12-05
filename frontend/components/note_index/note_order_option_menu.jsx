@@ -19,7 +19,7 @@ class NoteOrderOptions extends React.Component {
       </button>)
     );
     return (
-      <div className="sort-option-div" key={1}>
+      <div className="sort-option-div">
         <button
           className="sort-button"
           onClick={this.props.toggleNoteOrderDropdown}>
