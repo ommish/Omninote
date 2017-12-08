@@ -2,12 +2,22 @@ import React from 'react';
 import Modal from 'react-modal';
 
 class NotebookDropdown extends React.Component {
+  constructor() {
+    super();
+    this.toggleNotebookDropdown = this.toggleNotebookDropdown.bind(this);
+  }
 
   toggleNotebook (notebook) {
     return (e) => {
+      e.stopPropagation();
       this.props.toggleNotebookDropdown();
       this.props.toggleSelectedNotebook(notebook);
     };
+  }
+
+  toggleNotebookDropdown (e) {
+    e.stopPropagation();
+    this.props.toggleNotebookDropdown();
   }
 
   render () {
@@ -28,18 +38,16 @@ class NotebookDropdown extends React.Component {
     );
 
     return (
-      <div>
-        <button
-          className="select-notebook"
-          onClick={this.props.toggleNotebookDropdown}>
-          {this.props.selectedNotebook.id ?
-            this.props.allNotebooks.filter((notebook) => (
-              notebook.id === this.props.selectedNotebook.id
-            ))[0].title : "Select Notebook"} ▾
-          </button>
+      <button
+        className="select-notebook"
+        onClick={this.props.toggleNotebookDropdown}>
+        {this.props.selectedNotebook.id ?
+          this.props.allNotebooks.filter((notebook) => (
+            notebook.id === this.props.selectedNotebook.id
+          ))[0].title : "Select Notebook"} ▾
           <Modal
             isOpen={this.props.notebookDropdown}
-            onRequestClose={this.props.toggleNotebookDropdown}
+            onRequestClose={this.toggleNotebookDropdown}
             className={{
               base: '',
               afterOpen: this.props.openDropdownClass,
@@ -52,9 +60,8 @@ class NotebookDropdown extends React.Component {
                   {notebooks}
                 </ul>
               </Modal>
-            </div>  );
+            </button>);
           }
-
         }
 
         export default NotebookDropdown;

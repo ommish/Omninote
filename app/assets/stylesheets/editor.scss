@@ -63,16 +63,12 @@
   background: white;
   display: flex;
   flex-direction: column;
-  width: 80%;
-
+  width: 100%;
 }
 
 .note-editor.full {
   z-index: 40;
-  width: 100%;
   position: fixed;
-  top: 0;
-  left: 0;
 }
 
 .note-editor-quill {
@@ -88,7 +84,6 @@
 }
 
 .note-editor-quill.full {
-  width: 100%;
   z-index: 40;
   left: 0;
 }
