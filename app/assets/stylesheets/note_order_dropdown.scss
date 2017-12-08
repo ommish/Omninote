@@ -1,19 +1,6 @@
 @import "variables";
 
-.order-dropdown ul {
-  width: auto;
-  height: auto;
-  top: 215px;
-  left: 300px;
-  position: relative;
-  background: white;
-  border: 2px solid $light-grey;
-  display: flex;
-  flex-direction: column;
-}
-
 .sort-option-div {
-  position: relative;
   width: 100%;
   min-height: 40px;
   display: flex;
@@ -24,8 +11,22 @@
 }
 
 .sort-button {
+  position: relative;
   margin-right: 10px;
   color: $darker-grey;
+}
+
+.order-dropdown {
+  width: 300px;
+  height: auto;
+  top: 40px;
+  left: -150px;
+  position: absolute;
+  background: white;
+  border: 2px solid $light-grey;
+  display: flex;
+  flex-direction: column;
+  z-index: 45;
 }
 
 .order-dropdown-closed {
@@ -37,9 +38,10 @@
   width: 100%;
   top: 0px;
   left: 0px;
-  position: absolute;
+  position: fixed;
   overflow: hidden;
   display: flex;
+  z-index: 44;
 }
 
 .order-dropdown-overlay-closed {

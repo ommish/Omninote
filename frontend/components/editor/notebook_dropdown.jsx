@@ -1,5 +1,4 @@
 import React from 'react';
-import Modal from 'react-modal';
 
 class NotebookDropdown extends React.Component {
   constructor() {
@@ -40,27 +39,22 @@ class NotebookDropdown extends React.Component {
     return (
       <button
         className="select-notebook"
-        onClick={this.props.toggleNotebookDropdown}>
+        onClick={this.toggleNotebookDropdown}>
         {this.props.selectedNotebook.id ?
           this.props.allNotebooks.filter((notebook) => (
             notebook.id === this.props.selectedNotebook.id
           ))[0].title : "Select Notebook"} ▾
-          <Modal
-            isOpen={this.props.notebookDropdown}
-            onRequestClose={this.toggleNotebookDropdown}
-            className={{
-              base: '',
-              afterOpen: this.props.openDropdownClass,
-              beforeClose: 'notebook-dropdown-closed'}}
-              overlayClassName={{
-                base: '',
-                afterOpen: 'notebook-dropdown-overlay-open',
-                beforeClose: 'notebook-dropdown-overlay-closed'}}>
-                <ul className="notebook-list">
-                  {notebooks}
-                </ul>
-              </Modal>
-            </button>);
+          <div
+            className={this.props.notebookDropdown ? "notebook-dropdown-open" : "notebook-dropdown-closed"}>
+            <ul className="notebook-list">
+              {notebooks}
+            </ul>
+          </div>
+          <div
+            className={this.props.notebookDropdown ? "notebook-dropdown-overlay-open" : "notebook-dropdown-overlay-closed"}
+            onClick={this.toggleNotebookDropdown}>
+          </div>
+        </button>);
           }
         }
 

@@ -1,12 +1,21 @@
 import React from 'react';
-import Modal from 'react-modal';
 
 class NoteOrderOptions extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.toggleNoteOrderDropdown = this.toggleNoteOrderDropdown.bind(this);
+  }
+
+  toggleNoteOrderDropdown (e) {
+    e.stopPropagation();
+    this.props.toggleNoteOrderDropdown();
+  }
 
   toggleNoteOrder (order) {
     return (e) => {
       this.props.toggleNoteOrder(order);
-      this.props.toggleNoteOrderDropdown();
+      this.toggleNoteOrderDropdown();
     };
   }
 
@@ -22,29 +31,18 @@ class NoteOrderOptions extends React.Component {
       <div className="sort-option-div">
         <button
           className="sort-button"
-          onClick={this.props.toggleNoteOrderDropdown}>
+          onClick={this.toggleNoteOrderDropdown}>
           Options ▾
+            <ul className={this.props.noteOrderDropdown ? "order-dropdown" : "order-dropdown-closed"}>
+              {options}
+            </ul>
+          <div className={this.props.noteOrderDropdown ? "order-dropdown-overlay" : "order-dropdown-overlay-closed"}
+            onClick={this.toggleNoteOrderDropdown}>
+          </div>
         </button>
-        <Modal
-          key={2}
-          isOpen={this.props.noteOrderDropdown}
-          onRequestClose={this.props.toggleNoteOrderDropdown}
-          className={{
-          base: '',
-          afterOpen: 'order-dropdown',
-          beforeClose: 'order-dropdown-closed'}}
-          overlayClassName={{
-          base: '',
-          afterOpen: 'order-dropdown-overlay',
-          beforeClose: 'order-dropdown-overlay-closed'}}>
-          <ul className="order-dropdown">
-            {options}
-          </ul>
-        </Modal>
       </div>
   );
   }
-
 }
 
 

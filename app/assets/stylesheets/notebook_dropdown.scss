@@ -2,6 +2,7 @@
 
 .select-notebook {
   margin-right: 15px;
+  position: relative;
 }
 
 .notebook-dropdown-open {
@@ -11,15 +12,8 @@
   display: flex;
   z-index: 45;
   position: absolute;
-  left: 410px;
-  top: 60px;
+  top: 30px;
   border: 1px solid $light-grey;
-}
-
-
-.notebook-dropdown-open.left {
-  left: 20px;
-  top: 60px;
 }
 
 .notebook-dropdown-closed {
@@ -29,10 +23,10 @@
 .notebook-dropdown-overlay-open {
   height: 100%;
   width: 100%;
-  z-index: 45;
+  z-index: 44;
   top: 0px;
   left: 0px;
-  position: absolute;
+  position: fixed;
   overflow: hidden;
 }
 
