@@ -167,7 +167,7 @@ class Editor extends React.Component {
 
     return (
       <main
-        className="note-editor">
+      className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>
           <div className="editor-heading">
             <NotebookDropdown />
             Tags: {tags}
@@ -190,15 +190,12 @@ class Editor extends React.Component {
             <div className="editor-buttons">
               <button
                 disabled={this.state.note.title === "" ? true : false}
-                className={this.state.note.title === "" ? "square-button small narrow disabled" : "square-button small narrow"}
+                className={this.state.note.title === "" ? "button green small narrow disabled" : "button green small narrow"}
                 onClick={this.handleSubmit}>Save</button>
               <button
-                className={"square-button small narrow expand"}
+                className={"button green small narrow"}
                 onClick={this.props.toggleFullEditor}>
-                {this.props.fullEditor ? "Close" : <img
-                  className="sidenav-icon"
-                  src={window.staticAssets.white_expand}>
-                </img>}
+                {this.props.fullEditor ? "Close" : "Expand"}
               </button>
             </div>
           </div>

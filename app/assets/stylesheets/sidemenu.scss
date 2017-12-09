@@ -5,16 +5,6 @@
   to { left: 0px; }
 }
 
-@-webkit-keyframes fadein {
-  from { background-color: rgba(255, 255, 255, 0);}
-  to { background-color: rgba(255, 255, 255, 0.81);}
-}
-
-@-webkit-keyframes fadeout {
-  from { background-color: rgba(255, 255, 255, 0.81);}
-  to { background-color: rgba(255, 255, 255, 0);}
-}
-
 @-webkit-keyframes slidein {
   from { transform: translateX(530px); }
   to { transform: translateX(0); }
@@ -25,8 +15,10 @@
   display: none;
 }
 
-.closed-sidemenu-overlay {
-  display: none;
+.sidemenu-overlay.closed-sidemenu-overlay {
+  height: 0;
+  background: rgba(255, 255, 255, 0);
+  transition: background .4s, height .4s;
 }
 
 .sidemenu-overlay {
@@ -34,11 +26,11 @@
   width: 100%;
   top: 0px;
   left: 70px;
-  background-color: rgba(255, 255, 255, 0.81);
+  background: rgba(255, 255, 255, 0.81);
   position: absolute;
   overflow: hidden;
   z-index: 30;
-  -webkit-animation: fadein .4s ease-in;
+  transition: background .4s;
 }
 
 .closed-sidemenu {
@@ -63,7 +55,7 @@
   border-right: 2px solid $grey;
   position: fixed;
   overflow-y: scroll;
-  -webkit-animation: slideout .3s ease-in;
+  -webkit-animation: slideout .4s ease-in;
   z-index: 30;
 }
 

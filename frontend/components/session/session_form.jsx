@@ -73,12 +73,12 @@ class SessionForm extends React.Component {
               className={errorPresent}/>
             <button
               onClick={this.handleSubmit}
-            className="square-button">{formType}</button>
+            className="button green">{formType}</button>
           <br></br>
           <ul className="auth-errors">{errors}{authMessage}{authLink}</ul>
           <button
             onClick={this.demoLogin}
-            className="square-button">Demo Log In
+            className="button green">Demo Log In
           </button>
         </div>
       </div>

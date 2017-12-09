@@ -37,13 +37,15 @@ class NotebookDropdown extends React.Component {
     );
 
     return (
-      <button
+      <div
         className="select-notebook"
         onClick={this.toggleNotebookDropdown}>
-        {this.props.selectedNotebook.id ?
+        <div>
+        ▾ &nbsp;{this.props.selectedNotebook.id ?
           this.props.allNotebooks.filter((notebook) => (
             notebook.id === this.props.selectedNotebook.id
-          ))[0].title : "Select Notebook"} ▾
+          ))[0].title : "Select Notebook"}
+        </div>
           <div
             className={this.props.notebookDropdown ? "notebook-dropdown-open" : "notebook-dropdown-closed"}>
             <ul className="notebook-list">
@@ -54,7 +56,7 @@ class NotebookDropdown extends React.Component {
             className={this.props.notebookDropdown ? "notebook-dropdown-overlay-open" : "notebook-dropdown-overlay-closed"}
             onClick={this.toggleNotebookDropdown}>
           </div>
-        </button>);
+        </div>);
           }
         }
 

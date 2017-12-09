@@ -76,11 +76,11 @@ class CreateForm extends React.Component {
             onChange={this.handleChange}/>
           <div className="full-form-button-container">
             <button onClick={this.handleCancel}
-              className="square-button grey-button small">
+              className="button grey small">
               Cancel</button>
             <button type="submit"
               className={
-                this.state.title === "" ? "square-button small disabled": "square-button small"}
+                this.state.title === "" ? "button green small disabled": "button green small"}
               disabled={this.state.title === "" ? true : false }>
               {this.props.buttonMessage}</button>
           </div>

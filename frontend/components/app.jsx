@@ -1,5 +1,6 @@
 import React from 'react';
 import SideNav from './sidenav/sidenav_container';
+import Sidemenu from './sidemenu/sidemenu_container';
 import Editor from './editor/editor_container';
 import AllNotes from './note_index/all_notes_index_container';
 import NotebookNotes from './note_index/notebook_notes_index_container';
@@ -58,6 +59,7 @@ class App extends React.Component {
       return (
         <div className="app-page">
           <SideNav />
+          <Sidemenu />
           <CreateForm itemType={this.props.itemType} />
           <Switch>
             <Route path="/notebooks/:notebookId/notes/:noteId" component={NotebookNotes} />

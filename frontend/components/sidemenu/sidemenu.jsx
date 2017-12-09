@@ -41,7 +41,7 @@ class Sidemenu extends React.Component {
       <section
         key={1}
         onClick={this.toggleSidemenu}
-        className={this.props.sidemenuOpen ? "sidemenu-overlay" : "hidden"}>
+        className={this.props.sidemenuOpen ? "sidemenu-overlay" : "sidemenu-overlay closed-sidemenu-overlay"}>
       </section>
       <section
         className={this.props.sidemenu}>

@@ -1,6 +1,9 @@
 @import "variables";
 
 .note-index {
+  position: absolute;
+  top: 0;
+  left: 70px;
   min-width: 400px;
   max-width: 400px;
   height: 100%;
@@ -10,7 +13,14 @@
   justify-content: flex-start;
   overflow-y: scroll;
   box-sizing: border-box;
+  transition: left .5s;
 }
+
+.closed-index {
+  left: -500px;
+  transition: left .5s;
+}
+
 
 .note-index-heading {
   padding: 20px;
@@ -80,6 +90,7 @@
 }
 
 .search-bar {
+  width: 100%;
   background: $light-grey;
   color: $darker-grey;
   padding: 10px;

@@ -31,12 +31,16 @@
   padding-right: 20px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   color: $darker-grey;
   font-weight: 200;
   font-family: 'Roboto Slab', serif;
+  overflow: hidden;
+}
+
+.notebook-details > li > h3 {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 

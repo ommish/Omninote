@@ -71,11 +71,11 @@ class DeleteForm extends React.Component {
             <div className="full-form-message-title">{this.props.formMessageTitle}</div>
             <div className="full-form-button-container">
               <button onClick={this.handleCancel}
-                className="square-button grey-button small">
+                className="button grey small">
                 Cancel</button>
               <button
                 onClick={this.handleSubmit}
-                className={"square-button small"}>
+                className="button green small">
                 Delete</button>
             </div>
           </div>

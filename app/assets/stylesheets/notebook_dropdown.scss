@@ -3,6 +3,17 @@
 .select-notebook {
   margin-right: 15px;
   position: relative;
+  width: 300px;
+}
+
+.select-notebook:hover {
+  cursor: pointer;
+}
+
+.select-notebook > :first-child {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .notebook-dropdown-open {
@@ -33,7 +44,6 @@
 }
 
 .notebook-list {
-  width: 250px;
   height: 300px;
   overflow-y: scroll;
   overflow-x: hidden;

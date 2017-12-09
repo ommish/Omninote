@@ -35,9 +35,8 @@ class NoteIndex extends React.Component {
             key={note.id} />
         );
       }});
-
     return (
-      <section className="note-index">
+      <section className={this.props.fullEditor ? "note-index closed-index" : "note-index"}>
         <div className="note-index-heading">
           {this.props.noteIndexHeader}
         </div>

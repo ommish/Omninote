@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
     sidemenuItemType: state.ui.sidemenuItemType,
     sidemenuOpen: state.ui.sidemenu === "sidemenu-open",
     currentUser: state.session.currentUser.email,
+    fullEditor: state.ui.fullEditor,
   };
 };
 

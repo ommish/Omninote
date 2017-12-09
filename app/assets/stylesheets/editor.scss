@@ -1,6 +1,7 @@
 @import "variables";
 
 .editor-heading {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -10,6 +11,7 @@
 }
 
 .editor-lower-heading {
+  width: 100%;
   border-top: 1px solid $light-grey;
   display: flex;
   flex-direction: row;
@@ -41,6 +43,8 @@
 .editor-buttons {
   display: flex;
   flex-direction: row;
+  position: fixed;
+  right: 20px;
 }
 
 
@@ -57,21 +61,27 @@
 }
 
 .note-editor {
+  position: absolute;
+  left: 470px;
   height: 100%;
+  width: calc(100% - 470px);
   padding: 20px;
   box-sizing: border-box;
   background: white;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  transition: left .5s, width .5s;
 }
 
-.note-editor.full {
-  z-index: 40;
-  position: fixed;
+.note-editor.full-editor {
+  width: 100%;
+  left: 0;
+  transition: left .5s, width .5s;
 }
+
 
 .note-editor-quill {
+  width: 100%;
   height: 90%;
   box-sizing: border-box;
   background: white;
@@ -80,17 +90,9 @@
   padding: none;
   margin-bottom: 40px;
   margin-top: 10px;
-
 }
-
-.note-editor-quill.full {
-  z-index: 40;
-  left: 0;
-}
-
 
 .title::-webkit-input-placeholder {
-  color: orange;
   font-family: 'Roboto Slab', serif;
   font-size: 30px;
   color: $light-green;

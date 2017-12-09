@@ -7,24 +7,18 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = (state, ownProps) => {
   let notes = [];
   const noteOrder = state.ui.noteOrder;
-  if (state.entities.tags.initialState) {
-    return {
-      noteIndexHeader: "",
-      notes,
-      noteOrder,
-    };
-  } else {
-    const tag = state.entities.tags[ownProps.match.params.tagId];
-    const noteIndexHeader = `Tag: ${tag.title}`;
-    const noteIds = tag.noteIds;
-    noteIds.forEach((noteId) => notes.push(state.entities.notes[noteId]));
-    notes = sortItems(notes, noteOrder);
-    return {
-      noteIndexHeader,
-      notes,
-      noteOrder,
-    };
-  }
+  const fullEditor = state.ui.fullEditor;
+  const tag = state.entities.tags[ownProps.match.params.tagId];
+  const noteIndexHeader = `Tag: ${tag.title}`;
+  const noteIds = tag.noteIds;
+  noteIds.forEach((noteId) => notes.push(state.entities.notes[noteId]));
+  notes = sortItems(notes, noteOrder);
+  return {
+    noteIndexHeader,
+    notes,
+    noteOrder,
+    fullEditor,
+  };
 };
 
 export default withRouter(connect(mapStateToProps, null)(NoteIndex));

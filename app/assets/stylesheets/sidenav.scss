@@ -1,6 +1,9 @@
 @import "variables";
 
 .sidenav {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,6 +14,12 @@
   background-color: $light-grey;
   border-right: 1px solid $grey;
   z-index: 35;
+  transition: left .5s;
+}
+
+.closed-nav {
+  left: -100px;
+  transition: left .5s;
 }
 
 .sidenav-icon-list {

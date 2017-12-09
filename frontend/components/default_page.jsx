@@ -13,14 +13,12 @@ class DefaultPage extends React.Component {
       <div
         className="default-page">
         <header>
-          <h3><img src="https://png.icons8.com/elephant/ios7/100/666666"/><Link to="/">OMNINOTE</Link></h3>
           <nav className="left-nav">
-            <h4><Link to="/"></Link></h4>
-            <h4><Link to="/"></Link></h4>
+            <img src="https://png.icons8.com/elephant/ios7/100/666666"/>
+            <Link to="/">OMNINOTE</Link>
           </nav>
           <nav className="right-nav">
-            <h4><Link to="/"></Link></h4>
-            <h4><Link to="/login">Log In</Link></h4>
+            <Link to="/login">Log In</Link>
           </nav>
         </header>
         <main>
@@ -36,23 +34,14 @@ class DefaultPage extends React.Component {
           </section>
         </main>
         <footer>
-          <nav>
-            <ul className="top-footer-list">
-              <li><a href= "https://github.com/ommish/Omninote" ><img src={window.staticAssets.github}></img></a></li>
-              <li><a href= "https://www.linkedin.com/in/ommish/" ><img src={window.staticAssets.linkedin}></img></a></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+          <nav className="footer-list">
+            <a href= "https://github.com/ommish/Omninote" >Github</a>
+            <a href= "https://www.linkedin.com/in/ommish/" >Linkedin</a>
+            <a href= "https://www.ommish.com/" >Portfolio</a>
+            <a href= "mailto:oshimizu15@gmail.com" >Email</a>
           </nav>
-          <nav>
-            <ul>
-              <li className="bottom-footer-list-link"><a href="https://icons8.com">Logo Source</a></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+          <nav className="footer-list">
+            <a href="https://icons8.com">Logo Source</a>
           </nav>
         </footer>
       </div>

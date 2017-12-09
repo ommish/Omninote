@@ -1,70 +1,55 @@
 
 @import "variables";
 
-.default-page{
-  div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.default-page {
+
+  .footer-list a:hover, .right-nav a:hover {
+    color: $light-green;
+    transition: color 0.2s;
   }
 
   header {
+    box-sizing: border-box;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 150px;
-    padding-right: 150px;
+    padding: 30px 150px;
     border-bottom: 1px solid $light-grey;
     justify-content: space-between;
     align-items: center;
-  }
 
-  header > h3 {
-    display: flex;
-    align-items: center;
-  }
+    .left-nav, .right-nav {
+      display: flex;
+      align-items: center;
+    }
 
-  header > h3 > a {
-    font-family: 'Roboto Slab', serif;
-    color: $light-green;
-  }
+    .left-nav{
 
-  header > h3 > img {
-    height: 40px;
-    margin-right: 10px;
-    width: auto;
-    align-self: flex-end;
-  }
+      a {
+        color: $light-green;
+        font-family: 'Roboto Slab', serif;
+        font-size: 30px;
+      }
+      img {
+        height: 40px;
+        margin-right: 10px;
+        width: auto;
+        align-self: flex-end;
+      }
+    }
 
-  header nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  header .left-nav {
-    margin-right: 40%;
-  }
-  header .left-nav a:hover {
-    color: $light-green;
-    transition: color 0.2s;
-  }
-  header .right-nav a:hover, footer nav:nth-of-type(2) li:hover {
-    color: $light-green;
-    transition: color 0.2s;
-  }
-
-  nav h4 {
-    margin-left: 5px;
-    margin-right: 5px;
+    .right-nav {
+      a:hover {
+        color: $light-green;
+        transition: color 0.2s;
+      }
+    }
   }
 
   main {
     display: flex;
-    padding-left: 150px;
-    padding-right: 150px;
-    padding-top: 50px;
+    padding: 50px 150px;
+    min-height: 400px;
   }
 
   section:nth-of-type(1) {
@@ -86,40 +71,24 @@
     width: 35%;
   }
 
-}
 
-.default-page {
   footer {
-    margin-top: 80px;
-    align-self: flex-end;
-  }
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 
-  footer nav {
-    border-top: 1px solid $light-grey;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-left: 150px;
-    padding-right: 150px;
-  }
+    .footer-list {
+      display: flex;
+      border-top: 1px solid $light-grey;
+      height: 100px;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0px 150px;
 
-  footer ul {
-    display: flex;
+      a {
+        padding-right: 30px;
+      }
+    }
   }
-  footer ul li {
-    margin-left: 10px;
-    cursor: pointer;
-  }
-
-  footer ul li img {
-    height: 30px;
-    width: auto;
-  }
-
-  .bottom-footer-list-link a:hover {
-    color: $light-green;
-    transition: color 0.2s;
-  }
-
 }

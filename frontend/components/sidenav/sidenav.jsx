@@ -50,9 +50,8 @@ class SideNav extends React.Component {
 
   render () {
     return (
-      [<nav
-        className="sidenav"
-        key={1}>
+      <nav
+        className={this.props.fullEditor ? "sidenav closed-nav" : "sidenav"}>
       <ul className="sidenav-icon-list">
         <li>
           <img
@@ -110,10 +109,7 @@ class SideNav extends React.Component {
           </button>
         </li>
       </ul>
-    </nav>,
-    <Sidemenu
-      itemType={this.props.sidemenuItemType}
-      key={2}/>]
+    </nav>
     );
   }
 }
