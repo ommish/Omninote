@@ -10,7 +10,6 @@ Omninote uses the React-Redux model to render content dynamically on the fronten
 Users can sign up, log in, and log out by setting an email address and password for their account.
 
 ![user auth](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/auth.gif)
-[ https://github.com/ommish/Omninote/blob/master/README_images/auth.gif | height = 200px ]
 
 ### Main Components
 Many of the app's components are re-used for different purposes using React-Redux. The four main components rendered are:
@@ -33,7 +32,7 @@ Notes are super easy to find! The note index can display a list of all your note
 
 At the top of the index is a search bar to filter notes. Your search query will try to match any content in the title or body. With all the current user's notes stored on the front end, queries are extremely quick.
 
-[ https://github.com/ommish/Omninote/blob/master/README_images/order.gif | height = 200px ]
+![note order](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/note_order.gif)
 
 A menu of several sorting options is also available to sort your notes.
 Notes are by default sorted in order of `updatedAtNewest`. Selecting a different option dispatches an action with an attached index number, which represents which comparer callback function to pass to the sorting function, and this updates the note index component's props, triggering a re-render with newly sorted notes.
@@ -53,13 +52,14 @@ Notes are by default sorted in order of `updatedAtNewest`. Selecting a different
 
 The same function is used to sort notebooks and tags by title in the sidemenu.
 
-[ https://github.com/ommish/Omninote/blob/master/README_images/notebooks_tags.gif | height = 200px ]
+![notebooks and tags](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/notebooks_tags.gif)
 
 
 #### Rich Text Editor
 Omninote utilizes Quill-React, a text editor component. Image attachments are saved via paperclip  and AWS, then appended to the document.
 
-[ https://github.com/ommish/Omninote/blob/master/README_images/note.gif | height = 200px ]
+![note](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/note.gif)
+
 
 The editor toggles to full-width when creating a new note, and the notebook selector is automatically set to whatever notebook you were viewing. The notebook create form can also be opened from the same menu if none of your existing notebooks are the right fit.
 
