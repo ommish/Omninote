@@ -32,7 +32,7 @@ Notes are super easy to find! The note index can display a list of all your note
 
 At the top of the index is a search bar to filter notes. Your search query will try to match any content in the title or body. With all the current user's notes stored on the front end, queries are extremely quick.
 
-![note order](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/note_order.gif)
+![note order](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/order.gif)
 
 A menu of several sorting options is also available to sort your notes.
 Notes are by default sorted in order of `updatedAtNewest`. Selecting a different option dispatches an action with an attached index number, which represents which comparer callback function to pass to the sorting function, and this updates the note index component's props, triggering a re-render with newly sorted notes.
