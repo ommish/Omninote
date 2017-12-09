@@ -30,6 +30,9 @@ class SideNav extends React.Component {
     if (path !== this.props.location.pathname) {
       this.props.history.push(path);
     }
+    if (this.props.sidemenuOpen) {
+      this.props.toggleSidemenu();
+    }
     this.props.toggleFullEditor();
   }
 
