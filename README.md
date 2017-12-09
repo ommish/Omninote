@@ -9,6 +9,7 @@ Omninote uses the React-Redux model to render content dynamically on the fronten
 ### User Authentication
 Users can sign up, log in, and log out by setting an email address and password for their account.
 
+![user auth](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/auth.gif)
 [ https://github.com/ommish/Omninote/blob/master/README_images/auth.gif | height = 200px ]
 
 ### Main Components
