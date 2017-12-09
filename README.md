@@ -5,6 +5,13 @@
 Omninote uses the React-Redux model to render content dynamically on the frontend, and the Ruby on Rails framework for saving data on the backend.
 
 ## Main Features
+
+### User Authentication
+Users can sign up, log in, and log out by setting an email address and password for their account.
+
+![user auth](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/auth.gif)
+
+### Main Components
 Many of the app's components are re-used for different purposes using React-Redux. The four main components rendered are:
 
 1. Sidenav
@@ -20,12 +27,12 @@ Many of the app's components are re-used for different purposes using React-Redu
   - Creates new notes
   - Edits existing notes
 
-### Note Index
+#### Note Index
 Notes are super easy to find! The note index can display a list of all your notes, or just the notes associated with the notebook/tag that you select through the sidemenu.
 
 At the top of the index is a search bar to filter notes. Your search query will try to match any content in the title or body. With all the current user's notes stored on the front end, queries are extremely quick.
 
-![sorting options](https://github.com/ommish/Omninote/blob/master/README_images/sorting_menu.png "Sorting Options")
+![note order](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/order.gif)
 
 A menu of several sorting options is also available to sort your notes.
 Notes are by default sorted in order of `updatedAtNewest`. Selecting a different option dispatches an action with an attached index number, which represents which comparer callback function to pass to the sorting function, and this updates the note index component's props, triggering a re-render with newly sorted notes.
@@ -45,10 +52,14 @@ Notes are by default sorted in order of `updatedAtNewest`. Selecting a different
 
 The same function is used to sort notebooks and tags by title in the sidemenu.
 
-### Rich Text Editor
+![notebooks and tags](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/notebooks_tags.gif)
+
+
+#### Rich Text Editor
 Omninote utilizes Quill-React, a text editor component. Image attachments are saved via paperclip  and AWS, then appended to the document.
 
-![notebook dropdwown](https://github.com/ommish/Omninote/blob/master/README_images/notebook_dropdown.png "Notebook Dropdown")
+![note](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/note.gif)
+
 
 The editor toggles to full-width when creating a new note, and the notebook selector is automatically set to whatever notebook you were viewing. The notebook create form can also be opened from the same menu if none of your existing notebooks are the right fit.
 
@@ -79,8 +90,6 @@ Toggle to no notebook if going to all notes:
     }
 
 
-![tag selection](https://github.com/ommish/Omninote/blob/master/README_images/tag_menu.png "Tag Selection")
-
 All your tags are listed at the top of your editor so you can select or deselect them with just a click. If you need a new tag, you can create one right from the same menu. This saves new tag and its association with the note on the backend, and the response will update the redux state, toggling the new tag to be selected. A bi-directional (`:inverse_of`) association set up in Rails obviates the need to send separate "tagging" post requests.
 
     createTag(e) {
@@ -98,10 +107,8 @@ All your tags are listed at the top of your editor so you can select or deselect
       }
     }
 
-### Simple UI
+#### Simple UI
 Prompts for similar actions (eg. deleting a note, deleting a notebook, and deleting a tag) have similar design but clear markings (headers, icons, and tooltips), making it easy for the user to figure out how to navigate the app.
-
-![navbar](https://github.com/ommish/Omninote/blob/master/README_images/navbar.png "Navbar Tooltips")
 
 
 ![note_delete](https://github.com/ommish/Omninote/blob/master/README_images/note_delete.png "Delete Notes")
@@ -110,7 +117,7 @@ Prompts for similar actions (eg. deleting a note, deleting a notebook, and delet
 ![notebook_delete](https://github.com/ommish/Omninote/blob/master/README_images/notebook_delete.png "Delete Notebooks")
 
 
-## Future Directions
+### Future Directions
 
 Additional features to be added:
 1. Autosave
