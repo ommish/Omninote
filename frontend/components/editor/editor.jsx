@@ -186,8 +186,8 @@ class Editor extends React.Component {
               className="title"
               value={this.state.note.title}/>
             <ul className="editor-errors">{noteErrors}</ul>
-            <div className={this.state.saved ? "saved" : "not-saved"}>Saved!</div>
             <div className="editor-buttons">
+            <div className={this.state.saved ? "saved" : "not-saved"}>Saved!</div>
               <button
                 disabled={this.state.note.title === "" ? true : false}
                 className={this.state.note.title === "" ? "button green small narrow disabled" : "button green small narrow"}
