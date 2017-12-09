@@ -1,14 +1,14 @@
 @import "variables";
 
 .note-index {
-  width: 350px;
+  min-width: 400px;
+  max-width: 400px;
   height: 100%;
   border-right: 1px solid $grey;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow-y: scroll;
-  overflow-x: hidden;
   box-sizing: border-box;
 }
 
@@ -24,29 +24,19 @@
 }
 
 .note-item {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 0 10px;
   border: 3px solid white;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   height: 100px;
-  width: 100%;
-  box-sizing: border-box;
   cursor: pointer;
-}
-
-.note-item-container {
-  height: 80%;
 }
 
 .note-info {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  box-sizing: border-box;
 }
 
 .note-item:hover {
@@ -81,15 +71,12 @@
 .note-item-body-snippet {
   font-size: 12px;
   font-weight: 200;
-  overflow: hidden;
 }
 
 
 .note-trash-icon {
   height: 20px;
   margin: 5px;
-  width: auto;
-  position: float;
 }
 
 .search-bar {
@@ -97,7 +84,6 @@
   color: $darker-grey;
   padding: 10px;
   min-height: 40px;
-  width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
 }

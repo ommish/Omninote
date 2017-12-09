@@ -167,9 +167,7 @@ class Editor extends React.Component {
 
     return (
       <main
-        className={this.props.fullEditor ?
-          "note-editor full" :
-          "note-editor"}>
+        className="note-editor">
           <div className="editor-heading">
             <NotebookDropdown />
             Tags: {tags}
@@ -212,9 +210,7 @@ class Editor extends React.Component {
           <ReactQuill
             ref={(input) => { this.quillEditor = input; }}
             id="quill"
-            className={this.props.fullEditor ?
-              "note-editor-quill full " :
-              "note-editor-quill"}
+            className="note-editor-quill"
               modules={quillModules}
               formats={quillFormats}
               value={this.state.note.body}

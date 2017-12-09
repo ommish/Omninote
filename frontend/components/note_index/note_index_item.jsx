@@ -30,11 +30,10 @@ class NoteIndexItem extends React.Component {
   render () {
 
     return (
-        <div className={this.props.note.id === parseInt(this.props.match.params.noteId) ?
+        <li className={this.props.note.id === parseInt(this.props.match.params.noteId) ?
             "note-item active" :
             "note-item" }
-            onClick={this.handleClick()}
-            key={1}>
+            onClick={this.handleClick()}>
             <ul className="note-info">
               <li className="note-item-title">{this.props.note.title}</li>
               <li className="note-item-date">{new Date(this.props.note.updatedAt).toDateString()}</li>
@@ -47,7 +46,7 @@ class NoteIndexItem extends React.Component {
                 onClick={this.handleClick(this.props.note.id)}
                 src={window.staticAssets.trash}/>
             </div>
-          </div>
+          </li>
       );
     }
   }
