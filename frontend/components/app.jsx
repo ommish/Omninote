@@ -27,7 +27,7 @@ class App extends React.Component {
       const currentNotebookId = this.props.match.params.notebookId;
       const currentNoteId = this.props.match.params.noteId;
       const newNotebookId = newProps.match.params.notebookId;
-      const newNoteId = newProps.match.params.noteId;
+      const newNoteId = newProps.match.params.noteId
 
       // toggle to new notebook if visiting a different notebook
       if (newNotebookId && currentNotebookId !== newNotebookId) {
@@ -35,7 +35,7 @@ class App extends React.Component {
         this.props.toggleSelectedNotebook(notebook);
       }
       // toggle to new notebook if visiting a different note
-      else if (!newNotebookId && newNoteId) {
+      else if (!newNotebookId && newNoteId && currentNoteId !== newNoteId) {
         const notebook = this.props.notebooks[this.props.notes[newNoteId].notebookId];
         this.props.toggleSelectedNotebook(notebook);
       // toggle to no notebook if going to all notes
@@ -54,6 +54,8 @@ class App extends React.Component {
         </div>
       );
     }
+// TODO:  add not found message if notebook or note doesn't exist and show link to redirect to /notes
+
 
     else {
       return (

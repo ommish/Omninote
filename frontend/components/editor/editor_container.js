@@ -21,6 +21,8 @@ const mapStateToProps = (state, ownProps) => {
     noteErrors: state.errors.noteErrors,
     tagErrors: state.errors.tagErrors,
     saved: false,
+    timeUntilAutosave: null,
+    autosaving: false,
   };
 };
 
