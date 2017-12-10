@@ -37,7 +37,7 @@ class DefaultPage extends React.Component {
           <nav className="footer-list">
             <a href= "https://github.com/ommish/Omninote" >Github</a>
             <a href= "https://www.linkedin.com/in/ommish/" >Linkedin</a>
-            <a href= "https://www.ommish.com/" >Portfolio</a>
+            <a href= "http://www.ommish.com/" >Portfolio</a>
             <a href= "mailto:oshimizu15@gmail.com" >Email</a>
           </nav>
           <nav className="footer-list">
