@@ -110,6 +110,7 @@ All your tags are listed at the top of your editor so you can select or deselect
     
 
 The editor features autosave.
+
 ![autosave](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/autosave.gif)
 
 #### Simple UI
