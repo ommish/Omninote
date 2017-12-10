@@ -120,6 +120,5 @@ Prompts for similar actions (eg. deleting a note, deleting a notebook, and delet
 ### Future Directions
 
 Additional features to be added:
-1. Autosave
-2. Photo gallery to display current user's uploaded images
-3. Responsive design
+1. Photo gallery to display current user's uploaded images
+2. Responsive design
