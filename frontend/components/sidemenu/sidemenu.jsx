@@ -1,6 +1,5 @@
 import React from 'react';
 import SidemenuIndexItem from './sidemenu_index_item_container';
-import Modal from 'react-modal';
 import CreateForm from '../entity_forms/create_form_container';
 import DeleteForm from '../entity_forms/delete_form_container';
 

@@ -60,6 +60,7 @@ class DeleteForm extends React.Component {
     render() {
       return (
         <Modal
+          ariaHideApp={false}
           isOpen={(this.props.deleteForm.id) && (this.props.deleteForm.type === this.props.itemType)}
           onRequestClose={this.closeModal}
           className="full-form-open"

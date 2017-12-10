@@ -23,6 +23,7 @@ const mapStateToProps = (state, ownProps) => {
     saved: false,
     timeUntilAutosave: null,
     autosaving: false,
+    failedSave: false,
   };
 };
 

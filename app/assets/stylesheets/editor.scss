@@ -43,6 +43,7 @@
 .editor-buttons {
   display: flex;
   flex-direction: row;
+  align-items: center;
   position: fixed;
   right: 20px;
 }
@@ -98,14 +99,10 @@
   color: $light-green;
 }
 
-.not-saved {
-  visibility: hidden;
-}
 .saved {
   visibility: visible;
   display: flex;
   justify-content: center;
   align-items: center;
   color: $light-green;
-  transition: visibility 0.3;
 }

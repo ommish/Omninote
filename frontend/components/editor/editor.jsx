@@ -10,6 +10,7 @@ class Editor extends React.Component {
     this.state = {
       saved: this.props.saved,
       timeUntilAutosave: this.props.timeUntilAutosave,
+      failedSave: this.props.failedSave,
       note: this.props.note,
       tagInput: this.props.tagInput,
       image: { imageUrl: "", imageFile: "" },
@@ -24,6 +25,7 @@ class Editor extends React.Component {
     this.handleImage = this.handleImage.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
 
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.autosaveCountdown = this.autosaveCountdown.bind(this);
     this.setAutosaveCountdown = this.setAutosaveCountdown.bind(this);
     this.resetAutosaveCountdown = this.resetAutosaveCountdown.bind(this);
@@ -40,33 +42,16 @@ class Editor extends React.Component {
 
   autosaveCountdown() {
     this.setState({timeUntilAutosave: this.state.timeUntilAutosave - 1});
-    if (this.state.timeUntilAutosave <= 0 && !this.state.saved) {
-      this.autosave();
-    }
-  }
-
-  autosave() {
-    if (this.state.note.title !== "" && this.props.selectedNotebook.id) {
-      const newState = merge({}, this.state);
-      newState.note.notebookId = this.props.selectedNotebook.id;
-      newState.note.bodyPlain = newState.note.bodyPlain.slice(0, 100);
-      if (newState.note.tagIds.length === 0) {
-        newState.note.tagIds = [""];
+    if (this.state.timeUntilAutosave <= 0 && !this.state.saved && !this.state.failedSave) {
+      if (this.state.note.title !== "" && this.props.selectedNotebook.id) {
+        this.handleSubmit();
       }
-      newState.saved = true;
-      newState.timeUntilAutosave = 2;
-      this.setState(newState);
-
-      const currentNote = this.props.match.params.noteId;
-      const currentNotebook = this.props.match.params.notebookId;
-
-      this.props.action(this.state.note).then((success) => {
-        this.redirectAfterSave(currentNote, currentNotebook, success)
-      });
     }
   }
 
   redirectAfterSave(currentNote, currentNotebook, success) {
+    this.props.clearTagErrors();
+    this.props.clearNoteErrors();
     if (!currentNote) {
       if (!currentNotebook) {
         this.props.history.push(`/notes/${success.note.id}`);
@@ -118,13 +103,14 @@ class Editor extends React.Component {
 }
 
 resetAutosaveCountdown(newState) {
-  newState.timeUntilAutosave = 1;
+  newState.timeUntilAutosave = 2;
   newState.saved = false;
+  newState.failedSave = false;
   this.setState(newState);
 }
 
 handleTagInput(e) {
-  newTagInput = e.target.value;
+  const newTagInput = e.target.value;
   this.setState({tagInput: newTagInput});
 }
 
@@ -172,6 +158,7 @@ appendPhotoToNote(url) {
   this.setState(newState);
 }
 
+
 handleSubmit() {
   const newState = merge({}, this.state);
   newState.note.notebookId = this.props.selectedNotebook.id;
@@ -179,13 +166,21 @@ handleSubmit() {
   if (newState.note.tagIds.length === 0) {
     newState.note.tagIds = [""];
   }
-  newState.saved = true;
-  newState.timeUntilAutosave = 1;
   this.setState(newState);
   const currentNote = this.props.match.params.noteId;
   const currentNotebook = this.props.match.params.notebookId;
   this.props.action(newState.note).then((success) => {
+    if (!newState.note.id) {
+      newState.note.id = success.note.id;
+    }
+    newState.saved = true;
+    newState.timeUntilAutosave = 2;
+    this.setState(newState);
     this.redirectAfterSave(currentNote, currentNotebook, success)
+  },
+  (fail) => {
+    newState.failedSave = true;
+    this.setState(newState);
   });
 }
 
@@ -224,13 +219,13 @@ render() {
     type="text"
     className="title"
     value={this.state.note.title}/>
-    <ul className="editor-errors">{noteErrors}</ul>
     <div className="editor-buttons">
+    <ul className="editor-errors">{noteErrors}</ul>
     <div className="saved">{this.state.saved ? "Saved!" : ""}</div>
     <button
     disabled={this.state.note.title === "" ? true : false}
     className={this.state.note.title === "" ? "button green small narrow disabled" : "button green small narrow"}
-    onClick={this.setAutosaveCountdown}>Save</button>
+    onClick={this.handleSubmit}>Save</button>
     <button
     className={"button green small narrow"}
     onClick={this.props.toggleFullEditor}>

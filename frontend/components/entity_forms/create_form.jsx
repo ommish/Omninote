@@ -60,6 +60,7 @@ class CreateForm extends React.Component {
     errors = errors.map((error) => <li className="create-errors" key={error}>{error}</li>);
     return (
       <Modal
+        ariaHideApp={false}
         isOpen={this.props.createFormType !== "" }
         onRequestClose={this.closeModal}
         className="full-form-open"
