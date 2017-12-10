@@ -26,6 +26,7 @@ Many of the app's components are re-used for different purposes using React-Redu
 4. Editor
   - Creates new notes
   - Edits existing notes
+  - Autosaves notes
 
 #### Note Index
 Notes are super easy to find! The note index can display a list of all your notes, or just the notes associated with the notebook/tag that you select through the sidemenu.
@@ -106,6 +107,10 @@ All your tags are listed at the top of your editor so you can select or deselect
         });
       }
     }
+    
+
+The editor features autosave.
+![autosave](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/autosave.gif)
 
 #### Simple UI
 Prompts for similar actions (eg. deleting a note, deleting a notebook, and deleting a tag) have similar design but clear markings (headers, icons, and tooltips), making it easy for the user to figure out how to navigate the app.
