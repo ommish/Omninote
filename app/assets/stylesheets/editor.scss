@@ -6,7 +6,6 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
   padding-bottom: 15px;
 }
 
@@ -18,6 +17,12 @@
   justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 20px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .tag-button {

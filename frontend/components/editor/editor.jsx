@@ -67,9 +67,7 @@ class Editor extends React.Component {
 
   componentWillReceiveProps(newProps) {
     const isNewPath = this.props.location.pathname !== newProps.location.pathname;
-    const isNewNotebook = this.state.note.notebookId !== newProps.note.notebookId;
-    const isNewTags = this.state.note.tagIds.sort().join("") !== newProps.note.tagIds.sort().join("");
-    if (isNewPath || isNewNotebook || isNewTags) {
+    if (isNewPath) {
       this.props.clearTagErrors();
       this.props.clearNoteErrors();
       window.clearInterval(this.autosaveInterval);
@@ -187,12 +185,13 @@ handleSubmit() {
 render() {
   const tags = this.props.allTags.map((tag) => {
     return (
+      <li key={tag.id}>
       <button
-      key={tag.id}
       onClick={this.handleTagClick(tag.id)}
       className={this.state.note.tagIds.includes(tag.id) ? "tag-button selected" : "tag-button"}>
       {tag.title}
       </button>
+      </li>
     );
   });
   const noteErrors = this.props.noteErrors.map((err) => <li key={err}>{err}</li>);
@@ -203,12 +202,15 @@ render() {
     className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>
     <div className="editor-heading">
     <NotebookDropdown/>
-    Tags: {tags}
+    <ul className="tag-list">
+    <p>Tags:</p>
+    {tags}
     <input type="text"
     placeholder="Create new tag"
     onKeyPress={this.createTag}
     onChange={this.handleTagInput}
     value={this.state.tagInput}/>
+    </ul>
     <ul className="editor-errors">{tagErrors}</ul>
     </div>
     <div className="editor-lower-heading">

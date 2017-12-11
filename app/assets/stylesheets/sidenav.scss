@@ -66,10 +66,10 @@
     left: 55px;
     height: auto;
     width: auto;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: $dark-grey;
     border-radius: 3px;
-    padding: 2px;
-    color: $darker-grey;
+    padding: 3px;
+    color: white;
     align-items: center;
     flex-wrap: wrap;
   }
