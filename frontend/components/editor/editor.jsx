@@ -202,8 +202,8 @@ render() {
     className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>
     <div className="editor-heading">
     <NotebookDropdown/>
+    <div className="tags-label">Select Tags:</div>
     <ul className="tag-list">
-    <p>Tags:</p>
     {tags}
     <input type="text"
     placeholder="Create new tag"

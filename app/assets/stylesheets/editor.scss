@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   padding-bottom: 15px;
 }
 
@@ -19,15 +19,20 @@
   padding-bottom: 20px;
 }
 
+.tags-label {
+  min-width: 100px;
+}
+
 .tag-list {
+  max-height: 90px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .tag-button {
   height: 25px;
-  width: auto;
   background: $light-grey;
   margin: 5px;
   border-radius: 5px;
