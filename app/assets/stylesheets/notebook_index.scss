@@ -6,8 +6,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  color: $grey;
-  font-size: 12px;
   border-bottom: 1px solid $light-grey;
   padding: 10px 20px;
 
@@ -28,7 +26,7 @@
   padding-left: 0 20px;
   display: flex;
   flex-direction: column;
-  color: $darker-grey;
+  font-size: 12px;
   font-weight: 200;
   font-family: 'Roboto Slab', serif;
   overflow: hidden;
@@ -46,4 +44,11 @@
   margin: 5px;
   width: auto;
   position: float;
+}
+
+.notebook-separator {
+  border-bottom: 1px solid $grey;
+  color: $dark-grey;
+  font-size: 30px;
+  padding: 10px 20px;
 }
