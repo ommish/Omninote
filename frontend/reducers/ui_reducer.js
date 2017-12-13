@@ -26,6 +26,7 @@ export const _noteOrderOptions = [
   sidemenuItemType: "notebook",
   createForm: {itemType: ""},
   deleteForm: {id: false, type: ""},
+  logoutForm: false,
   selectedNotebook: {id: false},
   selectedNote: {id: false},
   fullEditor: false,

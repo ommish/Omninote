@@ -21,6 +21,7 @@ const mapDispatchToProps = (dispatch) => {
     toggleFullEditor: () => dispatch(toggleModal("fullEditor")),
     toggleSidemenuItemType: (itemType) => dispatch(toggleSidemenuItemType(itemType)),
     toggleSidemenu: () => dispatch(toggleSidemenu()),
+    toggleLogoutForm: () => dispatch(toggleModal("logoutForm")),
   };
 };
 

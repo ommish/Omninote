@@ -9,6 +9,7 @@ class SideNav extends React.Component {
     this.redirectToAllNotes = this.redirectToAllNotes.bind(this);
     this.newNote = this.newNote.bind(this);
     this.toggleSidemenu = this.toggleSidemenu.bind(this);
+    this.toggleLogoutForm = this.props.toggleLogoutForm.bind(this);
   }
 
   redirectToAllNotes() {
@@ -103,7 +104,7 @@ class SideNav extends React.Component {
         </li>
         <li>
           <button
-            onClick={this.props.logout}
+            onClick={this.toggleLogoutForm}
             className="circle-button logout">
             <img
               className="sidenav-icon"
