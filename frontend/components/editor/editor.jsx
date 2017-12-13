@@ -95,6 +95,15 @@ class Editor extends React.Component {
         newState.note.tagIds.push(res.tag.id);
         newState.tagInput = "";
         this.resetAutosaveCountdown(newState);
+      }, (fail) => {
+        if (fail.errors.includes("tag already exists")) {
+          const tag = this.props.allTags.filter((tag) => tag.title.toLowerCase() === newState.tagInput.toLowerCase())[0];
+          console.log(tag);
+          newState.tagInput = "";
+          this.props.clearTagErrors();
+          this.setState(newState);
+          this.handleTagClick(tag.id)();
+        }
       }
     );
   }
@@ -109,7 +118,9 @@ resetAutosaveCountdown(newState) {
 
 handleTagInput(e) {
   const newTagInput = e.target.value;
-  this.props.clearTagErrors();
+  if (this.props.tagErrors.length > 0) {
+    this.props.clearTagErrors();
+  }
   this.setState({tagInput: newTagInput});
 }
 
@@ -203,19 +214,21 @@ render() {
     className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>
       <div className="editor-heading">
         <NotebookDropdown/>
-          <div className="tags-label">
-          Select Tags:
-          <input type="text"
-          placeholder="Create new tag"
-          className="tag-input"
-          onKeyPress={this.createTag}
-          onChange={this.handleTagInput}
-          value={this.state.tagInput}/>
-          <ul className="editor-errors">{tagErrors}</ul>
-          </div>
-          <ul className="tag-list">
-          {tags}
-          </ul>
+        <div className="tags">
+        <div className="tags-label">
+        Select Tags:
+        <input type="text"
+        placeholder="Create new tag"
+        className="tag-input"
+        onKeyPress={this.createTag}
+        onChange={this.handleTagInput}
+        value={this.state.tagInput}/>
+        <ul className="editor-errors">{tagErrors}</ul>
+        </div>
+        <ul className="tag-list">
+        {tags}
+        </ul>
+        </div>
         </div>
     <div className="editor-lower-heading">
     <input

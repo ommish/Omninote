@@ -21,7 +21,7 @@ class Api::NotesController < ApplicationController
       @tags = @note.tags
       render :show
     else
-      render json: @note.errors.full_messages, status: 422
+      render json: @note.errors.messages.values.flatten, status: 422
     end
   end
 
@@ -32,7 +32,7 @@ class Api::NotesController < ApplicationController
     if @note.save
       render :show
     else
-      render json: @note.errors.full_messages, status: 422
+      render json: @note.errors.messages.values.flatten, status: 422
     end
   end
 

@@ -5,7 +5,7 @@ class Api::NotebooksController < ApplicationController
     if @notebook.save
       render :show
     else
-      render json: @notebook.errors.full_messages, status: 422
+      render json: @notebook.errors.messages.values.flatten, status: 422
     end
   end
 
