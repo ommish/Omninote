@@ -109,6 +109,7 @@ resetAutosaveCountdown(newState) {
 
 handleTagInput(e) {
   const newTagInput = e.target.value;
+  this.props.clearTagErrors();
   this.setState({tagInput: newTagInput});
 }
 
@@ -200,19 +201,22 @@ render() {
   return (
     <main
     className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>
-    <div className="editor-heading">
-    <NotebookDropdown/>
-    <div className="tags-label">Select Tags:</div>
-    <ul className="tag-list">
-    {tags}
-    <input type="text"
-    placeholder="Create new tag"
-    onKeyPress={this.createTag}
-    onChange={this.handleTagInput}
-    value={this.state.tagInput}/>
-    </ul>
-    <ul className="editor-errors">{tagErrors}</ul>
-    </div>
+      <div className="editor-heading">
+        <NotebookDropdown/>
+          <div className="tags-label">
+          Select Tags:
+          <input type="text"
+          placeholder="Create new tag"
+          className="tag-input"
+          onKeyPress={this.createTag}
+          onChange={this.handleTagInput}
+          value={this.state.tagInput}/>
+          <ul className="editor-errors">{tagErrors}</ul>
+          </div>
+          <ul className="tag-list">
+          {tags}
+          </ul>
+        </div>
     <div className="editor-lower-heading">
     <input
     onChange={this.handleTitleChange}

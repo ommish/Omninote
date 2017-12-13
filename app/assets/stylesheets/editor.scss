@@ -20,14 +20,24 @@
 }
 
 .tags-label {
-  min-width: 100px;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 5px;
+}
+
+.tag-input {
+  margin-top: 10px;
+  text-align: right;
 }
 
 .tag-list {
-  max-height: 90px;
+  max-height: 75px;
+  min-height: 75px;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   overflow-y: scroll;
 }
 
@@ -57,7 +67,6 @@
   position: fixed;
   right: 20px;
 }
-
 
 .title {
   font-family: 'Roboto Slab', serif;
