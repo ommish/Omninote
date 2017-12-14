@@ -73,7 +73,7 @@ class Sidemenu extends React.Component {
             placeholder={`Filter by ${this.props.itemType} title`}
             value={this.state.searchQuery}/>
         <ul className={`${this.props.itemType}-sidemenu-list`}>
-          {this.queriedItemsByFirstLetter().map((item, i) => {
+          {this.props.items.length < 1 ? (<div className="no-items">No {this.props.itemType}s yet!</div>) : this.queriedItemsByFirstLetter().map((item, i) => {
             if (typeof item !== "string") {
               return (
                 <SidemenuIndexItem

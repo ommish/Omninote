@@ -98,3 +98,9 @@
   overflow-x: hidden;
   box-sizing: border-box;
 }
+
+.no-items {
+  padding: 20px;
+  font-size: 20px;
+  color: $dark-grey;
+}

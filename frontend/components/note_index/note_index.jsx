@@ -23,10 +23,7 @@ class NoteIndex extends React.Component {
   }
 
   render () {
-    const notes = this.props.notes.map((note) => {
-      if (!note) {
-        return;
-      }
+    let notes = this.props.notes.map((note) => {
       if ((note.bodyPlain.toLowerCase().includes(this.state.searchQuery.toLowerCase()))
         || (note.title.toLowerCase().includes(this.state.searchQuery.toLowerCase()))) {
         return (
@@ -35,6 +32,10 @@ class NoteIndex extends React.Component {
             key={note.id} />
         );
       }});
+    if (notes.length < 1) {
+      notes = <div className="no-items">Click + to add a new note!</div>;
+    }
+
     return (
       <section className={this.props.fullEditor ? "note-index closed-index" : "note-index"}>
         <div className="note-index-heading">

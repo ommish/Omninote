@@ -98,11 +98,12 @@ class Editor extends React.Component {
       }, (fail) => {
         if (fail.errors.includes("tag already exists")) {
           const tag = this.props.allTags.filter((tag) => tag.title.toLowerCase() === newState.tagInput.toLowerCase())[0];
-          console.log(tag);
           newState.tagInput = "";
           this.props.clearTagErrors();
           this.setState(newState);
-          this.handleTagClick(tag.id)();
+          if (!newState.note.tagIds.includes(tag.id)) {
+            this.handleTagClick(tag.id)();
+          }
         }
       }
     );
