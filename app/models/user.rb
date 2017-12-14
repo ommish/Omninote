@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :notes, through: :notebooks
   has_many :tags, dependent: :destroy
   has_many :photos, dependent: :destroy
+  has_many :flags, dependent: :destroy
 
   def valid_email
     if !email.include?("@") && email != ""

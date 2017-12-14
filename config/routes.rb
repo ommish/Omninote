@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :notes, only: [:create, :update, :destroy]
     resources :tags, only: [:create, :destroy]
     resources :photos, only: [:create]
+    resources :flags, only: [:create, :destroy]
     resources :all_items, only: [:index]
   end
 end

@@ -18,4 +18,12 @@ json.tags do
   end
 end
 
+json.flags do
+  @flags.each do |flag|
+    json.set! flag.id do
+      json.partial! 'api/flags/flag', flag: flag
+    end
+  end
+end
+
 json.prevTags @prev_tags

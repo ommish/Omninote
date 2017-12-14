@@ -1,16 +1,18 @@
-class Api::NotesController < ApplicationController
+  class Api::NotesController < ApplicationController
 
   def destroy
     @note = current_user.notes.includes(:tags, :notebook).find(params[:id])
     @notebooks = [@note.notebook]
     @tags = @note.tags
+    @flags = [@note.flag]
     render :show
     @note.destroy!
   end
 
   def update
-    @note = current_user.notes.includes(:tags, :notebook).find(params[:id])
+    @note = current_user.notes.includes(:tags, :flag, :notebook).find(params[:id])
     @notebooks = [@note.notebook]
+    @flags = [@note.flag]
     if note_params[:tag_ids] === []
       @prev_tags = @note.tag_ids
     else
@@ -18,6 +20,7 @@ class Api::NotesController < ApplicationController
     end
     if @note.update(note_params)
       @notebooks.push(@note.notebook)
+      @flags.push(@note.flag)
       @tags = @note.tags
       render :show
     else
@@ -29,6 +32,7 @@ class Api::NotesController < ApplicationController
     @note = current_user.notes.new(note_params)
     @notebooks = [@note.notebook]
     @tags = @note.tags
+    @flags = [@note.flag]
     if @note.save
       render :show
     else
@@ -37,7 +41,7 @@ class Api::NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:title, :body, :body_plain, :notebook_id, :id, tag_ids: [])
+    params.require(:note).permit(:title, :body, :body_plain, :notebook_id, :flag_id, tag_ids: [])
   end
 
 end
