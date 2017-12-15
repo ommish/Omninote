@@ -33,6 +33,7 @@ export const _noteOrderOptions = [
   notebookDropdown: false,
   noteOrder: 0,
   noteOrderDropdown: false,
+  mapView: false,
 };
 
 const UIReducer = (oldState = initialState, action) => {

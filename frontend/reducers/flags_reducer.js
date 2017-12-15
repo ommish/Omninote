@@ -26,7 +26,7 @@ const FlagsReducer = (oldState = initialState, action) => {
     return newState;
     case RECEIVE_NOTE:
     return Object.assign({}, oldState, action.flags);
-    case REMOVE_NTOE:
+    case REMOVE_NOTE:
     return Object.assign({}, oldState, action.flags);
     default:
     return oldState;

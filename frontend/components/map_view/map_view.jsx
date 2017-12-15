@@ -1,42 +1,29 @@
-import Modal from 'react-modal';
+import React from 'react';
+import Map from './map_container';
 
 class MapView extends React.Component {
 
-
   constructor(props) {
-    suoer(props);
+    super(props);
+    this.toggleMapView = this.toggleMapView.bind(this);
+
   }
 
-  componentDidMount() {
-    // request user's geolocation and save to session slice of state to use for map center
-    const newYork = {latitude: 40.7128, longitute: -74.0060};
-    this.googleMap = new google.maps.Map(document.getElementById('map'),
-    {zoom: 4,
-      center: {
-          latitude: newYork.latitude,
-          longitute: newYork.longitute,
-        },
-      });
-
-      // does Marker accept multiple arguments or an array of positions?
-    this.marker = new google.maps.Marker({
-      position: {
-        latitude: newYork.latitude,
-        longitute: newYork.longitute,
-      },
-      map: this.googleMap,
-    });
+  toggleMapView() {
+    this.props.toggleMapView();
   }
 
   render() {
 
-    <Modal
-    ariaHideApp={false}
-    isOpen={() => true}>
-    <div id="map"></div>
-
-    </Modal>
-
+    return (
+      <div
+      className={this.props.mapViewOpen ? "map-view-open" : "map-view-closed"}>
+      <Map/>
+      <button
+      onClick={this.props.toggleMapView}
+      className="button green small narrow">Close</button>
+      </div>
+    );
   }
 }
 

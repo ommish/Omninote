@@ -10,6 +10,7 @@ class SideNav extends React.Component {
     this.newNote = this.newNote.bind(this);
     this.toggleSidemenu = this.toggleSidemenu.bind(this);
     this.toggleLogoutForm = this.props.toggleLogoutForm.bind(this);
+    this.toggleMapView = this.toggleMapView.bind(this);
   }
 
   redirectToAllNotes() {
@@ -51,6 +52,11 @@ class SideNav extends React.Component {
       }
     };
   }
+
+  toggleMapView() {
+    this.props.toggleMapView();
+  }
+
 
   render () {
     return (
@@ -101,6 +107,13 @@ class SideNav extends React.Component {
               src={window.staticAssets.tag}/>
             <div className="sidenav-tooltip">Tags</div>
           </button>
+        </li>
+        <li>
+        <button
+        onClick={this.toggleMapView}
+        className="circle-button">
+        <div className="sidenav-tooltip">Flags</div>
+        </button>
         </li>
         <li>
           <button

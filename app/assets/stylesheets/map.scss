@@ -1,0 +1,17 @@
+.map-view-open {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background: white;
+  z-index: 100;
+}
+
+.map-view-closed {
+  visibility: hidden;
+}
+
+#map {
+  margin: 20px;
+  height: 80%;
+  width: 80%;
+}

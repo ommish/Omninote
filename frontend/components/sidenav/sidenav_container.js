@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch) => {
     toggleSidemenuItemType: (itemType) => dispatch(toggleSidemenuItemType(itemType)),
     toggleSidemenu: () => dispatch(toggleSidemenu()),
     toggleLogoutForm: () => dispatch(toggleModal("logoutForm")),
+    toggleMapView: () => dispatch(toggleModal('mapView')),
   };
 };
 

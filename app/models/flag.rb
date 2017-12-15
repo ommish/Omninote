@@ -1,5 +1,5 @@
 class Flag < ApplicationRecord
-  validates :place_id, :title, presence: true
+  validates :place_id, :title, :lat, :lng, presence: true
   validates :place_id, uniqueness: { scope: :user }
 
   belongs_to :user
