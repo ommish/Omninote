@@ -3,8 +3,7 @@ class Flag < ApplicationRecord
   validates :place_id, uniqueness: { scope: :user }
 
   belongs_to :user
-  has_many :flaggings, dependent: :destroy, inverse_of: :flag
-  has_many :notes, through: :flaggings
+  has_many :notes
 
 end
 

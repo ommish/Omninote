@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import { merge } from 'lodash';
 import NotebookDropdown from './notebook_dropdown_container';
 import { quillModules, quillFormats } from '../../util/quill_configs';
+import { Tags } from './tags';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -210,7 +211,7 @@ render() {
   const noteErrors = this.props.noteErrors.map((err) => <li key={err}>{err}</li>);
   const tagErrors = this.props.tagErrors.map((err) => <li key={err}>{err}</li>);
 
-  
+
 // editor will just have an input field with autocomplete for choosing a location
 
   return (
@@ -218,22 +219,13 @@ render() {
     className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>
       <div className="editor-heading">
         <NotebookDropdown/>
-        <div className="tags">
-        <div className="tags-label">
-        Select Tags:
-        <input type="text"
-        placeholder="Create new tag"
-        className="tag-input"
-        onKeyPress={this.createTag}
-        onChange={this.handleTagInput}
-        value={this.state.tagInput}/>
-        <ul className="editor-errors">{tagErrors}</ul>
-        </div>
-        <ul className="tag-list">
-        {tags}
-        </ul>
-        </div>
-        </div>
+        <Tags
+        createTag={this.createTag}
+        handleTagInput={this.handleTagInput}
+        tagInput={this.state.tagInput}
+        tags={tags}
+        tagErrors={tagErrors}/>
+      </div>
     <div className="editor-lower-heading">
     <input
     onChange={this.handleTitleChange}

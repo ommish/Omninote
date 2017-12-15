@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215053340) do
+ActiveRecord::Schema.define(version: 20171215153027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "flaggings", force: :cascade do |t|
-    t.integer "flag_id", null: false
-    t.integer "note_id", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "created_at", null: false
-    t.index ["flag_id"], name: "index_flaggings_on_flag_id"
-    t.index ["note_id"], name: "index_flaggings_on_note_id", unique: true
-  end
 
   create_table "flags", force: :cascade do |t|
     t.integer "place_id", null: false
@@ -50,6 +41,8 @@ ActiveRecord::Schema.define(version: 20171215053340) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "body_plain"
+    t.integer "flag_id", null: false
+    t.index ["flag_id"], name: "index_notes_on_flag_id"
     t.index ["notebook_id"], name: "index_notes_on_notebook_id"
   end
 
