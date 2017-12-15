@@ -6,6 +6,7 @@ class Map extends React.Component {
     super(props);
     this.userLocation = window.localStorage.getItem("userLocation") ? JSON.parse(window.localStorage.getItem("userLocation")) : "";
     this.mapLoaded = false;
+
     this.setUserLocation = this.setUserLocation.bind(this);
     this.setDefaultLocation = this.setDefaultLocation.bind(this);
   }
@@ -41,8 +42,18 @@ class Map extends React.Component {
         });
       });
 
+      this.googleMap.addListener('bounds_changed', (e) => {
+        this.findFlagsInRange();
+      });
       this.mapLoaded = true;
     }
+  }
+
+  findFlagsInRange() {
+    const flagsInRange = this.props.flags.filter(
+      (flag) => this.googleMap.getBounds().contains({lat: flag.lat,lng: flag.lng,})
+    );
+    this.props.setFlagsInRange(flagsInRange);
   }
 
   toggleMapView() {

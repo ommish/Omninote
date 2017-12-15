@@ -1,0 +1,53 @@
+@import "variables";
+
+
+button:hover, input[type="submit"]:hover, a:hover {
+  cursor: pointer;
+}
+
+
+.button {
+
+  color: white;
+  padding: 5px 10px;
+  margin: 10px;
+  border-radius: 6px;
+  width: 100%;
+  height: 45px;
+
+
+  &.small {
+    height: 30px;
+    width: 70%;
+    padding: 3px;
+    margin: 5px;
+    font-size: 14px;
+  }
+
+  &.narrow {
+    width: 100px;
+  }
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &.green {
+    background: $light-green;
+    &:hover {
+      background: $dark-green;
+      transition: background 0.2s;
+    }
+
+  }
+
+  &.grey {
+    background: $grey;
+    &:hover {
+      background: $dark-grey;
+      transition: background 0.2s;
+    }
+
+  }
+}

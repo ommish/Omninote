@@ -1,17 +1,40 @@
-.map-view-open {
+@import "variables";
+
+.map-view {
   height: 100%;
   width: 100%;
   display: flex;
-  background: white;
+  justify-content: space-between;
+  align-items: center;
   z-index: 100;
+  background: white;
+
+  &.closed {
+    visibility: hidden;
+  }
+
+  button {
+    align-self: flex-start;
+    margin: 20px;
+  }
 }
 
-.map-view-closed {
-  visibility: hidden;
+.flag-list {
+  margin: 20px;
+  width: 30%;
+  height: 80%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  &.flag-list-item {
+    width: 100%;
+    padding: 7px;
+  }
 }
+
 
 #map {
   margin: 20px;
   height: 80%;
-  width: 80%;
+  width: 70%;
 }

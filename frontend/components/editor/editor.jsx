@@ -210,6 +210,9 @@ render() {
   const noteErrors = this.props.noteErrors.map((err) => <li key={err}>{err}</li>);
   const tagErrors = this.props.tagErrors.map((err) => <li key={err}>{err}</li>);
 
+  
+// editor will just have an input field with autocomplete for choosing a location
+
   return (
     <main
     className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>

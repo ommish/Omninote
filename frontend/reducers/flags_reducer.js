@@ -15,7 +15,7 @@ const FlagsReducer = (oldState = initialState, action) => {
       return oldState;
     }
     case RECEIVE_ALL_ENTITIES:
-    return Object.assign({}, action.notebooks);
+    return Object.assign({}, action.flags);
     case RECEIVE_FLAG:
     newState = Object.assign({}, oldState);
     newState[action.flag.id] = action.flag;

@@ -1,5 +1,5 @@
 class Flagging < ApplicationRecord
-  validates :flag, uniqueness: { scope: :note }
+  validates :note, uniqueness: true
   belongs_to :flag
-  belongs_to :note, uniqueness: true
+  belongs_to :note
 end

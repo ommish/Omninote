@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215035140) do
+ActiveRecord::Schema.define(version: 20171215053340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20171215035140) do
   create_table "flaggings", force: :cascade do |t|
     t.integer "flag_id", null: false
     t.integer "note_id", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "created_at", null: false
     t.index ["flag_id"], name: "index_flaggings_on_flag_id"
     t.index ["note_id"], name: "index_flaggings_on_note_id", unique: true
   end
@@ -28,6 +30,8 @@ ActiveRecord::Schema.define(version: 20171215035140) do
     t.integer "user_id", null: false
     t.float "lat", null: false
     t.float "lng", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "created_at", null: false
     t.index ["place_id", "user_id"], name: "index_flags_on_place_id_and_user_id", unique: true
   end
 

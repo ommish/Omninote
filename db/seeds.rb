@@ -107,3 +107,10 @@ tag3 = Tag.create!(user_id: demo.id, title: "diet", note_ids: [note9.id, note7.i
 tag4 = Tag.create!(user_id: demo.id, title: "types", note_ids: [note1.id])
 tag5 = Tag.create!(user_id: demo.id, title: "captivity", note_ids: [])
 tag6 = Tag.create!(user_id: demo.id, title: "facts", note_ids: [note9.id, note4.id])
+
+flag1 = Flag.create!(place_id: 123456, lat: 40.0583, lng: -74.4057, user_id: demo.id, title: "nyuuyaaaahk", note_ids: [note9.id])
+flag2 = Flag.create!(place_id: 123567, lat: 44.1247, lng: -73.8693, user_id: demo.id, title: "coloradooooododododo", note_ids: [note5.id, note2.id, note3.id])
+flag3 = Flag.create!(place_id: 123678, lat: 42.0192, lng: -72.2345, user_id: demo.id, title: "juyzee", note_ids: [note7.id])
+flag4 = Flag.create!(place_id: 123789, lat: 41.3223, lng: -76.2432, user_id: demo.id, title: "other places in da world", note_ids: [note1.id])
+flag5 = Flag.create!(place_id: 123098, lat: 41.1221, lng: -76.1122, user_id: demo.id, title: "lots of space here", note_ids: [])
+flag6 = Flag.create!(place_id: 123321, lat: 43.0932, lng: -74.2237, user_id: demo.id, title: "oh tokyo hi", note_ids: [note4.id])

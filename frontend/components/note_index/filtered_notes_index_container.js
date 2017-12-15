@@ -5,11 +5,20 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   let notes = [];
+  let itemType;
+  if (ownProps.match.params.notebookId) {
+    itemType = 'notebook';
+  } else if (ownProps.match.params.tagId) {
+    itemType = 'tag';
+  } else if (ownProps.match.params.flagId) {
+    itemType = 'flag';
+  }
+
   const noteOrder = state.ui.noteOrder;
   const fullEditor = state.ui.fullEditor;
-  const tag = state.entities.tags[ownProps.match.params.tagId];
-  const noteIndexHeader = `Tag: ${tag.title}`;
-  const noteIds = tag.noteIds;
+  const item = state.entities[`${itemType}s`][ownProps.match.params[`${itemType}Id`]];
+  const noteIndexHeader = `${itemType.toUpperCase()}: ${item.title}`;
+  const noteIds = item.noteIds;
   noteIds.forEach((noteId) => notes.push(state.entities.notes[noteId]));
   notes = sortItems(notes, noteOrder);
   return {

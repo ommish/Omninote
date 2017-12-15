@@ -3,8 +3,7 @@ import SideNav from './sidenav/sidenav_container';
 import Sidemenu from './sidemenu/sidemenu_container';
 import Editor from './editor/editor_container';
 import AllNotes from './note_index/all_notes_index_container';
-import NotebookNotes from './note_index/notebook_notes_index_container';
-import TagNotes from './note_index/tag_notes_index_container';
+import FilteredNotes from './note_index/filtered_notes_index_container';
 import { Route, Switch } from 'react-router-dom';
 import MDSpinner from 'react-md-spinner';
 import CreateForm from './entity_forms/create_form_container';
@@ -46,7 +45,7 @@ class App extends React.Component {
       }
     }
   }
-  
+
   render () {
     if (this.props.initialState) {
       return (
@@ -68,14 +67,18 @@ class App extends React.Component {
           <LogoutForm />
           <MapView />
           <Switch>
-            <Route path="/notebooks/:notebookId/notes/:noteId" component={NotebookNotes} />
-            <Route path="/notebooks/:notebookId" component={NotebookNotes} />
-            <Route path="/tags/:tagId/notes/:noteId" component={TagNotes} />
-            <Route path="/tags/:tagId" component={TagNotes} />
+            <Route path="/flags/:flagId/notes/:flagId" component={FilteredNotes} />
+            <Route path="/flags/:flagId" component={FilteredNotes} />
+            <Route path="/notebooks/:notebookId/notes/:noteId" component={FilteredNotes} />
+            <Route path="/notebooks/:notebookId" component={FilteredNotes} />
+            <Route path="/tags/:tagId/notes/:noteId" component={FilteredNotes} />
+            <Route path="/tags/:tagId" component={FilteredNotes} />
             <Route path="/notes/:noteId" component={AllNotes} />
             <Route path="/" component={AllNotes} />
           </Switch>
           <Switch>
+            <Route path="/flags/:flagId/notes/:noteId" component={Editor} />
+            <Route path="/flags/:flagId" component={Editor} />
             <Route path="/notebooks/:notebookId/notes/:noteId" component={Editor} />
             <Route path="/notebooks/:notebookId" component={Editor} />
             <Route path="/tags/:tagId/notes/:noteId" component={Editor} />

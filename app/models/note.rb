@@ -8,9 +8,12 @@ class Note < ApplicationRecord
     }
 
   belongs_to :notebook
+
   has_one :user, through: :notebook
+
   has_many :taggings, dependent: :destroy, inverse_of: :note
   has_many :tags, through: :taggings
-  has_one :flagging, dependent: :destroy, inverse_of: :flag
-  has_one :flag, through: :flaggings
+
+  has_one :flagging, dependent: :destroy, inverse_of: :note
+  has_one :flag, through: :flagging
 end
