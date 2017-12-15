@@ -9,6 +9,7 @@ import { Route, Switch } from 'react-router-dom';
 import MDSpinner from 'react-md-spinner';
 import CreateForm from './entity_forms/create_form_container';
 import LogoutForm from './session/logout_form_container';
+import MapView from './map_view/map_view_container';
 
 class App extends React.Component {
 
@@ -65,6 +66,7 @@ class App extends React.Component {
           <Sidemenu />
           <CreateForm itemType={this.props.itemType} />
           <LogoutForm />
+          <MapView />
           <Switch>
             <Route path="/notebooks/:notebookId/notes/:noteId" component={NotebookNotes} />
             <Route path="/notebooks/:notebookId" component={NotebookNotes} />
