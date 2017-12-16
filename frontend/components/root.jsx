@@ -11,6 +11,7 @@ const Root = ({store}) => (
       <HashRouter>
         <div style={{height: "100%"}} >
             <Switch>
+              <ProtectedRoute path="/searchbylocation/:flagIds" component={App} />
               <ProtectedRoute path='/flags/:flagId/notes/:noteId' component={App} />
               <ProtectedRoute path='/flags/:flagId' component={App} />
               <ProtectedRoute path='/notebooks/:notebookId/notes/:noteId' component={App} />

@@ -11,7 +11,6 @@ import { sortItems } from '../../util/sorters';
 const mapStateToProps = (state, ownProps) => {
   let note;
   let flag;
-
   if (ownProps.match.params.noteId) {
     note = state.entities.notes[parseInt(ownProps.match.params.noteId)];
   } else {

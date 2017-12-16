@@ -9,6 +9,7 @@ import MDSpinner from 'react-md-spinner';
 import CreateForm from './entity_forms/create_form_container';
 import LogoutForm from './session/logout_form_container';
 import MapView from './map_view/map_view_container';
+import NotesInMap from './note_index/notes_in_map_container';
 
 class App extends React.Component {
 
@@ -67,6 +68,7 @@ class App extends React.Component {
           <LogoutForm />
           <MapView />
           <Switch>
+            <Route path="/searchbylocation/:flagIds" component={NotesInMap} />
             <Route path="/flags/:flagId/notes/:flagId" component={FilteredNotes} />
             <Route path="/flags/:flagId" component={FilteredNotes} />
             <Route path="/notebooks/:notebookId/notes/:noteId" component={FilteredNotes} />
@@ -77,6 +79,7 @@ class App extends React.Component {
             <Route path="/" component={AllNotes} />
           </Switch>
           <Switch>
+            <Route path="/searchbylocation/:flagIds" component={Editor} />
             <Route path="/flags/:flagId/notes/:noteId" component={Editor} />
             <Route path="/flags/:flagId" component={Editor} />
             <Route path="/notebooks/:notebookId/notes/:noteId" component={Editor} />

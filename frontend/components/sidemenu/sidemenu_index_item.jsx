@@ -1,5 +1,4 @@
 import React from 'react';
-import DeleteForm from '../entity_forms/delete_form_container';
 
 class SidemenuIndexItem extends React.Component {
 

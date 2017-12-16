@@ -5,7 +5,7 @@ import NotebookDropdown from './notebook_dropdown_container';
 import { quillModules, quillFormats } from '../../util/quill_configs';
 import { Tags } from './tags';
 import { EditorLowerHeading } from './editor_lower_heading';
-import LocationSearch from './location_search';
+import LocationSearch from '../map_view/location_search';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -253,7 +253,8 @@ render() {
     {this.state.flag.id ?
       <h4>Flag: {this.state.flag.title}</h4> :
       <LocationSearch
-      selectLocation={this.selectLocation}/>}
+      selectLocation={this.selectLocation}
+      renderedOn="editor"/>}
       <Tags
       createTag={this.createTag}
       handleTagInput={this.handleTagInput}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { deleteNotebook } from '../../actions/notebook_actions';
 import { deleteNote } from '../../actions/note_actions';
 import { deleteTag } from '../../actions/tag_actions';
+import { deleteFlag } from '../../actions/flag_actions';
 import { toggleDeleteForm } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
 
@@ -19,12 +20,21 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   let action;
-  if (ownProps.itemType === "notebook") {
+  switch(ownProps.itemType) {
+    case "notebook":
     action = deleteNotebook;
-  } else if (ownProps.itemType === "note") {
+    break;
+    case "note":
     action = deleteNote;
-  } else if (ownProps.itemType === "tag") {
+    break;
+    case "tag":
     action = deleteTag;
+    break;
+    case "flag":
+    action = deleteFlag;
+    break;
+    default:
+    break;
   }
   return {
     deleteItem: (id) => dispatch(action(id)),

@@ -1,7 +1,7 @@
 import MapView from './map_view';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { toggleModal } from '../../actions/ui_actions';
+import { toggleModal, toggleDeleteForm } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     toggleMapView: () => dispatch(toggleModal('mapView')),
+    toggleDeleteForm: (id) => dispatch(toggleDeleteForm({id, type: "flag"}))
   };
 };
 

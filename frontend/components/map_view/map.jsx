@@ -4,68 +4,81 @@ class Map extends React.Component {
 
   constructor(props) {
     super(props);
-    this.userLocation = window.localStorage.getItem("userLocation") ? JSON.parse(window.localStorage.getItem("userLocation")) : "";
     this.mapLoaded = false;
-
-    this.setUserLocation = this.setUserLocation.bind(this);
-    this.setDefaultLocation = this.setDefaultLocation.bind(this);
-  }
-
-  setUserLocation(position) {
-    this.userLocation = {lat: position.coords.latitude, lng: position.coords.longitude,};
-    window.localStorage.setItem("userLocation", JSON.stringify(this.userLocation));
-  }
-
-  setDefaultLocation(error) {
-    this.userLocation = {lat: 40.7128, lng: -74.0060};
   }
 
   setMap() {
-    if (!this.userLocation) {
-      navigator.geolocation.getCurrentPosition(this.setUserLocation, this.setDefaultLocation);
-    }
-    if (window.google) {
-      this.googleMap = new google.maps.Map(this.mapDiv, {
-        zoom: 8,
-        center: {
-          lat: this.userLocation.lat,
-          lng: this.userLocation.lng,
-        },
-      });
-      this.props.flags.forEach((flag) => {
-        new google.maps.Marker({
-          position: {
-            lat: flag.lat,
-            lng: flag.lng,
-          },
-          map: this.googleMap,
-        });
-      });
+    this.googleMap = new google.maps.Map(this.mapDiv, {
+      zoom: 8,
+      center: {
+        lat: this.props.mapCenter.lat,
+        lng: this.props.mapCenter.lng,
+      },
+    });
 
-      this.googleMap.addListener('bounds_changed', (e) => {
-        this.findFlagsInRange();
-      });
-      this.mapLoaded = true;
-    }
+    this.googleMap.addListener('bounds_changed', (e) => {
+      this.findFlagsInRange();
+      this.props.updateBounds(this.googleMap.getBounds());
+    });
+
+    this.infoWindow = new google.maps.InfoWindow({content: ""});
+
+    this.setMarkers();
+
+    this.mapLoaded = true;
   }
 
   findFlagsInRange() {
-    const flagsInRange = this.props.flags.filter(
+    const flagsInRange = this.props.flagsWithNotes.filter(
       (flag) => this.googleMap.getBounds().contains({lat: flag.lat,lng: flag.lng,})
     );
     this.props.setFlagsInRange(flagsInRange);
   }
 
-  toggleMapView() {
-    this.props.toggleMapView();
+  setMarkers() {
+    this.props.flagsWithNotes.forEach((flag) => {
+      const marker = new google.maps.Marker({
+        position: {
+          lat: flag.lat,
+          lng: flag.lng,
+        },
+        title: flag.title,
+        label: `${flag.noteIds.length}`,
+        map: this.googleMap,
+      });
+
+      let flagNoteTitles = ""
+      flag.flagNotes.forEach((flagNote) => flagNoteTitles += `<li class="firstHeading">${flagNote.title}</li>`)
+      const infoHeading = flag.noteIds.length > 0 ? `<h4 class="firstHeading">Notes at ${flag.title}:</h4>` : `<h4 class="firstHeading">No notes for ${flag.title}</h4>`
+      marker.infoWindowContent =
+        `<div>`+
+        `${infoHeading}`+
+        `<ul>`+
+        `${flagNoteTitles}`+
+        `</ul>`+
+        '</div>';
+      marker.addListener('click', () => {
+        this.infoWindow.setContent(marker.infoWindowContent);
+        this.infoWindow.open(this.googleMap, marker);
+      });
+    });
   }
 
   componentDidMount() {
     this.mapDiv = document.getElementById('map');
   }
 
+  componentWillReceiveProps(newProps) {
+    if (this.props.mapCenter.lat !== newProps.mapCenter.lat || this.props.mapCenter.lng !== newProps.mapCenter.lng) {
+      this.googleMap.panTo(newProps.mapCenter);
+    } else if (this.mapLoaded && this.props.flagsWithNotes !== newProps.flagsWithNotes) {
+      this.findFlagsInRange();
+      this.setMarkers();
+    }
+  }
+
   render() {
-    if (!this.mapLoaded && this.mapDiv) {
+    if (!this.mapLoaded && this.mapDiv && window.google) {
       this.setMap();
     }
 
