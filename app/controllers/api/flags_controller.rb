@@ -4,7 +4,7 @@ class Api::FlagsController < ApplicationController
     if @flag.save
       render :show
     else
-      render @flag.errors.messages.values.flatten, status: 422
+      render json: @flag.errors.messages.values.flatten, status: 422
     end
   end
 

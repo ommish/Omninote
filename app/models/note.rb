@@ -14,5 +14,5 @@ class Note < ApplicationRecord
   has_many :taggings, dependent: :destroy, inverse_of: :note
   has_many :tags, through: :taggings
 
-  belongs_to :flag
+  belongs_to :flag, optional: true
 end

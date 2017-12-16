@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215153027) do
+ActiveRecord::Schema.define(version: 20171215205806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "flags", force: :cascade do |t|
-    t.integer "place_id", null: false
+    t.string "place_id", null: false
     t.string "title", null: false
     t.integer "user_id", null: false
     t.float "lat", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171215153027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "body_plain"
-    t.integer "flag_id", null: false
+    t.integer "flag_id"
     t.index ["flag_id"], name: "index_notes_on_flag_id"
     t.index ["notebook_id"], name: "index_notes_on_notebook_id"
   end

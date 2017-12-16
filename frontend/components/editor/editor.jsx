@@ -4,6 +4,8 @@ import { merge } from 'lodash';
 import NotebookDropdown from './notebook_dropdown_container';
 import { quillModules, quillFormats } from '../../util/quill_configs';
 import { Tags } from './tags';
+import { EditorLowerHeading } from './editor_lower_heading';
+import LocationSearch from './location_search';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -15,6 +17,8 @@ class Editor extends React.Component {
       note: this.props.note,
       tagInput: this.props.tagInput,
       image: { imageUrl: "", imageFile: "" },
+      searchInput: "",
+      flag: this.props.flag,
     };
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -22,6 +26,8 @@ class Editor extends React.Component {
 
     this.createTag = this.createTag.bind(this);
     this.handleTagInput = this.handleTagInput.bind(this);
+
+    this.selectLocation = this.selectLocation.bind(this);
 
     this.handleImage = this.handleImage.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
@@ -109,6 +115,33 @@ class Editor extends React.Component {
       }
     );
   }
+}
+
+selectLocation(location) {
+  const newFlag = {
+    place_id: location.place_id,
+    lat: location.geometry.location.lat(),
+    lng: location.geometry.location.lng(),
+    title: location.name,
+  }
+
+  const newState = merge({}, this.state);
+  this.props.allFlags.forEach((flag) => {
+    if (flag.place_id === newFlag.place_id) {
+      newState.flag = flag;
+      newState.note.flagId = flag.id;
+      this.setState(newState);
+      return;
+    }
+  });
+
+  this.props.createFlag(newFlag).then(({flag}) => {
+    newState.flag = flag;
+    newState.note.flagId = flag.id;
+    this.setState(newState);
+  }, (error) => {
+    console.log(error);
+  });
 }
 
 resetAutosaveCountdown(newState) {
@@ -212,60 +245,49 @@ render() {
   const tagErrors = this.props.tagErrors.map((err) => <li key={err}>{err}</li>);
 
 
-// editor will just have an input field with autocomplete for choosing a location
-
   return (
     <main
     className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>
-      <div className="editor-heading">
-        <NotebookDropdown/>
-        <Tags
-        createTag={this.createTag}
-        handleTagInput={this.handleTagInput}
-        tagInput={this.state.tagInput}
-        tags={tags}
-        tagErrors={tagErrors}/>
+    <div className="editor-heading">
+    <NotebookDropdown/>
+    {this.state.flag.id ?
+      <h4>Flag: {this.state.flag.title}</h4> :
+      <LocationSearch
+      selectLocation={this.selectLocation}/>}
+      <Tags
+      createTag={this.createTag}
+      handleTagInput={this.handleTagInput}
+      tagInput={this.state.tagInput}
+      tags={tags}
+      tagErrors={tagErrors}/>
       </div>
-    <div className="editor-lower-heading">
-    <input
-    onChange={this.handleTitleChange}
-    onFocus={this.setAutosaveCountdown}
-    placeholder="Title your note"
-    type="text"
-    className="title"
-    value={this.state.note.title}/>
-    <div className="editor-buttons">
-    <ul className="editor-errors">{noteErrors}</ul>
-    <div className="saved">{this.state.saved ? "Saved!" : ""}</div>
-    <button
-    disabled={this.state.note.title === "" ? true : false}
-    className={this.state.note.title === "" ? "button green small narrow disabled" : "button green small narrow"}
-    onClick={this.handleSubmit}>Save</button>
-    <button
-    className={"button green small narrow"}
-    onClick={this.props.toggleFullEditor}>
-    {this.props.fullEditor ? "Close" : "Expand"}
-    </button>
-    </div>
-    </div>
-    <label>Add an image:&nbsp;&nbsp;&nbsp;
-    <input type="file"
-    onChange={this.handleImage}
-    onFocus={this.setAutosaveCountdown}
-    accept=".png, .gif, .jpg, .jpeg"/>
-    </label>
-    <ReactQuill
-    ref={(input) => { this.quillEditor = input; }}
-    id="quill"
-    className="note-editor-quill"
-    modules={quillModules}
-    formats={quillFormats}
-    value={this.state.note.body}
-    onFocus={this.setAutosaveCountdown}
-    onChange={this.handleBodyChange}/>
-    </main>
-  );
-}
+      <EditorLowerHeading
+      handleTitleChange={this.handleTitleChange}
+      setAutosaveCountdown={this.setAutosaveCountdown}
+      noteTitle={this.state.note.title}
+      noteErrors={noteErrors}
+      saved={this.state.saved}
+      handleSubmit={this.handleSubmit}
+      toggleFullEditor={this.props.toggleFullEditor}
+      fullEditor={this.props.fullEditor}/>
+      <label>Add an image:&nbsp;&nbsp;&nbsp;
+      <input type="file"
+      onChange={this.handleImage}
+      onFocus={this.setAutosaveCountdown}
+      accept=".png, .gif, .jpg, .jpeg"/>
+      </label>
+      <ReactQuill
+      ref={(input) => { this.quillEditor = input; }}
+      id="quill"
+      className="note-editor-quill"
+      modules={quillModules}
+      formats={quillFormats}
+      value={this.state.note.body}
+      onFocus={this.setAutosaveCountdown}
+      onChange={this.handleBodyChange}/>
+      </main>
+    );
+  }
 }
 
 export default Editor;

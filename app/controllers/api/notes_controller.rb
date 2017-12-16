@@ -12,7 +12,7 @@
   def update
     @note = current_user.notes.includes(:tags, :flag, :notebook).find(params[:id])
     @notebooks = [@note.notebook]
-    @flags = [@note.flag]
+    @flags = @note.flag ? [@note.flag] : []
     if note_params[:tag_ids] === []
       @prev_tags = @note.tag_ids
     else
@@ -20,7 +20,7 @@
     end
     if @note.update(note_params)
       @notebooks.push(@note.notebook)
-      @flags.push(@note.flag)
+      @flags.push(@note.flag) if @note.flag
       @tags = @note.tags
       render :show
     else
