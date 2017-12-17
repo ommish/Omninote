@@ -69,7 +69,7 @@ class App extends React.Component {
           <MapView />
           <Switch>
             <Route path="/searchbylocation/:flagIds" component={NotesInMap} />
-            <Route path="/flags/:flagId/notes/:flagId" component={FilteredNotes} />
+            <Route path="/flags/:flagId/notes/:noteId" component={FilteredNotes} />
             <Route path="/flags/:flagId" component={FilteredNotes} />
             <Route path="/notebooks/:notebookId/notes/:noteId" component={FilteredNotes} />
             <Route path="/notebooks/:notebookId" component={FilteredNotes} />

@@ -21,8 +21,8 @@ class MapView extends React.Component {
     }
   }
 
-  setMapCenter(location) {
-    this.setState({mapCenter: {lat: location.geometry.location.lat(), lng: location.geometry.location.lng()}});
+  setMapCenter(lat, lng) {
+    this.setState({mapCenter: {lat, lng}});
   }
 
   setFlagsInRange(flagsInRange) {
@@ -51,7 +51,13 @@ class MapView extends React.Component {
 
   getNotesInRange() {
     this.props.toggleMapView();
-    this.props.history.push(`/searchbylocation/${this.state.flagsInRange.map((flag) => flag.id).join(",")}`);
+    let query;
+    if (this.state.flagsInRange.length > 0) {
+      query = this.state.flagsInRange.map((flag) => flag.id).join(",");
+    } else {
+      query = "noflags"
+    }
+    this.props.history.push(`/searchbylocation/${query}`);
   }
 
   componentDidMount() {
@@ -61,14 +67,17 @@ class MapView extends React.Component {
   render() {
 
     const flagsInRange = this.state.flagsInRange.map((flag, i) => {
+      const notePluralized = flag.noteIds.length === 1 ? "note" : "notes";
       return (
         <li key={i} className="flag-list-item" onClick={this.handleClick(flag.id)}>
         <h4>{flag.title}</h4>
-        <p>{flag.noteIds.length} notes</p>
-        <img id="delete"
-          className={`${this.props.itemType}-trash-icon`}
-          onClick={this.handleClick(flag.id)}
-          src={window.staticAssets.trash}/>
+        <div>
+          <p>{`${flag.noteIds.length} ${notePluralized}`}</p>
+          <img id="delete"
+            className={`flag-trash-icon`}
+            onClick={this.handleClick(flag.id)}
+            src={window.staticAssets.trash}/>
+          </div>
         </li>
       );
     });
@@ -76,27 +85,33 @@ class MapView extends React.Component {
     return (
       <div
       className={this.props.mapViewOpen ? "map-view" : "map-view closed"}>
-      <div className="flag-list">
-      <button
-      onClick={this.getNotesInRange}
-      className="button green">
-      See all notes in this area
-      </button>
-      <h3>Flags</h3>
-      <ul>
-      {flagsInRange}
-      </ul>
-      </div>
-      <LocationSearch selectLocation={this.setMapCenter} renderedOn="map"/>
-      <Map
-      setFlagsInRange={this.setFlagsInRange}
-      mapCenter={this.state.mapCenter}
-      updateBounds={this.updateBounds}
-      redirectToFlagPage={this.redirectToFlagPage}/>
-      <button
-      onClick={this.props.toggleMapView}
-      className="button green small narrow">Close</button>
-      <DeleteForm itemType="flag"/>
+        <div className="flag-list">
+        <div className="flag-list-header">
+          <h3>Flags</h3>
+        </div>
+          <button
+          onClick={this.getNotesInRange}
+          className="button">
+          See all notes in this area
+          </button>
+          <ul>
+            {flagsInRange}
+          </ul>
+        </div>
+        <div className="input-and-map">
+        <button
+        onClick={this.props.toggleMapView}
+        className="button green small narrow">Close</button>
+          <LocationSearch selectLocation={this.setMapCenter} renderedOn="map"/>
+          <Map
+          setMapCenter={this.setMapCenter}
+          updateBounds={this.updateBounds}
+          mapCenter={this.state.mapCenter}
+          mapBounds={this.state.mapBounds}
+          setFlagsInRange={this.setFlagsInRange}
+          redirectToFlagPage={this.redirectToFlagPage}/>
+        </div>
+        <DeleteForm itemType="flag"/>
       </div>
     );
   }

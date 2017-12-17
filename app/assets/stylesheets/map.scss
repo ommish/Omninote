@@ -1,8 +1,10 @@
 @import "variables";
 
 .map-view {
+  padding: 70px;
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,29 +14,93 @@
   &.closed {
     visibility: hidden;
   }
-
-  button {
-    align-self: flex-start;
-    margin: 20px;
-  }
 }
 
 .flag-list {
-  margin: 20px;
   width: 30%;
-  height: 80%;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .flag-list-header {
+    width: 100%;
+    height: 150px;
+    background: $darker-grey;
+
+    h3 {
+      margin: 20px;
+      color: white;
+    }
+  }
 
   &.flag-list-item {
     width: 100%;
     padding: 7px;
   }
+
+  button {
+    color: $dark-grey;
+    margin: 0;
+    width: 90%;
+  }
+}
+
+.flag-list-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $light-green;
+    transition: background-color 0.2s;
+
+    p, h4 {
+      color: white;
+    }
+
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+
+    .flag-trash-icon {
+      height: 20px;
+      margin: 5px;
+      width: auto;
+    }
+  }
+
+}
+
+.input-and-map {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  button {
+    align-self: flex-end;
+  }
+}
+
+#location-search-input-map {
+  margin-left: 20px;
+}
+
+#location-search-input-editor {
+
 }
 
 
 #map {
   margin: 20px;
   height: 80%;
-  width: 70%;
+  width: 100%;
 }

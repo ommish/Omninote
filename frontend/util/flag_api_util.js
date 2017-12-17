@@ -1,8 +1,13 @@
+var snakeCase = require('snake-case');
+
 export const createFlag = (flag) => {
+  const snakeCaseFlag = {};
+  Object.keys(flag).forEach((flagParam) => {snakeCaseFlag[snakeCase(flagParam)] = flag[flagParam];});
+
   return $.ajax({
     url: 'api/flags',
     method: 'post',
-    data: {flag},
+    data: {flag: snakeCaseFlag},
   });
 };
 

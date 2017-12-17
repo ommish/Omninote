@@ -10,7 +10,8 @@ class LocationSearch extends React.Component {
     }
     this.locationAutocomplete = new google.maps.places.Autocomplete(this.searchInputEl, options);
     this.locationAutocomplete.addListener('place_changed', (e) => {
-      this.props.selectLocation(this.locationAutocomplete.getPlace());
+      const location = this.locationAutocomplete.getPlace();
+      this.props.selectLocation(location.geometry.location.lat(), location.geometry.location.lng(), location.name, location.place_id);
     });
   }
 

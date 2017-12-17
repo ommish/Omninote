@@ -17,6 +17,8 @@ class NoteIndexItem extends React.Component {
             path = `/notebooks/${this.props.match.params.notebookId}/notes/${this.props.note.id}`;
           } else if (this.props.match.params.tagId) {
             path = `/tags/${this.props.match.params.tagId}/notes/${this.props.note.id}`;
+          } else if (this.props.match.params.flagId) {
+            path = `/flags/${this.props.match.params.flagId}/notes/${this.props.note.id}`;
           } else {
             path = `/notes/${this.props.note.id}`;
           }
@@ -39,13 +41,11 @@ class NoteIndexItem extends React.Component {
               <li className="note-item-date">{new Date(this.props.note.updatedAt).toDateString()}</li>
               <li className="note-item-body-snippet">{this.props.bodySnippet}</li>
             </ul>
-            <div>
               <img
                 id="delete"
                 className="note-trash-icon"
                 onClick={this.handleClick(this.props.note.id)}
                 src={window.staticAssets.trash}/>
-            </div>
           </li>
       );
     }

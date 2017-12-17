@@ -1,6 +1,5 @@
 @import "variables";
 
-
 .notebook-index-item {
   display: flex;
   flex-direction: row;
@@ -11,10 +10,10 @@
   &:hover {
     cursor: pointer;
     background-color: $light-green;
-    transition: background-color 0.1s;
+    transition: background-color 0.2s;
     li, h3 {
       color: white;
-      transition: color 0.1s;
+      transition: color 0.2s;
     }
   }
 }
@@ -22,7 +21,6 @@
 
 .notebook-details {
   width: 100%;
-  padding-left: 0 20px;
   display: flex;
   flex-direction: column;
   font-size: 12px;
@@ -42,7 +40,6 @@
   height: 20px;
   margin: 5px;
   width: auto;
-  position: float;
 }
 
 .notebook-separator {

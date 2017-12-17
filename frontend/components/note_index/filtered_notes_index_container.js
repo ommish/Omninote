@@ -4,7 +4,6 @@ import { sortItems } from '../../util/sorters';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
-  let notes = [];
   let itemType;
   if (ownProps.match.params.notebookId) {
     itemType = 'notebook';
@@ -14,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
     itemType = 'flag';
   }
 
+  let notes = [];
   const noteOrder = state.ui.noteOrder;
   const fullEditor = state.ui.fullEditor;
   const item = state.entities[`${itemType}s`][ownProps.match.params[`${itemType}Id`]];

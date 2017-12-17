@@ -27,7 +27,9 @@ const NotebooksReducer = (oldState = initialState, action) => {
     case RECEIVE_NOTE:
     return Object.assign({}, oldState, action.notebooks);
     case REMOVE_NOTE:
-    return Object.assign({}, oldState, action.notebooks);
+    newState = Object.assign({}, oldState);
+    newState[action.note.notebookId].noteIds = newState[action.note.notebookId].noteIds.filter((noteId) => noteId !== action.note.id);
+    return newState;
     default:
     return oldState;
   }

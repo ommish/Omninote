@@ -5,9 +5,10 @@ import { flagsWithNotes } from '../../util/filter_util';
 
 const mapStateToProps = (state, ownProps) => {
   const flags = Object.values(state.entities.flags);
-  const notes = state.entities.notes;
+  const notes = Object.values(state.entities.notes);
   return {
-    flagsWithNotes: flagsWithNotes(flags, notes),
+    flags: flags,
+    notes: notes,
   };
 };
 

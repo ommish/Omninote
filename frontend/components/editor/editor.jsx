@@ -117,17 +117,18 @@ class Editor extends React.Component {
   }
 }
 
-selectLocation(location) {
+selectLocation(lat, lng, title, placeId) {
   const newFlag = {
-    place_id: location.place_id,
-    lat: location.geometry.location.lat(),
-    lng: location.geometry.location.lng(),
-    title: location.name,
+    placeId,
+    lat,
+    lng,
+    title,
   }
 
   const newState = merge({}, this.state);
+  // search through notes on frontend before attempting request to save to database?
   this.props.allFlags.forEach((flag) => {
-    if (flag.place_id === newFlag.place_id) {
+    if (flag.placeId === newFlag.placeId) {
       newState.flag = flag;
       newState.note.flagId = flag.id;
       this.setState(newState);
@@ -142,6 +143,12 @@ selectLocation(location) {
   }, (error) => {
     console.log(error);
   });
+}
+
+clearLocation() {
+  const newNote = merge({}, this.state.note);
+  newNote.flagId = null;
+  this.setState({note: newNote})
 }
 
 resetAutosaveCountdown(newState) {
@@ -249,12 +256,14 @@ render() {
     <main
     className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>
     <div className="editor-heading">
+    <div className="editor-dropdowns">
     <NotebookDropdown/>
     {this.state.flag.id ?
       <h4>Flag: {this.state.flag.title}</h4> :
       <LocationSearch
       selectLocation={this.selectLocation}
       renderedOn="editor"/>}
+    </div>
       <Tags
       createTag={this.createTag}
       handleTagInput={this.handleTagInput}

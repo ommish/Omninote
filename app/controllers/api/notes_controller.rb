@@ -4,7 +4,7 @@
     @note = current_user.notes.includes(:tags, :notebook).find(params[:id])
     @notebooks = [@note.notebook]
     @tags = @note.tags
-    @flags = [@note.flag]
+    @flags = @note.flag ? [@note.flag] : []
     render :show
     @note.destroy!
   end
@@ -32,7 +32,7 @@
     @note = current_user.notes.new(note_params)
     @notebooks = [@note.notebook]
     @tags = @note.tags
-    @flags = [@note.flag]
+    @flags = @note.flag ? [@note.flag] : []
     if @note.save
       render :show
     else

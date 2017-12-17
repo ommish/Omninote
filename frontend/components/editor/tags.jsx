@@ -4,9 +4,9 @@ export const Tags = (props) => {
   return (
     <div className="tags">
     <div className="tags-label">
-    Select Tags:
+    Add Tags:
     <input type="text"
-    placeholder="Create new tag"
+    placeholder="Create Tag"
     className="tag-input"
     onKeyPress={props.createTag}
     onChange={props.handleTagInput}

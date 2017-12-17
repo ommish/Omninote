@@ -5,9 +5,13 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   const searchQuery = ownProps.match.params.flagIds.split(",").map((id) => parseInt(id));
-  let notes = Object.values(state.entities.notes).filter((note) => searchQuery.includes(note.flagId));
-  notes = sortItems(notes, noteOrder);
-
+  let notes;
+  if (searchQuery !== "nonefound") {
+    notes = Object.values(state.entities.notes).filter((note) => searchQuery.includes(note.flagId));
+    notes = sortItems(notes, noteOrder);
+  } else {
+    notes = [];
+  }
   const noteOrder = state.ui.noteOrder;
   const fullEditor = state.ui.fullEditor;
   const noteIndexHeader = `Filtered notes by location`;
