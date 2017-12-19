@@ -8,7 +8,7 @@ class MapView extends React.Component {
   constructor(props) {
     super(props);
     this.setFlagsInRange = this.setFlagsInRange.bind(this);
-    this.state = {flagsInRange: [], mapCenter: {lat: 40.7128, lng: -74.0060}, mapBounds: undefined};
+    this.state = {flagsInRange: [], mapCenter: {lat: 40.7128, lng: -74.0060}, mapBounds: null};
 
     this.setMapCenter = this.setMapCenter.bind(this);
     this.getNotesInRange = this.getNotesInRange.bind(this);
@@ -30,7 +30,7 @@ class MapView extends React.Component {
   }
 
   updateBounds(mapBounds) {
-    this.setState({mapBounds})
+    this.setState({mapBounds});
   }
 
   handleClick (flagId) {
@@ -46,8 +46,8 @@ class MapView extends React.Component {
         }
         e.stopPropagation();
       }
-    }
     };
+  }
 
   getNotesInRange() {
     this.props.toggleMapView();
@@ -55,7 +55,7 @@ class MapView extends React.Component {
     if (this.state.flagsInRange.length > 0) {
       query = this.state.flagsInRange.map((flag) => flag.id).join(",");
     } else {
-      query = "noflags"
+      query = "noflags";
     }
     this.props.history.push(`/searchbylocation/${query}`);
   }

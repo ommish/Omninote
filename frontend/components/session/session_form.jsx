@@ -6,7 +6,10 @@ class SessionForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = this.props;
+    this.state = {
+      user: { email: "", password: "" },
+      sessionErrors: [],
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
   }
@@ -16,14 +19,14 @@ class SessionForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    this.setState(newProps);
+    this.setState({sessionErrors: newProps.sessionErrors});
   }
 
   handleChange(field) {
     return (e) => {
-      const newUser = merge({}, this.state);
-      newUser.user[field] = e.target.value;
-      this.setState(newUser);
+      const newUser = merge({}, this.state.user);
+      newUser[field] = e.target.value;
+      this.setState({user: newUser});
     };
   }
 

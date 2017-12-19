@@ -15,6 +15,7 @@ const MarkersReducer = (oldState = initialState, action) => {
     } else {
       return oldState;
     }
+    break;
     case RECEIVE_FLAGS:
     const newMarkers = createMarkers(action.flags, action.googleMap, action.infoWindow, action.notes);
     return Object.assign({}, {googleMap: action.googleMap, markers: newMarkers, infoWindow: action.infoWindow});

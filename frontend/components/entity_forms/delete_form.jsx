@@ -6,7 +6,6 @@ class DeleteForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = this.props;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -59,6 +58,25 @@ class DeleteForm extends React.Component {
     }
 
     render() {
+      const formContent = this.props.item ?
+      (
+        <div className="full-form" >
+          <div className="full-form-icon"><img src={window.staticAssets[this.props.itemType]}/></div>
+          <div className="full-form-header">{this.props.formTitle}</div>
+          <div className="full-form-message">{this.props.formMessage}</div>
+          <div className="full-form-message-title">{this.props.formMessageTitle}</div>
+          <div className="full-form-button-container">
+            <button onClick={this.handleCancel}
+              className="button grey small">
+              Cancel</button>
+            <button
+              onClick={this.handleSubmit}
+              className="button green small">
+              Delete</button>
+          </div>
+        </div>
+      ) : <div className="full-form"></div>;
+
       return (
         <Modal
           ariaHideApp={false}
@@ -66,21 +84,7 @@ class DeleteForm extends React.Component {
           onRequestClose={this.closeModal}
           className="full-form-open"
           overlayClassName='full-form-overlay'>
-          <div className="full-form" >
-            <div className="full-form-icon"><img src={window.staticAssets[this.props.itemType]}/></div>
-            <div className="full-form-header">{this.props.formTitle}</div>
-            <div className="full-form-message">{this.props.formMessage}</div>
-            <div className="full-form-message-title">{this.props.formMessageTitle}</div>
-            <div className="full-form-button-container">
-              <button onClick={this.handleCancel}
-                className="button grey small">
-                Cancel</button>
-              <button
-                onClick={this.handleSubmit}
-                className="button green small">
-                Delete</button>
-            </div>
-          </div>
+          {formContent}
         </Modal>
       );
     }

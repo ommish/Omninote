@@ -8,13 +8,13 @@ import { toggleDeleteForm } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
-  const item = state.entities[`${ownProps.itemType}s`][state.ui.deleteForm.id] || {id: false, title: ""};
+  const item = state.entities[`${ownProps.itemType}s`][state.ui.deleteForm.id];
   return {
     item,
     formTitle: `DELETE ${ownProps.itemType}`,
     deleteForm: state.ui.deleteForm,
     formMessage: "Are you sure you want to delete",
-    formMessageTitle: `"${item.title}"?`,
+    formMessageTitle: `${item ? item.title.concat("?") : ""}`,
   };
 };
 

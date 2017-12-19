@@ -3,11 +3,11 @@ const setNewInfoWIndowContent = (flag, marker, notes) => {
   marker.noteTitles = {};
   notes.forEach((note) => {
     if (flag.id === note.flagId) {
-      marker.noteTitles[note.id] = `<li class="firstHeading">- ${note.title}</li>`
+      marker.noteTitles[note.id] = `<li class="firstHeading">- ${note.title}</li>`;
     }
   });
 
-  marker.infoHeading = flag.noteIds.length > 0 ? `<h4 class="firstHeading">Notes at ${flag.title}:</h4>` : `<h4 class="firstHeading">No notes for ${flag.title}</h4>`
+  marker.infoHeading = flag.noteIds.length > 0 ? `<h4 class="firstHeading">Notes at ${flag.title}:</h4>` : `<h4 class="firstHeading">No notes for ${flag.title}</h4>`;
   marker.infoWindowContent =
   `<div>`+
   `${marker.infoHeading}`+
@@ -23,7 +23,7 @@ const updateInfoWindowContent = (flag, marker, note) => {
   } else {
     delete marker.noteTitles[note.id];
   }
-  marker.infoHeading = flag.noteIds.length > 0 ? `<h4 class="firstHeading">Notes at ${flag.title}:</h4>` : `<h4 class="firstHeading">No notes for ${flag.title}</h4>`
+  marker.infoHeading = flag.noteIds.length > 0 ? `<h4 class="firstHeading">Notes at ${flag.title}:</h4>` : `<h4 class="firstHeading">No notes for ${flag.title}</h4>`;
   marker.infoWindowContent =
   `<div>`+
   `${marker.infoHeading}`+
@@ -62,8 +62,8 @@ export const createMarkers = (flags, googleMap, infoWindow, notes) => {
 };
 
 export const updateMarker = (flag, marker, note) => {
-  marker.setLabel(`${flag.noteIds.length}`)
-  updateInfoWindowContent(flag, marker, note)
+  marker.setLabel(`${flag.noteIds.length}`);
+  updateInfoWindowContent(flag, marker, note);
   return marker;
 };
 
