@@ -1,13 +1,11 @@
 @import "variables";
 
 .map-view {
-  padding: 70px;
   height: 100%;
   width: 100%;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   z-index: 49;
   background-color: rgba(255, 255, 255, 0.95);
 
@@ -17,7 +15,7 @@
 }
 
 .flag-list {
-  width: 30%;
+  width: 25%;
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -29,9 +27,11 @@
     height: 150px;
     min-height: 150px;
     background: $darker-grey;
+    padding: 30px;
+    box-sizing: border-box;
 
     h3 {
-      margin: 20px;
+      font-size: 20px;
       color: white;
     }
   }
@@ -86,29 +86,33 @@
 
 }
 
-.input-and-map {
-  width: 70%;
+.map-div {
+  width: 75%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 
-  button {
-    align-self: flex-end;
-  }
-}
+  .map-inputs {
+    margin: 20px 0;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-#location-search-input-map {
-  margin-left: 20px;
+    #location-search-input-map {
+    }
+
+    button {
+    }
+  }
+
+  #map {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 #location-search-input-editor {
 
-}
-
-
-#map {
-  margin: 20px;
-  height: 80%;
-  width: 100%;
 }

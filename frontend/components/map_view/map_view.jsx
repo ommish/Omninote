@@ -98,13 +98,15 @@ class MapView extends React.Component {
             {flagsInRange}
           </ul>
         </div>
-        <div className="input-and-map">
-        <button
-        onClick={this.props.toggleMapView}
-        className="button green small narrow">Close</button>
+        <div className="map-div">
+        <div className="map-inputs">
           <LocationSearch
           selectLocation={this.setMapCenter}
           renderedOn="map"/>
+          <button
+          onClick={this.props.toggleMapView}
+          className="button green small narrow">Close</button>
+          </div>
           <Map
           setMapCenter={this.setMapCenter}
           updateBounds={this.updateBounds}
@@ -112,7 +114,7 @@ class MapView extends React.Component {
           mapBounds={this.state.mapBounds}
           setFlagsInRange={this.setFlagsInRange}
           redirectToFlagPage={this.redirectToFlagPage}/>
-        </div>
+          </div>
         <DeleteForm itemType="flag"/>
       </div>
     );

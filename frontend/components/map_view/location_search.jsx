@@ -31,7 +31,7 @@ class LocationSearch extends React.Component {
       <input
       placeholder={placeholder}
       id={`location-search-input-${this.props.renderedOn}`}
-      size="50"/>
+      size={this.props.renderedOn === "editor" ? "50" : "100"}/>
       </div>
     );
   }
