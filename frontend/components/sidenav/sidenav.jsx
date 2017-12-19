@@ -54,6 +54,9 @@ class SideNav extends React.Component {
   }
 
   toggleMapView() {
+    if (this.props.sidemenuOpen) {
+      this.props.toggleSidemenu();
+    }
     this.props.toggleMapView();
   }
 

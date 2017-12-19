@@ -7,10 +7,16 @@
   display: flex;
   justify-content: space-between;
   z-index: 49;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: white;
+  position: absolute;
+  right: 0;
+  transition: right 0.5s;
 
   &.closed {
-    visibility: hidden;
+    position: absolute;
+    right: -100%;
+    transition: right 0.5s;
+    // visibility: hidden;
   }
 }
 
@@ -101,6 +107,9 @@
     align-items: center;
 
     #location-search-input-map {
+      padding: 7px;
+      border: 1px solid $grey;
+      border-radius: 5px;
     }
 
     button {
@@ -114,5 +123,7 @@
 }
 
 #location-search-input-editor {
-
+  padding: 7px;
+  border: 1px solid $grey;
+  border-radius: 5px;
 }

@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.find_by(email: "demo@gmail.com").destroy
+User.find_by(email: "demo@gmail.com").try(:destroy)
 Photo.destroy_all
 
 demo = User.create!(email: "demo@gmail.com", password: "demoaccount")

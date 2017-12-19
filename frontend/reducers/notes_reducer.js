@@ -36,6 +36,7 @@ const NotesReducer = (oldState = initialState, action) => {
     action.tag.noteIds.forEach((noteId) => {
       newState[noteId].tagIds = newState[noteId].tagIds.filter((tagId) => tagId !== action.tag.id);
     });
+    return newState;
     case REMOVE_FLAG:
     newState = Object.assign({}, oldState);
     action.flag.noteIds.forEach((noteId) => {

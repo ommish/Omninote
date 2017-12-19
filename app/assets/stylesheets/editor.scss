@@ -15,12 +15,11 @@
 }
 
 .editor-lower-heading {
-  width: calc(100% - 175px);
+  width: 100%;
   border-top: 1px solid $light-grey;
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
-  padding-bottom: 20px;
+  margin: 10px 0;
 }
 
 .tags {
@@ -80,9 +79,11 @@
 
 .title {
   font-family: 'Roboto Slab', serif;
-  font-size: 30px;
+  font-size: 26px;
   color: $light-green;
-  width: 80%;
+  width: calc(100% - 300px);
+  padding: 10px 0;
+
 }
 
 .editor-errors li {
