@@ -33,6 +33,14 @@ button:hover, input[type="submit"]:hover, a:hover {
     opacity: 0.5;
   }
 
+  &.tiny {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    padding: 2px;
+    margin: 3px;
+  }
+
   &.green {
     background: $light-green;
     &:hover {
@@ -42,9 +50,21 @@ button:hover, input[type="submit"]:hover, a:hover {
 
   }
 
-  &.grey {
+  &.red {
+    color: black;
     background: $grey;
     &:hover {
+      color: white;
+      background: $dark-grey;
+      transition: background 0.2s;
+    }
+  }
+
+  &.grey {
+    color: black;
+    background: $grey;
+    &:hover {
+      color: white;
       background: $dark-grey;
       transition: background 0.2s;
     }

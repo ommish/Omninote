@@ -24,20 +24,14 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
-    image: state.entities.photos,
     note,
+    flag,
     selectedNotebook: state.ui.selectedNotebook,
     fullEditor: state.ui.fullEditor,
     allTags: sortItems(Object.values(state.entities.tags), 4),
     allFlags: Object.values(state.entities.flags),
-    tagInput: "",
     noteErrors: state.errors.noteErrors,
     tagErrors: state.errors.tagErrors,
-    saved: false,
-    timeUntilAutosave: null,
-    autosaving: false,
-    failedSave: false,
-    flag,
   };
 };
 

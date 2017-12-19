@@ -11,11 +11,12 @@ class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      saved: this.props.saved,
-      timeUntilAutosave: this.props.timeUntilAutosave,
-      failedSave: this.props.failedSave,
+      saved: false,
+      timeUntilAutosave: null,
+      autosaving: false,
+      failedSave: false,
       note: this.props.note,
-      tagInput: this.props.tagInput,
+      tagInput: "",
       image: { imageUrl: "", imageFile: "" },
       searchInput: "",
       flag: this.props.flag,
@@ -28,6 +29,7 @@ class Editor extends React.Component {
     this.handleTagInput = this.handleTagInput.bind(this);
 
     this.selectLocation = this.selectLocation.bind(this);
+    this.clearLocation = this.clearLocation.bind(this);
 
     this.handleImage = this.handleImage.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
@@ -56,18 +58,30 @@ class Editor extends React.Component {
     }
   }
 
-  redirectAfterSave(currentNote, currentNotebook, success) {
+  redirectAfterSave(success) {
     this.props.clearTagErrors();
     this.props.clearNoteErrors();
-    if (!currentNote) {
-      if (!currentNotebook) {
-        this.props.history.push(`/notes/${success.note.id}`);
-      } else {
-        this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
+
+    const currentNote = this.props.match.params.noteId;
+    const currentNotebook = this.props.match.params.notebookId;
+    const currentTag = this.props.match.params.tagId;
+    const currentFlag = this.props.match.params.flagId;
+
+    if (currentNote) {
+      if (currentNotebook) {
+        if (parseInt(currentNotebook) !== success.note.notebookId) {
+          this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
+        }
       }
     } else {
-      if (currentNotebook && parseInt(currentNotebook) !== success.note.notebookId) {
+      if (currentNotebook) {
         this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
+      } else if (currentTag) {
+        this.props.history.push(`/tags/${currentTag}/notes/${success.note.id}`);
+      } else if (currentFlag) {
+        this.props.history.push(`flags/${currentFlag}/notes/${success.note.id}`)
+      } else {
+        this.props.history.push(`notes/${success.note.id}`)
       }
     }
   }
@@ -78,7 +92,20 @@ class Editor extends React.Component {
       this.props.clearTagErrors();
       this.props.clearNoteErrors();
       window.clearInterval(this.autosaveInterval);
-      this.setState(newProps);
+
+      const resetState = {
+        saved: false,
+        timeUntilAutosave: null,
+        autosaving: false,
+        failedSave: false,
+        note: newProps.note,
+        tagInput: "",
+        image: { imageUrl: "", imageFile: "" },
+        searchInput: "",
+        flag: newProps.flag,
+      };
+
+      this.setState(resetState);
     }
   }
 
@@ -124,31 +151,29 @@ selectLocation(lat, lng, title, placeId) {
     lng,
     title,
   }
-
   const newState = merge({}, this.state);
-  // search through notes on frontend before attempting request to save to database?
-  this.props.allFlags.forEach((flag) => {
-    if (flag.placeId === newFlag.placeId) {
-      newState.flag = flag;
-      newState.note.flagId = flag.id;
-      this.setState(newState);
-      return;
-    }
-  });
-
   this.props.createFlag(newFlag).then(({flag}) => {
     newState.flag = flag;
     newState.note.flagId = flag.id;
     this.setState(newState);
-  }, (error) => {
-    console.log(error);
+  }, ({errors}) => {
+    if (errors[0] === "has already been taken") {
+      this.props.allFlags.forEach((flag) => {
+        if (flag.placeId === newFlag.placeId) {
+          newState.flag = flag;
+          newState.note.flagId = flag.id;
+          this.setState(newState);
+        }
+      });
+    }
   });
 }
 
 clearLocation() {
-  const newNote = merge({}, this.state.note);
-  newNote.flagId = null;
-  this.setState({note: newNote})
+  const newState = merge({}, this.state);
+  newState.note.flagId = null;
+  newState.flag = { id: null, placeId: null, title: "", lat: null, lng: null };
+  this.setState(newState)
 }
 
 resetAutosaveCountdown(newState) {
@@ -219,8 +244,6 @@ handleSubmit() {
     newState.note.tagIds = [""];
   }
   this.setState(newState);
-  const currentNote = this.props.match.params.noteId;
-  const currentNotebook = this.props.match.params.notebookId;
   this.props.action(newState.note).then((success) => {
     if (!newState.note.id) {
       newState.note.id = success.note.id;
@@ -228,7 +251,7 @@ handleSubmit() {
     newState.saved = true;
     newState.timeUntilAutosave = 2;
     this.setState(newState);
-    this.redirectAfterSave(currentNote, currentNotebook, success)
+    this.redirectAfterSave(success)
   },
   (fail) => {
     newState.failedSave = true;
@@ -259,7 +282,7 @@ render() {
     <div className="editor-dropdowns">
     <NotebookDropdown/>
     {this.state.flag.id ?
-      <h4>Flag: {this.state.flag.title}</h4> :
+      <div><button className="button grey tiny" onClick={this.clearLocation}>X</button>{this.state.flag.title}</div> :
       <LocationSearch
       selectLocation={this.selectLocation}
       renderedOn="editor"/>}

@@ -2,6 +2,7 @@ import Map from './map';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { flagsWithNotes } from '../../util/filter_util';
+import { receiveFlags } from '../../actions/flag_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const flags = Object.values(state.entities.flags);
@@ -14,6 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    setMarkers: (flags, googleMap, infoWindow, notes) => dispatch(receiveFlags(flags, googleMap, infoWindow, notes)),
   };
 };
 

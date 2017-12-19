@@ -3,6 +3,7 @@ import React from 'react';
 class LocationSearch extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {inputVal: ""};
   }
 
   setAutocomplete() {
@@ -26,10 +27,12 @@ class LocationSearch extends React.Component {
     const placeholder = this.props.renderedOn === "map" ? "Search Location" : "Add Flag"
 
     return (
+      <div>
       <input
       placeholder={placeholder}
       id={`location-search-input-${this.props.renderedOn}`}
       size="50"/>
+      </div>
     );
   }
 };

@@ -8,7 +8,7 @@ class MapView extends React.Component {
   constructor(props) {
     super(props);
     this.setFlagsInRange = this.setFlagsInRange.bind(this);
-    this.state = {flagsInRange: [], mapCenter: {lat: 40.7128, lng: -74.0060}, mapBounds: {}};
+    this.state = {flagsInRange: [], mapCenter: {lat: 40.7128, lng: -74.0060}, mapBounds: undefined};
 
     this.setMapCenter = this.setMapCenter.bind(this);
     this.getNotesInRange = this.getNotesInRange.bind(this);
@@ -70,9 +70,9 @@ class MapView extends React.Component {
       const notePluralized = flag.noteIds.length === 1 ? "note" : "notes";
       return (
         <li key={i} className="flag-list-item" onClick={this.handleClick(flag.id)}>
-        <h4>{flag.title}</h4>
+        <p>{flag.title}</p>
         <div>
-          <p>{`${flag.noteIds.length} ${notePluralized}`}</p>
+          <h4>{`${flag.noteIds.length} ${notePluralized}`}</h4>
           <img id="delete"
             className={`flag-trash-icon`}
             onClick={this.handleClick(flag.id)}
@@ -87,7 +87,7 @@ class MapView extends React.Component {
       className={this.props.mapViewOpen ? "map-view" : "map-view closed"}>
         <div className="flag-list">
         <div className="flag-list-header">
-          <h3>Flags</h3>
+          <h2>Flags</h2>
         </div>
           <button
           onClick={this.getNotesInRange}
@@ -102,7 +102,9 @@ class MapView extends React.Component {
         <button
         onClick={this.props.toggleMapView}
         className="button green small narrow">Close</button>
-          <LocationSearch selectLocation={this.setMapCenter} renderedOn="map"/>
+          <LocationSearch
+          selectLocation={this.setMapCenter}
+          renderedOn="map"/>
           <Map
           setMapCenter={this.setMapCenter}
           updateBounds={this.updateBounds}

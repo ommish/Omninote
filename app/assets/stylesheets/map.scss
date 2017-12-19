@@ -27,32 +27,41 @@
   .flag-list-header {
     width: 100%;
     height: 150px;
+    min-height: 150px;
     background: $darker-grey;
 
-    h3 {
+    h2 {
+      font-weight: 400;
       margin: 20px;
       color: white;
     }
-  }
-
-  &.flag-list-item {
-    width: 100%;
-    padding: 7px;
   }
 
   button {
     color: $dark-grey;
     margin: 0;
     width: 90%;
+    min-height: 60px;
   }
 }
 
 .flag-list-item {
+  width: 100%;
+  height: 70px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  h4 {
+    text-align: right;
+  }
+
+  p {
+    width: 65%;
+  }
 
   &:hover {
     cursor: pointer;
