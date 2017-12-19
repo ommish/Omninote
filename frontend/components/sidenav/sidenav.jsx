@@ -112,6 +112,9 @@ class SideNav extends React.Component {
         <button
         onClick={this.toggleMapView}
         className="circle-button">
+        <img
+          className="sidenav-icon"
+          src={window.staticAssets.flag}/>
         <div className="sidenav-tooltip">Flags</div>
         </button>
         </li>

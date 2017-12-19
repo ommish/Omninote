@@ -92,9 +92,9 @@
 
 .note-editor {
   position: absolute;
-  left: 470px;
+  left: calc(25% + 70px);
   height: 100%;
-  width: calc(100% - 470px);
+  width: calc(100% - 25% - 70px);
   padding: 20px;
   box-sizing: border-box;
   background: white;

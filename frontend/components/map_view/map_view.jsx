@@ -87,7 +87,7 @@ class MapView extends React.Component {
       className={this.props.mapViewOpen ? "map-view" : "map-view closed"}>
         <div className="flag-list">
         <div className="flag-list-header">
-          <h2>Flags</h2>
+          <h3>Flags</h3>
         </div>
           <button
           onClick={this.getNotesInRange}
