@@ -5,8 +5,8 @@
     @notebooks = [@note.notebook]
     @tags = @note.tags
     @flags = @note.flag ? [@note.flag] : []
-    render :show
     @note.destroy!
+    render :show
   end
 
   def update
