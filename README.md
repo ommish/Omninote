@@ -12,7 +12,7 @@ Users can sign up, log in, and log out by setting an email address and password 
 ![user auth](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/auth.gif)
 
 ### Main Components
-Many of the app's components are re-used for different purposes using React-Redux. The four main components rendered are:
+Many of the app's components are re-used for different purposes using React-Redux. The main components rendered are:
 
 1. Sidenav
   - Navbar for toggling views
@@ -20,23 +20,26 @@ Many of the app's components are re-used for different purposes using React-Redu
   - Lists all notes
   - Lists a notebook's associated notes
   - Lists a tag's associated notes
+  - Lists a flag's associated notes
 3. Sidemenu
   - Lists all notebooks
   - Lists all tags
 4. Editor
   - Creates new notes
   - Edits existing notes
-  - Autosaves notes
+5. Map View
+  - Displays locations of flagged notes
+  - Lists in-view flagged locations and their associated notes
 
 #### Note Index
-Notes are super easy to find! The note index can display a list of all your notes, or just the notes associated with the notebook/tag that you select through the sidemenu.
+The note index displays a list of all notes, or just the notes associated with the selected notebook/tag/flag.
 
-At the top of the index is a search bar to filter notes. Your search query will try to match any content in the title or body. With all the current user's notes stored on the front end, queries are extremely quick.
+At the top of the index is a search bar to filter notes. Search queries will match any content in the notes' title or body.
 
 ![note order](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/order.gif)
 
-A menu of several sorting options is also available to sort your notes.
-Notes are by default sorted in order of `updatedAtNewest`. Selecting a different option dispatches an action with an attached index number, which represents which comparer callback function to pass to the sorting function, and this updates the note index component's props, triggering a re-render with newly sorted notes.
+A menu of several sorting options is also available to sort notes.
+Notes are by default sorted in order of `updatedAtNewest`. Selecting a different option dispatches an action with an attached index, which is used to select the appropriate comparer callback to pass to the sorting function.
 
     `const comparingFunctions = [
     updatedAtNewest,
@@ -57,20 +60,18 @@ The same function is used to sort notebooks and tags by title in the sidemenu.
 
 
 #### Rich Text Editor
-Omninote utilizes Quill-React, a text editor component. Image attachments are saved via paperclip  and AWS, then appended to the document.
+Omninote utilizes Quill-React, a text editor component. Image attachments are saved via paperclip and AWS, then appended to the note body.
 
 ![note](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/note.gif)
 
 
-The editor toggles to full-width when creating a new note, and the notebook selector is automatically set to whatever notebook you were viewing. The notebook create form can also be opened from the same menu if none of your existing notebooks are the right fit.
+The editor toggles to full-width when creating a new note, and the notebook selector is automatically set to whatever notebook matches the request's path. The notebook create form can also be opened from the same dropdown menu.
 
-The app listens for changes in the path in order to update the selected notebook.
+All tags are listed as clickable buttons at the top of the editor. This component also includes an input for creating new tags.
 
+A search bar from the Google Maps Autocomplete API is used for flagging notes with a location.
 
-All your tags are listed at the top of your editor so you can select or deselect them with just a click. If you need a new tag, you can create one right from the same menu. This saves new tag and its association with the note on the backend, and the response will update the redux state, toggling the new tag to be selected. A bi-directional (`:inverse_of`) association set up in Rails obviates the need to send separate "tagging" post requests.
-
-
-The editor features autosave.
+Autosave begins running once a user focuses on the editor's title or body inputs and actually attempts to save only after the user stops typing and if the note is valid (ie has a title and notebook). Toggling tags, the selected notebook, or changing the flag will also trigger a save.
 
 ![autosave](https://raw.githubusercontent.com/ommish/Omninote/master/README_images/autosave.gif)
 
