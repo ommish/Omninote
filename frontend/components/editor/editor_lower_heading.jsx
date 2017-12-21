@@ -14,9 +14,9 @@ export const EditorLowerHeading = (props) => {
     <ul className="editor-errors">{props.noteErrors}</ul>
     <div className="saved">{props.saved ? "Saved!" : ""}</div>
     <button
-    disabled={props.noteTitle === "" ? true : false}
-    className={props.noteTitle === "" ? "button green small narrow disabled" : "button green small narrow"}
-    onClick={props.handleSubmit}>Save</button>
+    disabled={props.validNote ? false : true}
+    className={props.validNote ? "button green small narrow" : "button green small narrow disabled"}
+    onClick={props.save}>Save</button>
     <button
     className={"button green small narrow"}
     onClick={props.toggleFullEditor}>

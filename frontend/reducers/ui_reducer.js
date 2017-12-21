@@ -2,7 +2,6 @@ import {
   TOGGLE_MODAL,
   TOGGLE_NOTE_ORDER,
   TOGGLE_SELECTED_NOTEBOOK,
-  TOGGLE_SELECTED_NOTE,
   TOGGLE_DELETE_FORM,
   TOGGLE_SIDEMENU,
   TOGGLE_SIDEMENU_ITEM_TYPE,
@@ -28,7 +27,6 @@ export const _noteOrderOptions = [
   deleteForm: {id: false, type: ""},
   logoutForm: false,
   selectedNotebook: {id: false},
-  selectedNote: {id: false},
   fullEditor: false,
   notebookDropdown: false,
   noteOrder: 0,
@@ -79,11 +77,7 @@ const UIReducer = (oldState = initialState, action) => {
     return newState;
     case TOGGLE_SELECTED_NOTEBOOK:
     newState = merge({}, oldState);
-    newState.selectedNotebook = action.notebook;
-    return newState;
-    case TOGGLE_SELECTED_NOTE:
-    newState = merge({}, oldState);
-    newState.selectedNote = action.note;
+    newState.selectedNotebook.id = action.notebookId;
     return newState;
     default:
     return oldState;

@@ -1,17 +1,10 @@
 import React from 'react';
 
 class NotebookDropdown extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.toggleNotebookDropdown = this.toggleNotebookDropdown.bind(this);
-  }
-
-  toggleNotebook (notebook) {
-    return (e) => {
-      e.stopPropagation();
-      this.props.toggleNotebookDropdown();
-      this.props.toggleSelectedNotebook(notebook);
-    };
+    this.handleNotebookSelection = this.handleNotebookSelection.bind(this);
   }
 
   toggleNotebookDropdown (e) {
@@ -19,10 +12,34 @@ class NotebookDropdown extends React.Component {
     this.props.toggleNotebookDropdown();
   }
 
+  handleNotebookSelection(notebookId) {
+    return (e) => {
+      e.stopPropagation();
+      this.props.toggleNotebookDropdown();
+      this.props.toggleSelectedNotebook(notebookId);
+      this.props.save();
+    }
+  }
+
+  buttonText() {
+    let buttonText;
+    if (this.props.selectedNotebook.id) {
+      const notebook = this.props.allNotebooks.filter((notebook) => (
+        notebook.id === parseInt(this.props.selectedNotebook.id)
+      ));
+      if (notebook.length > 0) {
+        buttonText = notebook[0].title;
+      }
+    } else {
+      buttonText = "Select Notebook";
+    }
+    return buttonText;
+  }
+
   render () {
     const notebooks = this.props.allNotebooks.map((notebook, i) => (
       <li
-        onClick={this.toggleNotebook(notebook)}
+        onClick={this.handleNotebookSelection(notebook.id)}
         className={notebook.id === this.props.selectedNotebook.id ? "notebook-dropdown-item selected" : "notebook-dropdown-item"}
         key={i}>
         {notebook.title}</li>
@@ -35,16 +52,12 @@ class NotebookDropdown extends React.Component {
         Add New Notebook
       </li>
     );
-
     return (
       <div
         className="select-notebook"
         onClick={this.toggleNotebookDropdown}>
         <div>
-        ▾ &nbsp;{this.props.selectedNotebook.id ?
-          this.props.allNotebooks.filter((notebook) => (
-            notebook.id === this.props.selectedNotebook.id
-          ))[0].title : "Select Notebook"}
+        ▾ &nbsp;{this.buttonText()}
         </div>
           <div
             className={this.props.notebookDropdown ? "notebook-dropdown-open" : "notebook-dropdown-closed"}>

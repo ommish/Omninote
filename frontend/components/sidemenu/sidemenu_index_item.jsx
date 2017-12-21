@@ -1,4 +1,6 @@
 import React from 'react';
+import NotebookDetails from './notebook_details';
+import TagDetails from './tag_details';
 
 class SidemenuIndexItem extends React.Component {
 
@@ -24,31 +26,13 @@ class SidemenuIndexItem extends React.Component {
   }
 
   render () {
-    let details;
     const notePluralized = this.props.item.noteIds.length === 1 ? "note" : "notes";
-    if (this.props.itemType === "notebook") {
-      details = (
-      <ul className="notebook-details"
-        onClick={this.handleClick(this.props.item.id)}>
-        <li><h3>{this.props.item.title}</h3></li>
-      <li>{new Date(this.props.item.updatedAt).toDateString()}</li>
-    <li>{`${this.props.item.noteIds.length} ${notePluralized}`}</li>
-      </ul>
-    );
-  }else {
-    details = (
-      <button className="tag-details"
-        onClick={this.handleClick(this.props.item.id)}>
-        <p>{`${this.props.item.title}`}&nbsp;</p>
-        <p>{this.props.item.noteIds.length}</p>
-      </button>
-    );
-  }
-
     return (
         <li
           className={`${this.props.itemType}-index-item`}>
-          {details}
+          {this.props.itemType === "notebook" ?
+            <NotebookDetails item={this.props.item} handleClick={this.handleClick} notePluralized={notePluralized} /> :
+            <TagDetails item={this.props.item} handleClick={this.handleClick} notePluralized={notePluralized} /> }
           <img id="delete"
             className={`${this.props.itemType}-trash-icon`}
             onClick={this.handleClick(this.props.item.id)}
@@ -58,4 +42,4 @@ class SidemenuIndexItem extends React.Component {
       }
     }
 
-    export default SidemenuIndexItem;
+export default SidemenuIndexItem;

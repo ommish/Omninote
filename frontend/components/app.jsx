@@ -16,48 +16,42 @@ class App extends React.Component {
   componentDidMount() {
     this.props.fetchAll().then(() => {
       if (this.props.match.params.notebookId) {
-        this.props.toggleSelectedNotebook(this.props.notebooks[this.props.match.params.notebookId]);
+        this.props.toggleSelectedNotebook(this.props.match.params.notebookId);
       } else if (this.props.match.params.noteId) {
         const notebookId = this.props.notes[this.props.match.params.noteId].notebookId;
-        this.props.toggleSelectedNotebook(this.props.notebooks[notebookId]);
+        this.props.toggleSelectedNotebook(notebookId);
       }
     });
   }
 
   componentWillReceiveProps(newProps) {
-    if (!this.props.notebooks.initialState) {
-      const currentNotebookId = this.props.match.params.notebookId;
-      const currentNoteId = this.props.match.params.noteId;
-      const newNotebookId = newProps.match.params.notebookId;
-      const newNoteId = newProps.match.params.noteId
+    const currentNotebookId = this.props.match.params.notebookId;
+    const currentNoteId = this.props.match.params.noteId;
+    const newNotebookId = newProps.match.params.notebookId;
+    const newNoteId = newProps.match.params.noteId
 
-      // toggle to new notebook if visiting a different notebook
-      if (newNotebookId && currentNotebookId !== newNotebookId) {
-        const notebook = this.props.notebooks[newNotebookId];
-        this.props.toggleSelectedNotebook(notebook);
-      }
-      // toggle to new notebook if visiting a different note
-      else if (!newNotebookId && newNoteId && currentNoteId !== newNoteId) {
-        const notebook = this.props.notebooks[this.props.notes[newNoteId].notebookId];
-        this.props.toggleSelectedNotebook(notebook);
-      // toggle to no notebook if going to all notes
-    } else if (newProps.location.pathname === "/notes") {
-        this.props.toggleSelectedNotebook({id: false});
-      }
+    // toggle to new notebook if visiting a different notebook
+    if (newNotebookId && currentNotebookId !== newNotebookId) {
+      this.props.toggleSelectedNotebook(newNotebookId);
+    }
+    // toggle to new notebook if visiting a different note without :notebookId param
+    else if (!newNotebookId && newNoteId && currentNoteId !== newNoteId) {
+      this.props.toggleSelectedNotebook(this.props.notes[newNoteId].notebookId);
+    // toggle to no notebook if going to all notes
+  } else if (!this.props.location.pathname === "/notes" && newProps.location.pathname === "/notes") {
+      this.props.toggleSelectedNotebook(false);
     }
   }
 
   render () {
-    if (this.props.initialState) {
+    if (this.props.notes.initialState) {
       return (
         <div className="loading-page">
           <h1>Just a moment!</h1>
-          <MDSpinner singleColor="rgb(76, 175, 80)" size={50} duration={3000}/>
+          <MDSpinner singleColor="rgb(76, 175, 80)" size={50} duration={5000}/>
         </div>
       );
     }
-// TODO:  add not found message if notebook or note doesn't exist and show link to redirect to /notes
-
 
     else {
       return (

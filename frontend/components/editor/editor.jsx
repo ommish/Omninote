@@ -34,7 +34,7 @@ class Editor extends React.Component {
     this.handleImage = this.handleImage.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.attemptSave = this.attemptSave.bind(this);
     this.autosaveCountdown = this.autosaveCountdown.bind(this);
     this.setAutosaveCountdown = this.setAutosaveCountdown.bind(this);
     this.resetAutosaveCountdown = this.resetAutosaveCountdown.bind(this);
@@ -52,9 +52,17 @@ class Editor extends React.Component {
   autosaveCountdown() {
     this.setState({timeUntilAutosave: this.state.timeUntilAutosave - 1});
     if (this.state.timeUntilAutosave <= 0 && !this.state.saved && !this.state.failedSave) {
-      if (this.state.note.title !== "" && this.props.selectedNotebook.id) {
-        this.handleSubmit();
-      }
+      this.attemptSave();
+    }
+  }
+
+  isValidNote() {
+    return this.state.note.title !== "" && this.props.selectedNotebook.id;
+  }
+
+  attemptSave() {
+    if (this.isValidNote()) {
+      this.handleSubmit();
     }
   }
 
@@ -87,12 +95,10 @@ class Editor extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    const isNewPath = this.props.location.pathname !== newProps.location.pathname;
-    if (isNewPath) {
+    if (this.props.location.pathname !== newProps.location.pathname) {
       this.props.clearTagErrors();
       this.props.clearNoteErrors();
       window.clearInterval(this.autosaveInterval);
-
       const resetState = {
         saved: false,
         timeUntilAutosave: null,
@@ -104,7 +110,6 @@ class Editor extends React.Component {
         searchInput: "",
         flag: newProps.flag,
       };
-
       this.setState(resetState);
     }
   }
@@ -117,7 +122,7 @@ class Editor extends React.Component {
       } else {
         newState.note.tagIds.push(tagId);
       }
-      this.resetAutosaveCountdown(newState);
+      this.setState(newState, this.attemptSave);
     };
   }
 
@@ -128,7 +133,7 @@ class Editor extends React.Component {
       .then((res) => {
         newState.note.tagIds.push(res.tag.id);
         newState.tagInput = "";
-        this.resetAutosaveCountdown(newState);
+        this.setState(newState, this.attemptSave);
       }, (fail) => {
         if (fail.errors.includes("tag already exists")) {
           const tag = this.props.allTags.filter((tag) => tag.title.toLowerCase() === newState.tagInput.toLowerCase())[0];
@@ -155,14 +160,14 @@ selectLocation(lat, lng, title, placeId) {
   this.props.createFlag(newFlag).then(({flag}) => {
     newState.flag = flag;
     newState.note.flagId = flag.id;
-    this.setState(newState);
+    this.setState(newState, this.attemptSave);
   }, ({errors}) => {
     if (errors[0] === "has already been taken") {
       this.props.allFlags.forEach((flag) => {
         if (flag.placeId === newFlag.placeId) {
           newState.flag = flag;
           newState.note.flagId = flag.id;
-          this.setState(newState);
+          this.setState(newState, this.attemptSave);
         }
       });
     }
@@ -173,7 +178,7 @@ clearLocation() {
   const newState = merge({}, this.state);
   newState.note.flagId = null;
   newState.flag = { id: null, placeId: null, title: "", lat: null, lng: null };
-  this.setState(newState)
+  this.setState(newState, this.attemptSave)
 }
 
 resetAutosaveCountdown(newState) {
@@ -250,8 +255,7 @@ handleSubmit() {
     }
     newState.saved = true;
     newState.timeUntilAutosave = 2;
-    this.setState(newState);
-    this.redirectAfterSave(success)
+    this.setState(newState, () => this.redirectAfterSave(success));
   },
   (fail) => {
     newState.failedSave = true;
@@ -274,13 +278,12 @@ render() {
   const noteErrors = this.props.noteErrors.map((err) => <li key={err}>{err}</li>);
   const tagErrors = this.props.tagErrors.map((err) => <li key={err}>{err}</li>);
 
-
   return (
     <main
     className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>
     <div className="editor-heading">
     <div className="editor-dropdowns">
-    <NotebookDropdown/>
+    <NotebookDropdown save={this.attemptSave}/>
     {this.state.flag.id ?
       <div><button className="button grey tiny" onClick={this.clearLocation}>X</button>{this.state.flag.title}</div> :
       <LocationSearch
@@ -295,12 +298,13 @@ render() {
       tagErrors={tagErrors}/>
       </div>
       <EditorLowerHeading
+      noteTitle={this.state.note.title}
       handleTitleChange={this.handleTitleChange}
       setAutosaveCountdown={this.setAutosaveCountdown}
-      noteTitle={this.state.note.title}
+      validNote={this.isValidNote()}
       noteErrors={noteErrors}
       saved={this.state.saved}
-      handleSubmit={this.handleSubmit}
+      save={this.attemptSave}
       toggleFullEditor={this.props.toggleFullEditor}
       fullEditor={this.props.fullEditor}/>
       <label>Add an image:&nbsp;&nbsp;&nbsp;

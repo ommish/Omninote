@@ -22,7 +22,6 @@ const mapStateToProps = (state, ownProps) => {
   } else {
     flag = { id: null, placeId: null, title: "", lat: null, lng: null };
   }
-
   return {
     note,
     flag,

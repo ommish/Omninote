@@ -66,48 +66,9 @@ The editor toggles to full-width when creating a new note, and the notebook sele
 
 The app listens for changes in the path in order to update the selected notebook.
 
-    componentWillReceiveProps(newProps) {
-
-
-Toggle to new notebook if visiting a different notebook:
-
-    if (newNotebookId && currentNotebookId !== newNotebookId) {
-        const notebook = this.props.notebooks[newNotebookId];
-        this.props.toggleSelectedNotebook(notebook);
-      }
-
-Toggle to new notebook if visiting a different note:
-
-      else if (!newNotebookId && newNoteId) {
-        const notebook = this.props.notebooks[this.props.notes[newNoteId].notebookId];
-        this.props.toggleSelectedNotebook(notebook);
-
-Toggle to no notebook if going to all notes:
-
-      } else if (newProps.location.pathname === "/notes") {
-          this.props.toggleSelectedNotebook({id: false});
-        }
-      }
-    }
-
 
 All your tags are listed at the top of your editor so you can select or deselect them with just a click. If you need a new tag, you can create one right from the same menu. This saves new tag and its association with the note on the backend, and the response will update the redux state, toggling the new tag to be selected. A bi-directional (`:inverse_of`) association set up in Rails obviates the need to send separate "tagging" post requests.
 
-    createTag(e) {
-      if (e.key === 'Enter') {
-        const newState = merge({}, this.state);
-        this.props.createTag({title: e.target.value, noteIds: [this.state.note.id]})
-        .then((res) => {
-          this.props.clearTagErrors();
-          if (!this.state.note.tagIds.includes(res.tag.id)) {
-            newState.note.tagIds.push(res.tag.id);
-            newState.tagInput = "";
-            this.setState(newState);
-          }
-        });
-      }
-    }
-    
 
 The editor features autosave.
 

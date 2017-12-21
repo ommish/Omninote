@@ -1,27 +1,34 @@
 import * as NoteUtil from '../util/note_api_util';
 
-export const RECEIVE_NOTE = "RECEIVE_NOTE";
+export const RECEIVE_NEW_NOTE = "RECEIVE_NEW_NOTE";
+export const RECEIVE_UPDATED_NOTE = "RECEIVE_UPDATED_NOTE";
 export const REMOVE_NOTE = "REMOVE_NOTE";
 export const RECEIVE_NOTE_ERRORS = "RECEIVE_NOTE_ERRORS";
 
-export const receiveNote = ({note, tags, notebooks, prevTags, flags}) => {
+export const receiveNewNote = ({note}) => {
   return {
-    type: RECEIVE_NOTE,
+    type: RECEIVE_NEW_NOTE,
+    note,
+  };
+};
+
+export const receiveUpdatedNote = ({note, tags, notebooks, flags}) => {
+  return {
+    type: RECEIVE_UPDATED_NOTE,
     note,
     tags,
     notebooks,
-    prevTags,
     flags,
   };
 };
 
-export const removeNote = ({note, tags, notebooks, flags}) => {
+export const removeNote = ({noteId, notebookId, tagIds, flagId}) => {
   return {
     type: REMOVE_NOTE,
-    note,
-    tags,
-    notebooks,
-    flags,
+    noteId,
+    tagIds,
+    notebookId,
+    flagId,
   };
 };
 
@@ -42,7 +49,7 @@ export const deleteNote = (noteId) => {
 export const createNote = (note) => {
   return (dispatch) => {
     return NoteUtil.createNote(note)
-    .then((noteRes) => dispatch(receiveNote(noteRes)),
+    .then((noteRes) => dispatch(receiveNewNote(noteRes)),
     (errors) => dispatch(receiveNoteErrors(errors))
   );};
 };
@@ -50,7 +57,7 @@ export const createNote = (note) => {
 export const updateNote = (note) => {
   return (dispatch) => {
     return NoteUtil.updateNote(note)
-    .then((noteRes) => dispatch(receiveNote(noteRes)),
+    .then((noteRes) => dispatch(receiveUpdatedNote(noteRes)),
     (errors) => dispatch(receiveNoteErrors(errors))
   );};
 };

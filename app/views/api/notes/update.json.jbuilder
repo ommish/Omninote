@@ -25,5 +25,3 @@ json.flags do
     end
   end
 end
-
-json.prevTags @prev_tags

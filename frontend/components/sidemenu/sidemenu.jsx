@@ -2,18 +2,18 @@ import React from 'react';
 import SidemenuIndexItem from './sidemenu_index_item_container';
 import CreateForm from '../entity_forms/create_form_container';
 import DeleteForm from '../entity_forms/delete_form_container';
+import SidemenuHeading from './sidemenu_heading';
 
 class Sidemenu extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = { searchQuery: "" };
     this.handleSearchInput = this.handleSearchInput.bind(this);
-    this.toggleSidemenu = this.toggleSidemenu.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname) {
+    if (this.props.sidemenuOpen !== newProps.sidemenuOpen) {
       this.setState({searchQuery: ""});
     }
   }
@@ -27,11 +27,6 @@ class Sidemenu extends React.Component {
     return (e) => {
       this.props.toggleCreateForm(itemType);
     };
-  }
-
-  toggleSidemenu() {
-    this.props.toggleSidemenu();
-    this.setState({searchQuery: ""});
   }
 
   queriedItemsByFirstLetter() {
@@ -54,19 +49,12 @@ class Sidemenu extends React.Component {
       <div>
       <section
         key={1}
-        onClick={this.toggleSidemenu}
+        onClick={this.props.toggleSidemenu}
         className={this.props.sidemenuOpen ? "sidemenu-overlay" : "sidemenu-overlay closed-sidemenu-overlay"}>
       </section>
       <section
         className={this.props.sidemenu}>
-        <section className="sidemenu-heading">
-          <h2>{this.props.itemType === "notebook" ? "Notebooks" : "Tags"}</h2>
-          <button
-            onClick={this.toggleCreateForm(this.props.itemType)}
-            className="circle-button">
-            <img className="sidenav-icon" src={window.staticAssets.plus}/>
-          </button>
-        </section>
+        <SidemenuHeading itemType={this.props.itemType} toggleCreateForm={this.toggleCreateForm}/>
         <input type="text"
             className="search-bar"
             onChange={this.handleSearchInput}
