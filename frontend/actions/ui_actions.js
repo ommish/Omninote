@@ -26,10 +26,11 @@ export const toggleSidemenu = () => {
   };
 };
 
-export const toggleSelectedNotebook = (notebookId) => {
+export const toggleSelectedNotebook = (notebookId, clicked) => {
   return {
     type: TOGGLE_SELECTED_NOTEBOOK,
     notebookId,
+    clicked,
   };
 };
 

@@ -14,33 +14,7 @@ import NotesInMap from './note_index/notes_in_map_container';
 class App extends React.Component {
 
   componentDidMount() {
-    this.props.fetchAll().then(() => {
-      if (this.props.match.params.notebookId) {
-        this.props.toggleSelectedNotebook(this.props.match.params.notebookId);
-      } else if (this.props.match.params.noteId) {
-        const notebookId = this.props.notes[this.props.match.params.noteId].notebookId;
-        this.props.toggleSelectedNotebook(notebookId);
-      }
-    });
-  }
-
-  componentWillReceiveProps(newProps) {
-    const currentNotebookId = this.props.match.params.notebookId;
-    const currentNoteId = this.props.match.params.noteId;
-    const newNotebookId = newProps.match.params.notebookId;
-    const newNoteId = newProps.match.params.noteId
-
-    // toggle to new notebook if visiting a different notebook
-    if (newNotebookId && currentNotebookId !== newNotebookId) {
-      this.props.toggleSelectedNotebook(newNotebookId);
-    }
-    // toggle to new notebook if visiting a different note without :notebookId param
-    else if (!newNotebookId && newNoteId && currentNoteId !== newNoteId) {
-      this.props.toggleSelectedNotebook(this.props.notes[newNoteId].notebookId);
-    // toggle to no notebook if going to all notes
-  } else if (!this.props.location.pathname === "/notes" && newProps.location.pathname === "/notes") {
-      this.props.toggleSelectedNotebook(false);
-    }
+    this.props.fetchAll();
   }
 
   render () {
