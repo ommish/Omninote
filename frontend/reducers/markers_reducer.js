@@ -34,10 +34,11 @@ const MarkersReducer = (oldState = initialState, action) => {
         const noteId = action.note.id.toString();
         if (oldNoteIds.includes(noteId) && !newNoteIds.includes(noteId)) {
           newMarker = removeNoteFromMarker(flag.id, newState.markers[flag.id], action.note.id);
+          newState.markers[flag.id] = newMarker;
         } else if (!oldNoteIds.includes(noteId) && newNoteIds.includes(noteId)) {
           newMarker = addNoteToMarker(flag.id, newState.markers[flag.id], action.note);
+          newState.markers[flag.id] = newMarker;
         }
-        newState.markers[flag.id] = newMarker;
       });
     }
     return newState;
