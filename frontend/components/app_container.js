@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 import App from './app';
 import { fetchAll } from '../actions/entity_actions';
-import { toggleSelectedNotebook } from '../actions/ui_actions';
-import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
     return {
@@ -14,8 +12,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAll: () => dispatch(fetchAll()),
-    toggleSelectedNotebook: (notebookId) => dispatch(toggleSelectedNotebook(notebookId)),
   };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -111,6 +111,14 @@ class Editor extends React.Component {
         flag: newProps.flag,
       };
       this.setState(resetState);
+    } else if (this.props.selectedNotebook.id !== newProps.selectedNotebook.id) {
+      const newNote = merge({}, this.state.note);
+      newNote.notebookId = newProps.selectedNotebook.id;
+      if (newProps.selectedNotebook.clicked) {
+        this.setState({note: newNote}, this.attemptSave);
+      } else {
+        this.setState({note: newNote});
+      }
     }
   }
 
@@ -243,7 +251,6 @@ appendPhotoToNote(url) {
 
 handleSubmit() {
   const newState = merge({}, this.state);
-  newState.note.notebookId = this.props.selectedNotebook.id;
   newState.note.bodyPlain = newState.note.bodyPlain.slice(0, 100);
   if (newState.note.tagIds.length === 0) {
     newState.note.tagIds = [""];
@@ -283,7 +290,7 @@ render() {
     className={this.props.fullEditor ? "note-editor full-editor" : "note-editor"}>
     <div className="editor-heading">
     <div className="editor-dropdowns">
-    <NotebookDropdown save={this.attemptSave}/>
+    <NotebookDropdown/>
     {this.state.flag.id ?
       <div><button className="button grey tiny" onClick={this.clearLocation}>X</button>{this.state.flag.title}</div> :
       <LocationSearch

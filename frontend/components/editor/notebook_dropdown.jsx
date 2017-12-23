@@ -7,6 +7,34 @@ class NotebookDropdown extends React.Component {
     this.handleNotebookSelection = this.handleNotebookSelection.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.match.params.notebookId) {
+      this.props.toggleSelectedNotebook(this.props.match.params.notebookId, false);
+    } else if (this.props.match.params.noteId) {
+      const notebookId = this.props.notes[this.props.match.params.noteId].notebookId;
+      this.props.toggleSelectedNotebook(notebookId, false);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    const currentNotebookId = this.props.match.params.notebookId;
+    const currentNoteId = this.props.match.params.noteId;
+    const newNotebookId = newProps.match.params.notebookId;
+    const newNoteId = newProps.match.params.noteId
+
+    // toggle to new notebook if visiting a different notebook
+    if (newNotebookId && currentNotebookId !== newNotebookId) {
+      this.props.toggleSelectedNotebook(newNotebookId, false);
+    }
+    // toggle to new notebook if visiting a different note without :notebookId param
+    else if (!newNotebookId && newNoteId && currentNoteId !== newNoteId) {
+      this.props.toggleSelectedNotebook(this.props.notes[newNoteId].notebookId, false);
+    // toggle to no notebook if going to all notes
+  } else if (!this.props.location.pathname === "/notes" && newProps.location.pathname === "/notes") {
+      this.props.toggleSelectedNotebook(null, false);
+    }
+  }
+
   toggleNotebookDropdown (e) {
     e.stopPropagation();
     this.props.toggleNotebookDropdown();
@@ -16,8 +44,7 @@ class NotebookDropdown extends React.Component {
     return (e) => {
       e.stopPropagation();
       this.props.toggleNotebookDropdown();
-      this.props.toggleSelectedNotebook(notebookId);
-      this.props.save();
+      this.props.toggleSelectedNotebook(notebookId, true);
     }
   }
 
