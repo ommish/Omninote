@@ -11,7 +11,6 @@ class CreateForm extends React.Component {
     this.handleCancel = this.handleCancel.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.redirect = this.redirect.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
   }
 

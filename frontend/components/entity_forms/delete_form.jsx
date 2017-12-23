@@ -9,7 +9,6 @@ class DeleteForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.redirect = this.redirect.bind(this);
   }
 
   redirect(path) {
@@ -49,12 +48,6 @@ class DeleteForm extends React.Component {
 
     closeModal () {
       this.props.toggleDeleteForm({id: false, type: ""});
-    }
-
-    componentWillReceiveProps (newProps) {
-      if (!this.props.deleteFormId && newProps.deleteFormId) {
-        this.setState(newProps);
-      }
     }
 
     render() {

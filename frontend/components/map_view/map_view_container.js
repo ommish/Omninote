@@ -2,10 +2,11 @@ import MapView from './map_view';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { toggleModal, toggleDeleteForm } from '../../actions/ui_actions';
+import { sortItems } from '../../util/sorters';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    flags: Object.values(state.entities.flags),
+    flags: sortItems(Object.values(state.entities.flags), 4),
     mapViewOpen: state.ui.mapView,
   };
 };

@@ -1,12 +1,13 @@
 import NotebookDropdown from './notebook_dropdown';
 import { connect } from 'react-redux';
 import { toggleModal, toggleSelectedNotebook, toggleCreateForm } from '../../actions/ui_actions';
+import { sortItems } from '../../util/sorters';
 
 const mapStateToProps = (state, ownProps) => {
   return {
     selectedNotebook: state.ui.selectedNotebook,
     notebookDropdown: state.ui.notebookDropdown,
-    allNotebooks: Object.values(state.entities.notebooks),
+    allNotebooks: sortItems(Object.values(state.entities.notebooks), 4),
   };
 };
 
