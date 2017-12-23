@@ -10,6 +10,7 @@ class Sidemenu extends React.Component {
     super(props);
     this.state = { searchQuery: "" };
     this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.toggleCreateForm = this.toggleCreateForm.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
