@@ -16,7 +16,7 @@ const FlagsReducer = (oldState = {}, action) => {
     return newState;
     case RECEIVE_NEW_NOTE:
     if (action.note.flagId) {
-      newState[action.note.flagId].noteIds += action.note.id;
+      newState[action.note.flagId].noteIds.push(action.note.id);
     }
     return newState;
     case RECEIVE_UPDATED_NOTE:

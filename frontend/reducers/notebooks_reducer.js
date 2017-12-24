@@ -15,7 +15,7 @@ const NotebooksReducer = (oldState = {}, action) => {
     delete newState[action.notebook.id];
     return newState;
     case RECEIVE_NEW_NOTE:
-    newState[action.note.notebookId].noteIds += action.note.id;
+    newState[action.note.notebookId].noteIds.push(action.note.id);
     return newState;
     case RECEIVE_UPDATED_NOTE:
     return Object.assign(newState, action.notebooks);

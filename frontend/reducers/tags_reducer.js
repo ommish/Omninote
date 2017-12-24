@@ -16,7 +16,7 @@ const TagsReducer = (oldState = {}, action) => {
     return newState;
     case RECEIVE_NEW_NOTE:
     action.note.tagIds.forEach((tagId) => {
-      newState[tagId].noteIds += action.note.id;
+      newState[tagId].noteIds.push(action.note.id);
     });
     return newState;
     case RECEIVE_UPDATED_NOTE:
