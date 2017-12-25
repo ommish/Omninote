@@ -22,6 +22,8 @@ function setNewInfoWIndowContent(flag, marker, notes) {
 };
 
 export function setInfoWindowContent (marker) {
+  marker.infoHeading = Object.values(marker.noteTitles).length > 0 ? `<h4 class="firstHeading">Notes at ${marker.title}:</h4>` : `<h4 class="firstHeading">No notes for ${marker.title}</h4>`;
+
   marker.infoWindowContent =
   `<div>`+
   `${marker.infoHeading}`+
