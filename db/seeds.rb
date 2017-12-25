@@ -1,7 +1,7 @@
 User.find_by(email: 'demo@gmail.com').try(:destroy!)
 
 User.create!([
-  {email: "demo@gmail.com", session_token: "rOoawUunDdYQwZDRu-cqRg", password_digest: "$2a$10$K5nAZsk9h5W.lgK5uhfP3.C29ezZXoPyBEusJNS98.KX60hXbQvi6"}
+  {email: "demo@gmail.com", password: "demodemo"}
 ])
 
 Notebook.create!([
