@@ -1,6 +1,7 @@
 
-function addNoteTitle(marker, note) {
+export function addNoteTitle(marker, note) {
   marker.noteTitles[note.id] = `<li class="firstHeading">- ${note.title}</li>`;
+  return marker;
 };
 
 function removeNoteTitle(marker, noteId) {
@@ -20,7 +21,7 @@ function setNewInfoWIndowContent(flag, marker, notes) {
   setInfoWindowContent(marker);
 };
 
-function setInfoWindowContent (marker) {
+export function setInfoWindowContent (marker) {
   marker.infoWindowContent =
   `<div>`+
   `${marker.infoHeading}`+

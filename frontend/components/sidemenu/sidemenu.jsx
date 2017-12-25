@@ -49,18 +49,19 @@ class Sidemenu extends React.Component {
     return (
       <div>
       <section
-        key={1}
         onClick={this.props.toggleSidemenu}
         className={this.props.sidemenuOpen ? "sidemenu-overlay" : "sidemenu-overlay closed-sidemenu-overlay"}>
       </section>
       <section
         className={this.props.sidemenu}>
+        <div className="sidemenu-sticky">
         <SidemenuHeading itemType={this.props.itemType} toggleCreateForm={this.toggleCreateForm}/>
         <input type="text"
             className="search-bar"
             onChange={this.handleSearchInput}
             placeholder={`Filter by ${this.props.itemType} title`}
             value={this.state.searchQuery}/>
+            </div>
         <ul className={`${this.props.itemType}-sidemenu-list`}>
           {this.props.items.length < 1 ? (<div className="no-items">No {this.props.itemType}s yet!</div>) : this.queriedItemsByFirstLetter().map((item, i) => {
             if (typeof item !== "string") {

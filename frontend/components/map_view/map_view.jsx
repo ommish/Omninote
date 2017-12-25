@@ -70,7 +70,10 @@ class MapView extends React.Component {
       const notePluralized = flag.noteIds.length === 1 ? "note" : "notes";
       return (
         <li key={i} className="flag-list-item" onClick={this.handleClick(flag.id)}>
+        <div className="flag-list-item-name">
         <p>{flag.title}</p>
+        <p>{flag.formattedAddress}</p>
+        </div>
         <div>
           <h4>{`${flag.noteIds.length} ${notePluralized}`}</h4>
           <img id="delete"
@@ -86,14 +89,16 @@ class MapView extends React.Component {
       <div
       className={this.props.mapViewOpen ? "map-view" : "map-view closed"}>
         <div className="flag-list">
+        <div className="flag-list-sticky">
         <div className="flag-list-header">
           <h3>Flags</h3>
         </div>
-          <button
+          <div
           onClick={this.getNotesInRange}
-          className="button">
+          className="flag-list-select-area">
           See all notes in this area
-          </button>
+          </div>
+          </div>
           <ul>
             {flagsInRange}
           </ul>
