@@ -1,137 +1,40 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.find_by(email: 'demo@gmail.com').try(:destroy!)
 
-User.find_by(email: "demo@gmail.com").try(:destroy)
-Photo.destroy_all
+User.create!([
+  {email: "demo@gmail.com", session_token: "rOoawUunDdYQwZDRu-cqRg", password_digest: "$2a$10$K5nAZsk9h5W.lgK5uhfP3.C29ezZXoPyBEusJNS98.KX60hXbQvi6"}
+])
 
-demo = User.create!(email: "demo@gmail.com", password: "demoaccount")
+Notebook.create!([
+  {title: "Elephants", user_id: User.last.id},
+  {title: "Miscellaneous", user_id: User.last.id},
+  {title: "Winter is Coming", user_id: User.last.id},
+  {title: "camping", user_id: User.last.id}
+])
 
+Note.create!([
+  {title: "Conservation Status", body: "<p><u class=\"ql-font-serif\">African elephants</u><span class=\"ql-font-serif\"> are listed as </span><a href=\"/wiki/Vulnerable_species\" target=\"_blank\" class=\"ql-font-serif\">vulnerable</a><span class=\"ql-font-serif\"> by the </span><a href=\"/wiki/International_Union_for_Conservation_of_Nature\" target=\"_blank\" class=\"ql-font-serif\">International Union for Conservation of Nature</a><span class=\"ql-font-serif\"> (IUCN) while the Asian elephant is classed as </span><a href=\"/wiki/Endangered_species\" target=\"_blank\" class=\"ql-font-serif\">endangered</a><span class=\"ql-font-serif\">. One of the biggest threats to elephant populations is the </span><a href=\"/wiki/Ivory_trade\" target=\"_blank\" class=\"ql-font-serif\">ivory trade</a><span class=\"ql-font-serif\">, as the animals are </span><a href=\"/wiki/Poaching\" target=\"_blank\" class=\"ql-font-serif\">poached</a><span class=\"ql-font-serif\"> for their ivory tusks.</span></p><p><a href=\"https://en.wikipedia.org/wiki/Elephant\" target=\"_blank\" class=\"ql-font-serif\">https://en.wikipedia.org/wiki/Elephant</a></p>", notebook_id: Notebook.first.id, body_plain: "African elephants are listed as vulnerable by the International Union for Conservation of Nature (IU", flag_id: nil},
+  {title: "Three species", body: "<p><strong class=\"ql-size-huge\"><em>Elephants</em></strong> are large mammals of the <span style=\"color: rgb(230, 0, 0);\">family </span><a href=\"/wiki/Elephantidae\" target=\"_blank\" style=\"color: rgb(230, 0, 0);\">Elephantidae</a><span style=\"color: rgb(230, 0, 0);\">and the order </span><a href=\"/wiki/Proboscidea\" target=\"_blank\" style=\"color: rgb(230, 0, 0);\">Proboscidea</a><span style=\"color: rgb(230, 0, 0);\">. T</span>hree species are currently recognized: the <a href=\"/wiki/African_bush_elephant\" target=\"_blank\">African bush elephant</a> (<em>Loxodonta africana</em>), the <a href=\"/wiki/African_forest_elephant\" target=\"_blank\">African forest elephant</a> (<em>L. cyclotis</em>), and the <a href=\"/wiki/Asian_elephant\" target=\"_blank\">Asian elephant</a> (<em>Elephas maximus</em>). Elephants are scattered throughout <a href=\"/wiki/Sub-Saharan_Africa\" target=\"_blank\">sub-Saharan Africa</a>, <a href=\"/wiki/South_Asia\" target=\"_blank\">South Asia</a>, and <a href=\"/wiki/Southeast_Asia\" target=\"_blank\">Southeast Asia</a>. Elephantidae is the <span style=\"background-color: rgb(255, 255, 0);\">only</span> surviving family of the order Proboscidea; other, now extinct, members of the order include <a href=\"/wiki/Deinotheriidae\" target=\"_blank\">deinotheres</a>, <a href=\"/wiki/Gomphothere\" target=\"_blank\">gomphotheres</a>, <a href=\"/wiki/Mammoth\" target=\"_blank\">mammoths</a>, and <a href=\"/wiki/Mastodon\" target=\"_blank\">mastodons</a>.</p><p><a href=\"https://en.wikipedia.org/wiki/Elephant\" target=\"_blank\">https://en.wikipedia.org/wiki/Elephant</a></p>", notebook_id: Notebook.first.id, body_plain: "Elephants are large mammals of the family Elephantidaeand the order Proboscidea. Three species are c", flag_id: nil},
+  {title: "Human-Elephant Conflict", body: "<p><span class=\"ql-font-monospace\">Human-elephant conflict impacts savanna elephant populations. Killings are often retaliatory as elephants eat and trample crops, raid food stores, and damage village infrastructure including precious water sources. Since an elephant can eat over 600 pounds of food a day, even a small herd can wipe out a farmer’s annual crop in a single night. Elephants disrupt community life—occasionally leading to injury and death of people. In such instances, authorities are obliged to take action and as a result, many elephants are shot. As elephant and human populations grow, the threat only </span><span style=\"color: rgb(255, 255, 255); background-color: rgb(230, 0, 0);\" class=\"ql-font-monospace\">worsens</span><span class=\"ql-font-monospace\">. Small protected areas are inadequate to stop conflict since elephants require plenty of freedom to roam.</span></p>", notebook_id: Notebook.first.id, body_plain: "Human-elephant conflict impacts savanna elephant populations. Killings are often retaliatory as elep", flag_id: nil},
+  {title: "holiday shopping", body: "<ul><li>mom: chef knife</li><li>dad: phone lens</li><li>Aki: jacket</li><li>Kuni: game </li><li>JJ: handbook</li><li>Aeri: running</li><li>Grace: honey or reading</li><li>Joa: robe</li></ul>", notebook_id: Notebook.second.id, body_plain: "mom: chef knife\ndad: phone lens\nAki: jacket\nKuni: game \nJJ: handbook\nAeri: running\nGrace: honey or r", flag_id: nil},
+  {title: "They're teeth", body: "<p>Their <a href=\"/wiki/Incisor\" title=\"Incisor\">incisors</a> grow into tusks, which can serve as weapons and as tools for moving objects and digging.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>\n  ", notebook_id: Notebook.first.id, body_plain: "Their incisors grow into tusks, which can serve as weapons and as tools for moving", flag_id: nil},
+  {title: "Intelligence", body: "<p>Elephant <a href=\"/wiki/Elephant_cognition\" title=\"Elephant cognition\">intelligence</a> has been compared with that of <a href=\"/wiki/Primate\" title=\"Primate\">primates</a> and <a href=\"/wiki/Cetacea\" title=\"Cetacea\">cetaceans</a>. They appear to have <a href=\"/wiki/Self-awareness\" title=\"Self-awareness\">self-awareness</a> and show <a href=\"/wiki/Empathy\" title=\"Empathy\">empathy</a> for dying or dead individuals of their kind.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>\n  ", notebook_id: Notebook.first.id, body_plain: "Elephant intelligence has been compared with that of primates and cetaceans. They appear to have", flag_id: nil},
+  {title: "Diet Staples", body: "<p><strong>Staples:</strong> Grasses, leaves, bamboo, bark, roots. Elephants are also known to eat crops like banana and sugarcane which are grown by farmers. Adult elephants eat 300-400 lbs of food per day.</p><a href=\"http://www.defenders.org/elephant/basic-facts\"/>", notebook_id: Notebook.first.id, body_plain: "DIET\n  Staples: Grasses, leaves, bamboo, bark, roots. Elephants are also known to eat crops like banana and sugarcane", flag_id: nil},
+  {title: "Herbivores", body: "<p>Elephants are herbivorous and can be found in different habitats including <a href=\"/wiki/Savanna\" title=\"Savanna\">savannahs</a>, forests, deserts, and <a href=\"/wiki/Marsh\" title=\"Marsh\">marshes</a>. They prefer to stay near water. They are considered to be <a href=\"/wiki/Keystone_species\" title=\"Keystone species\">keystone species</a> due to their impact on their environments.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>\n  ", notebook_id: Notebook.first.id, body_plain: "Elephants are herbivorous and can be found in different habitats including savannahs, forests, de", flag_id: nil},
+  {title: "Fission-fusion society", body: "<p class=\"ql-align-justify\">Elephants have a <a href=\"/wiki/Fission%E2%80%93fusion_society\" target=\"_blank\">fission–fusion society</a> in which multiple family groups come together to socialise.</p><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\">Males (\"bulls\") leave their family groups when they reach puberty and may live alone or with other males.</p><p class=\"ql-align-justify\"><a href=\"https://en.wikipedia.org/wiki/Elephant\" target=\"_blank\">https://en.wikipedia.org/wiki/Elephant</a></p>", notebook_id: Notebook.first.id, body_plain: "Elephants have a fission–fusion society in which multiple family groups come together to socialise.\n", flag_id: nil},
+  {title: "Savanna Elephant Facts", body: "<p class=\"ql-align-right\">Savanna elephants are the largest subspecies of elephant. They are easily distinguished by their very large ears—which allow them to radiate excess heat—and front legs which are noticeably longer than the hind legs. They are found throughout the grassy plains and bushlands of Africa. Savanna elephants live in eastern and southern Africa, where the highest densities are found in Botswana, Tanzania, Zimbabwe, Kenya, Namibia, Mozambique and South Africa.</p>", notebook_id: Notebook.first.id, body_plain: "Savanna elephants are the largest subspecies of elephant. They are easily distinguished by their ver", flag_id: nil},
+  {title: "Reproduction", body: "<ul><li><strong><u>Mating Season:</u></strong><u> Mostly during the rainy season.</u></li><li><strong><s>Gestation:</s></strong><s> 22 months.</s></li><li><strong><em>Litter size:</em></strong><em> 1 calf (twins rare).</em></li><li><span style=\"color: rgb(153, 51, 255);\"> Calves weigh between 200-250 lbs at birth. At birth, a calf's trunk has no muscle tone, therefore it will suckle through its mouth. It takes several months for a calf to gain full control of its trunk.</span></li></ul>", notebook_id: Notebook.first.id, body_plain: "Mating Season: Mostly during the rainy season.\nGestation: 22 months.\nLitter size: 1 calf (twins rare", flag_id: nil},
+  {title: "stuff for August trip", body: "<p><span class=\"ql-size-large\">to bring:</span></p><ul><li>personal items</li><li>eating/cooking utensils</li><li>lamps, maps and guides</li><li>compass, seasonings</li><li>rope</li></ul><p><br></p><p><span class=\"ql-size-large\">buying there:</span></p><ul><li>tent</li><li>sleeping pads</li><li>pot</li><li>food</li><li> portable burner</li><li>bear spray</li><li>tarp</li></ul><p><br></p>", notebook_id: Notebook.fourth.id, body_plain: "to bring:\npersonal items\neating/cooking utensils\nlamps, maps and guides\ncompass, seasonings\nrope\n\nbu", flag_id: nil},
+  {title: "snowboarding", body: "<ol><li>https://www.gunstock.com/ closest to here</li><li>https://www.attitash.com/ closest to Aki's</li><li>https://www.tremblant.ca/ montreal day trip</li></ol>", notebook_id: Notebook.third.id, body_plain: "https://www.gunstock.com/ closest to here\nhttps://www.attitash.com/ closest to Aki's\nhttps://www.tre", flag_id: nil},
+  {title: "campgrounds", body: "<ul><li>Cascade Peaks, WA: that weird place outside Rainier with disorganized management, but blackberry bushes everywhere (bees though).</li><li>Sharpbridge, ADK: utility sinks at bathroom, fire pits are stone and awkward to set up on</li><li>Camping on the Battenkill: Green Mountains, VT: good swimming, ice cream nearby, crowded though</li></ul>", notebook_id: Notebook.fourth.id, body_plain: "Cascade Peaks, WA: that weird place outside Rainier with disorganized management, but blackberry bus", flag_id: nil},
+  {title: "gear", body: "<p>this $800 coat... https://www.canadagoose.com/us/en/macmillan-parka-801688475681.html</p><p><br></p><p>look for these at garage sale https://www.rei.com/product/888435/burton-gore-tex-mittens-womens</p><p><br></p><p>okay reviews but straps are apparently not great same price Amazon and REI https://www.rei.com/product/875159/msr-evo-snowshoes</p>", notebook_id: Notebook.third.id, body_plain: "this $800 coat... https://www.canadagoose.com/us/en/macmillan-parka-801688475681.html\n\nlook for thes", flag_id: nil}
+])
 
-elephants = Notebook.create!(title: "Elephants", user_id: demo.id)
-tusk = Notebook.create!(title: "Tusk", user_id: demo.id)
-proboscidea = Notebook.create!(title: "proboscidea", user_id: demo.id)
-eritherium = Notebook.create!(title: "eritherium", user_id: demo.id)
-war_elephants = Notebook.create!(title: "War Elephants", user_id: demo.id)
-mammoths = Notebook.create!(title: "mammoths", user_id: demo.id)
-communication = Notebook.create!(title: "Communication", user_id: demo.id)
-mastadons = Notebook.create!(title: "Mastadons", user_id: demo.id)
-savannah = Notebook.create!(title: "Savannah Life", user_id: demo.id)
-cognition = Notebook.create!(title: "Elephant Cognition", user_id: demo.id)
-indian = Notebook.create!(title: "Indian Elephant", user_id: demo.id)
-
-
-flag1 = Flag.create!(place_id: "123456", lat: 40.0583, lng: -74.4057, user_id: demo.id, title: "nyuuyaaaahk")
-flag2 = Flag.create!(place_id: "123567", lat: 44.1247, lng: -73.8693, user_id: demo.id, title: "coloradooooododododo")
-flag3 = Flag.create!(place_id: "123678", lat: 42.0192, lng: -72.2345, user_id: demo.id, title: "juyzee")
-flag4 = Flag.create!(place_id: "123789", lat: 41.3223, lng: -76.2432, user_id: demo.id, title: "other places in da world")
-flag5 = Flag.create!(place_id: "123098", lat: 41.1221, lng: -76.1122, user_id: demo.id, title: "lots of space here")
-flag6 = Flag.create!(place_id: "123321", lat: 43.0932, lng: -74.2237, user_id: demo.id, title: "oh tokyo hi")
-
-
-note1 = Note.create!(
-  title: "Three species",
-  body_plain: "Elephants are large mammals of the family Elephantidae and the orde",
-  body: "<p><b>Elephants</b> are large mammals of the family <a href=\"/wiki/Elephantidae\" title=\"Elephantidae\">Elephantidae</a>and the order <a href=\"/wiki/Proboscidea\" title=\"Proboscidea\">Proboscidea</a>. Three species are currently recognized: the <a href=\"/wiki/African_bush_elephant\" title=\"African bush elephant\">African bush elephant</a> (<i>Loxodonta africana</i>), the <a href=\"/wiki/African_forest_elephant\" title=\"African forest elephant\">African forest elephant</a> (<i>L. cyclotis</i>), and the <a href=\"/wiki/Asian_elephant\" title=\"Asian elephant\">Asian elephant</a> (<i>Elephas maximus</i>). Elephants are scattered throughout <a href=\"/wiki/Sub-Saharan_Africa\" title=\"Sub-Saharan Africa\">sub-Saharan Africa</a>, <a href=\"/wiki/South_Asia\" title=\"South Asia\">South Asia</a>, and <a href=\"/wiki/Southeast_Asia\" title=\"Southeast Asia\">Southeast Asia</a>. Elephantidae is the only surviving family of the order Proboscidea; other, now extinct, members of the order include <a href=\"/wiki/Deinotheriidae\" title=\"Deinotheriidae\">deinotheres</a>, <a href=\"/wiki/Gomphothere\" title=\"Gomphothere\">gomphotheres</a>, <a href=\"/wiki/Mammoth\" title=\"Mammoth\">mammoths</a>, and <a href=\"/wiki/Mastodon\" title=\"Mastodon\">mastodons</a>.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>",
-  notebook_id: elephants.id,
-  flag_id: flag1.id
-)
-
-note2 = Note.create!(
-  title: "Reproduction",
-  body_plain: "Mating Season: Mostly during the rainy season.
-Gestation: 22 months.
-Litter size: 1 calf (twins rare).",
-  body: "<p><strong>Mating Season:</strong> Mostly during the rainy season.<br><strong>Gestation:</strong> 22 months.<br><strong>Litter size:</strong> 1 calf (twins rare).<br>
-	Calves weigh between 200-250 lbs at birth. At birth, a calf's trunk has no muscle tone, therefore it will suckle through its mouth. It takes several months for a calf to gain full control of its trunk.</p><a href=\"http://www.defenders.org/elephant/basic-facts\"/> ",
-  notebook_id: elephants.id,
-  flag_id: flag1.id
-
-)
-
-note3 = Note.create!(
-  title: "Fission-fusion society",
-  body_plain: "Elephants have a fission–fusion society in which multiple family groups come together to",
-  body: "<p>Elephants have a <a href=\"/wiki/Fission%E2%80%93fusion_society\" title=\"Fission–fusion society\">fission–fusion society</a> in which multiple family groups come together to socialise. Males (\"bulls\") leave their family groups when they reach puberty and may live alone or with other males.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>
-",
-  notebook_id: elephants.id,
-  flag_id: flag1.id
-
-)
-note4 = Note.create!(
-  title: "They're teeth",
-  body_plain: "Their incisors grow into tusks, which can serve as weapons and as tools for moving",
-  body: "<p>Their <a href=\"/wiki/Incisor\" title=\"Incisor\">incisors</a> grow into tusks, which can serve as weapons and as tools for moving objects and digging.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>
-",
-  notebook_id: tusk.id,
-  flag_id: flag2.id
-
-)
-note5 = Note.create!(
-  title: "Intelligence",
-  body_plain: "Elephant intelligence has been compared with that of primates and cetaceans. They appear to have",
-  body: "<p>Elephant <a href=\"/wiki/Elephant_cognition\" title=\"Elephant cognition\">intelligence</a> has been compared with that of <a href=\"/wiki/Primate\" title=\"Primate\">primates</a> and <a href=\"/wiki/Cetacea\" title=\"Cetacea\">cetaceans</a>. They appear to have <a href=\"/wiki/Self-awareness\" title=\"Self-awareness\">self-awareness</a> and show <a href=\"/wiki/Empathy\" title=\"Empathy\">empathy</a> for dying or dead individuals of their kind.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>
-",
-  notebook_id: proboscidea.id,
-  flag_id: flag2.id
-
-)
-note6 = Note.create!(
-  title: "Conservation Status",
-  body_plain: "African elephants are listed as vulnerable by the International Union for Conservation of Nature (IUCN)",
-  body: "<p>African elephants are listed as <a href=\"/wiki/Vulnerable_species\" title=\"Vulnerable species\">vulnerable</a> by the <a href=\"/wiki/International_Union_for_Conservation_of_Nature\" title=\"International Union for Conservation of Nature\">International Union for Conservation of Nature</a> (IUCN) while the Asian elephant is classed as <a href=\"/wiki/Endangered_species\" title=\"Endangered species\">endangered</a>. One of the biggest threats to elephant populations is the <a href=\"/wiki/Ivory_trade\" title=\"Ivory trade\">ivory trade</a>, as the animals are <a href=\"/wiki/Poaching\" title=\"Poaching\">poached</a> for their ivory tusks.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>
-",
-  notebook_id: elephants.id,
-  flag_id: flag3.id
-
-  )
-
-note7 = Note.create!(
-  title: "Diet Staples",
-  body_plain: "DIET
-Staples: Grasses, leaves, bamboo, bark, roots. Elephants are also known to eat crops like banana and sugarcane",
-  body: "<p><strong>Staples:</strong> Grasses, leaves, bamboo, bark, roots. Elephants are also known to eat crops like banana and sugarcane which are grown by farmers. Adult elephants eat 300-400 lbs of food per day.</p><a href=\"http://www.defenders.org/elephant/basic-facts\"/>",
-  notebook_id: elephants.id,
-  flag_id: flag4.id
-
-)
-
-note8 = Note.create!(
-  title: "Herbivores",
-  body_plain: "Elephants are herbivorous and can be found in different habitats including savannahs, forests, de",
-  body: "<p>Elephants are herbivorous and can be found in different habitats including <a href=\"/wiki/Savanna\" title=\"Savanna\">savannahs</a>, forests, deserts, and <a href=\"/wiki/Marsh\" title=\"Marsh\">marshes</a>. They prefer to stay near water. They are considered to be <a href=\"/wiki/Keystone_species\" title=\"Keystone species\">keystone species</a> due to their impact on their environments.</p><a href=\"https://en.wikipedia.org/wiki/Elephant\">https://en.wikipedia.org/wiki/Elephant</a>
-",
-  notebook_id: elephants.id,
-  flag_id: flag5.id
-
-)
-
-note9= Note.create!(
-title: "Savanna Elephant Facts",
-body_plain: "As a result of their visibility within the open areas where they live, Savanna elephants are well studied",
-body: "<p>Savanna elephants are the largest subspecies of elephant. They are easily distinguished by their very large ears—which allow them to radiate excess heat—and front legs which are noticeably longer than the hind legs. They are found throughout the grassy plains and bushlands of Africa. Savanna elephants live in eastern and southern Africa, where the highest densities are found in Botswana, Tanzania, Zimbabwe, Kenya, Namibia, Mozambique and South Africa.</p><a href=\"https://www.worldwildlife.org/species/savanna-elephant\"></a>",
-notebook_id: savannah.id,
-flag_id: flag6.id
-
-)
-
-note10 = Note.create!(
-title: "Human-Elephant Conflict",
-body_plain: "Human-elephant conflict impacts savanna elephant populations. Killings are often retaliatory as elephants",
-body: "<p>Human-elephant conflict impacts savanna elephant populations. Killings are often retaliatory as elephants eat and trample crops, raid food stores, and damage village infrastructure including precious water sources. Since an elephant can eat over 600 pounds of food a day, even a small herd can wipe out a farmer’s annual crop in a single night. Elephants disrupt community life—occasionally leading to injury and death of people. In such instances, authorities are obliged to take action and as a result, many elephants are shot. As elephant and human populations grow, the threat only worsens. Small protected areas are inadequate to stop conflict since elephants require plenty of freedom to roam.
-</p><a href=\"https://www.worldwildlife.org/species/savanna-elephant\"></a>",
-notebook_id: elephants.id,
-flag_id: flag6.id
-
-)
-
-tag1 = Tag.create!(user_id: demo.id, title: "basics", note_ids: [note7.id, note9.id])
-tag2 = Tag.create!(user_id: demo.id, title: "behavior", note_ids: [note5.id, note2.id, note3.id, note9.id])
-tag3 = Tag.create!(user_id: demo.id, title: "diet", note_ids: [note9.id, note7.id])
-tag4 = Tag.create!(user_id: demo.id, title: "types", note_ids: [note1.id])
-tag5 = Tag.create!(user_id: demo.id, title: "captivity", note_ids: [])
-tag6 = Tag.create!(user_id: demo.id, title: "facts", note_ids: [note9.id, note4.id])
+Tag.create!([
+  {title: "basics", user_id: User.last.id},
+  {title: "behavior", user_id: User.last.id},
+  {title: "diet", user_id: User.last.id},
+  {title: "types", user_id: User.last.id},
+  {title: "captivity", user_id: User.last.id},
+  {title: "facts", user_id: User.last.id},
+  {title: "todo", user_id: User.last.id}
+])

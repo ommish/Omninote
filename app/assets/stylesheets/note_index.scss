@@ -20,6 +20,11 @@
   transition: left .5s;
 }
 
+.note-index-sticky {
+  position: sticky;
+  top: 0;
+}
+
 
 .note-index-heading {
   padding: 20px;
@@ -30,6 +35,8 @@
   font-family: 'Roboto Slab', serif;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: sticky;
+  top: 0;
 }
 
 .note-item {

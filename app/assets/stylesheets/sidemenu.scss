@@ -59,6 +59,12 @@
   z-index: 30;
 }
 
+.sidemenu-sticky {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
 
 .sidemenu-heading {
   display: flex;

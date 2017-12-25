@@ -157,12 +157,13 @@ class Editor extends React.Component {
   }
 }
 
-selectLocation(lat, lng, title, placeId) {
+selectLocation(lat, lng, title, placeId, formattedAddress) {
   const newFlag = {
     placeId,
     lat,
     lng,
     title,
+    formattedAddress,
   }
   const newState = merge({}, this.state);
   this.props.createFlag(newFlag).then(({flag}) => {
@@ -292,7 +293,7 @@ render() {
     <div className="editor-dropdowns">
     <NotebookDropdown/>
     {this.state.flag.id ?
-      <div><button className="button grey tiny" onClick={this.clearLocation}>X</button>{this.state.flag.title}</div> :
+      <div className="editor-address"><button className="button grey tiny" onClick={this.clearLocation}>X</button>{this.state.flag.title}</div> :
       <LocationSearch
       selectLocation={this.selectLocation}
       renderedOn="editor"/>}

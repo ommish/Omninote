@@ -38,6 +38,7 @@ class NoteIndex extends React.Component {
 
     return (
       <section className={this.props.fullEditor ? "note-index closed-index" : "note-index"}>
+      <div className="note-index-sticky">
         <div className="note-index-heading">
           {this.props.noteIndexHeader}
         </div>
@@ -47,6 +48,7 @@ class NoteIndex extends React.Component {
           placeholder="Search notes"
           value={this.state.searchQuery}/>
         <NoteOrderOptionMenu />
+        </div>
         <ul className="note-item-container">
           {notes}
         </ul>

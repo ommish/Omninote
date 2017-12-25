@@ -15,6 +15,6 @@ class Api::FlagsController < ApplicationController
   end
 
   def flag_params
-    params.require(:flag).permit(:title, :place_id, :lat, :lng)
+    params.require(:flag).permit(:title, :place_id, :lat, :lng, :formatted_address)
   end
 end

@@ -12,6 +12,10 @@
     flex-direction: column;
     margin-top: 5px;
   }
+
+  .editor-address {
+    font-size: 14px;
+  }
 }
 
 .editor-lower-heading {
@@ -51,14 +55,13 @@
 }
 
 .tag-button {
-  height: 25px;
+  height: auto;
   background: $light-grey;
   margin: 5px;
   border-radius: 5px;
   padding: 3px;
   text-decoration: line-through;
-  transition: color 0.3s;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.3s;
 }
 
 .tag-button.selected {
@@ -66,7 +69,7 @@
   color: white;
   text-decoration: none;
   transition: color 0.3s;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.3s;
 }
 
 .editor-buttons {
