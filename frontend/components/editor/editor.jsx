@@ -22,11 +22,16 @@ class Editor extends React.Component {
       flag: this.props.flag,
     };
 
+    this.attemptSave = this.attemptSave.bind(this);
+    this.autosaveCountdown = this.autosaveCountdown.bind(this);
+    this.setAutosaveCountdown = this.setAutosaveCountdown.bind(this);
+    this.resetAutosaveCountdown = this.resetAutosaveCountdown.bind(this);
+
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
 
-    this.createTag = this.createTag.bind(this);
     this.handleTagInput = this.handleTagInput.bind(this);
+    this.createTag = this.createTag.bind(this);
 
     this.selectLocation = this.selectLocation.bind(this);
     this.clearLocation = this.clearLocation.bind(this);
@@ -34,18 +39,12 @@ class Editor extends React.Component {
     this.handleImage = this.handleImage.bind(this);
     this.uploadImage = this.uploadImage.bind(this);
 
-    this.attemptSave = this.attemptSave.bind(this);
-    this.autosaveCountdown = this.autosaveCountdown.bind(this);
-    this.setAutosaveCountdown = this.setAutosaveCountdown.bind(this);
-    this.resetAutosaveCountdown = this.resetAutosaveCountdown.bind(this);
-
     this.quillEditor = null;
   }
 
-  setAutosaveCountdown(e) {
-    if (!this.state.autosaving) {
-      this.setState({autosaving: true});
-      this.autosaveInterval = window.setInterval(this.autosaveCountdown, 1000);
+  attemptSave() {
+    if (this.isValidNote()) {
+      this.handleSubmit();
     }
   }
 
@@ -56,14 +55,18 @@ class Editor extends React.Component {
     }
   }
 
-  isValidNote() {
-    return this.state.note.title !== "" && this.props.selectedNotebook.id;
+  setAutosaveCountdown(e) {
+    if (!this.state.autosaving) {
+      this.setState({autosaving: true});
+      this.autosaveInterval = window.setInterval(this.autosaveCountdown, 1000);
+    }
   }
 
-  attemptSave() {
-    if (this.isValidNote()) {
-      this.handleSubmit();
-    }
+  resetAutosaveCountdown(newState) {
+    newState.timeUntilAutosave = 2;
+    newState.saved = false;
+    newState.failedSave = false;
+    this.setState(newState);
   }
 
   redirectAfterSave(success) {
@@ -94,32 +97,28 @@ class Editor extends React.Component {
     }
   }
 
-  componentWillReceiveProps(newProps) {
-    if (this.props.location.pathname !== newProps.location.pathname) {
+  isValidNote() {
+    return this.state.note.title !== "" && this.props.selectedNotebook.id;
+  }
+
+  handleBodyChange (content, delta, source, editor) {
+    const newState = merge({}, this.state);
+    newState.note =  merge(newState.note, {body: content, bodyPlain: editor.getText().trim()});
+    this.resetAutosaveCountdown(newState);
+  }
+
+  handleTitleChange(e) {
+    const newState = merge({}, this.state);
+    newState.note.title = e.target.value;
+    this.resetAutosaveCountdown(newState)
+  }
+
+  handleTagInput(e) {
+    const newTagInput = e.target.value;
+    if (this.props.tagErrors.length > 0) {
       this.props.clearTagErrors();
-      this.props.clearNoteErrors();
-      window.clearInterval(this.autosaveInterval);
-      const resetState = {
-        saved: false,
-        timeUntilAutosave: null,
-        autosaving: false,
-        failedSave: false,
-        note: newProps.note,
-        tagInput: "",
-        image: { imageUrl: "", imageFile: "" },
-        searchInput: "",
-        flag: newProps.flag,
-      };
-      this.setState(resetState);
-    } else if (this.props.selectedNotebook.id !== newProps.selectedNotebook.id) {
-      const newNote = merge({}, this.state.note);
-      newNote.notebookId = newProps.selectedNotebook.id;
-      if (newProps.selectedNotebook.clicked) {
-        this.setState({note: newNote}, this.attemptSave);
-      } else {
-        this.setState({note: newNote});
-      }
     }
+    this.setState({tagInput: newTagInput});
   }
 
   handleTagClick (tagId) {
@@ -190,33 +189,6 @@ clearLocation() {
   this.setState(newState, this.attemptSave)
 }
 
-resetAutosaveCountdown(newState) {
-  newState.timeUntilAutosave = 2;
-  newState.saved = false;
-  newState.failedSave = false;
-  this.setState(newState);
-}
-
-handleTagInput(e) {
-  const newTagInput = e.target.value;
-  if (this.props.tagErrors.length > 0) {
-    this.props.clearTagErrors();
-  }
-  this.setState({tagInput: newTagInput});
-}
-
-handleBodyChange (content, delta, source, editor) {
-  const newState = merge({}, this.state);
-  newState.note =  merge(newState.note, {body: content, bodyPlain: editor.getText().trim()});
-  this.resetAutosaveCountdown(newState);
-}
-
-handleTitleChange(e) {
-  const newState = merge({}, this.state);
-  newState.note.title = e.target.value;
-  this.resetAutosaveCountdown(newState)
-}
-
 handleImage(e) {
   const reader = new FileReader();
   const file = e.target.files[0];
@@ -249,7 +221,6 @@ appendPhotoToNote(url) {
   this.setState(newState);
 }
 
-
 handleSubmit() {
   const newState = merge({}, this.state);
   newState.note.bodyPlain = newState.note.bodyPlain.slice(0, 100);
@@ -269,6 +240,34 @@ handleSubmit() {
     newState.failedSave = true;
     this.setState(newState);
   });
+}
+
+componentWillReceiveProps(newProps) {
+  if (this.props.location.pathname !== newProps.location.pathname) {
+    this.props.clearTagErrors();
+    this.props.clearNoteErrors();
+    window.clearInterval(this.autosaveInterval);
+    const resetState = {
+      saved: false,
+      timeUntilAutosave: null,
+      autosaving: false,
+      failedSave: false,
+      note: newProps.note,
+      tagInput: "",
+      image: { imageUrl: "", imageFile: "" },
+      searchInput: "",
+      flag: newProps.flag,
+    };
+    this.setState(resetState);
+  } else if (this.props.selectedNotebook.id !== newProps.selectedNotebook.id) {
+    const newNote = merge({}, this.state.note);
+    newNote.notebookId = newProps.selectedNotebook.id;
+    if (newProps.selectedNotebook.clicked) {
+      this.setState({note: newNote}, this.attemptSave);
+    } else {
+      this.setState({note: newNote});
+    }
+  }
 }
 
 render() {
