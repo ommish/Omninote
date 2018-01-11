@@ -124,6 +124,7 @@
   padding: none;
   margin-bottom: 40px;
   margin-top: 10px;
+  border-style: none;
 }
 
 .title::-webkit-input-placeholder {
@@ -138,4 +139,13 @@
   justify-content: center;
   align-items: center;
   color: $light-green;
+}
+
+.ql-snow.ql-container {
+  border-style: none;
+}
+
+.ql-snow.ql-toolbar {
+  border-style: none;
+  border-bottom: 1px solid $light-grey;
 }
