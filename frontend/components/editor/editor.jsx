@@ -65,7 +65,6 @@ class Editor extends React.Component {
   resetAutosaveCountdown(newState) {
     newState.timeUntilAutosave = 2;
     newState.saved = false;
-    newState.failedSave = false;
     this.setState(newState);
   }
 
@@ -110,6 +109,7 @@ class Editor extends React.Component {
   handleTitleChange(e) {
     const newState = merge({}, this.state);
     newState.note.title = e.target.value;
+    newState.failedSave = false;
     this.resetAutosaveCountdown(newState)
   }
 
@@ -260,12 +260,14 @@ componentWillReceiveProps(newProps) {
     };
     this.setState(resetState);
   } else if (this.props.selectedNotebook.id !== newProps.selectedNotebook.id) {
-    const newNote = merge({}, this.state.note);
-    newNote.notebookId = newProps.selectedNotebook.id;
+    const newState = merge({}, this.state);
+    newState.note.notebookId = newProps.selectedNotebook.id;
+    newState.failedSave = false;
     if (newProps.selectedNotebook.clicked) {
-      this.setState({note: newNote}, this.attemptSave);
+      newState.attemptSave = true;
+      this.setState(newState);
     } else {
-      this.setState({note: newNote});
+      this.setState(newState);
     }
   }
 }
