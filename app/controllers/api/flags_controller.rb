@@ -10,8 +10,8 @@ class Api::FlagsController < ApplicationController
 
   def destroy
     @flag = current_user.flags.includes(:notes).find(params[:id])
-    @flag.destroy!
     render :show
+    @flag.destroy!
   end
 
   def flag_params

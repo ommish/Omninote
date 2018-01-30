@@ -2,11 +2,12 @@ import { RECEIVE_FLAG, REMOVE_FLAG, RECEIVE_FLAGS } from '../actions/flag_action
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_NEW_NOTE, RECEIVE_UPDATED_NOTE, REMOVE_NOTE } from '../actions/note_actions';
 import { createMarkers, createMarker, removeMarker, addNoteToMarker, removeNoteFromMarker, addNoteTitle, setInfoWindowContent } from '../util/marker_util';
+import { merge } from 'lodash';
 
 const initialState = {googleMap: null, markers: {}, infoWindow: null};
 
 const MarkersReducer = (oldState = initialState, action) => {
-  let newState = Object.assign({}, oldState);
+  const newState = merge({}, oldState);
   let newMarker;
   switch (action.type) {
     case RECEIVE_FLAGS:
@@ -27,13 +28,11 @@ const MarkersReducer = (oldState = initialState, action) => {
     }
     return newState;
     case RECEIVE_UPDATED_NOTE:
-    debugger
     if (action.flags) {
       Object.values(action.flags).forEach((flag) => {
         const oldNoteIds = Object.keys(newState.markers[flag.id].noteTitles);
         const newNoteIds = flag.noteIds.map((noteId) => noteId.toString());
         const noteId = action.note.id.toString();
-        debugger
         if (oldNoteIds.includes(noteId) && !newNoteIds.includes(noteId)) {
           newMarker = removeNoteFromMarker(flag.id, newState.markers[flag.id], action.note.id);
           newState.markers[flag.id] = newMarker;

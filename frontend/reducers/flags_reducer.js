@@ -2,12 +2,13 @@ import { RECEIVE_ALL_ENTITIES } from '../actions/entity_actions';
 import { RECEIVE_FLAG, REMOVE_FLAG } from '../actions/flag_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_NEW_NOTE, RECEIVE_UPDATED_NOTE, REMOVE_NOTE } from '../actions/note_actions';
+import { merge } from 'lodash';
 
 const FlagsReducer = (oldState = {}, action) => {
-  let newState = Object.assign({}, oldState);
+  let newState = merge({}, oldState);
   switch (action.type) {
     case RECEIVE_ALL_ENTITIES:
-    return action.flags ? Object.assign({}, action.flags) : {};
+    return action.flags ? merge({}, action.flags) : {};
     case RECEIVE_FLAG:
     newState[action.flag.id] = action.flag;
     return newState;
@@ -20,7 +21,7 @@ const FlagsReducer = (oldState = {}, action) => {
     }
     return newState;
     case RECEIVE_UPDATED_NOTE:
-    return Object.assign(newState, action.flags);
+    return merge(newState, action.flags);
     case REMOVE_NOTE:
     if (action.flagId) {
       newState[action.flagId].noteIds = newState[action.flagId].noteIds.filter((noteId) => noteId !== action.noteId);

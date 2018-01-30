@@ -2,9 +2,10 @@ import { RECEIVE_TAG, REMOVE_TAG } from '../actions/tag_actions';
 import { RECEIVE_ALL_ENTITIES } from '../actions/entity_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_NEW_NOTE, RECEIVE_UPDATED_NOTE, REMOVE_NOTE } from '../actions/note_actions';
+import { merge } from 'lodash';
 
 const TagsReducer = (oldState = {}, action) => {
-  let newState = Object.assign({}, oldState);
+  const newState = merge({}, oldState);
   switch (action.type) {
     case RECEIVE_ALL_ENTITIES:
     return action.tags ? Object.assign({}, action.tags) : {};
