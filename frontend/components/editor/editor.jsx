@@ -22,10 +22,10 @@ class Editor extends React.Component {
       searchInput: "",
       flag: this.props.flag,
     };
-    
+
     this.attemptSave = this.attemptSave.bind(this);
     this.startAutosave = this.startAutosave.bind(this);
-    this.debouncedAutosave = debounce(this.attemptSave, 1500);
+    this.debouncedAutosave = debounce(this.attemptSave, 1000);
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
@@ -120,7 +120,7 @@ class Editor extends React.Component {
       } else {
         newState.note.tagIds.push(tagId);
       }
-      this.setState(newState, () => {this.attemptSave()});
+      this.setState(newState, () => {this.debouncedAutosave(true)});
     };
   }
 
@@ -131,7 +131,7 @@ class Editor extends React.Component {
       .then((res) => {
         newState.note.tagIds.push(res.tag.id);
         newState.tagInput = "";
-        this.setState(newState, () => {this.attemptSave()});
+        this.setState(newState, () => {this.debouncedAutosave(true)});
       }, (fail) => {
         if (fail.errors.includes("tag already exists")) {
           const tag = this.props.allTags.filter((tag) => tag.title.toLowerCase() === newState.tagInput.toLowerCase())[0];
@@ -159,14 +159,14 @@ selectLocation(lat, lng, title, placeId, formattedAddress) {
   this.props.createFlag(newFlag).then(({flag}) => {
     newState.flag = flag;
     newState.note.flagId = flag.id;
-    this.setState(newState, () => {this.attemptSave()});
+    this.setState(newState, () => {this.debouncedAutosave(true)});
   }, ({errors}) => {
     if (errors[0] === "has already been taken") {
       this.props.allFlags.forEach((flag) => {
         if (flag.placeId === newFlag.placeId) {
           newState.flag = flag;
           newState.note.flagId = flag.id;
-          this.setState(newState, () => {this.attemptSave()});
+          this.setState(newState, () => {this.debouncedAutosave(true)});
         }
       });
     }
@@ -177,7 +177,7 @@ clearLocation() {
   const newState = merge({}, this.state);
   newState.note.flagId = null;
   newState.flag = { id: null, placeId: null, title: "", lat: null, lng: null };
-  this.setState(newState, () => {this.attemptSave()});
+  this.setState(newState, () => {this.debouncedAutosave(true)});
 }
 
 handleImage(e) {
@@ -224,7 +224,7 @@ handleSubmit() {
       newState.note.id = success.note.id;
     }
     newState.saved = true;
-    window.setTimeout(() => this.setState({saved: false}), 3000);
+    window.setTimeout(() => this.setState({saved: false}), 1500);
     this.setState(newState, () => this.redirectAfterSave(success));
   },
   (fail) => {
@@ -252,7 +252,7 @@ componentWillReceiveProps(newProps) {
     const newState = merge({}, this.state);
     newState.note.notebookId = newProps.selectedNotebook.id;
     if (newProps.selectedNotebook.clicked) {
-      this.setState(newState, () => {this.attemptSave()});
+      this.setState(newState, () => {this.debouncedAutosave(true)});
     } else {
       this.setState(newState);
     }

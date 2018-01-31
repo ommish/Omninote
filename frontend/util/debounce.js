@@ -7,6 +7,6 @@ export const debounce = (func, delay) => {
     }
     window.clearTimeout(timeoutFunc);
     timeoutFunc = window.setTimeout(laterFunc, delay);
-    if (callImmediately && !timeoutFunc) func();
+    if (callImmediately || !timeoutFunc) func();
   };
 };
