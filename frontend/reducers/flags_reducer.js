@@ -7,6 +7,8 @@ import { merge } from 'lodash';
 const FlagsReducer = (oldState = {}, action) => {
   let newState = merge({}, oldState);
   switch (action.type) {
+    case RECEIVE_CURRENT_USER:
+    return action.currentUser ? oldState : {};
     case RECEIVE_ALL_ENTITIES:
     return action.flags ? merge({}, action.flags) : {};
     case RECEIVE_FLAG:

@@ -7,6 +7,8 @@ import { merge } from 'lodash';
 const TagsReducer = (oldState = {}, action) => {
   const newState = merge({}, oldState);
   switch (action.type) {
+    case RECEIVE_CURRENT_USER:
+    return action.currentUser ? oldState : {};
     case RECEIVE_ALL_ENTITIES:
     return action.tags ? Object.assign({}, action.tags) : {};
     case RECEIVE_TAG:

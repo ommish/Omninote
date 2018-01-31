@@ -7,6 +7,8 @@ import { merge } from 'lodash';
 const NotebooksReducer = (oldState = {}, action) => {
   const newState = merge({}, oldState);
   switch (action.type) {
+    case RECEIVE_CURRENT_USER:
+    return action.currentUser ? oldState : {};
     case RECEIVE_ALL_ENTITIES:
     return action.notebooks ? Object.assign({}, action.notebooks) : {};
     case RECEIVE_NOTEBOOK:

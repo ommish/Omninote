@@ -10,9 +10,15 @@ const MarkersReducer = (oldState = initialState, action) => {
   const newState = merge({}, oldState);
   let newMarker;
   switch (action.type) {
+    case RECEIVE_CURRENT_USER:
+    return action.currentUser ? oldState : initialState;
     case RECEIVE_FLAGS:
     const newMarkers = createMarkers(action.flags, action.googleMap, action.infoWindow, action.notes);
-    return {googleMap: action.googleMap, markers: newMarkers, infoWindow: action.infoWindow};
+    return {
+      googleMap: action.googleMap,
+      markers: newMarkers,
+      infoWindow: action.infoWindow
+    };
     case RECEIVE_FLAG:
     newMarker = createMarker(action.flag, newState.googleMap, newState.infoWindow);
     newState.markers[action.flag.id] = newMarker;

@@ -7,24 +7,15 @@ import {
   TOGGLE_SIDEMENU_ITEM_TYPE,
   TOGGLE_CREATE_FORM,
 } from '../actions/ui_actions';
-
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { merge } from 'lodash';
 
-export const _noteOrderOptions = [
-  'Date Updated (newest first) ',
-  'Date Created (newest first)',
-  'Date Updated (oldest first)',
-  'Date Created (oldest first)',
-  'Title (ascending)',
-  'Title (descending)'];
-
-  const initialState = {
+const initialState = {
   initial: true,
   sidemenu: "hidden",
   sidemenuItemType: "notebook",
   createForm: {itemType: ""},
-  deleteForm: {id: false, type: ""},
+  deleteForm: {id: null, type: ""},
   logoutForm: false,
   selectedNotebook: {id: null, clicked: false},
   fullEditor: false,
@@ -38,11 +29,7 @@ const UIReducer = (oldState = initialState, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-    if (!action.currentUser) {
-      return initialState;
-    } else {
-      return oldState;
-    }
+    return action.currentUser ? oldState : {};
     case TOGGLE_SIDEMENU_ITEM_TYPE:
     newState = merge({}, oldState);
     if (action.itemType === "notebook") {

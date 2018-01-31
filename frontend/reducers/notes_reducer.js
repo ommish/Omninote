@@ -11,6 +11,8 @@ const initialState = {initialState: true};
 const NotesReducer = (oldState = initialState, action) => {
   const newState = merge({}, oldState);
   switch (action.type) {
+    case RECEIVE_CURRENT_USER:
+    return action.currentUser ? oldState : initialState;
     case RECEIVE_ALL_ENTITIES:
     return action.notes ? Object.assign({}, action.notes) : {};
     case REMOVE_NOTEBOOK:
@@ -34,8 +36,6 @@ const NotesReducer = (oldState = initialState, action) => {
     });
     return newState;
     case RECEIVE_NEW_NOTE:
-    newState[action.note.id] = action.note;
-    return newState;
     case RECEIVE_UPDATED_NOTE:
     newState[action.note.id] = action.note;
     return newState;
