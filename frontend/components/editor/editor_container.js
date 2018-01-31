@@ -5,7 +5,7 @@ import { updateNote, createNote, receiveNoteErrors } from '../../actions/note_ac
 import { createTag, receiveTagErrors } from '../../actions/tag_actions';
 import { createFlag, receiveFlagErrors } from '../../actions/flag_actions';
 import { toggleModal, toggleSelectedNotebook } from '../../actions/ui_actions';
-import { createPhoto } from '../../actions/photo_actions';
+import { createPhoto } from '../../util/photo_api_util.js';
 import { sortItems } from '../../util/sorters';
 
 const mapStateToProps = (state, ownProps) => {
@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     clearFlagErrors: () => dispatch(receiveFlagErrors([])),
     clearNoteErrors: () => dispatch(receiveNoteErrors([])),
     clearTagErrors: () => dispatch(receiveTagErrors([])),
-    createPhoto: (photoData) => dispatch(createPhoto(photoData)),
+    createPhoto: (photoData) => createPhoto(photoData),
     toggleMapView: () => dispatch(toggleModal("mapView")),
   };
 };
