@@ -4,7 +4,7 @@ import { deleteNotebook } from '../../actions/notebook_actions';
 import { deleteNote } from '../../actions/note_actions';
 import { deleteTag } from '../../actions/tag_actions';
 import { deleteFlag } from '../../actions/flag_actions';
-import { toggleDeleteForm } from '../../actions/ui_actions';
+import { toggleDeleteForm, toggleSelectedNotebook } from '../../actions/ui_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
@@ -39,6 +39,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     deleteItem: (id) => dispatch(action(id)),
     toggleDeleteForm: (toDelete) => dispatch(toggleDeleteForm(toDelete)),
+    toggleSelectedNotebook: () => dispatch(toggleSelectedNotebook(null, false)),
   };
 };
 

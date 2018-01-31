@@ -20,6 +20,7 @@ class DeleteForm extends React.Component {
         if (this.props.itemType === "notebook") {
           if (parseInt(this.props.match.params.notebookId) === this.props.item.id) {
             this.redirect('/notes');
+            this.props.toggleSelectedNotebook();
           }
         } else if (this.props.itemType === "tag") {
           if (parseInt(this.props.match.params.tagId) === this.props.item.id) {
