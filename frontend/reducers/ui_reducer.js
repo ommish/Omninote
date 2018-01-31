@@ -15,7 +15,7 @@ const initialState = {
   sidemenu: "hidden",
   sidemenuItemType: "notebook",
   createForm: {itemType: ""},
-  deleteForm: {id: null, type: ""},
+  deleteForm: {id: false, type: ""},
   logoutForm: false,
   selectedNotebook: {id: null, clicked: false},
   fullEditor: false,
