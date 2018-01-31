@@ -22,10 +22,12 @@ class CreateForm extends React.Component {
     e.preventDefault();
     const newItem = merge({}, this.state);
     this.props.createItem(newItem).then((res) => {
-      if (!this.props.notebookDropdownOpen) {
+      if (this.props.match.params.noteId) {
         this.redirect(
           res[this.props.itemType].id
         );
+      } else {
+        this.props.toggleSelectedNotebook(res[this.props.itemType].id);
       }
       this.closeModal();
     });

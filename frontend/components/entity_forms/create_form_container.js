@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createNotebook, receiveNotebookErrors } from '../../actions/notebook_actions';
 import { createTag, receiveTagErrors } from '../../actions/tag_actions';
 import { withRouter } from 'react-router-dom';
-import { toggleModal, toggleCreateForm } from '../../actions/ui_actions';
+import { toggleModal, toggleCreateForm, toggleSelectedNotebook } from '../../actions/ui_actions';
 
 const mapStateToProps = (state, ownProps) => {
   let formMessage;
@@ -36,6 +36,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     toggleCreateForm: (itemType) => dispatch(toggleCreateForm(itemType)),
     clearItemErrors: () => dispatch(clearItemErrors([])),
     toggleNotebookDropdown: () => dispatch(toggleModal("notebookDropdown")),
+    toggleSelectedNotebook: (id) => dispatch(toggleSelectedNotebook(id, true)),
   };
 };
 

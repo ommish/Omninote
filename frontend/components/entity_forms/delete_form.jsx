@@ -16,72 +16,75 @@ class DeleteForm extends React.Component {
   }
 
   handleSubmit(e) {
-
-        if (this.props.itemType === "notebook") {
-          if (parseInt(this.props.match.params.notebookId) === this.props.item.id) {
-            this.redirect('/notes');
-            this.props.toggleSelectedNotebook();
-          }
-        } else if (this.props.itemType === "tag") {
-          if (parseInt(this.props.match.params.tagId) === this.props.item.id) {
-            this.redirect('/notes');
-          }
-        } else if (this.props.itemType === "note") {
-          if (parseInt(this.props.match.params.noteId) === this.props.item.id) {
-            if (this.props.match.params.notebookId) {
-              this.redirect(`/notebooks/${this.props.match.params.notebookId}`);
-            } else {
-              this.redirect('/notes');
-            }
-          }
+    if (this.props.itemType === "notebook") {
+      this.props.toggleSelectedNotebook();
+      if (parseInt(this.props.match.params.notebookId) === this.props.item.id) {
+        this.redirect('/notes');
+      }
+    } else if (this.props.itemType === "tag") {
+      if (parseInt(this.props.match.params.tagId) === this.props.item.id) {
+        this.redirect('/notes');
+      }
+    } else if (this.props.itemType === "note") {
+      if (parseInt(this.props.match.params.noteId) === this.props.item.id) {
+        if (this.props.match.params.notebookId) {
+          this.redirect(`/notebooks/${this.props.match.params.notebookId}`);
         } else {
           this.redirect('/notes');
         }
-
-        this.props.deleteItem(this.props.item.id).then(() => {
-        this.closeModal();
-      });
+      }
+    } else {
+      this.redirect('/notes');
     }
 
-    handleCancel(e) {
+    this.props.deleteItem(this.props.item.id).then(() => {
       this.closeModal();
-    }
-
-    closeModal () {
-      this.props.toggleDeleteForm({id: false, type: ""});
-    }
-
-    render() {
-      const formContent = this.props.item ?
-      (
-        <div className="full-form" >
-          <div className="full-form-icon"><img src={window.staticAssets[this.props.itemType]}/></div>
-          <div className="full-form-header">{this.props.formTitle}</div>
-          <div className="full-form-message">{this.props.formMessage}</div>
-          <div className="full-form-message-title">{this.props.formMessageTitle}</div>
-          <div className="full-form-button-container">
-            <button onClick={this.handleCancel}
-              className="button grey small">
-              Cancel</button>
-            <button
-              onClick={this.handleSubmit}
-              className="button green small">
-              Delete</button>
-          </div>
-        </div>
-      ) : <div className="full-form"></div>;
-
-      return (
-        <Modal
-          ariaHideApp={false}
-          isOpen={(this.props.deleteForm.id) && (this.props.deleteForm.type === this.props.itemType)}
-          onRequestClose={this.closeModal}
-          className="full-form-open"
-          overlayClassName='full-form-overlay'>
-          {formContent}
-        </Modal>
-      );
-    }
+    });
   }
 
-  export default DeleteForm;
+  handleCancel(e) {
+    this.closeModal();
+  }
+
+  closeModal () {
+    this.props.toggleDeleteForm({id: false, type: ""});
+  }
+
+  render() {
+    const formContent = this.props.item ?
+    (
+      <div className="full-form" >
+        <div className="full-form-icon"><img src={window.staticAssets[this.props.itemType]}/></div>
+        <div className="full-form-header">{this.props.formTitle}</div>
+        <div className="full-form-message">{this.props.formMessage}</div>
+        <div className="full-form-message-title">{this.props.formMessageTitle}</div>
+        <div className="full-form-button-container">
+          <button
+            onClick={this.handleCancel}
+            className="button grey small">
+            Cancel
+          </button>
+          <button
+            onClick={this.handleSubmit}
+            className="button green small">
+            Delete
+          </button>
+          </div>
+      </div>
+    ) :
+      <div className="full-form"></div>;
+
+    return (
+      <Modal
+        ariaHideApp={false}
+        isOpen={(this.props.deleteForm.id) && (this.props.deleteForm.type === this.props.itemType)}
+        onRequestClose={this.closeModal}
+        className="full-form-open"
+        overlayClassName='full-form-overlay'>
+        {formContent}
+      </Modal>
+    );
+  }
+}
+
+export default DeleteForm;
