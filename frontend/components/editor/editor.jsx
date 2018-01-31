@@ -300,7 +300,7 @@ render() {
       validNote={this.isValidNote()}
       noteErrors={noteErrors}
       saved={this.state.saved}
-      save={this.attemptSave}
+      save={() => this.debouncedAutosave(true)}
       toggleFullEditor={this.props.toggleFullEditor}
       fullEditor={this.props.fullEditor}/>
       <label>Add an image:&nbsp;&nbsp;&nbsp;
