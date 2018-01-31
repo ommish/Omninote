@@ -1,4 +1,4 @@
-import { RECEIVE_USER_ERRORS } from '../actions/session_actions';
+import { RECEIVE_USER_ERRORS } from '../../actions/session_actions';
 
 const initialState = [];
 const SessionErrorsReducer = (oldState = initialState, action) => {

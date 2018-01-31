@@ -1,4 +1,4 @@
-import { RECEIVE_NOTEBOOK_ERRORS } from '../actions/notebook_actions';
+import { RECEIVE_NOTEBOOK_ERRORS } from '../../actions/notebook_actions';
 
 const NotebookErrorsReducer = (oldState = [], action) => {
   switch (action.type) {

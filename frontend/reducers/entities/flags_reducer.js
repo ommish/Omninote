@@ -1,7 +1,7 @@
-import { RECEIVE_ALL_ENTITIES } from '../actions/entity_actions';
-import { RECEIVE_FLAG, REMOVE_FLAG } from '../actions/flag_actions';
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import { RECEIVE_NEW_NOTE, RECEIVE_UPDATED_NOTE, REMOVE_NOTE } from '../actions/note_actions';
+import { RECEIVE_ALL_ENTITIES } from '../../actions/entity_actions';
+import { RECEIVE_FLAG, REMOVE_FLAG } from '../../actions/flag_actions';
+import { RECEIVE_CURRENT_USER } from '../../actions/session_actions';
+import { RECEIVE_NEW_NOTE, RECEIVE_UPDATED_NOTE, REMOVE_NOTE } from '../../actions/note_actions';
 import { merge } from 'lodash';
 
 const FlagsReducer = (oldState = {}, action) => {

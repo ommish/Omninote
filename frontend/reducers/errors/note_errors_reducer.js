@@ -1,4 +1,4 @@
-import { RECEIVE_NOTE_ERRORS } from '../actions/note_actions';
+import { RECEIVE_NOTE_ERRORS } from '../../actions/note_actions';
 
 const NoteErrorsReducer = (oldState = [], action) => {
   switch (action.type) {

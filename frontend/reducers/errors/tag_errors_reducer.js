@@ -1,4 +1,4 @@
-import { RECEIVE_TAG_ERRORS } from '../actions/tag_actions';
+import { RECEIVE_TAG_ERRORS } from '../../actions/tag_actions';
 
 const TagErrorsReducer = (oldState = [], action) => {
   switch (action.type) {

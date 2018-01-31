@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import NotebooksReducer from './notebooks_reducer';
-import NotesReducer from './notes_reducer';
-import TagsReducer from './tags_reducer';
-import FlagsReducer from './flags_reducer';
-import MarkersReducer from './markers_reducer';
+import NotebooksReducer from './entities/notebooks_reducer';
+import NotesReducer from './entities/notes_reducer';
+import TagsReducer from './entities/tags_reducer';
+import FlagsReducer from './entities/flags_reducer';
+import MarkersReducer from './entities/markers_reducer';
 
 export default combineReducers({
   notebooks: NotebooksReducer,

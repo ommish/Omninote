@@ -1,4 +1,4 @@
-import { RECEIVE_FLAG_ERRORS } from '../actions/flag_actions';
+import { RECEIVE_FLAG_ERRORS } from '../../actions/flag_actions';
 
 const FlagErrorsReducer = (oldState = [], action) => {
   switch (action.type) {

@@ -1,7 +1,7 @@
-import { RECEIVE_FLAG, REMOVE_FLAG, RECEIVE_FLAGS } from '../actions/flag_actions';
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import { RECEIVE_NEW_NOTE, RECEIVE_UPDATED_NOTE, REMOVE_NOTE } from '../actions/note_actions';
-import { createMarkers, createMarker, removeMarker, addNoteToMarker, removeNoteFromMarker, addNoteTitle, setInfoWindowContent } from '../util/marker_util';
+import { RECEIVE_FLAG, REMOVE_FLAG, RECEIVE_FLAGS } from '../../actions/flag_actions';
+import { RECEIVE_CURRENT_USER } from '../../actions/session_actions';
+import { RECEIVE_NEW_NOTE, RECEIVE_UPDATED_NOTE, REMOVE_NOTE } from '../../actions/note_actions';
+import { createMarkers, createMarker, removeMarker, addNoteToMarker, removeNoteFromMarker, addNoteTitle, setInfoWindowContent } from '../../util/marker_util';
 import { merge } from 'lodash';
 
 const initialState = {googleMap: null, markers: {}, infoWindow: null};
