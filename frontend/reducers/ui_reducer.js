@@ -29,7 +29,7 @@ const UIReducer = (oldState = initialState, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-    return action.currentUser ? oldState : {};
+    return action.currentUser ? oldState : initialState;
     case TOGGLE_SIDEMENU_ITEM_TYPE:
     newState = merge({}, oldState);
     if (action.itemType === "notebook") {
