@@ -5,7 +5,7 @@ export const EditorLowerHeading = (props) => {
     <div className="editor-lower-heading">
     <input
     onChange={props.handleTitleChange}
-    onFocus={props.setAutosaveCountdown}
+    onFocus={props.startAutosave}
     placeholder="Title your note"
     type="text"
     className="title"

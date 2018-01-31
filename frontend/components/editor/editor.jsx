@@ -3,16 +3,17 @@ import ReactQuill from 'react-quill';
 import { merge } from 'lodash';
 import NotebookDropdown from './notebook_dropdown_container';
 import { quillModules, quillFormats } from '../../util/quill_configs';
-import { Tags } from './tags';
+import Tags from './tags';
 import { EditorLowerHeading } from './editor_lower_heading';
 import LocationSearch from '../map_view/location_search';
+import { debounce } from '../../util/debounce';
+
 
 class Editor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       saved: false,
-      timeUntilAutosave: null,
       autosaving: false,
       failedSave: false,
       note: this.props.note,
@@ -21,11 +22,10 @@ class Editor extends React.Component {
       searchInput: "",
       flag: this.props.flag,
     };
-
+    
     this.attemptSave = this.attemptSave.bind(this);
-    this.autosaveCountdown = this.autosaveCountdown.bind(this);
-    this.setAutosaveCountdown = this.setAutosaveCountdown.bind(this);
-    this.resetAutosaveCountdown = this.resetAutosaveCountdown.bind(this);
+    this.startAutosave = this.startAutosave.bind(this);
+    this.debouncedAutosave = debounce(this.attemptSave, 1500);
 
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
@@ -40,31 +40,18 @@ class Editor extends React.Component {
     this.uploadImage = this.uploadImage.bind(this);
 
     this.quillEditor = null;
+
   }
 
   attemptSave() {
-    if (this.isValidNote()) {
+    if (this.isValidNote() && !this.state.failedSave) {
       this.handleSubmit();
     }
   }
 
-  autosaveCountdown() {
-    this.setState({timeUntilAutosave: this.state.timeUntilAutosave - 1});
-    if (this.state.timeUntilAutosave <= 0 && !this.state.saved && !this.state.failedSave) {
-      this.attemptSave();
-    }
-  }
-
-  setAutosaveCountdown(e) {
-    if (!this.state.autosaving) {
-      this.setState({autosaving: true});
-      this.autosaveInterval = window.setInterval(this.autosaveCountdown, 1000);
-    }
-  }
-
-  resetAutosaveCountdown(newState) {
-    newState.timeUntilAutosave = 2;
-    newState.saved = false;
+  startAutosave() {
+    const newState = merge({}, this.state);
+    newState.autosaving = true;
     this.setState(newState);
   }
 
@@ -76,7 +63,6 @@ class Editor extends React.Component {
     const currentNotebook = this.props.match.params.notebookId;
     const currentTag = this.props.match.params.tagId;
     const currentFlag = this.props.match.params.flagId;
-
     if (currentNote) {
       if (currentNotebook) {
         if (parseInt(currentNotebook) !== success.note.notebookId) {
@@ -94,6 +80,8 @@ class Editor extends React.Component {
         this.props.history.push(`notes/${success.note.id}`)
       }
     }
+    this.quillEditor.blur();
+    this.quillEditor.focus();
   }
 
   isValidNote() {
@@ -102,15 +90,18 @@ class Editor extends React.Component {
 
   handleBodyChange (content, delta, source, editor) {
     const newState = merge({}, this.state);
-    newState.note =  merge(newState.note, {body: content, bodyPlain: editor.getText().trim()});
-    this.resetAutosaveCountdown(newState);
+    newState.saved = false;
+    newState.note.body = content;
+    newState.note.bodyPlain = editor.getText().trim();
+    this.setState(newState, () => {if (this.state.autosaving) this.debouncedAutosave()});
   }
 
   handleTitleChange(e) {
     const newState = merge({}, this.state);
     newState.note.title = e.target.value;
     newState.failedSave = false;
-    this.resetAutosaveCountdown(newState)
+    newState.saved = false;
+    this.setState(newState, () => {if (this.state.autosaving) this.debouncedAutosave()});
   }
 
   handleTagInput(e) {
@@ -122,14 +113,14 @@ class Editor extends React.Component {
   }
 
   handleTagClick (tagId) {
-    return (e) => {
+    return () => {
       const newState = merge({}, this.state);
       if (newState.note.tagIds.includes(tagId)) {
         newState.note.tagIds = newState.note.tagIds.filter((id) => id !== tagId);
       } else {
         newState.note.tagIds.push(tagId);
       }
-      this.setState(newState, this.attemptSave);
+      this.setState(newState, () => {this.attemptSave()});
     };
   }
 
@@ -140,7 +131,7 @@ class Editor extends React.Component {
       .then((res) => {
         newState.note.tagIds.push(res.tag.id);
         newState.tagInput = "";
-        this.setState(newState, this.attemptSave);
+        this.setState(newState, () => {this.attemptSave()});
       }, (fail) => {
         if (fail.errors.includes("tag already exists")) {
           const tag = this.props.allTags.filter((tag) => tag.title.toLowerCase() === newState.tagInput.toLowerCase())[0];
@@ -168,14 +159,14 @@ selectLocation(lat, lng, title, placeId, formattedAddress) {
   this.props.createFlag(newFlag).then(({flag}) => {
     newState.flag = flag;
     newState.note.flagId = flag.id;
-    this.setState(newState, this.attemptSave);
+    this.setState(newState, () => {this.attemptSave()});
   }, ({errors}) => {
     if (errors[0] === "has already been taken") {
       this.props.allFlags.forEach((flag) => {
         if (flag.placeId === newFlag.placeId) {
           newState.flag = flag;
           newState.note.flagId = flag.id;
-          this.setState(newState, this.attemptSave);
+          this.setState(newState, () => {this.attemptSave()});
         }
       });
     }
@@ -186,7 +177,7 @@ clearLocation() {
   const newState = merge({}, this.state);
   newState.note.flagId = null;
   newState.flag = { id: null, placeId: null, title: "", lat: null, lng: null };
-  this.setState(newState, this.attemptSave)
+  this.setState(newState, () => {this.attemptSave()});
 }
 
 handleImage(e) {
@@ -233,7 +224,7 @@ handleSubmit() {
       newState.note.id = success.note.id;
     }
     newState.saved = true;
-    newState.timeUntilAutosave = 2;
+    window.setTimeout(() => this.setState({saved: false}), 3000);
     this.setState(newState, () => this.redirectAfterSave(success));
   },
   (fail) => {
@@ -246,10 +237,8 @@ componentWillReceiveProps(newProps) {
   if (this.props.location.pathname !== newProps.location.pathname) {
     this.props.clearTagErrors();
     this.props.clearNoteErrors();
-    window.clearInterval(this.autosaveInterval);
     const resetState = {
       saved: false,
-      timeUntilAutosave: null,
       autosaving: false,
       failedSave: false,
       note: newProps.note,
@@ -262,10 +251,8 @@ componentWillReceiveProps(newProps) {
   } else if (this.props.selectedNotebook.id !== newProps.selectedNotebook.id) {
     const newState = merge({}, this.state);
     newState.note.notebookId = newProps.selectedNotebook.id;
-    newState.failedSave = false;
     if (newProps.selectedNotebook.clicked) {
-      newState.attemptSave = true;
-      this.setState(newState);
+      this.setState(newState, () => {this.attemptSave()});
     } else {
       this.setState(newState);
     }
@@ -309,7 +296,7 @@ render() {
       <EditorLowerHeading
       noteTitle={this.state.note.title}
       handleTitleChange={this.handleTitleChange}
-      setAutosaveCountdown={this.setAutosaveCountdown}
+      startAutosave={this.startAutosave}
       validNote={this.isValidNote()}
       noteErrors={noteErrors}
       saved={this.state.saved}
@@ -319,7 +306,6 @@ render() {
       <label>Add an image:&nbsp;&nbsp;&nbsp;
       <input type="file"
       onChange={this.handleImage}
-      onFocus={this.setAutosaveCountdown}
       accept=".png, .gif, .jpg, .jpeg"/>
       </label>
       <ReactQuill
@@ -329,7 +315,7 @@ render() {
       modules={quillModules}
       formats={quillFormats}
       value={this.state.note.body}
-      onFocus={this.setAutosaveCountdown}
+      onFocus={this.startAutosave}
       onChange={this.handleBodyChange}/>
       </main>
     );

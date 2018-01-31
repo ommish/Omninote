@@ -4,7 +4,6 @@ class NotebookDropdown extends React.Component {
   constructor(props) {
     super(props);
     this.toggleNotebookDropdown = this.toggleNotebookDropdown.bind(this);
-    this.handleNotebookSelection = this.handleNotebookSelection.bind(this);
   }
 
   componentDidMount() {
