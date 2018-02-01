@@ -37,3 +37,17 @@ body, html {
   height: 100vh;
   overflow: hidden;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $light-grey;
+  border-radius: 7px;;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $grey;
+  border-radius: 7px;
+}
