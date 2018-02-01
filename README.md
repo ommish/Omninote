@@ -84,9 +84,6 @@ Toggling tags, the selected notebook, or changing the flag will trigger an immed
 Prompts for similar actions (eg. deleting a note, notebook, tag, or flag) have similar design but clear markings (headers, icons, and tooltips), making it easy for the user to navigate the app.
 
 
-![note_delete](https://github.com/ommish/Omninote/blob/master/README_images/note_delete.png "Delete Notes")
-
-
 ### Future Directions
 
 Additional features to be added:
