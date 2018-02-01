@@ -16,9 +16,10 @@ class MapView extends React.Component {
   }
 
   getUserLocation() {
-    if (!this.state.mapCenter.lat) {
-      navigator.geolocation.getCurrentPosition(this.setMapCenter, () => this.setMapCenter({lat: 40.7128, lng: -74.0060}));
-    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => this.setMapCenter(pos.coords.latitude, pos.coords.longitude),
+      (a) => this.setMapCenter({lat: 40.7128, lng: -74.0060})
+    );
   }
 
   setMapCenter(lat, lng) {
