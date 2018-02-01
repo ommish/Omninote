@@ -31,7 +31,8 @@ At the top of the index is a search bar to filter notes. Search queries will mat
 A menu of several sorting options is also available to sort notes.
 Notes are by default sorted in order of `updatedAtNewest`. Selecting a different option dispatches an action with an attached index, which is used to select the appropriate comparer callback to pass to the sorting function.
 
-    `const comparingFunctions = [
+    `javascript
+    const comparingFunctions = [
     updatedAtNewest,
     createdAtNewest,
     updatedAtOldest,
@@ -40,7 +41,8 @@ Notes are by default sorted in order of `updatedAtNewest`. Selecting a different
     titleDesc
     ];`
 
-    `export const sortItems = (notes, sortOrder) => (
+    `javascript
+    export const sortItems = (notes, sortOrder) => (
       notes.sort(comparingFunctions[sortOrder]);
     );`
 
@@ -62,7 +64,8 @@ The editor also has a notebook dropdown menu to assign a notebook to the current
 Autosave is implemented using debouncing.
 The below debouncing function accepts a function and a time interval as arguments, and returns another function that, when invoked with a truthy argument will immediately invoke the original function, and when invoked with a falsely argument will set a timeout to invoke the original function only after the specified amount of time has passed since it was last invoked.
 
-    `export const debounce = (func, delay) => {
+    `javascript
+    export const debounce = (func, delay) => {
       let timeoutFunc;
       return (callImmediately) => {
         const laterFunc = () => {
