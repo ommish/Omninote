@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactQuill from 'react-quill';
 import { merge } from 'lodash';
 import NotebookDropdown from './notebook_dropdown_container';
 import { quillModules, quillFormats } from '../../util/quill_configs';
@@ -7,7 +6,7 @@ import Tags from './tags';
 import { EditorLowerHeading } from './editor_lower_heading';
 import LocationSearch from '../map_view/location_search';
 import { debounce } from '../../util/debounce';
-
+import ReactQuill from 'react-quill';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -40,7 +39,6 @@ class Editor extends React.Component {
     this.uploadImage = this.uploadImage.bind(this);
 
     this.quillEditor = null;
-
   }
 
   attemptSave() {
@@ -67,6 +65,8 @@ class Editor extends React.Component {
       if (currentNotebook) {
         if (parseInt(currentNotebook) !== success.note.notebookId) {
           this.props.history.push(`/notebooks/${success.note.notebookId}/notes/${success.note.id}`);
+          this.quillEditor.blur();
+          this.quillEditor.focus();
         }
       }
     } else {
@@ -79,9 +79,9 @@ class Editor extends React.Component {
       } else {
         this.props.history.push(`notes/${success.note.id}`)
       }
+      this.quillEditor.blur();
+      this.quillEditor.focus();
     }
-    this.quillEditor.blur();
-    this.quillEditor.focus();
   }
 
   isValidNote() {
@@ -207,6 +207,7 @@ uploadImage() {
 
 appendPhotoToNote(url) {
   const newState = merge({}, this.state);
+  debugger
   newState.note.body = this.quillEditor.getEditorContents().concat(`<img src=${url}/>`);
   newState.image = { imageUrl: "", imageFile: null };
   this.setState(newState);
