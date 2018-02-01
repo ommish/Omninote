@@ -28,6 +28,7 @@ class NoteOrderOptions extends React.Component {
       </button>)
     );
     return (
+      [
       <div className="sort-option-div">
         <div
           className="sort-button"
@@ -36,11 +37,12 @@ class NoteOrderOptions extends React.Component {
             <ul className={this.props.noteOrderDropdown ? "order-dropdown" : "order-dropdown-closed"}>
               {options}
             </ul>
-          <div className={this.props.noteOrderDropdown ? "order-dropdown-overlay" : "order-dropdown-overlay-closed"}
-            onClick={this.toggleNoteOrderDropdown}>
-          </div>
         </div>
+      </div>,
+      <div className={this.props.noteOrderDropdown ? ".order-dropdown-overlay" : "order-dropdown-overlay-closed"}
+      onClick={this.toggleNoteOrderDropdown}>
       </div>
+    ]
   );
   }
 }
