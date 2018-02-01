@@ -12,6 +12,7 @@ class CreateForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleEnter = this.handleEnter.bind(this);
+    this.inputField = null;
   }
 
   redirect (id) {
@@ -58,13 +59,19 @@ class CreateForm extends React.Component {
     this.props.toggleCreateForm("");
   }
 
+  componentDidUpdate(prevProps) {
+    if (!prevProps.createFormType && this.props.createFormType) {
+      this.inputField.focus();
+    }
+  }
+
   render() {
     let errors = this.props.errors || [];
     errors = errors.map((error) => <li className="create-errors" key={error}>{error}</li>);
     return (
       <Modal
         ariaHideApp={false}
-        isOpen={this.props.createFormType !== "" }
+        isOpen={!!this.props.createFormType}
         onRequestClose={this.closeModal}
         className="full-form-open"
         overlayClassName='full-form-overlay'>
@@ -77,7 +84,8 @@ class CreateForm extends React.Component {
             type="text"
             placeholder={this.props.formMessage}
             value={this.state.title}
-            onChange={this.handleChange}/>
+            onChange={this.handleChange}
+            ref={(input) => {this.inputField = input; }}/>
           <div className="full-form-button-container">
             <button onClick={this.handleCancel}
               className="button grey small">
