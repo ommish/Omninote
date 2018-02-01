@@ -200,7 +200,7 @@ uploadImage() {
   if (file) {
     photoData.append("photo[image]", file);
     this.props.createPhoto(photoData).then((res) => {
-      this.appendPhotoToNote(res.photo.imageUrl);
+      this.appendPhotoToNote(res.imageUrl);
     });
   }
 }
