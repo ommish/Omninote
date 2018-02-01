@@ -29,7 +29,7 @@ class NoteOrderOptions extends React.Component {
     );
     return (
       [
-      <div className="sort-option-div">
+      <div className="sort-option-div" key="0">
         <div
           className="sort-button"
           onClick={this.toggleNoteOrderDropdown}>
@@ -40,7 +40,8 @@ class NoteOrderOptions extends React.Component {
         </div>
       </div>,
       <div className={this.props.noteOrderDropdown ? ".order-dropdown-overlay" : "order-dropdown-overlay-closed"}
-      onClick={this.toggleNoteOrderDropdown}>
+      onClick={this.toggleNoteOrderDropdown}
+      key="1">
       </div>
     ]
   );

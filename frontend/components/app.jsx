@@ -4,7 +4,7 @@ import Sidemenu from './sidemenu/sidemenu_container';
 import Editor from './editor/editor_container';
 import AllNotes from './note_index/all_notes_index_container';
 import FilteredNotes from './note_index/filtered_notes_index_container';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import MDSpinner from 'react-md-spinner';
 import CreateForm from './entity_forms/create_form_container';
 import LogoutForm from './session/logout_form_container';
@@ -18,15 +18,18 @@ class App extends React.Component {
   }
 
   render () {
-    if (this.props.notes.initialState) {
+    if (this.props.initialState) {
       return (
         <div className="loading-page">
           <h1>Just a moment!</h1>
           <MDSpinner singleColor="rgb(76, 175, 80)" size={50} duration={5000}/>
         </div>
       );
+    } else if (this.props.notFound) {
+      return (
+        <Redirect to="/notes" />
+      );
     }
-
     else {
       return (
         <div className="app-page">
